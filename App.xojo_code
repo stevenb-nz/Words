@@ -30,6 +30,17 @@ Inherits Application
 	#tag EndEvent
 
 
+	#tag MenuHandler
+		Function FileDeleteDB() As Boolean Handles FileDeleteDB.Action
+			wordsDB.Close
+			wordsDB.DatabaseFile.Delete
+			
+			Return True
+			
+		End Function
+	#tag EndMenuHandler
+
+
 	#tag Method, Flags = &h0
 		Sub addTables()
 		  wordsDB.SQLExecute("CREATE TABLE Words (id Integer, Word VarChar NOT NULL, combo_id Integer, playability Integer, PRIMARY KEY(Word));")
