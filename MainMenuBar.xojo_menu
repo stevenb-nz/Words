@@ -6,6 +6,13 @@ Begin Menu MainMenuBar
       Index = -2147483648
       AutoEnable = True
       Visible = True
+      Begin MenuItem FileImport
+         SpecialMenu = 0
+         Text = "Import..."
+         Index = -2147483648
+         AutoEnable = True
+         Visible = True
+      End
       Begin MenuItem FileDeleteDB
          SpecialMenu = 0
          Text = "Delete DB"

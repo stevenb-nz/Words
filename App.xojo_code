@@ -3,6 +3,7 @@ Protected Class App
 Inherits Application
 	#tag Event
 		Sub Close()
+		  'write WordButton.Text to currentString in settings (unless this is done every thing it is changed)
 		  wordsDB.Close
 		  
 		End Sub
@@ -25,7 +26,7 @@ Inherits Application
 		  else
 		    MsgBox "Something went wrong creating a new database file."
 		  end if
-		  
+		  'read currentString from settings, and use it to set WordButton.Text (with appropriate style depending on if it's a word or not)
 		End Sub
 	#tag EndEvent
 
@@ -40,13 +41,28 @@ Inherits Application
 		End Function
 	#tag EndMenuHandler
 
+	#tag MenuHandler
+		Function FileImport() As Boolean Handles FileImport.Action
+			importWords
+			Return True
+			
+		End Function
+	#tag EndMenuHandler
+
 
 	#tag Method, Flags = &h0
 		Sub addTables()
 		  wordsDB.SQLExecute("CREATE TABLE Words (id Integer, Word VarChar NOT NULL, reversed VarChar, f_hook_of Integer, b_hook_of Integer, combo_id Integer, playability Integer, PRIMARY KEY(Word));")
 		  wordsDB.SQLExecute("CREATE TABLE Combos (id Integer, Combo VarChar NOT NULL, length Integer, frequency Integer, freq_with_blanks Integer, average_playability Float, PRIMARY KEY(Combo));")
+		  wordsDB.SQLExecute("CREATE TABLE Settings (id Integer, Setting VarChar NOT NULL, value VarChar, PRIMARY KEY(Combo));")
 		  
 		  wordsDB.Commit()
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub importWords()
 		  
 		End Sub
 	#tag EndMethod
