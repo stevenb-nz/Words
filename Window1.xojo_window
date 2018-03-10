@@ -367,19 +367,34 @@ End
 #tag EndWindow
 
 #tag WindowCode
+	#tag Method, Flags = &h0
+		Sub stringChanged()
+		  'read WordButton.Text
+		  'save new word to settings
+		  
+		  'if word then me.bold = true, me.italic = false
+		  'if not word then me.bold = false, me.italic = true
+		  'run queries for 6 listBoxes
+		  
+		  '(on doubleClick in any listBox, set WordButton.Text to word double-clicked on, then run this method)
+		End Sub
+	#tag EndMethod
+
+
 #tag EndWindowCode
 
 #tag Events WordButton
 	#tag Event
 		Sub Action()
-		  me.Italic = not me.Italic
-		  me.Bold = not me.Bold
+		  'dialog requesting new string
+		  'fire stringChanged method
 		  
 		End Sub
 	#tag EndEvent
 	#tag Event
 		Sub Open()
-		  me.bold = true
+		  'read currentString from settings, and use it to set .Text
+		  'fire stringChanged method
 		  
 		End Sub
 	#tag EndEvent

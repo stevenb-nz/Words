@@ -3,7 +3,6 @@ Protected Class App
 Inherits Application
 	#tag Event
 		Sub Close()
-		  'write WordButton.Text to currentString in settings (unless this is done every thing it is changed)
 		  wordsDB.Close
 		  
 		End Sub
@@ -26,7 +25,7 @@ Inherits Application
 		  else
 		    MsgBox "Something went wrong creating a new database file."
 		  end if
-		  'read currentString from settings, and use it to set WordButton.Text (with appropriate style depending on if it's a word or not)
+		  
 		End Sub
 	#tag EndEvent
 
