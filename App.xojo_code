@@ -62,6 +62,18 @@ Inherits Application
 
 	#tag Method, Flags = &h0
 		Sub importWords()
+		  dim f as FolderItem
+		  dim t as TextInputStream
+		  dim s as String
+		  
+		  f = GetOpenFolderItem("")
+		  if f <> nil then
+		    t = TextInputStream.Open(f)
+		    while not t.EOF
+		      s = t.ReadLine
+		    wend
+		    t.Close
+		  End
 		  
 		End Sub
 	#tag EndMethod
