@@ -65,14 +65,18 @@ Inherits Application
 		  dim f as FolderItem
 		  dim t as TextInputStream
 		  dim s as String
+		  dim a(-1) as String
 		  
 		  f = GetOpenFolderItem("")
 		  if f <> nil then
 		    t = TextInputStream.Open(f)
 		    while not t.EOF
 		      s = t.ReadLine
+		      a = s.Split(&u9)
+		      'process_word(a(0),val(a(1)))
 		    wend
 		    t.Close
+		    'update_combos
 		  End
 		  
 		End Sub
