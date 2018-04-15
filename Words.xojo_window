@@ -1,5 +1,5 @@
 #tag Window
-Begin Window Window1
+Begin Window Words
    BackColor       =   &cFFFFFF00
    Backdrop        =   0
    CloseButton     =   True
@@ -337,7 +337,7 @@ Begin Window Window1
       Bold            =   False
       ButtonStyle     =   "0"
       Cancel          =   False
-      Caption         =   "LETTERS"
+      Caption         =   "LMNOPQRSTUVWXYZ"
       Default         =   False
       Enabled         =   True
       Height          =   20
@@ -363,10 +363,60 @@ Begin Window Window1
       Visible         =   True
       Width           =   404
    End
+   Begin TextField WordField
+      AcceptTabs      =   False
+      Alignment       =   2
+      AutoDeactivate  =   True
+      AutomaticallyCheckSpelling=   False
+      BackColor       =   &cFFFFFF00
+      Bold            =   False
+      Border          =   True
+      CueText         =   ""
+      DataField       =   ""
+      DataSource      =   ""
+      Enabled         =   True
+      Format          =   ""
+      Height          =   20
+      HelpTag         =   ""
+      Index           =   -2147483648
+      Italic          =   False
+      Left            =   438
+      LimitText       =   0
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      Mask            =   ""
+      Password        =   False
+      ReadOnly        =   False
+      Scope           =   0
+      TabIndex        =   7
+      TabPanelIndex   =   0
+      TabStop         =   True
+      Text            =   ""
+      TextColor       =   &c00000000
+      TextFont        =   "System"
+      TextSize        =   0.0
+      TextUnit        =   0
+      Top             =   20
+      Underline       =   False
+      UseFocusRing    =   True
+      Visible         =   False
+      Width           =   404
+   End
 End
 #tag EndWindow
 
 #tag WindowCode
+	#tag Event
+		Sub Activate()
+		  ClearFocus
+		  
+		End Sub
+	#tag EndEvent
+
+
 	#tag Method, Flags = &h0
 		Sub stringChanged()
 		  'read WordButton.Text
@@ -386,8 +436,9 @@ End
 #tag Events WordButton
 	#tag Event
 		Sub Action()
-		  'dialog requesting new string
-		  'fire stringChanged method
+		  WordField.Text = me.Caption
+		  WordField.Visible = true
+		  WordField.SetFocus
 		  
 		End Sub
 	#tag EndEvent
@@ -395,6 +446,51 @@ End
 		Sub Open()
 		  'read currentString from settings, and use it to set .Text
 		  'fire stringChanged method
+		  
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events WordField
+	#tag Event
+		Sub TextChange()
+		  me.Text = me.text.Uppercase
+		  
+		End Sub
+	#tag EndEvent
+	#tag Event
+		Function KeyDown(Key As String) As Boolean
+		  Select Case asc(key)
+		  Case 3, 9, 13
+		    if me.text <> WordButton.Caption then
+		      WordButton.Caption = me.text
+		      'fire stringChanged method
+		    end
+		    me.Visible = false
+		    return true
+		  Case 27
+		    me.Visible = false
+		    return true
+		  Case 8, 28, 29, 127
+		    return false
+		  Case 65 To 90, 97 to 122
+		    if me.text.len = 15 and me.SelLength = 0 then
+		      return true
+		    else
+		      return false
+		    end
+		  Else
+		    return true
+		  End Select
+		  
+		End Function
+	#tag EndEvent
+	#tag Event
+		Sub LostFocus()
+		  if me.text <> WordButton.Caption then
+		    WordButton.Caption = me.text
+		    'fire stringChanged method
+		  end
+		  me.Visible = false
 		  
 		End Sub
 	#tag EndEvent
