@@ -19,6 +19,7 @@ Inherits Application
 		    If tables <> Nil Then
 		      if tables.eof then
 		        addTables
+		        updateSetting("Word button text","")
 		      end if
 		      tables.close
 		    End If
@@ -78,6 +79,12 @@ Inherits Application
 		    t.Close
 		    'update_combos
 		  End
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub updateSetting(setting as string, value as string)
 		  
 		End Sub
 	#tag EndMethod
