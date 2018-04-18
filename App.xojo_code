@@ -54,7 +54,7 @@ Inherits Application
 		Sub addTables()
 		  wordsDB.SQLExecute("CREATE TABLE Words (id Integer, Word VarChar NOT NULL, reversed VarChar, f_hook_of Integer, b_hook_of Integer, combo_id Integer, playability_order Integer, playability_reverse Integer, PRIMARY KEY(Word));")
 		  wordsDB.SQLExecute("CREATE TABLE Combos (id Integer, Combo VarChar NOT NULL, length Integer, frequency Integer, freq_with_blanks Integer, combo_playability Float_max, combo_playability Float_high, combo_playability_low Float, PRIMARY KEY(Combo));")
-		  wordsDB.SQLExecute("CREATE TABLE Settings (id Integer, Setting VarChar NOT NULL, value VarChar, PRIMARY KEY(Combo));")
+		  wordsDB.SQLExecute("CREATE TABLE Settings (id Integer, Setting VarChar NOT NULL, value VarChar, PRIMARY KEY(Setting));")
 		  
 		  wordsDB.Commit()
 		  
@@ -85,6 +85,20 @@ Inherits Application
 
 	#tag Method, Flags = &h0
 		Sub updateSetting(setting as string, value as string)
+		  dim sql as string
+		  sql = "SELECT * from Settings WHERE setting='"+setting+"'"
+		  
+		  dim data as RecordSet
+		  data =wordsDB.SQLSelect(sql)
+		  
+		  if data.EOF then
+		    dim row as new DatabaseRecord
+		    row.Column("setting") = setting
+		    row.Column("value") = value
+		    wordsDB.InsertRecord("Settings",row)
+		  else
+		    wordsDB.SQLExecute("UPDATE settings SET value='"+value+"' WHERE setting='"+setting+"'")
+		  end
 		  
 		End Sub
 	#tag EndMethod
