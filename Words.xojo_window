@@ -70,6 +70,7 @@ Begin Window Words
       TextSize        =   0.0
       TextUnit        =   0
       Top             =   52
+      Transparent     =   False
       Underline       =   False
       UseFocusRing    =   True
       Visible         =   True
@@ -121,6 +122,7 @@ Begin Window Words
       TextSize        =   0.0
       TextUnit        =   0
       Top             =   52
+      Transparent     =   False
       Underline       =   False
       UseFocusRing    =   True
       Visible         =   True
@@ -172,6 +174,7 @@ Begin Window Words
       TextSize        =   0.0
       TextUnit        =   0
       Top             =   541
+      Transparent     =   False
       Underline       =   False
       UseFocusRing    =   True
       Visible         =   True
@@ -223,6 +226,7 @@ Begin Window Words
       TextSize        =   0.0
       TextUnit        =   0
       Top             =   541
+      Transparent     =   False
       Underline       =   False
       UseFocusRing    =   True
       Visible         =   True
@@ -274,6 +278,7 @@ Begin Window Words
       TextSize        =   0.0
       TextUnit        =   0
       Top             =   382
+      Transparent     =   False
       Underline       =   False
       UseFocusRing    =   True
       Visible         =   True
@@ -325,6 +330,7 @@ Begin Window Words
       TextSize        =   0.0
       TextUnit        =   0
       Top             =   52
+      Transparent     =   False
       Underline       =   False
       UseFocusRing    =   True
       Visible         =   True
@@ -359,6 +365,7 @@ Begin Window Words
       TextSize        =   0.0
       TextUnit        =   0
       Top             =   20
+      Transparent     =   False
       Underline       =   False
       Visible         =   True
       Width           =   404
@@ -400,6 +407,7 @@ Begin Window Words
       TextSize        =   0.0
       TextUnit        =   0
       Top             =   20
+      Transparent     =   False
       Underline       =   False
       UseFocusRing    =   True
       Visible         =   False
@@ -444,8 +452,13 @@ End
 	#tag EndEvent
 	#tag Event
 		Sub Open()
-		  'read currentString from settings, and use it to set .Text
-		  'fire stringChanged method
+		  me.Caption = app.getSetting("Word button text")
+		  
+		End Sub
+	#tag EndEvent
+	#tag Event
+		Sub Close()
+		  app.updateSetting("Word button text",me.Caption)
 		  
 		End Sub
 	#tag EndEvent

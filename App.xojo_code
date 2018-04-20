@@ -62,6 +62,23 @@ Inherits Application
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
+		Function getSetting(setting as string) As string
+		  dim sql as string
+		  sql = "SELECT value from Settings WHERE setting='"+setting+"'"
+		  
+		  dim data as RecordSet
+		  data =wordsDB.SQLSelect(sql)
+		  
+		  if data.EOF then
+		    return ""
+		  else
+		    return data.IdxField(1).StringValue
+		  end
+		  
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Sub importWords()
 		  dim f as FolderItem
 		  dim t as TextInputStream
