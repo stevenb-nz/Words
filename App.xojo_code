@@ -91,11 +91,29 @@ Inherits Application
 		    while not t.EOF
 		      s = t.ReadLine
 		      a = s.Split(&u9)
-		      'process_word(a(0),val(a(1)))
+		      process_word(a(0),val(a(1)))
 		    wend
 		    t.Close
 		    'update_combos
 		  End
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub process_word(word as string, playability as integer)
+		  dim sql as string
+		  sql = "SELECT * from Words WHERE Word='"+word+"'"
+		  
+		  dim data as RecordSet
+		  data =wordsDB.SQLSelect(sql)
+		  
+		  if data.EOF then
+		    dim row as new DatabaseRecord
+		    row.Column("Word") = word
+		    row.Column("playability_order") = str(playability)
+		    wordsDB.InsertRecord("Words",row)
+		  end
 		  
 		End Sub
 	#tag EndMethod

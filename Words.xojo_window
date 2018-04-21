@@ -338,7 +338,7 @@ Begin Window Words
       _ScrollOffset   =   0
       _ScrollWidth    =   -1
    End
-   Begin PushButton WordButton
+   Begin WordButton WordButton
       AutoDeactivate  =   True
       Bold            =   False
       ButtonStyle     =   "0"
@@ -426,12 +426,24 @@ End
 
 
 	#tag Method, Flags = &h0
-		Sub stringChanged()
-		  'read WordButton.Text
-		  'save new word to settings
+		Sub isWord(word as string)
+		  'dim sql as string
+		  'sql = "SELECT * from Words WHERE Word='"+word+"'"
+		  '
+		  'dim data as RecordSet
+		  'data =wordsDB.SQLSelect(sql)
+		  '
+		  'if data.EOF then
+		  'dim row as new DatabaseRecord
+		  'row.Column("Word") = word
+		  'row.Column("playability_order") = str(playability)
+		  'wordsDB.InsertRecord("Words",row)
+		  'end
 		  
-		  'if word then me.bold = true, me.italic = false
-		  'if not word then me.bold = false, me.italic = true
+		  
+		  
+		  
+		  
 		  'run queries for 6 listBoxes
 		  
 		  '(on doubleClick in any listBox, set WordButton.Text to word double-clicked on, then run this method)
@@ -453,7 +465,7 @@ End
 	#tag Event
 		Sub Open()
 		  me.Caption = app.getSetting("Word button text")
-		  
+		  WordButton.setCaptionStyle
 		End Sub
 	#tag EndEvent
 	#tag Event
@@ -476,7 +488,7 @@ End
 		  Case 3, 9, 13
 		    if me.text <> WordButton.Caption then
 		      WordButton.Caption = me.text
-		      'fire stringChanged method
+		      WordButton.setCaptionStyle
 		    end
 		    me.Visible = false
 		    return true
@@ -501,7 +513,7 @@ End
 		Sub LostFocus()
 		  if me.text <> WordButton.Caption then
 		    WordButton.Caption = me.text
-		    'fire stringChanged method
+		    WordButton.setCaptionStyle
 		  end
 		  me.Visible = false
 		  
