@@ -3,7 +3,7 @@ Protected Class WordButton
 Inherits PushButton
 	#tag Method, Flags = &h0
 		Sub setCaptionStyle()
-		  if isWord(me.caption) then
+		  if words.isWord(me.caption) then
 		    me.bold = true
 		    me.italic = false
 		  else

@@ -426,19 +426,18 @@ End
 
 
 	#tag Method, Flags = &h0
-		Sub isWord(word as string)
-		  'dim sql as string
-		  'sql = "SELECT * from Words WHERE Word='"+word+"'"
-		  '
-		  'dim data as RecordSet
-		  'data =wordsDB.SQLSelect(sql)
-		  '
-		  'if data.EOF then
-		  'dim row as new DatabaseRecord
-		  'row.Column("Word") = word
-		  'row.Column("playability_order") = str(playability)
-		  'wordsDB.InsertRecord("Words",row)
-		  'end
+		Function isWord(word as string) As Boolean
+		  dim sql as string
+		  sql = "SELECT * from Words WHERE Word='"+word+"'"
+		  
+		  dim data as RecordSet
+		  data = app.wordsDB.SQLSelect(sql)
+		  
+		  if data.EOF then
+		    return false
+		  else
+		    return true
+		  end
 		  
 		  
 		  
@@ -447,7 +446,7 @@ End
 		  'run queries for 6 listBoxes
 		  
 		  '(on doubleClick in any listBox, set WordButton.Text to word double-clicked on, then run this method)
-		End Sub
+		End Function
 	#tag EndMethod
 
 
