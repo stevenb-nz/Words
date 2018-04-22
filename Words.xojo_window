@@ -469,7 +469,10 @@ End
 	#tag EndEvent
 	#tag Event
 		Sub Close()
-		  app.updateSetting("Word button text",me.Caption)
+		  if app.wordsDB <> nil then
+		    app.updateSetting("Word button text",me.Caption)
+		  end
+		  
 		  
 		End Sub
 	#tag EndEvent
