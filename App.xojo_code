@@ -65,6 +65,23 @@ Inherits Application
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
+		Function combo_id(word as String) As integer
+		  'dim sql as string
+		  'sql = "SELECT * from Words WHERE Word='"+word+"'"
+		  '
+		  'dim data as RecordSet
+		  'data =wordsDB.SQLSelect(sql)
+		  '
+		  'if data.EOF then
+		  
+		  
+		  'wordsDB.SQLExecute("CREATE TABLE Words (id Integer, Word VarChar NOT NULL, reversed VarChar, f_hook_of Integer, b_hook_of Integer, combo_id Integer, playability Integer, PRIMARY KEY(Word));")
+		  'wordsDB.SQLExecute("CREATE TABLE Combos (id Integer, Combo VarChar NOT NULL, length Integer, frequency Integer, freq_with_blanks Integer, combo_playability Float, PRIMARY KEY(Combo));")
+		  
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Function getSetting(setting as string) As string
 		  dim sql as string
 		  sql = "SELECT value from Settings WHERE setting='"+setting+"'"
@@ -97,7 +114,9 @@ Inherits Application
 		      process_word(a(0),val(a(1)))
 		    wend
 		    t.Close
-		    'update_combos
+		    update_hooks_combos
+		    words.WordButton.Caption = a(0)
+		    words.WordButton.setCaptionStyle
 		  End
 		  
 		End Sub
@@ -114,11 +133,25 @@ Inherits Application
 		  if data.EOF then
 		    dim row as new DatabaseRecord
 		    row.Column("Word") = word
+		    row.Column("reversed") = reverse(word.ToText)
+		    'row.Column("combo_id") = str(combo_id(word))
 		    row.Column("playability") = str(playability)
 		    wordsDB.InsertRecord("Words",row)
 		  end
 		  
 		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Function reverse(word as text) As text
+		  dim reversed as text
+		  
+		  for each l as text in word.Characters
+		    reversed = l + reversed
+		  next
+		  return reversed
+		  
+		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
@@ -137,6 +170,12 @@ Inherits Application
 		  else
 		    wordsDB.SQLExecute("UPDATE settings SET value='"+value+"' WHERE setting='"+setting+"'")
 		  end
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub update_hooks_combos()
 		  
 		End Sub
 	#tag EndMethod
