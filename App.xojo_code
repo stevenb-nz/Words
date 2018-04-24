@@ -65,7 +65,7 @@ Inherits Application
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function combo_id(word as String) As integer
+		Function combo_id(combo as String) As integer
 		  'dim sql as string
 		  'sql = "SELECT * from Words WHERE Word='"+word+"'"
 		  '
@@ -114,7 +114,7 @@ Inherits Application
 		      process_word(a(0),val(a(1)))
 		    wend
 		    t.Close
-		    update_hooks_combos
+		    update_combo_playability
 		    words.WordButton.Caption = a(0)
 		    words.WordButton.setCaptionStyle
 		  End
@@ -132,8 +132,13 @@ Inherits Application
 		  
 		  if data.EOF then
 		    dim row as new DatabaseRecord
+		    dim w_id as integer
 		    row.Column("Word") = word
 		    row.Column("reversed") = reverse(word.ToText)
+		    w_id = word_id(right(word,len(word)-1))
+		    row.Column("f_hook_of") = if(w_id > 0, str(w_id), "NULL")
+		    w_id = word_id(left(word,len(word)-1))
+		    row.Column("b_hook_of") = if(w_id > 0, str(w_id), "NULL")
 		    'row.Column("combo_id") = str(combo_id(word))
 		    row.Column("playability") = str(playability)
 		    wordsDB.InsertRecord("Words",row)
@@ -175,9 +180,26 @@ Inherits Application
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub update_hooks_combos()
+		Sub update_combo_playability()
 		  
 		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Function word_id(word as String) As integer
+		  'dim sql as string
+		  'sql = "SELECT * from Words WHERE Word='"+word+"'"
+		  '
+		  'dim data as RecordSet
+		  'data =wordsDB.SQLSelect(sql)
+		  '
+		  'if data.EOF then
+		  
+		  
+		  'wordsDB.SQLExecute("CREATE TABLE Words (id Integer, Word VarChar NOT NULL, reversed VarChar, f_hook_of Integer, b_hook_of Integer, combo_id Integer, playability Integer, PRIMARY KEY(Word));")
+		  'wordsDB.SQLExecute("CREATE TABLE Combos (id Integer, Combo VarChar NOT NULL, length Integer, frequency Integer, freq_with_blanks Integer, combo_playability Float, PRIMARY KEY(Combo));")
+		  
+		End Function
 	#tag EndMethod
 
 
