@@ -26,7 +26,7 @@ Begin Window Words
    Title           =   "Words"
    Visible         =   True
    Width           =   1280
-   Begin Listbox SubsetListbox
+   Begin CustomListbox SubsetListbox
       AutoDeactivate  =   True
       AutoHideScrollbars=   True
       Bold            =   False
@@ -78,7 +78,7 @@ Begin Window Words
       _ScrollOffset   =   0
       _ScrollWidth    =   -1
    End
-   Begin Listbox SupersetListbox
+   Begin CustomListbox SupersetListbox
       AutoDeactivate  =   True
       AutoHideScrollbars=   True
       Bold            =   False
@@ -130,7 +130,7 @@ Begin Window Words
       _ScrollOffset   =   0
       _ScrollWidth    =   -1
    End
-   Begin Listbox HookOfListbox
+   Begin CustomListbox HookOfListbox
       AutoDeactivate  =   True
       AutoHideScrollbars=   True
       Bold            =   False
@@ -182,7 +182,7 @@ Begin Window Words
       _ScrollOffset   =   0
       _ScrollWidth    =   -1
    End
-   Begin Listbox HooksListbox
+   Begin CustomListbox HooksListbox
       AutoDeactivate  =   True
       AutoHideScrollbars=   True
       Bold            =   False
@@ -234,7 +234,7 @@ Begin Window Words
       _ScrollOffset   =   0
       _ScrollWidth    =   -1
    End
-   Begin Listbox SubsetPlusOneListbox
+   Begin CustomListbox SubsetPlusOneListbox
       AutoDeactivate  =   True
       AutoHideScrollbars=   True
       Bold            =   False
@@ -286,7 +286,7 @@ Begin Window Words
       _ScrollOffset   =   0
       _ScrollWidth    =   -1
    End
-   Begin Listbox AnagramListbox
+   Begin CustomListbox AnagramListbox
       AutoDeactivate  =   True
       AutoHideScrollbars=   True
       Bold            =   False
