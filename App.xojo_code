@@ -52,6 +52,14 @@ Inherits Application
 		End Function
 	#tag EndMenuHandler
 
+	#tag MenuHandler
+		Function FilePostimports() As Boolean Handles FilePostimports.Action
+			post_import_processing
+			Return True
+			
+		End Function
+	#tag EndMenuHandler
+
 
 	#tag Method, Flags = &h0
 		Sub addTables()
@@ -114,10 +122,25 @@ Inherits Application
 		      process_word(a(0),val(a(1)))
 		    wend
 		    t.Close
-		    update_combo_playability
 		    words.WordButton.Caption = a(0)
 		    words.WordButton.setCaptionStyle
 		  End
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub post_import_processing()
+		  'for each word
+		  
+		  'dim w_id as integer
+		  'w_id = word_id(right(word,len(word)-1))
+		  'row.Column("f_hook_of") = if(w_id > 0, str(w_id), "NULL")
+		  'w_id = word_id(left(word,len(word)-1))
+		  'row.Column("b_hook_of") = if(w_id > 0, str(w_id), "NULL")
+		  
+		  'for each combo
+		  'assign highest playability index of words for that combo to that combo
 		  
 		End Sub
 	#tag EndMethod
@@ -132,13 +155,8 @@ Inherits Application
 		  
 		  if data.EOF then
 		    dim row as new DatabaseRecord
-		    dim w_id as integer
 		    row.Column("Word") = word
 		    row.Column("reversed") = reverse(word.ToText)
-		    w_id = word_id(right(word,len(word)-1))
-		    row.Column("f_hook_of") = if(w_id > 0, str(w_id), "NULL")
-		    w_id = word_id(left(word,len(word)-1))
-		    row.Column("b_hook_of") = if(w_id > 0, str(w_id), "NULL")
 		    'row.Column("combo_id") = str(combo_id(word))
 		    row.Column("playability") = str(playability)
 		    wordsDB.InsertRecord("Words",row)
@@ -175,12 +193,6 @@ Inherits Application
 		  else
 		    wordsDB.SQLExecute("UPDATE settings SET value='"+value+"' WHERE setting='"+setting+"'")
 		  end
-		  
-		End Sub
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
-		Sub update_combo_playability()
 		  
 		End Sub
 	#tag EndMethod

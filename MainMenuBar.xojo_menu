@@ -13,6 +13,13 @@ Begin Menu MainMenuBar
          AutoEnable = True
          Visible = True
       End
+      Begin MenuItem FilePostimports
+         SpecialMenu = 0
+         Text = "Post-imports"
+         Index = -2147483648
+         AutoEnable = True
+         Visible = True
+      End
       Begin MenuItem FileDeleteDB
          SpecialMenu = 0
          Text = "Delete DB"
