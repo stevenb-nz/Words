@@ -157,7 +157,7 @@ Inherits Application
 		    dim row as new DatabaseRecord
 		    row.Column("Word") = word
 		    row.Column("reversed") = reverse(word.ToText)
-		    'row.Column("combo_id") = str(combo_id(word))
+		    row.Column("combo_id") = str(combo_id(sort_word(word.totext)))
 		    row.Column("playability") = str(playability)
 		    wordsDB.InsertRecord("Words",row)
 		  end
@@ -173,6 +173,22 @@ Inherits Application
 		    reversed = l + reversed
 		  next
 		  return reversed
+		  
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Function sort_word(word as text) As text
+		  dim sorted as text
+		  dim sort_array() as string
+		  
+		  for each l as text in word.Characters
+		    sort_array.Append l
+		  next
+		  sort_array.Sort
+		  sorted = join(sort_array,"").ToText
+		  
+		  return sorted
 		  
 		End Function
 	#tag EndMethod
