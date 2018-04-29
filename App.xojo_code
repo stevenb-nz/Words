@@ -74,17 +74,17 @@ Inherits Application
 
 	#tag Method, Flags = &h0
 		Function combo_id(combo as String) As integer
-		  'dim sql as string
-		  'sql = "SELECT * from Words WHERE Word='"+word+"'"
-		  '
-		  'dim data as RecordSet
-		  'data =wordsDB.SQLSelect(sql)
-		  '
-		  'if data.EOF then
+		  dim sql as string
+		  sql = "SELECT id from Combos WHERE Combo='"+combo+"'"
 		  
+		  dim data as RecordSet
+		  data =wordsDB.SQLSelect(sql)
 		  
-		  'wordsDB.SQLExecute("CREATE TABLE Words (id Integer, Word VarChar NOT NULL, reversed VarChar, f_hook_of Integer, b_hook_of Integer, combo_id Integer, playability Integer, PRIMARY KEY(Word));")
-		  'wordsDB.SQLExecute("CREATE TABLE Combos (id Integer, Combo VarChar NOT NULL, length Integer, frequency Integer, freq_with_blanks Integer, combo_playability Float, PRIMARY KEY(Combo));")
+		  if data.EOF then
+		    return process_combo(combo)
+		  else
+		    return val(data.IdxField(1).StringValue)
+		  end if
 		  
 		End Function
 	#tag EndMethod
@@ -143,6 +143,24 @@ Inherits Application
 		  'assign highest playability index of words for that combo to that combo
 		  
 		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Function process_combo(combo as string) As integer
+		  dim row as new DatabaseRecord
+		  
+		  row.Column("Combo") = combo
+		  wordsDB.InsertRecord("Combos",row)
+		  
+		  dim sql as string
+		  sql = "SELECT id from Combos WHERE Combo='"+combo+"'"
+		  
+		  dim data as RecordSet
+		  data =wordsDB.SQLSelect(sql)
+		  
+		  return val(data.IdxField(1).StringValue)
+		  
+		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
