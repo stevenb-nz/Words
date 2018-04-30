@@ -73,16 +73,19 @@ Inherits Application
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function combo_id(combo as String) As integer
+		Function combo_id(combo as String, playability as integer) As integer
 		  dim sql as string
-		  sql = "SELECT id from Combos WHERE Combo='"+combo+"'"
+		  sql = "SELECT id, combo_playability from Combos WHERE Combo='"+combo+"'"
 		  
 		  dim data as RecordSet
 		  data =wordsDB.SQLSelect(sql)
 		  
 		  if data.EOF then
-		    return process_combo(combo)
+		    return process_combo(combo,playability)
 		  else
+		    if val(data.IdxField(2).StringValue) < playability then
+		      wordsDB.SQLExecute("UPDATE Combos SET combo_playability="+str(playability)+" WHERE id="+data.IdxField(1).StringValue)
+		    end
 		    return val(data.IdxField(1).StringValue)
 		  end if
 		  
@@ -146,10 +149,11 @@ Inherits Application
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function process_combo(combo as string) As integer
+		Function process_combo(combo as string, playability as integer) As integer
 		  dim row as new DatabaseRecord
 		  
 		  row.Column("Combo") = combo
+		  row.Column("combo_playability") = str(playability)
 		  wordsDB.InsertRecord("Combos",row)
 		  
 		  dim sql as string
@@ -175,7 +179,7 @@ Inherits Application
 		    dim row as new DatabaseRecord
 		    row.Column("Word") = word
 		    row.Column("reversed") = reverse(word.ToText)
-		    row.Column("combo_id") = str(combo_id(sort_word(word.totext)))
+		    row.Column("combo_id") = str(combo_id(sort_word(word.totext),playability))
 		    row.Column("playability") = str(playability)
 		    wordsDB.InsertRecord("Words",row)
 		  end
