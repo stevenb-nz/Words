@@ -64,7 +64,7 @@ Inherits Application
 	#tag Method, Flags = &h0
 		Sub addTables()
 		  wordsDB.SQLExecute("CREATE TABLE Words (id Integer, Word VarChar NOT NULL, reversed VarChar, f_hook_of Integer, b_hook_of Integer, combo_id Integer, playability Integer, PRIMARY KEY(id));")
-		  wordsDB.SQLExecute("CREATE TABLE Combos (id Integer, Combo VarChar NOT NULL, length Integer, frequency Integer, freq_with_blanks Integer, combo_playability Float, PRIMARY KEY(id));")
+		  wordsDB.SQLExecute("CREATE TABLE Combos (id Integer, Combo VarChar NOT NULL, length Integer, frequency Integer, combo_playability Float, PRIMARY KEY(id));")
 		  wordsDB.SQLExecute("CREATE TABLE Settings (id Integer, Setting VarChar NOT NULL, value VarChar, PRIMARY KEY(id));")
 		  
 		  wordsDB.Commit()
@@ -153,6 +153,8 @@ Inherits Application
 		  dim row as new DatabaseRecord
 		  
 		  row.Column("Combo") = combo
+		  row.Column("length") = str(len(combo))
+		  'row.Column("frequency") = freq_with_blanks(combo)
 		  row.Column("combo_playability") = str(playability)
 		  wordsDB.InsertRecord("Combos",row)
 		  
