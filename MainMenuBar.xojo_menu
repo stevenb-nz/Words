@@ -13,9 +13,9 @@ Begin Menu MainMenuBar
          AutoEnable = True
          Visible = True
       End
-      Begin MenuItem FilePostimports
+      Begin MenuItem FileAddhooks
          SpecialMenu = 0
-         Text = "Post-imports"
+         Text = "Add hooks"
          Index = -2147483648
          AutoEnable = True
          Visible = True

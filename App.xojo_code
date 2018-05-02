@@ -34,6 +34,14 @@ Inherits Application
 
 
 	#tag MenuHandler
+		Function FileAddhooks() As Boolean Handles FileAddhooks.Action
+			add_hooks
+			Return True
+			
+		End Function
+	#tag EndMenuHandler
+
+	#tag MenuHandler
 		Function FileDeleteDB() As Boolean Handles FileDeleteDB.Action
 			wordsDB.Close
 			wordsDB.DatabaseFile.Delete
@@ -52,22 +60,30 @@ Inherits Application
 		End Function
 	#tag EndMenuHandler
 
-	#tag MenuHandler
-		Function FilePostimports() As Boolean Handles FilePostimports.Action
-			post_import_processing
-			Return True
-			
-		End Function
-	#tag EndMenuHandler
-
 
 	#tag Method, Flags = &h0
 		Sub addTables()
 		  wordsDB.SQLExecute("CREATE TABLE Words (id Integer, Word VarChar NOT NULL, reversed VarChar, f_hook_of Integer, b_hook_of Integer, combo_id Integer, playability Integer, PRIMARY KEY(id));")
-		  wordsDB.SQLExecute("CREATE TABLE Combos (id Integer, Combo VarChar NOT NULL, length Integer, frequency Integer, combo_playability Float, PRIMARY KEY(id));")
+		  wordsDB.SQLExecute("CREATE TABLE Combos (id Integer, Combo VarChar NOT NULL, length Integer, frequency Integer, combo_playability Integer, PRIMARY KEY(id));")
 		  wordsDB.SQLExecute("CREATE TABLE Settings (id Integer, Setting VarChar NOT NULL, value VarChar, PRIMARY KEY(id));")
 		  
 		  wordsDB.Commit()
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub add_hooks()
+		  'for each word
+		  
+		  'dim w_id as integer
+		  'w_id = word_id(right(word,len(word)-1))
+		  'row.Column("f_hook_of") = if(w_id > 0, str(w_id), "NULL")
+		  'w_id = word_id(left(word,len(word)-1))
+		  'row.Column("b_hook_of") = if(w_id > 0, str(w_id), "NULL")
+		  
+		  'for each combo
+		  'assign highest playability index of words for that combo to that combo
 		  
 		End Sub
 	#tag EndMethod
@@ -88,6 +104,90 @@ Inherits Application
 		    end
 		    return val(data.IdxField(1).StringValue)
 		  end if
+		  
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Function frequency(combo as string) As integer
+		  dim u,v as string
+		  dim e,f,g as integer
+		  
+		  e = 1
+		  g=lenb(combo)-1
+		  u=""
+		  for f=1 to g
+		    v=midb(combo,f,1)
+		    u=u+v
+		    if v<>midb(combo,f+1,1) then
+		      e=e*frequency2(u)
+		      u=""
+		    end if
+		  next
+		  u=u+rightb(combo,1)
+		  e=e*frequency2(u)
+		  return e
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Function frequency2(combo as string) As integer
+		  dim a,c,d,e as integer
+		  dim b as string
+		  
+		  b = leftb(combo,1)
+		  if b="n" or b="r" or b="t" then
+		    c=6
+		  elseif b="d" or b="l" or b="s" or b="u" then
+		    c=4 
+		  elseif b="e" then
+		    c=12
+		  elseif b="a" or b="i" then
+		    c=9
+		  elseif b="o" then
+		    c=8
+		  elseif b="g" then
+		    c=3
+		  elseif b="j" or b="k" or b="q" or b="x" or b="z" then
+		    c=1
+		  else
+		    c=2
+		  end if
+		  a = len(combo)
+		  e = 1
+		  for d=1 to a
+		    e=e*(c-d+1)/d
+		  next
+		  return e
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Function freq_with_blanks(combo as String) As int64
+		  dim s,sr,dr as string
+		  dim i,j as Integer
+		  dim x as Int64
+		  
+		  x = frequency(combo)
+		  sr = ""
+		  dr = ""
+		  for i=1 to len(combo)
+		    s = left(combo,i-1) + " " + right(combo,len(combo)-i)
+		    s = sort_word(s.ToText)
+		    if instr(sr,s) = 0 then
+		      sr = sr + s + chr(13)
+		      x = x + frequency(s)
+		    end if
+		    for j = (i+1) to len(combo)
+		      s = left(combo,i-1) + " " + mid(combo,i+1,j-i-1) + " " + right(combo,len(combo)-j)
+		      s = sort_word(s.ToText)
+		      if instr(dr,s) = 0 then
+		        dr = dr + s + chr(13)
+		        x = x + frequency(s)
+		      end if
+		    next
+		  next
+		  return x
 		  
 		End Function
 	#tag EndMethod
@@ -133,28 +233,12 @@ Inherits Application
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub post_import_processing()
-		  'for each word
-		  
-		  'dim w_id as integer
-		  'w_id = word_id(right(word,len(word)-1))
-		  'row.Column("f_hook_of") = if(w_id > 0, str(w_id), "NULL")
-		  'w_id = word_id(left(word,len(word)-1))
-		  'row.Column("b_hook_of") = if(w_id > 0, str(w_id), "NULL")
-		  
-		  'for each combo
-		  'assign highest playability index of words for that combo to that combo
-		  
-		End Sub
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
 		Function process_combo(combo as string, playability as integer) As integer
 		  dim row as new DatabaseRecord
 		  
 		  row.Column("Combo") = combo
 		  row.Column("length") = str(len(combo))
-		  'row.Column("frequency") = freq_with_blanks(combo)
+		  row.Column("frequency") = str(freq_with_blanks(combo))
 		  row.Column("combo_playability") = str(playability)
 		  wordsDB.InsertRecord("Combos",row)
 		  
