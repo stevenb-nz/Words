@@ -74,16 +74,28 @@ Inherits Application
 
 	#tag Method, Flags = &h0
 		Sub add_hooks()
-		  'for each word
+		  dim sql as string
+		  sql = "SELECT Word from Words"
 		  
-		  'dim w_id as integer
-		  'w_id = word_id(right(word,len(word)-1))
-		  'row.Column("f_hook_of") = if(w_id > 0, str(w_id), "NULL")
-		  'w_id = word_id(left(word,len(word)-1))
-		  'row.Column("b_hook_of") = if(w_id > 0, str(w_id), "NULL")
+		  dim data as RecordSet
+		  data =wordsDB.SQLSelect(sql)
 		  
-		  'for each combo
-		  'assign highest playability index of words for that combo to that combo
+		  dim w_id as integer
+		  dim word as string
+		  while not data.EOF
+		    word = data.IdxField(1).StringValue
+		    w_id = word_id(right(word,len(word)-1))
+		    if w_id > 0 then
+		      wordsDB.SQLExecute("UPDATE Words SET f_hook_of="+str(w_id)+" WHERE Word='"+word+"'")
+		    end
+		    w_id = word_id(left(word,len(word)-1))
+		    if w_id > 0 then
+		      wordsDB.SQLExecute("UPDATE Words SET b_hook_of="+str(w_id)+" WHERE Word='"+word+"'")
+		    end
+		    data.MoveNext
+		  wend
+		  
+		  'wordsDB.SQLExecute("CREATE TABLE Words (id Integer, Word VarChar NOT NULL, reversed VarChar, f_hook_of Integer, b_hook_of Integer, combo_id Integer, playability Integer, PRIMARY KEY(id));")
 		  
 		End Sub
 	#tag EndMethod
@@ -323,17 +335,17 @@ Inherits Application
 
 	#tag Method, Flags = &h0
 		Function word_id(word as String) As integer
-		  'dim sql as string
-		  'sql = "SELECT * from Words WHERE Word='"+word+"'"
-		  '
-		  'dim data as RecordSet
-		  'data =wordsDB.SQLSelect(sql)
-		  '
-		  'if data.EOF then
+		  dim sql as string
+		  sql = "SELECT id from Words WHERE Word='"+word+"'"
 		  
+		  dim data as RecordSet
+		  data =wordsDB.SQLSelect(sql)
 		  
-		  'wordsDB.SQLExecute("CREATE TABLE Words (id Integer, Word VarChar NOT NULL, reversed VarChar, f_hook_of Integer, b_hook_of Integer, combo_id Integer, playability Integer, PRIMARY KEY(Word));")
-		  'wordsDB.SQLExecute("CREATE TABLE Combos (id Integer, Combo VarChar NOT NULL, length Integer, frequency Integer, freq_with_blanks Integer, combo_playability Float, PRIMARY KEY(Combo));")
+		  if data.EOF then
+		    return 0
+		  else
+		    return val(data.IdxField(1).StringValue)
+		  end
 		  
 		End Function
 	#tag EndMethod
