@@ -439,14 +439,31 @@ End
 		    return true
 		  end
 		  
-		  
-		  
-		  
-		  
-		  'run queries for 6 listBoxes
-		  
-		  '(on doubleClick in any listBox, set WordButton.Text to word double-clicked on, then run this method)
 		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub updateWords(word as string)
+		  dim length as Integer
+		  
+		  WordButton.setCaptionStyle
+		  
+		  AnagramListbox.DeleteAllRows
+		  HookOfListbox.DeleteAllRows
+		  HooksListbox.DeleteAllRows
+		  SubsetListbox.DeleteAllRows
+		  SubsetPlusOneListbox.DeleteAllRows
+		  SupersetListbox.DeleteAllRows
+		  
+		  length = len(word)
+		  
+		  'dim sql as string
+		  'sql = "SELECT Word FROM Words WHERE Word='"+word+"'"
+		  '
+		  'dim data as RecordSet
+		  'data = app.wordsDB.SQLSelect(sql)
+		  
+		End Sub
 	#tag EndMethod
 
 
@@ -464,7 +481,8 @@ End
 	#tag Event
 		Sub Open()
 		  me.Caption = app.getSetting("Word button text")
-		  WordButton.setCaptionStyle
+		  updateWords(me.caption)
+		  
 		End Sub
 	#tag EndEvent
 	#tag Event
@@ -490,7 +508,7 @@ End
 		  Case 3, 9, 13
 		    if me.text <> WordButton.Caption then
 		      WordButton.Caption = me.text
-		      WordButton.setCaptionStyle
+		      updateWords(WordButton.Caption)
 		    end
 		    me.Visible = false
 		    return true
@@ -515,7 +533,7 @@ End
 		Sub LostFocus()
 		  if me.text <> WordButton.Caption then
 		    WordButton.Caption = me.text
-		    WordButton.setCaptionStyle
+		    updateWords(WordButton.Caption)
 		  end
 		  me.Visible = false
 		  
