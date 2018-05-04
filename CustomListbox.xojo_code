@@ -3,6 +3,8 @@ Protected Class CustomListbox
 Inherits Listbox
 	#tag Event
 		Sub DoubleClick()
+		  words.WordButton.Caption = me.text
+		  words.updateWords(words.WordButton.Caption)
 		  
 		End Sub
 	#tag EndEvent

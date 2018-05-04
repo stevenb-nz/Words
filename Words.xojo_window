@@ -530,6 +530,25 @@ End
 		End Sub
 	#tag EndMethod
 
+	#tag Method, Flags = &h0
+		Sub update_subsetplusone(word as string)
+		  dim combo as string
+		  combo = app.sort_word(word.totext)
+		  
+		  dim sql as string
+		  sql = "SELECT Word FROM Words JOIN Combos ON Combos.id = Words.combo_id WHERE Combos.combo='"+combo+"'"
+		  
+		  dim data as RecordSet
+		  data = app.wordsDB.SQLSelect(sql)
+		  
+		  while not data.EOF
+		    AnagramListbox.AddRow data.IdxField(1).StringValue
+		    data.MoveNext
+		  wend
+		  
+		End Sub
+	#tag EndMethod
+
 
 #tag EndWindowCode
 
