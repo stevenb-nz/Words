@@ -52,7 +52,7 @@ Begin Window Words
       InitialValue    =   ""
       Italic          =   False
       Left            =   20
-      LockBottom      =   False
+      LockBottom      =   True
       LockedInPosition=   False
       LockLeft        =   True
       LockRight       =   False
@@ -69,7 +69,7 @@ Begin Window Words
       TextFont        =   "System"
       TextSize        =   0.0
       TextUnit        =   0
-      Top             =   52
+      Top             =   223
       Transparent     =   False
       Underline       =   False
       UseFocusRing    =   True
@@ -104,10 +104,10 @@ Begin Window Words
       InitialValue    =   ""
       Italic          =   False
       Left            =   856
-      LockBottom      =   False
+      LockBottom      =   True
       LockedInPosition=   False
-      LockLeft        =   True
-      LockRight       =   False
+      LockLeft        =   False
+      LockRight       =   True
       LockTop         =   True
       RequiresSelection=   False
       Scope           =   0
@@ -121,59 +121,7 @@ Begin Window Words
       TextFont        =   "System"
       TextSize        =   0.0
       TextUnit        =   0
-      Top             =   52
-      Transparent     =   False
-      Underline       =   False
-      UseFocusRing    =   True
-      Visible         =   True
-      Width           =   404
-      _ScrollOffset   =   0
-      _ScrollWidth    =   -1
-   End
-   Begin CustomListbox HookOfListbox
-      AutoDeactivate  =   True
-      AutoHideScrollbars=   True
-      Bold            =   False
-      Border          =   True
-      ColumnCount     =   1
-      ColumnsResizable=   False
-      ColumnWidths    =   ""
-      DataField       =   ""
-      DataSource      =   ""
-      DefaultRowHeight=   -1
-      Enabled         =   True
-      EnableDrag      =   False
-      EnableDragReorder=   False
-      GridLinesHorizontal=   0
-      GridLinesVertical=   0
-      HasHeading      =   False
-      HeadingIndex    =   -1
-      Height          =   159
-      HelpTag         =   ""
-      Hierarchical    =   False
-      Index           =   -2147483648
-      InitialParent   =   ""
-      InitialValue    =   ""
-      Italic          =   False
-      Left            =   20
-      LockBottom      =   False
-      LockedInPosition=   False
-      LockLeft        =   True
-      LockRight       =   False
-      LockTop         =   True
-      RequiresSelection=   False
-      Scope           =   0
-      ScrollbarHorizontal=   False
-      ScrollBarVertical=   True
-      SelectionType   =   0
-      ShowDropIndicator=   False
-      TabIndex        =   2
-      TabPanelIndex   =   0
-      TabStop         =   True
-      TextFont        =   "System"
-      TextSize        =   0.0
-      TextUnit        =   0
-      Top             =   541
+      Top             =   223
       Transparent     =   False
       Underline       =   False
       UseFocusRing    =   True
@@ -210,8 +158,8 @@ Begin Window Words
       Left            =   856
       LockBottom      =   False
       LockedInPosition=   False
-      LockLeft        =   True
-      LockRight       =   False
+      LockLeft        =   False
+      LockRight       =   True
       LockTop         =   True
       RequiresSelection=   False
       Scope           =   0
@@ -225,7 +173,7 @@ Begin Window Words
       TextFont        =   "System"
       TextSize        =   0.0
       TextUnit        =   0
-      Top             =   541
+      Top             =   52
       Transparent     =   False
       Underline       =   False
       UseFocusRing    =   True
@@ -252,7 +200,7 @@ Begin Window Words
       GridLinesVertical=   0
       HasHeading      =   False
       HeadingIndex    =   -1
-      Height          =   318
+      Height          =   477
       HelpTag         =   ""
       Hierarchical    =   False
       Index           =   -2147483648
@@ -260,10 +208,10 @@ Begin Window Words
       InitialValue    =   ""
       Italic          =   False
       Left            =   438
-      LockBottom      =   False
+      LockBottom      =   True
       LockedInPosition=   False
       LockLeft        =   True
-      LockRight       =   False
+      LockRight       =   True
       LockTop         =   True
       RequiresSelection=   False
       Scope           =   0
@@ -277,7 +225,7 @@ Begin Window Words
       TextFont        =   "System"
       TextSize        =   0.0
       TextUnit        =   0
-      Top             =   382
+      Top             =   223
       Transparent     =   False
       Underline       =   False
       UseFocusRing    =   True
@@ -304,7 +252,7 @@ Begin Window Words
       GridLinesVertical=   0
       HasHeading      =   False
       HeadingIndex    =   -1
-      Height          =   318
+      Height          =   159
       HelpTag         =   ""
       Hierarchical    =   False
       Index           =   -2147483648
@@ -315,7 +263,7 @@ Begin Window Words
       LockBottom      =   False
       LockedInPosition=   False
       LockLeft        =   True
-      LockRight       =   False
+      LockRight       =   True
       LockTop         =   True
       RequiresSelection=   False
       Scope           =   0
@@ -392,7 +340,7 @@ Begin Window Words
       LockBottom      =   False
       LockedInPosition=   False
       LockLeft        =   True
-      LockRight       =   False
+      LockRight       =   True
       LockTop         =   True
       Mask            =   ""
       Password        =   False
@@ -413,6 +361,58 @@ Begin Window Words
       Visible         =   False
       Width           =   404
    End
+   Begin CustomListbox HookOfListbox
+      AutoDeactivate  =   True
+      AutoHideScrollbars=   True
+      Bold            =   False
+      Border          =   True
+      ColumnCount     =   1
+      ColumnsResizable=   False
+      ColumnWidths    =   ""
+      DataField       =   ""
+      DataSource      =   ""
+      DefaultRowHeight=   -1
+      Enabled         =   True
+      EnableDrag      =   False
+      EnableDragReorder=   False
+      GridLinesHorizontal=   0
+      GridLinesVertical=   0
+      HasHeading      =   False
+      HeadingIndex    =   -1
+      Height          =   159
+      HelpTag         =   ""
+      Hierarchical    =   False
+      Index           =   -2147483648
+      InitialParent   =   ""
+      InitialValue    =   ""
+      Italic          =   False
+      Left            =   20
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      RequiresSelection=   False
+      Scope           =   0
+      ScrollbarHorizontal=   False
+      ScrollBarVertical=   True
+      SelectionType   =   0
+      ShowDropIndicator=   False
+      TabIndex        =   8
+      TabPanelIndex   =   0
+      TabStop         =   True
+      TextFont        =   "System"
+      TextSize        =   0.0
+      TextUnit        =   0
+      Top             =   52
+      Transparent     =   False
+      Underline       =   False
+      UseFocusRing    =   True
+      Visible         =   True
+      Width           =   404
+      _ScrollOffset   =   0
+      _ScrollWidth    =   -1
+   End
 End
 #tag EndWindow
 
@@ -420,6 +420,13 @@ End
 	#tag Event
 		Sub Activate()
 		  ClearFocus
+		  
+		End Sub
+	#tag EndEvent
+
+	#tag Event
+		Sub Resizing()
+		  WordButton.Left = words.Width / 2 - 202
 		  
 		End Sub
 	#tag EndEvent
@@ -451,8 +458,8 @@ End
 		    bigger = string1
 		    smaller = string2
 		  else
-		    bigger = string1
-		    smaller = string2
+		    bigger = string2
+		    smaller = string1
 		  end
 		  
 		  k=0
@@ -486,13 +493,13 @@ End
 		  SupersetListbox.DeleteAllRows
 		  
 		  update_hookof(word)
-		  'update_subset(word)
+		  update_subset(word)
 		  
 		  update_anagram(word)
 		  update_subsetplusone(word)
 		  
 		  update_hooks(word)
-		  'update_superset(word)
+		  update_superset(word)
 		  
 		End Sub
 	#tag EndMethod
@@ -561,6 +568,36 @@ End
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
+		Sub update_subset(word as string)
+		  dim i as Integer
+		  dim combo as string
+		  combo = app.sort_word(word.totext)
+		  dim length as integer
+		  length = len(combo)-1
+		  
+		  dim sql as string
+		  sql = "SELECT id,Combo FROM Combos WHERE length = "+str(length)+" ORDER BY combo_playability"
+		  
+		  dim data as RecordSet
+		  data = app.wordsDB.SQLSelect(sql)
+		  
+		  while not data.EOF
+		    if one_off(data.IdxField(2).StringValue,combo) then
+		      sql = "SELECT Word FROM Words WHERE combo_id = "+data.IdxField(1).StringValue
+		      dim data2 as RecordSet
+		      data2 = app.wordsDB.SQLSelect(sql)
+		      while not data2.EOF
+		        SubsetListbox.AddRow data2.IdxField(1).StringValue
+		        data2.MoveNext
+		      wend
+		    end
+		    data.MoveNext
+		  wend
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Sub update_subsetplusone(word as string)
 		  dim i as Integer
 		  dim combo as string
@@ -581,6 +618,36 @@ End
 		      data2 = app.wordsDB.SQLSelect(sql)
 		      while not data2.EOF
 		        SubsetPlusOneListbox.AddRow data2.IdxField(1).StringValue
+		        data2.MoveNext
+		      wend
+		    end
+		    data.MoveNext
+		  wend
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub update_superset(word as string)
+		  dim i as Integer
+		  dim combo as string
+		  combo = app.sort_word(word.totext)
+		  dim length as integer
+		  length = len(combo)+1
+		  
+		  dim sql as string
+		  sql = "SELECT id,Combo FROM Combos WHERE length = "+str(length)+" ORDER BY combo_playability"
+		  
+		  dim data as RecordSet
+		  data = app.wordsDB.SQLSelect(sql)
+		  
+		  while not data.EOF
+		    if one_off(data.IdxField(2).StringValue,combo) then
+		      sql = "SELECT Word FROM Words WHERE combo_id = "+data.IdxField(1).StringValue
+		      dim data2 as RecordSet
+		      data2 = app.wordsDB.SQLSelect(sql)
+		      while not data2.EOF
+		        SupersetListbox.AddRow data2.IdxField(1).StringValue
 		        data2.MoveNext
 		      wend
 		    end
