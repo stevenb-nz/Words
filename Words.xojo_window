@@ -443,6 +443,36 @@ End
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
+		Function one_off(string1 as string, string2 as string) As boolean
+		  dim i,j,k as integer
+		  dim bigger, smaller as string
+		  
+		  if len(string1) > len(string2) then
+		    bigger = string1
+		    smaller = string2
+		  else
+		    bigger = string1
+		    smaller = string2
+		  end
+		  
+		  k=0
+		  for i = 1 to len(bigger)
+		    j = InStr(smaller,mid(bigger,i,1))
+		    if j > 0 then
+		      smaller = left(smaller,j-1)+right(smaller,len(smaller)-j)
+		    else
+		      k = k + 1
+		      if k > 1 then
+		        return false
+		      end
+		    end
+		  next
+		  
+		  return true
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Sub updateWords(word as string)
 		  WordButton.setCaptionStyle
 		  
@@ -459,7 +489,7 @@ End
 		  'update_subset(word)
 		  
 		  update_anagram(word)
-		  'update_subsetplusone(word)
+		  update_subsetplusone(word)
 		  
 		  update_hooks(word)
 		  'update_superset(word)
@@ -532,17 +562,28 @@ End
 
 	#tag Method, Flags = &h0
 		Sub update_subsetplusone(word as string)
+		  dim i as Integer
 		  dim combo as string
 		  combo = app.sort_word(word.totext)
+		  dim length as integer
+		  length = len(combo)
 		  
 		  dim sql as string
-		  sql = "SELECT Word FROM Words JOIN Combos ON Combos.id = Words.combo_id WHERE Combos.combo='"+combo+"'"
+		  sql = "SELECT id,Combo FROM Combos WHERE length = "+str(length)+" ORDER BY combo_playability"
 		  
 		  dim data as RecordSet
 		  data = app.wordsDB.SQLSelect(sql)
 		  
 		  while not data.EOF
-		    AnagramListbox.AddRow data.IdxField(1).StringValue
+		    if one_off(data.IdxField(2).StringValue,combo) then
+		      sql = "SELECT Word FROM Words WHERE combo_id = "+data.IdxField(1).StringValue
+		      dim data2 as RecordSet
+		      data2 = app.wordsDB.SQLSelect(sql)
+		      while not data2.EOF
+		        SubsetPlusOneListbox.AddRow data2.IdxField(1).StringValue
+		        data2.MoveNext
+		      wend
+		    end
 		    data.MoveNext
 		  wend
 		  
