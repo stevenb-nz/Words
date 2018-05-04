@@ -444,24 +444,88 @@ End
 
 	#tag Method, Flags = &h0
 		Sub updateWords(word as string)
-		  dim length as Integer
-		  
 		  WordButton.setCaptionStyle
 		  
-		  AnagramListbox.DeleteAllRows
 		  HookOfListbox.DeleteAllRows
-		  HooksListbox.DeleteAllRows
 		  SubsetListbox.DeleteAllRows
+		  
+		  AnagramListbox.DeleteAllRows
 		  SubsetPlusOneListbox.DeleteAllRows
+		  
+		  HooksListbox.DeleteAllRows
 		  SupersetListbox.DeleteAllRows
 		  
-		  length = len(word)
+		  update_hookof(word)
+		  'update_subset(word)
 		  
-		  'dim sql as string
-		  'sql = "SELECT Word FROM Words WHERE Word='"+word+"'"
-		  '
-		  'dim data as RecordSet
-		  'data = app.wordsDB.SQLSelect(sql)
+		  update_anagram(word)
+		  'update_subsetplusone(word)
+		  
+		  update_hooks(word)
+		  'update_superset(word)
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub update_anagram(word as string)
+		  dim combo as string
+		  combo = app.sort_word(word.totext)
+		  
+		  dim sql as string
+		  sql = "SELECT Word FROM Words JOIN Combos ON Combos.id = Words.combo_id WHERE Combos.combo='"+combo+"'"
+		  
+		  dim data as RecordSet
+		  data = app.wordsDB.SQLSelect(sql)
+		  
+		  while not data.EOF
+		    AnagramListbox.AddRow data.IdxField(1).StringValue
+		    data.MoveNext
+		  wend
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub update_hookof(word as string)
+		  dim front,back as string
+		  front = left(word,len(word)-1)
+		  back = right(word,len(word)-1)
+		  
+		  if isWord(front) then
+		    HookOfListbox.AddRow front
+		  end
+		  
+		  if isWord(back) then
+		    HookOfListbox.AddRow back
+		  end
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub update_hooks(word as string)
+		  dim id as integer
+		  id = app.word_id(word)
+		  
+		  dim sql as string
+		  sql = "SELECT Word FROM Words WHERE f_hook_of = "+str(id)
+		  
+		  dim data as RecordSet
+		  data = app.wordsDB.SQLSelect(sql)
+		  
+		  while not data.EOF
+		    HooksListbox.AddRow data.IdxField(1).StringValue
+		    data.MoveNext
+		  wend
+		  
+		  sql = "SELECT Word FROM Words WHERE b_hook_of = "+str(id)
+		  data = app.wordsDB.SQLSelect(sql)
+		  
+		  while not data.EOF
+		    HooksListbox.AddRow data.IdxField(1).StringValue
+		    data.MoveNext
+		  wend
 		  
 		End Sub
 	#tag EndMethod
