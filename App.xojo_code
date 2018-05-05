@@ -60,6 +60,30 @@ Inherits Application
 		End Function
 	#tag EndMenuHandler
 
+	#tag MenuHandler
+		Function WordRandom() As Boolean Handles WordRandom.Action
+			dim bagstring as text
+			dim bag(-1) as text
+			dim newword as text
+			dim i,length as integer
+			
+			bagstring = "AAAAAAAAABBCCDDDDEEEEEEEEEEEEFFGGGHHIIIIIIIIIJKLLLLMMNNNNNNOOOOOOOOPPQRRRRRRSSSSTTTTTTUUUUVVWWXYYZ"
+			for each c as text in bagstring.Characters
+			bag.Append c
+			next
+			length = len(words.WordButton.Caption)
+			bag.Shuffle
+			for i = 1 to length
+			newword = newword + bag(i-1)
+			next
+			words.wordbutton.caption = newword
+			words.updateWords(words.wordbutton.caption)
+			
+			Return True
+			
+		End Function
+	#tag EndMenuHandler
+
 
 	#tag Method, Flags = &h0
 		Sub addTables()

@@ -115,5 +115,22 @@ Begin Menu MainMenuBar
          Visible = True
       End
    End
+   Begin MenuItem WordMenu
+      SpecialMenu = 0
+      Text = "Word"
+      Index = -2147483648
+      AutoEnable = True
+      Visible = True
+      Begin MenuItem WordRandom
+         SpecialMenu = 0
+         Text = "Random"
+         Index = -2147483648
+         ShortcutKey = "R"
+         Shortcut = "Cmd+R"
+         MenuModifier = True
+         AutoEnable = True
+         Visible = True
+      End
+   End
 End
 #tag EndMenu
