@@ -3,11 +3,27 @@ Protected Class CustomListbox
 Inherits Listbox
 	#tag Event
 		Sub DoubleClick()
+		  changeWord
+		End Sub
+	#tag EndEvent
+
+	#tag Event
+		Function KeyDown(Key As String) As Boolean
+		  if asc(Key) = 13 then
+		    changeWord
+		    return true
+		  end
+		End Function
+	#tag EndEvent
+
+
+	#tag Method, Flags = &h0
+		Sub changeWord()
 		  words.WordButton.Caption = me.text
 		  words.updateWords(words.WordButton.Caption)
 		  
 		End Sub
-	#tag EndEvent
+	#tag EndMethod
 
 
 	#tag ViewBehavior
