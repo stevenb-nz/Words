@@ -7,6 +7,7 @@ MenuBar=MainMenuBar;MainMenuBar.xojo_menu;&h000000007116A40D;&h0000000000000000;
 BuildSteps=Build Automation;Build Automation.xojo_code;&h00000000056CCD22;&h0000000000000000;false
 Class=WordButton;WordButton.xojo_code;&h00000000000AAFFF;&h0000000000000000;false
 Class=CustomListbox;CustomListbox.xojo_code;&h000000000D9087FF;&h0000000000000000;false
+Window=Quiz;Quiz.xojo_window;&h000000004C450FFF;&h0000000000000000;false
 DefaultWindow=Words
 AppMenuBar=MainMenuBar
 MajorVersion=1

@@ -61,6 +61,14 @@ Inherits Application
 	#tag EndMenuHandler
 
 	#tag MenuHandler
+		Function WordQuiz() As Boolean Handles WordQuiz.Action
+			Quiz.ShowModal
+			Return True
+			
+		End Function
+	#tag EndMenuHandler
+
+	#tag MenuHandler
 		Function WordRandom() As Boolean Handles WordRandom.Action
 			dim bagstring as text
 			dim bag(-1) as text

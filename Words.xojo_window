@@ -259,7 +259,7 @@ Begin Window Words
       InitialParent   =   ""
       InitialValue    =   ""
       Italic          =   False
-      Left            =   438
+      Left            =   436
       LockBottom      =   False
       LockedInPosition=   False
       LockLeft        =   True
