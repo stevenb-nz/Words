@@ -432,6 +432,20 @@ End
 	#tag EndEvent
 
 	#tag Event
+		Sub Open()
+		  Dim tempBounds As New Realbasic.Rect
+		  
+		  tempBounds.Left = val(app.getSetting("Window Left"))
+		  tempBounds.Top = val(app.getSetting("Window Top"))
+		  tempBounds.Height = val(app.getSetting("Window Height"))
+		  tempBounds.Width = Self.Width
+		  
+		  Self.Bounds = tempBounds
+		  
+		End Sub
+	#tag EndEvent
+
+	#tag Event
 		Sub Resized()
 		  storeBounds
 		  
@@ -495,39 +509,9 @@ End
 
 	#tag Method, Flags = &h0
 		Sub storeBounds()
-		  '
-		  '
-		  '
-		  '
-		  'Dim winBounds As Realbasic.Rect
-		  'winBounds = Self.Bounds
-		  'MsgBox("Left = " + Str(winBounds.Left))
-		  '
-		  'To set the bounds, do not modify the Bounds properly directly. This does not work because you will be modifying a temporary object. Instead set the bounds in your own Realbasic.Rect instance and assign that to bounds:
-		  '
-		  'Dim myBounds As New Realbasic.Rect
-		  'myBounds.Left = 100
-		  'myBounds.Top = 100
-		  'myBounds.Height = Self.Height
-		  'myBounds.Width = Self.Width
-		  'Self.Bounds = myBounds
-		  '
-		  'wordsDB.SQLExecute("CREATE TABLE Settings (id Integer, Setting VarChar NOT NULL, value VarChar, PRIMARY KEY(id));")
-		  '
-		  'dim sql as string
-		  'sql = "SELECT * from Settings WHERE setting='"+setting+"'"
-		  '
-		  'dim data as RecordSet
-		  'data =wordsDB.SQLSelect(sql)
-		  '
-		  'if data.EOF then
-		  'dim row as new DatabaseRecord
-		  'row.Column("setting") = setting
-		  'row.Column("value") = value
-		  'wordsDB.InsertRecord("Settings",row)
-		  'else
-		  'wordsDB.SQLExecute("UPDATE settings SET value='"+value+"' WHERE setting='"+setting+"'")
-		  'end
+		  app.updateSetting("Window Top",str(self.Bounds.Top))
+		  app.updateSetting("Window Height",str(self.Bounds.Height))
+		  app.updateSetting("Window Left",str(self.Bounds.Left))
 		  
 		End Sub
 	#tag EndMethod
