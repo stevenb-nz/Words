@@ -173,7 +173,7 @@ Begin Window Words
       TextFont        =   "System"
       TextSize        =   0.0
       TextUnit        =   0
-      Top             =   52
+      Top             =   20
       Transparent     =   False
       Underline       =   False
       UseFocusRing    =   True
@@ -404,7 +404,7 @@ Begin Window Words
       TextFont        =   "System"
       TextSize        =   0.0
       TextUnit        =   0
-      Top             =   52
+      Top             =   20
       Transparent     =   False
       Underline       =   False
       UseFocusRing    =   True
@@ -420,6 +420,20 @@ End
 	#tag Event
 		Sub Activate()
 		  ClearFocus
+		  
+		End Sub
+	#tag EndEvent
+
+	#tag Event
+		Sub Moved()
+		  storeBounds
+		  
+		End Sub
+	#tag EndEvent
+
+	#tag Event
+		Sub Resized()
+		  storeBounds
 		  
 		End Sub
 	#tag EndEvent
@@ -477,6 +491,45 @@ End
 		  
 		  return true
 		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub storeBounds()
+		  '
+		  '
+		  '
+		  '
+		  'Dim winBounds As Realbasic.Rect
+		  'winBounds = Self.Bounds
+		  'MsgBox("Left = " + Str(winBounds.Left))
+		  '
+		  'To set the bounds, do not modify the Bounds properly directly. This does not work because you will be modifying a temporary object. Instead set the bounds in your own Realbasic.Rect instance and assign that to bounds:
+		  '
+		  'Dim myBounds As New Realbasic.Rect
+		  'myBounds.Left = 100
+		  'myBounds.Top = 100
+		  'myBounds.Height = Self.Height
+		  'myBounds.Width = Self.Width
+		  'Self.Bounds = myBounds
+		  '
+		  'wordsDB.SQLExecute("CREATE TABLE Settings (id Integer, Setting VarChar NOT NULL, value VarChar, PRIMARY KEY(id));")
+		  '
+		  'dim sql as string
+		  'sql = "SELECT * from Settings WHERE setting='"+setting+"'"
+		  '
+		  'dim data as RecordSet
+		  'data =wordsDB.SQLSelect(sql)
+		  '
+		  'if data.EOF then
+		  'dim row as new DatabaseRecord
+		  'row.Column("setting") = setting
+		  'row.Column("value") = value
+		  'wordsDB.InsertRecord("Settings",row)
+		  'else
+		  'wordsDB.SQLExecute("UPDATE settings SET value='"+value+"' WHERE setting='"+setting+"'")
+		  'end
+		  
+		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
