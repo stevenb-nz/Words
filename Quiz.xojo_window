@@ -178,7 +178,7 @@ Begin Window Quiz
       Index           =   -2147483648
       InitialParent   =   ""
       Italic          =   False
-      Left            =   136
+      Left            =   146
       LockBottom      =   False
       LockedInPosition=   False
       LockLeft        =   True
@@ -191,75 +191,11 @@ Begin Window Quiz
       TextFont        =   "System"
       TextSize        =   0.0
       TextUnit        =   0
-      Top             =   679
+      Top             =   680
       Transparent     =   False
       Underline       =   False
       Visible         =   True
-      Width           =   60
-   End
-   Begin PopupMenu quizTypePopup
-      AutoDeactivate  =   True
-      Bold            =   False
-      DataField       =   ""
-      DataSource      =   ""
-      Enabled         =   True
-      Height          =   20
-      HelpTag         =   ""
-      Index           =   -2147483648
-      InitialParent   =   ""
-      InitialValue    =   ""
-      Italic          =   False
-      Left            =   20
-      ListIndex       =   0
-      LockBottom      =   False
-      LockedInPosition=   False
-      LockLeft        =   True
-      LockRight       =   False
-      LockTop         =   True
-      Scope           =   0
-      TabIndex        =   4
-      TabPanelIndex   =   0
-      TabStop         =   True
-      TextFont        =   "System"
-      TextSize        =   0.0
-      TextUnit        =   0
-      Top             =   679
-      Transparent     =   False
-      Underline       =   False
-      Visible         =   True
-      Width           =   60
-   End
-   Begin PopupMenu wordLengthPopup
-      AutoDeactivate  =   True
-      Bold            =   False
-      DataField       =   ""
-      DataSource      =   ""
-      Enabled         =   True
-      Height          =   20
-      HelpTag         =   ""
-      Index           =   -2147483648
-      InitialParent   =   ""
-      InitialValue    =   ""
-      Italic          =   False
-      Left            =   93
-      ListIndex       =   0
-      LockBottom      =   False
-      LockedInPosition=   False
-      LockLeft        =   True
-      LockRight       =   False
-      LockTop         =   True
-      Scope           =   0
-      TabIndex        =   5
-      TabPanelIndex   =   0
-      TabStop         =   True
-      TextFont        =   "System"
-      TextSize        =   0.0
-      TextUnit        =   0
-      Top             =   679
-      Transparent     =   False
-      Underline       =   False
-      Visible         =   True
-      Width           =   30
+      Width           =   50
    End
    Begin Label ProgressLabel
       AutoDeactivate  =   True
@@ -284,7 +220,7 @@ Begin Window Quiz
       TabIndex        =   6
       TabPanelIndex   =   0
       TabStop         =   True
-      Text            =   "Untitled"
+      Text            =   ""
       TextAlign       =   1
       TextColor       =   &c00000000
       TextFont        =   "System"
@@ -319,7 +255,7 @@ Begin Window Quiz
       TabIndex        =   7
       TabPanelIndex   =   0
       TabStop         =   True
-      Text            =   "Untitled"
+      Text            =   ""
       TextAlign       =   1
       TextColor       =   &c00000000
       TextFont        =   "System"
@@ -354,7 +290,7 @@ Begin Window Quiz
       TabIndex        =   8
       TabPanelIndex   =   0
       TabStop         =   True
-      Text            =   "Untitled"
+      Text            =   ""
       TextAlign       =   0
       TextColor       =   &c00000000
       TextFont        =   "System"
@@ -389,7 +325,7 @@ Begin Window Quiz
       TabIndex        =   9
       TabPanelIndex   =   0
       TabStop         =   True
-      Text            =   "Untitled"
+      Text            =   ""
       TextAlign       =   2
       TextColor       =   &c00000000
       TextFont        =   "System"
@@ -424,7 +360,7 @@ Begin Window Quiz
       TabIndex        =   10
       TabPanelIndex   =   0
       TabStop         =   True
-      Text            =   "Untitled"
+      Text            =   ""
       TextAlign       =   0
       TextColor       =   &c00000000
       TextFont        =   "System"
@@ -435,6 +371,70 @@ Begin Window Quiz
       Underline       =   False
       Visible         =   True
       Width           =   176
+   End
+   Begin PushButton QuizTypeButton
+      AutoDeactivate  =   True
+      Bold            =   False
+      ButtonStyle     =   "0"
+      Cancel          =   False
+      Caption         =   "Combo"
+      Default         =   False
+      Enabled         =   True
+      Height          =   20
+      HelpTag         =   ""
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Italic          =   False
+      Left            =   20
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      Scope           =   0
+      TabIndex        =   11
+      TabPanelIndex   =   0
+      TabStop         =   True
+      TextFont        =   "System"
+      TextSize        =   0.0
+      TextUnit        =   0
+      Top             =   680
+      Transparent     =   False
+      Underline       =   False
+      Visible         =   True
+      Width           =   65
+   End
+   Begin PushButton wordLengthButton
+      AutoDeactivate  =   True
+      Bold            =   False
+      ButtonStyle     =   "0"
+      Cancel          =   False
+      Caption         =   "2"
+      Default         =   False
+      Enabled         =   True
+      Height          =   20
+      HelpTag         =   ""
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Italic          =   False
+      Left            =   98
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      Scope           =   0
+      TabIndex        =   12
+      TabPanelIndex   =   0
+      TabStop         =   True
+      TextFont        =   "System"
+      TextSize        =   0.0
+      TextUnit        =   0
+      Top             =   680
+      Transparent     =   False
+      Underline       =   False
+      Visible         =   True
+      Width           =   35
    End
 End
 #tag EndWindow
@@ -450,6 +450,34 @@ End
 		  end
 		  
 		End Function
+	#tag EndEvent
+#tag EndEvents
+#tag Events QuizTypeButton
+	#tag Event
+		Sub Action()
+		  if me.Caption = "Combo" then
+		    me.Caption = "Hooks"
+		  else
+		    me.Caption = "Combo"
+		  end
+		  
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events wordLengthButton
+	#tag Event
+		Sub Action()
+		  dim c as integer
+		  
+		  c = val(me.caption)
+		  
+		  if c > 14 then
+		    me.caption = str(2)
+		  else
+		    me.caption = str(c + 1)
+		  end
+		  
+		End Sub
 	#tag EndEvent
 #tag EndEvents
 #tag ViewBehavior
