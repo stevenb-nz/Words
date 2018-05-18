@@ -220,7 +220,7 @@ Begin Window Quiz
       TabIndex        =   6
       TabPanelIndex   =   0
       TabStop         =   True
-      Text            =   ""
+      Text            =   "[Combo|Hooks] Guess: % of list (#n of list) - (% of error list filled)"
       TextAlign       =   1
       TextColor       =   &c00000000
       TextFont        =   "System"
@@ -255,7 +255,7 @@ Begin Window Quiz
       TabIndex        =   7
       TabPanelIndex   =   0
       TabStop         =   True
-      Text            =   ""
+      Text            =   "Min: #ofMin (combo|stem for min#) Current: #ofCurrent [X|√] (new or error list)\n"
       TextAlign       =   1
       TextColor       =   &c00000000
       TextFont        =   "System"
@@ -290,7 +290,7 @@ Begin Window Quiz
       TabIndex        =   8
       TabPanelIndex   =   0
       TabStop         =   True
-      Text            =   ""
+      Text            =   "#ofAnswers"
       TextAlign       =   0
       TextColor       =   &c00000000
       TextFont        =   "System"
@@ -325,7 +325,7 @@ Begin Window Quiz
       TabIndex        =   9
       TabPanelIndex   =   0
       TabStop         =   True
-      Text            =   ""
+      Text            =   "#ofGuesses"
       TextAlign       =   2
       TextColor       =   &c00000000
       TextFont        =   "System"
@@ -360,7 +360,7 @@ Begin Window Quiz
       TabIndex        =   10
       TabPanelIndex   =   0
       TabStop         =   True
-      Text            =   ""
+      Text            =   "current combo|stem"
       TextAlign       =   0
       TextColor       =   &c00000000
       TextFont        =   "System"
