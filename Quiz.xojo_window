@@ -440,6 +440,21 @@ End
 #tag EndWindow
 
 #tag WindowCode
+	#tag Event
+		Sub Close()
+		  MainMenuBar.Enabled = true
+		  
+		End Sub
+	#tag EndEvent
+
+	#tag Event
+		Sub Open()
+		  MainMenuBar.Enabled = false
+		  
+		End Sub
+	#tag EndEvent
+
+
 #tag EndWindowCode
 
 #tag Events guessField
