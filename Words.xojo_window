@@ -433,14 +433,21 @@ End
 
 	#tag Event
 		Sub Open()
+		  dim left,top,height as Integer
+		  
+		  left = val(app.getSetting("Window Left"))
+		  top = val(app.getSetting("Window Top"))
+		  height = val(app.getSetting("Window Height"))
+		  
 		  Dim tempBounds As New Realbasic.Rect
 		  
-		  tempBounds.Left = val(app.getSetting("Window Left"))
-		  tempBounds.Top = val(app.getSetting("Window Top"))
-		  tempBounds.Height = val(app.getSetting("Window Height"))
+		  tempBounds.Left = If(left > 0, left, self.Left)
+		  tempBounds.Top = If(top > 0, top, self.Top)
+		  tempBounds.Height = If(height > 0, height, self.Height)
 		  tempBounds.Width = Self.Width
 		  
 		  Self.Bounds = tempBounds
+		  
 		  
 		End Sub
 	#tag EndEvent
