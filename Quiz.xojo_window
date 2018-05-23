@@ -453,7 +453,8 @@ End
 
 	#tag Event
 		Sub Close()
-		  
+		  app.updateSetting("quiz type",QuizTypeButton.Caption)
+		  app.updateSetting("quiz length",wordLengthButton.Caption)
 		  
 		End Sub
 	#tag EndEvent
@@ -461,6 +462,14 @@ End
 	#tag Event
 		Sub Open()
 		  closable = false
+		  
+		  dim quiztype as string
+		  dim quizlength as integer
+		  
+		  quiztype = app.getSetting("quiz type")
+		  QuizTypeButton.Caption = if(quiztype="","Combo",quiztype)
+		  quizlength = val(app.getSetting("quiz length"))
+		  wordLengthButton.Caption = if(quizlength=0,"2",str(quizlength))
 		  
 		End Sub
 	#tag EndEvent
@@ -736,5 +745,10 @@ End
 		InitialValue="True"
 		Type="Boolean"
 		EditorType="Boolean"
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="closable"
+		Group="Behavior"
+		Type="Boolean"
 	#tag EndViewProperty
 #tag EndViewBehavior
