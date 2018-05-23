@@ -441,18 +441,34 @@ End
 
 #tag WindowCode
 	#tag Event
+		Function CancelClose(appQuitting as Boolean) As Boolean
+		  if closable then
+		    return false
+		  else
+		    return true
+		  end
+		  
+		End Function
+	#tag EndEvent
+
+	#tag Event
 		Sub Close()
-		  MainMenuBar.Enabled = true
+		  
 		  
 		End Sub
 	#tag EndEvent
 
 	#tag Event
 		Sub Open()
-		  MainMenuBar.Enabled = false
+		  closable = false
 		  
 		End Sub
 	#tag EndEvent
+
+
+	#tag Property, Flags = &h0
+		closable As Boolean
+	#tag EndProperty
 
 
 #tag EndWindowCode
@@ -461,6 +477,7 @@ End
 	#tag Event
 		Function KeyDown(Key As String) As Boolean
 		  if asc(Key) = 27 then
+		    closable = true
 		    close
 		  end
 		  
