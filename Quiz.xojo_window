@@ -453,6 +453,7 @@ End
 
 	#tag Event
 		Sub Close()
+		  savequiz
 		  app.updateSetting("quiz type",QuizTypeButton.Caption)
 		  app.updateSetting("quiz length",wordLengthButton.Caption)
 		  
@@ -482,6 +483,13 @@ End
 		  ' load quizlist() from words or combos table as per QuizTypeButton.Caption of length wordLengthButton.Caption
 		  ' load guesslist() and nextnew from quiz table
 		  ' set labels etc to suit
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub savequiz()
+		  ' save guesslist() and nextnew to quiz table
 		  
 		End Sub
 	#tag EndMethod
@@ -520,6 +528,7 @@ End
 #tag Events QuizTypeButton
 	#tag Event
 		Sub Action()
+		  savequiz
 		  if me.Caption = "Combo" then
 		    me.Caption = "Hooks"
 		  else
@@ -533,6 +542,7 @@ End
 #tag Events wordLengthButton
 	#tag Event
 		Sub Action()
+		  savequiz
 		  dim c as integer
 		  
 		  c = val(me.caption)
@@ -776,5 +786,10 @@ End
 		Name="closable"
 		Group="Behavior"
 		Type="Boolean"
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="nextnew"
+		Group="Behavior"
+		Type="Integer"
 	#tag EndViewProperty
 #tag EndViewBehavior
