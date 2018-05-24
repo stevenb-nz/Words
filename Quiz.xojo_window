@@ -471,8 +471,20 @@ End
 		  quizlength = val(app.getSetting("quiz length"))
 		  wordLengthButton.Caption = if(quizlength=0,"2",str(quizlength))
 		  
+		  loadquiz
+		  
 		End Sub
 	#tag EndEvent
+
+
+	#tag Method, Flags = &h0
+		Sub loadquiz()
+		  ' load quizlist() from words or combos table as per QuizTypeButton.Caption of length wordLengthButton.Caption
+		  ' load guesslist() and nextnew from quiz table
+		  ' set labels etc to suit
+		  
+		End Sub
+	#tag EndMethod
 
 
 	#tag Property, Flags = &h0
@@ -513,6 +525,7 @@ End
 		  else
 		    me.Caption = "Combo"
 		  end
+		  loadquiz
 		  
 		End Sub
 	#tag EndEvent
@@ -529,6 +542,7 @@ End
 		  else
 		    me.caption = str(c + 1)
 		  end
+		  loadquiz
 		  
 		End Sub
 	#tag EndEvent
