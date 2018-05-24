@@ -479,6 +479,18 @@ End
 		closable As Boolean
 	#tag EndProperty
 
+	#tag Property, Flags = &h0
+		guesslist() As Integer
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		nextnew As Integer
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		quizlist() As String
+	#tag EndProperty
+
 
 #tag EndWindowCode
 
