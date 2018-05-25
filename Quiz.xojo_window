@@ -480,9 +480,25 @@ End
 
 	#tag Method, Flags = &h0
 		Sub loadquiz()
-		  ' load quizlist() from words or combos table as per QuizTypeButton.Caption of length wordLengthButton.Caption
-		  ' load guesslist() and nextnew from quiz table
-		  ' set labels etc to suit
+		  dim length as integer
+		  dim sql as string
+		  redim quizlist(-1)
+		  
+		  length = val(wordLengthButton.Caption)
+		  if QuizTypeButton.Caption = "Combo" then
+		    sql = "SELECT Combo FROM Combos WHERE length = "+str(length)+" ORDER BY combo_playability"
+		  else
+		    sql = "SELECT Word FROM Words JOIN Combos ON Words.combo_id = Combos.id WHERE length = "+str(length)+" ORDER BY combo_playability"
+		  end if
+		  
+		  dim data as RecordSet
+		  data = app.wordsDB.SQLSelect(sql)
+		  
+		  while not data.eof
+		    quizlist.Append data.IdxField(1).StringValue
+		    data.MoveNext
+		  wend
+		  
 		  
 		End Sub
 	#tag EndMethod
