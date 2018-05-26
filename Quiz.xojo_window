@@ -480,9 +480,10 @@ End
 
 	#tag Method, Flags = &h0
 		Sub loadquiz()
-		  dim length as integer
+		  dim i,length as integer
 		  dim sql as string
 		  redim quizlist(-1)
+		  redim guesslist(-1)
 		  
 		  length = val(wordLengthButton.Caption)
 		  if QuizTypeButton.Caption = "Combo" then
@@ -499,6 +500,17 @@ End
 		    data.MoveNext
 		  wend
 		  
+		  sql = "SELECT states,current FROM Quiz WHERE type='"+QuizTypeButton.Caption+"' and length='"+str(length)+"'"
+		  data = app.wordsDB.SQLSelect(sql)
+		  
+		  if data.RecordCount = 1 then
+		    for i = 1 to CountFields(data.IdxField(1).StringValue,",")
+		      guesslist.Append val(NthField(data.IdxField(1).StringValue,",",1))
+		    next
+		    nextnew = val(data.IdxField(2).StringValue)
+		  else
+		    nextnew = 0
+		  end
 		  
 		End Sub
 	#tag EndMethod
