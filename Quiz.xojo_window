@@ -509,7 +509,8 @@ End
 		    next
 		    nextnew = val(data.IdxField(2).StringValue)
 		  else
-		    nextnew = 0
+		    guesslist.Append 0
+		    nextnew = 1
 		  end
 		  
 		End Sub
@@ -518,21 +519,27 @@ End
 	#tag Method, Flags = &h0
 		Sub savequiz()
 		  dim i,length as integer
-		  dim sql as string
+		  dim sql,states as string
+		  dim data as RecordSet
 		  
 		  length = val(wordLengthButton.Caption)
+		  states = str(guesslist(0))
+		  for i = 1 to UBound(guesslist)
+		    states = states + "," + str(guesslist(i))
+		  next
 		  
-		  sql = "SELECT states,current FROM Quiz WHERE type='"+QuizTypeButton.Caption+"' and length='"+str(length)+"'"
+		  sql = "SELECT states,current FROM Quiz WHERE type='"+QuizTypeButton.Caption+"' AND length='"+str(length)+"'"
 		  data = app.wordsDB.SQLSelect(sql)
 		  
 		  if data.RecordCount = 1 then
-		    'update data
-		    'for i = 1 to CountFields(data.IdxField(1).StringValue,",")
-		    'guesslist.Append val(NthField(data.IdxField(1).StringValue,",",1))
-		    'next
-		    'nextnew = val(data.IdxField(2).StringValue)
+		    app.wordsDB.SQLExecute("UPDATE quiz SET states='"+states+"', current='"+str(nextnew)+"' WHERE type='"+QuizTypeButton.Caption+"' AND length='"+str(length)+"'")
 		  else
-		    'new record
+		    dim row as new DatabaseRecord
+		    row.Column("type") = QuizTypeButton.Caption
+		    row.Column("length") = str(length)
+		    row.Column("states") = states
+		    row.Column("current") = str(nextnew)
+		    app.wordsDB.InsertRecord("Quiz",row)
 		  end
 		  
 		End Sub
