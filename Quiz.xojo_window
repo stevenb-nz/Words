@@ -517,7 +517,23 @@ End
 
 	#tag Method, Flags = &h0
 		Sub savequiz()
-		  ' save guesslist() and nextnew to quiz table
+		  dim i,length as integer
+		  dim sql as string
+		  
+		  length = val(wordLengthButton.Caption)
+		  
+		  sql = "SELECT states,current FROM Quiz WHERE type='"+QuizTypeButton.Caption+"' and length='"+str(length)+"'"
+		  data = app.wordsDB.SQLSelect(sql)
+		  
+		  if data.RecordCount = 1 then
+		    'update data
+		    'for i = 1 to CountFields(data.IdxField(1).StringValue,",")
+		    'guesslist.Append val(NthField(data.IdxField(1).StringValue,",",1))
+		    'next
+		    'nextnew = val(data.IdxField(2).StringValue)
+		  else
+		    'new record
+		  end
 		  
 		End Sub
 	#tag EndMethod
