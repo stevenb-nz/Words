@@ -363,8 +363,8 @@ Begin Window Quiz
       Text            =   "current combo|stem"
       TextAlign       =   0
       TextColor       =   &c00000000
-      TextFont        =   "System"
-      TextSize        =   0.0
+      TextFont        =   "Monotype Sorts"
+      TextSize        =   16.0
       TextUnit        =   0
       Top             =   84
       Transparent     =   False
@@ -512,6 +512,8 @@ End
 		    guesslist.Append 0
 		    nextnew = 1
 		  end
+		  
+		  CurrentComboLabel.Text = quizlist(UBound(guesslist))
 		  
 		End Sub
 	#tag EndMethod
