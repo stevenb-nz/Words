@@ -547,6 +547,17 @@ End
 		End Sub
 	#tag EndMethod
 
+	#tag Method, Flags = &h0
+		Sub shuffle_current()
+		  dim tempArray() as string
+		  
+		  tempArray = CurrentComboLabel.Text.split("")
+		  tempArray.Shuffle
+		  CurrentComboLabel.Text = join(temparray,"")
+		  
+		End Sub
+	#tag EndMethod
+
 
 	#tag Property, Flags = &h0
 		closable As Boolean
@@ -570,10 +581,18 @@ End
 #tag Events guessField
 	#tag Event
 		Function KeyDown(Key As String) As Boolean
-		  if asc(Key) = 27 then
+		  Select Case asc(Key)
+		  Case 27
 		    closable = true
 		    close
-		  end
+		  case 32
+		    if QuizTypeButton.Caption = "Combo" then
+		      shuffle_current
+		    end
+		    return true
+		  Else
+		    MsgBox str(asc(key))
+		  End Select
 		  
 		End Function
 	#tag EndEvent
