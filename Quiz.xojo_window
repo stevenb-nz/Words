@@ -558,6 +558,17 @@ End
 		End Sub
 	#tag EndMethod
 
+	#tag Method, Flags = &h0
+		Sub sort_current()
+		  dim tempArray() as string
+		  
+		  tempArray = CurrentComboLabel.Text.split("")
+		  tempArray.sort
+		  CurrentComboLabel.Text = join(temparray,"")
+		  
+		End Sub
+	#tag EndMethod
+
 
 	#tag Property, Flags = &h0
 		closable As Boolean
@@ -592,6 +603,11 @@ End
 		  case 32
 		    if QuizTypeButton.Caption = "Combo" then
 		      shuffle_current
+		    end
+		    return true
+		  case 61
+		    if QuizTypeButton.Caption = "Combo" then
+		      sort_current
 		    end
 		    return true
 		  Else
