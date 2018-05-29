@@ -361,7 +361,7 @@ Begin Window Quiz
       TabPanelIndex   =   0
       TabStop         =   True
       Text            =   "current combo|stem"
-      TextAlign       =   0
+      TextAlign       =   1
       TextColor       =   &c00000000
       TextFont        =   "Monotype Sorts"
       TextSize        =   16.0
@@ -481,7 +481,7 @@ End
 	#tag Method, Flags = &h0
 		Sub loadquiz()
 		  dim i,length as integer
-		  dim sql as string
+		  dim alpha_freq,sql as string
 		  redim quizlist(-1)
 		  redim guesslist(-1)
 		  
@@ -489,16 +489,22 @@ End
 		  if QuizTypeButton.Caption = "Combo" then
 		    sql = "SELECT Combo FROM Combos WHERE length = "+str(length)+" ORDER BY combo_playability"
 		  else
-		    sql = "SELECT Word FROM Words JOIN Combos ON Words.combo_id = Combos.id WHERE length = "+str(length)+" ORDER BY combo_playability"
+		    sql = "SELECT Word FROM Words JOIN Combos ON Words.combo_id = Combos.id WHERE length = "+str(length-1)+" ORDER BY combo_playability"
 		  end if
 		  
 		  dim data as RecordSet
 		  data = app.wordsDB.SQLSelect(sql)
 		  
-		  while not data.eof
-		    quizlist.Append data.IdxField(1).StringValue
-		    data.MoveNext
-		  wend
+		  if data.RecordCount > 0 then
+		    while not data.eof
+		      quizlist.Append data.IdxField(1).StringValue
+		      data.MoveNext
+		    wend
+		  else
+		    alpha_freq = "EAIONRTDLSUGBCFHMPVWYJKQXZ"
+		    quizlist = alpha_freq.split("")
+		    MsgBox str(UBound(quizlist))
+		  end
 		  
 		  sql = "SELECT states,current FROM Quiz WHERE type='"+QuizTypeButton.Caption+"' and length='"+str(length)+"'"
 		  data = app.wordsDB.SQLSelect(sql)
