@@ -582,6 +582,10 @@ End
 	#tag Event
 		Function KeyDown(Key As String) As Boolean
 		  Select Case asc(Key)
+		  case 8
+		    if guessField.Text = "" then
+		      'delete last entry in guessArea
+		    end
 		  Case 27
 		    closable = true
 		    close
