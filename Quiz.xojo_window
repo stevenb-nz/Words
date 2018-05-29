@@ -503,7 +503,6 @@ End
 		  else
 		    alpha_freq = "EAIONRTDLSUGBCFHMPVWYJKQXZ"
 		    quizlist = alpha_freq.split("")
-		    MsgBox str(UBound(quizlist))
 		  end
 		  
 		  sql = "SELECT states,current FROM Quiz WHERE type='"+QuizTypeButton.Caption+"' and length='"+str(length)+"'"
@@ -515,11 +514,21 @@ End
 		    next
 		    nextnew = val(data.IdxField(2).StringValue)
 		  else
-		    guesslist.Append 0
-		    nextnew = 1
+		    resetquiz
 		  end
 		  
 		  CurrentComboLabel.Text = quizlist(UBound(guesslist))
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub resetquiz()
+		  redim guesslist(-1)
+		  
+		  guesslist.Append 0
+		  nextnew = 1
+		  CurrentComboLabel.Text = quizlist(guesslist(UBound(guesslist)))
 		  
 		End Sub
 	#tag EndMethod
@@ -621,6 +630,14 @@ End
 		  End Select
 		  
 		End Function
+	#tag EndEvent
+#tag EndEvents
+#tag Events resetButton
+	#tag Event
+		Sub Action()
+		  resetquiz
+		  
+		End Sub
 	#tag EndEvent
 #tag EndEvents
 #tag Events QuizTypeButton
