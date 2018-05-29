@@ -608,28 +608,42 @@ End
 	#tag Event
 		Function KeyDown(Key As String) As Boolean
 		  Select Case asc(Key)
-		  case 8
+		  case 8 'delete left
 		    if guessField.Text = "" then
 		      'delete last entry in guessArea
+		      return true
 		    end
-		  Case 27
+		  case 13
+		    'return
+		  Case 27 'esc character
 		    closable = true
 		    close
-		  case 32
+		  case 28 to 29
+		    'let left and right arrow keys through
+		  case 32 'divert " " to shuffle
 		    if QuizTypeButton.Caption = "Combo" then
 		      shuffle_current
 		    end
 		    return true
-		  case 61
+		  case 61 'divert "=" to sort
 		    if QuizTypeButton.Caption = "Combo" then
 		      sort_current
 		    end
 		    return true
+		  case 65 to 90, 97 to 122
+		    'let alpha chars through
 		  Else
-		    MsgBox str(asc(key))
+		    'don't let anything else through
+		    return true
 		  End Select
 		  
 		End Function
+	#tag EndEvent
+	#tag Event
+		Sub TextChange()
+		  me.text = Uppercase(me.Text)
+		  
+		End Sub
 	#tag EndEvent
 #tag EndEvents
 #tag Events resetButton
