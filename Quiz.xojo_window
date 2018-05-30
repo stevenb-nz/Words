@@ -614,7 +614,17 @@ End
 		      return true
 		    end
 		  case 13
-		    'return
+		    if me.Text = "" then
+		      
+		    else
+		      'if me.text is already in field
+		      if QuizTypeButton.Caption = "Combo" then
+		        if me.text.sort = CurrentLabel.text.sort then
+		          
+		        end
+		      end
+		    end
+		    return true
 		  Case 27 'esc character
 		    closable = true
 		    close
