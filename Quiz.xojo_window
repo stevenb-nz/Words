@@ -563,25 +563,25 @@ End
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub shuffle_current()
+		Function shuffle_string(combo as string) As string
 		  dim tempArray() as string
 		  
-		  tempArray = CurrentComboLabel.Text.split("")
+		  tempArray = combo.split("")
 		  tempArray.Shuffle
-		  CurrentComboLabel.Text = join(temparray,"")
+		  return join(temparray,"")
 		  
-		End Sub
+		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub sort_current()
+		Function sort_string(combo as string) As string
 		  dim tempArray() as string
 		  
-		  tempArray = CurrentComboLabel.Text.split("")
+		  tempArray = combo.split("")
 		  tempArray.sort
-		  CurrentComboLabel.Text = join(temparray,"")
+		  return join(tempArray,"")
 		  
-		End Sub
+		End Function
 	#tag EndMethod
 
 
@@ -615,13 +615,15 @@ End
 		    end
 		  case 13
 		    if me.Text = "" then
-		      
+		      'if timer off then submit list else set timer
 		    else
-		      'if me.text is already in field
+		      'if me.text is not already in field then
 		      if QuizTypeButton.Caption = "Combo" then
-		        if me.text.sort = CurrentLabel.text.sort then
-		          
+		        if sort_string(me.text) = sort_string(CurrentLabel.text) then
+		          'add to list
 		        end
+		      else
+		        'if left(me.text,n) = CurrentLabel.Text or right(me.text,n) =  CurrentLabel.Text then
 		      end
 		    end
 		    return true
@@ -632,12 +634,12 @@ End
 		    'let left and right arrow keys through
 		  case 32 'divert " " to shuffle
 		    if QuizTypeButton.Caption = "Combo" then
-		      shuffle_current
+		      CurrentComboLabel.Text = shuffle_string(CurrentComboLabel.Text)
 		    end
 		    return true
 		  case 61 'divert "=" to sort
 		    if QuizTypeButton.Caption = "Combo" then
-		      sort_current
+		      CurrentComboLabel.Text = sort_string(CurrentComboLabel.Text)
 		    end
 		    return true
 		  case 65 to 90, 97 to 122
