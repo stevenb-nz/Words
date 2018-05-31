@@ -631,13 +631,16 @@ End
 		    if me.Text = "" then
 		      'if timer off then submit list else set timer
 		    else
-		      'if me.text is not already in field then
-		      if QuizTypeButton.Caption = "Combo" then
-		        if sort_string(me.text) = sort_string(CurrentLabel.text) then
-		          'add to list
+		      if not guessed(me.text) then
+		        if QuizTypeButton.Caption = "Combo" then
+		          if sort_string(me.text) = sort_string(CurrentLabel.text) then
+		            'add to list
+		          end
+		        else
+		          if left(me.text,len(me.text)-1) = CurrentLabel.Text or right(me.text,len(me.text)-1) =  CurrentLabel.Text then
+		            'add to list
+		          end
 		        end
-		      else
-		        'if left(me.text,n) = CurrentLabel.Text or right(me.text,n) =  CurrentLabel.Text then
 		      end
 		    end
 		    return true
