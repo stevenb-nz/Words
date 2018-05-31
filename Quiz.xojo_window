@@ -496,7 +496,13 @@ End
 
 	#tag Method, Flags = &h0
 		Function guessed(guess as string) As boolean
-		  return false
+		  For i As Integer = 0 To guessListbox.ListCount - 1
+		    If guessListbox.List(i) = guess then
+		      return true
+		    end
+		    return false
+		  Next
+		  
 		End Function
 	#tag EndMethod
 
