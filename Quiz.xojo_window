@@ -487,8 +487,16 @@ End
 
 
 	#tag Method, Flags = &h0
-		Function guessed(guess as string) As boolean
+		Sub add_guess(guess as string)
+		  guesslistbox.AddRow guess
+		  guessField.text = ""
 		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Function guessed(guess as string) As boolean
+		  return false
 		End Function
 	#tag EndMethod
 
@@ -633,12 +641,12 @@ End
 		    else
 		      if not guessed(me.text) then
 		        if QuizTypeButton.Caption = "Combo" then
-		          if sort_string(me.text) = sort_string(CurrentLabel.text) then
-		            'add to list
+		          if sort_string(me.text) = sort_string(CurrentComboLabel.text) then
+		            add_guess(me.text)
 		          end
 		        else
-		          if left(me.text,len(me.text)-1) = CurrentLabel.Text or right(me.text,len(me.text)-1) =  CurrentLabel.Text then
-		            'add to list
+		          if left(me.text,len(me.text)-1) = CurrentComboLabel.Text or right(me.text,len(me.text)-1) =  CurrentComboLabel.Text then
+		            add_guess(me.text)
 		          end
 		        end
 		      end
