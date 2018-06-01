@@ -638,7 +638,9 @@ End
 		  Select Case asc(Key)
 		  case 8 'delete left
 		    if guessField.Text = "" then
-		      'delete last entry in guessArea
+		      if guessListbox.LastIndex >= 0 then
+		        guessListbox.RemoveRow guessListbox.LastIndex
+		      end
 		      return true
 		    end
 		  case 13
