@@ -490,6 +490,7 @@ End
 		Sub add_guess(guess as string)
 		  guesslistbox.AddRow guess
 		  guessField.text = ""
+		  'start timer
 		  
 		End Sub
 	#tag EndMethod
@@ -645,7 +646,7 @@ End
 		    end
 		  case 13
 		    if me.Text = "" then
-		      'if timer off then submit list else set timer
+		      'if timer off then submit list
 		    else
 		      if not guessed(me.text) then
 		        if QuizTypeButton.Caption = "Combo" then
@@ -727,6 +728,15 @@ End
 		    me.caption = str(c + 1)
 		  end
 		  loadquiz
+		  
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events guessListbox
+	#tag Event
+		Sub DoubleClick()
+		  me.removerow me.listindex
+		  guessField.SetFocus
 		  
 		End Sub
 	#tag EndEvent
