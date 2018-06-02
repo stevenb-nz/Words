@@ -490,7 +490,10 @@ End
 		Sub add_guess(guess as string)
 		  guesslistbox.AddRow guess
 		  guessField.text = ""
-		  'start timer
+		  guessField.BackColor = &cFFCCCC
+		  myTimer = new CustomTimer
+		  mytimer.Period = 750
+		  mytimer.Mode = Timer.ModeSingle
 		  
 		End Sub
 	#tag EndMethod
@@ -623,6 +626,10 @@ End
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
+		myTimer As CustomTimer
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
 		nextnew As Integer
 	#tag EndProperty
 
@@ -646,7 +653,10 @@ End
 		    end
 		  case 13
 		    if me.Text = "" then
-		      'if timer off then submit list
+		      if me.BackColor = &cFFFFFF then
+		        MsgBox "submit"
+		        'submit_guesses
+		      end
 		    else
 		      if not guessed(me.text) then
 		        if QuizTypeButton.Caption = "Combo" then
