@@ -489,6 +489,7 @@ End
 	#tag Method, Flags = &h0
 		Sub add_guess(guess as string)
 		  guesslistbox.AddRow guess
+		  GuessesLabel.Text = guessListbox.ListCount.ToText
 		  guessField.text = ""
 		  guessField.BackColor = &cFFCCCC
 		  myTimer = new CustomTimer
@@ -648,6 +649,7 @@ End
 		    if guessField.Text = "" then
 		      if guessListbox.LastIndex >= 0 then
 		        guessListbox.RemoveRow guessListbox.LastIndex
+		        GuessesLabel.Text = guessListbox.ListCount.ToText
 		      end
 		      return true
 		    end
@@ -664,7 +666,7 @@ End
 		            add_guess(me.text)
 		          end
 		        else
-		          if left(me.text,len(me.text)-1) = CurrentComboLabel.Text or right(me.text,len(me.text)-1) =  CurrentComboLabel.Text then
+		          if left(me.text,len(me.text)-1) = CurrentComboLabel.Text or right(me.text,len(me.text)-1) = CurrentComboLabel.Text then
 		            add_guess(me.text)
 		          end
 		        end
@@ -746,6 +748,7 @@ End
 	#tag Event
 		Sub DoubleClick()
 		  me.removerow me.listindex
+		  GuessesLabel.Text = me.ListCount.ToText
 		  guessField.SetFocus
 		  
 		End Sub
