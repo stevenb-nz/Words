@@ -505,8 +505,8 @@ End
 		    If guessListbox.List(i) = guess then
 		      return true
 		    end
-		    return false
 		  Next
+		  return false
 		  
 		End Function
 	#tag EndMethod
