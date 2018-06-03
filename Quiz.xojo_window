@@ -501,9 +501,26 @@ End
 
 	#tag Method, Flags = &h0
 		Function guessed(guess as string) As boolean
-		  For i As Integer = 0 To guessListbox.ListCount - 1
+		  dim count,i,limit as integer
+		  
+		  count = 1
+		  limit = 1
+		  if QuizTypeButton.Caption = "Hooks" then
+		    limit = 2
+		    for i = 2 to len(guess)
+		      if mid(guess,i,1) <> left(guess,1) then
+		        limit = 1
+		      end
+		    next
+		  end
+		  
+		  For i = 0 To guessListbox.ListCount - 1
 		    If guessListbox.List(i) = guess then
-		      return true
+		      if count < limit then
+		        count = count + 1
+		      else
+		        return true
+		      end
 		    end
 		  Next
 		  return false
