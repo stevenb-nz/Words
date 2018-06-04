@@ -387,7 +387,7 @@ Begin Window Quiz
       Transparent     =   False
       Underline       =   False
       UseFocusRing    =   True
-      Visible         =   False
+      Visible         =   True
       Width           =   176
       _ScrollOffset   =   0
       _ScrollWidth    =   -1
@@ -755,7 +755,7 @@ End
 		    end
 		  case 13
 		    if me.Text = "" then
-		      if me.BackColor = &cFFFFFF then
+		      if me.BackColor = &cFFFFFF and guessListbox.ListCount = answerListbox.ListCount then
 		        MsgBox "submit"
 		        'submit_guesses
 		      end
@@ -821,8 +821,9 @@ End
 		  else
 		    me.Caption = "Combo"
 		  end
-		  loadquiz
 		  clearentry
+		  loadquiz
+		  
 		End Sub
 	#tag EndEvent
 #tag EndEvents
@@ -839,8 +840,8 @@ End
 		  else
 		    me.caption = str(c + 1)
 		  end
-		  loadquiz
 		  clearentry
+		  loadquiz
 		  
 		End Sub
 	#tag EndEvent
