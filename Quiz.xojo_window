@@ -625,7 +625,73 @@ End
 	#tag Method, Flags = &h0
 		Sub setquiz()
 		  CurrentComboLabel.Text = quizlist(UBound(guesslist))
-		  
+		  if QuizTypeButton.Caption = "Hooks" then
+		    dim count as integer
+		    if len(CurrentComboLabel.Text) > 1then
+		      dim id as integer
+		      id = app.word_id(CurrentComboLabel.Text)
+		      
+		      dim sql as string
+		      sql = "SELECT Word FROM Words WHERE f_hook_of = "+str(id)
+		      
+		      dim data as RecordSet
+		      data = app.wordsDB.SQLSelect(sql)
+		      
+		      while not data.EOF
+		        answerListbox.AddRow data.IdxField(1).StringValue
+		        data.MoveNext
+		      wend
+		      
+		      count = data.RecordCount
+		      AnswersLabel.Text = if(count>0,str(count),"-")
+		      AnswersLabel.Text = AnswersLabel.Text + " / "
+		      
+		      sql = "SELECT Word FROM Words WHERE b_hook_of = "+str(id)
+		      data = app.wordsDB.SQLSelect(sql)
+		      
+		      while not data.EOF
+		        answerListbox.AddRow data.IdxField(1).StringValue
+		        data.MoveNext
+		      wend
+		      
+		      count = data.RecordCount
+		      AnswersLabel.Text = AnswersLabel.Text + if(count>0,str(count),"-")
+		    else
+		      dim i as integer
+		      dim word as string
+		      count = 0
+		      for i = 65 to 90
+		        word = chr(i)+CurrentComboLabel.Text
+		        if Words.isWord(word) then
+		          count = count + 1
+		          answerListbox.AddRow word
+		        end
+		      next
+		      AnswersLabel.Text = if(count>0,str(count),"-")
+		      AnswersLabel.Text = AnswersLabel.Text + " / "
+		      count = 0
+		      for i = 65 to 90
+		        word = CurrentComboLabel.Text+chr(i)
+		        if Words.isWord(word) then
+		          count = count + 1
+		          answerListbox.AddRow word
+		        end
+		      next
+		      AnswersLabel.Text = AnswersLabel.Text + if(count>0,str(count),"-")
+		    end
+		  else
+		    dim sql as string
+		    sql = "SELECT Word FROM Words JOIN Combos ON Combos.id = Words.combo_id WHERE Combos.combo='"+CurrentComboLabel.Text+"'"
+		    
+		    dim data as RecordSet
+		    data = app.wordsDB.SQLSelect(sql)
+		    
+		    while not data.EOF
+		      AnswerListbox.AddRow data.IdxField(1).StringValue
+		      data.MoveNext
+		    wend
+		    AnswersLabel.Text = str(data.RecordCount)
+		  end
 		End Sub
 	#tag EndMethod
 
