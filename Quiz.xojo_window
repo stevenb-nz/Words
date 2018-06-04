@@ -567,8 +567,6 @@ End
 		    resetquiz
 		  end
 		  
-		  CurrentComboLabel.Text = quizlist(UBound(guesslist))
-		  
 		End Sub
 	#tag EndMethod
 
@@ -608,6 +606,13 @@ End
 		    row.Column("current") = str(nextnew)
 		    app.wordsDB.InsertRecord("Quiz",row)
 		  end
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub setquiz()
+		  CurrentComboLabel.Text = quizlist(UBound(guesslist))
 		  
 		End Sub
 	#tag EndMethod
