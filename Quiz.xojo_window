@@ -500,6 +500,16 @@ End
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
+		Sub clearentry()
+		  guessField.Text = ""
+		  guessListbox.DeleteAllRows
+		  answerListbox.DeleteAllRows
+		  GuessesLabel.Text = guessListbox.ListCount.ToText
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Function guessed(guess as string) As boolean
 		  dim count,i,limit as integer
 		  
@@ -566,6 +576,7 @@ End
 		  else
 		    resetquiz
 		  end
+		  setquiz
 		  
 		End Sub
 	#tag EndMethod
@@ -577,6 +588,7 @@ End
 		  guesslist.Append 0
 		  nextnew = 1
 		  CurrentComboLabel.Text = quizlist(guesslist(UBound(guesslist)))
+		  clearentry
 		  
 		End Sub
 	#tag EndMethod
@@ -744,7 +756,7 @@ End
 		    me.Caption = "Combo"
 		  end
 		  loadquiz
-		  
+		  clearentry
 		End Sub
 	#tag EndEvent
 #tag EndEvents
@@ -762,6 +774,7 @@ End
 		    me.caption = str(c + 1)
 		  end
 		  loadquiz
+		  clearentry
 		  
 		End Sub
 	#tag EndEvent
