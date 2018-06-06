@@ -387,7 +387,7 @@ Begin Window Quiz
       Transparent     =   False
       Underline       =   False
       UseFocusRing    =   True
-      Visible         =   True
+      Visible         =   False
       Width           =   176
       _ScrollOffset   =   0
       _ScrollWidth    =   -1
@@ -731,10 +731,8 @@ End
 		  next
 		  
 		  if UBound(answers) = UBound(guesses) then
-		    if true then 'guessing or reentering
-		      answers.sort
-		      guesses.sort
-		    end
+		    answers.sort
+		    guesses.sort
 		    correct = true
 		    for a = 0 to UBound(answers)
 		      if answers(a) <> guesses(a) then
@@ -746,9 +744,44 @@ End
 		  end
 		  
 		  if correct then
-		    MsgBox "correct"
+		    'process correct
+		    'choose next
 		  else
-		    MsgBox "incorrect"
+		    guessListbox.DeleteAllRows
+		    answerListbox.Visible = true
+		  end
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub submit_reentry()
+		  dim answers(-1),guesses(-1) as string
+		  dim a,g as integer
+		  dim correct as Boolean
+		  
+		  for a = 1 to answerListbox.ListCount
+		    answers.Append answerListbox.list(a-1)
+		  next
+		  for g = 1 to guessListbox.ListCount
+		    guesses.Append guessListbox.list(g-1)
+		  next
+		  
+		  if UBound(answers) = UBound(guesses) then
+		    correct = true
+		    for a = 0 to UBound(answers)
+		      if answers(a) <> guesses(a) then
+		        correct = false
+		      end
+		    next
+		  else
+		    correct = false
+		  end
+		  
+		  if correct then
+		    answerListbox.Visible = false
+		    'process incorrect
+		    'choose next
 		  end
 		  
 		End Sub
@@ -793,7 +826,11 @@ End
 		  case 13
 		    if me.Text = "" then
 		      if me.BackColor = &cFFFFFF and guessListbox.ListCount = answerListbox.ListCount then
-		        submit_guesses
+		        if answerListbox.Visible then
+		          submit_reentry
+		        else
+		          submit_guesses
+		        end
 		      end
 		    else
 		      if not guessed(me.text) then
