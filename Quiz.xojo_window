@@ -717,6 +717,43 @@ End
 		End Function
 	#tag EndMethod
 
+	#tag Method, Flags = &h0
+		Sub submit_guesses()
+		  dim answers(-1),guesses(-1) as string
+		  dim a,g as integer
+		  dim correct as Boolean
+		  
+		  for a = 1 to answerListbox.ListCount
+		    answers.Append answerListbox.list(a-1)
+		  next
+		  for g = 1 to guessListbox.ListCount
+		    guesses.Append guessListbox.list(g-1)
+		  next
+		  
+		  if UBound(answers) = UBound(guesses) then
+		    if true then 'guessing or reentering
+		      answers.sort
+		      guesses.sort
+		    end
+		    correct = true
+		    for a = 0 to UBound(answers)
+		      if answers(a) <> guesses(a) then
+		        correct = false
+		      end
+		    next
+		  else
+		    correct = false
+		  end
+		  
+		  if correct then
+		    MsgBox "correct"
+		  else
+		    MsgBox "incorrect"
+		  end
+		  
+		End Sub
+	#tag EndMethod
+
 
 	#tag Property, Flags = &h0
 		closable As Boolean
@@ -756,8 +793,7 @@ End
 		  case 13
 		    if me.Text = "" then
 		      if me.BackColor = &cFFFFFF and guessListbox.ListCount = answerListbox.ListCount then
-		        MsgBox "submit"
-		        'submit_guesses
+		        submit_guesses
 		      end
 		    else
 		      if not guessed(me.text) then
