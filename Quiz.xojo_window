@@ -501,7 +501,24 @@ End
 
 	#tag Method, Flags = &h0
 		Sub choosenext()
+		  Using Xojo.Math
+		  dim rand as integer
+		  
 		  guesslist.Remove(0)
+		  
+		  if nextnew > UBound(quizlist) then
+		    if UBound(guesslist) < 0 then
+		      resetquiz
+		    end
+		  else
+		    rand = RandomInt(0, 99)
+		    if rand > UBound(guesslist) then
+		      guesslist.Insert(0,nextnew)
+		      nextnew = nextnew + 1
+		    end
+		  end
+		  clearentry
+		  setquiz
 		  
 		End Sub
 	#tag EndMethod
@@ -577,7 +594,7 @@ End
 		  
 		  if data.RecordCount = 1 then
 		    for i = 1 to CountFields(data.IdxField(1).StringValue,",")
-		      guesslist.Append val(NthField(data.IdxField(1).StringValue,",",1))
+		      guesslist.Append val(NthField(data.IdxField(1).StringValue,",",i))
 		    next
 		    nextnew = val(data.IdxField(2).StringValue)
 		  else
@@ -596,6 +613,7 @@ End
 		  nextnew = 1
 		  CurrentComboLabel.Text = quizlist(guesslist(0))
 		  clearentry
+		  setquiz
 		  
 		End Sub
 	#tag EndMethod
@@ -759,7 +777,7 @@ End
 		  end
 		  
 		  if correct then
-		    'choosenext
+		    choosenext
 		  else
 		    guessListbox.DeleteAllRows
 		    answerListbox.Visible = true
@@ -794,8 +812,8 @@ End
 		  
 		  if correct then
 		    answerListbox.Visible = false
-		    'guesslist.Append guesslist(0)
-		    'choosenext
+		    guesslist.Append guesslist(0)
+		    choosenext
 		  end
 		  
 		End Sub
