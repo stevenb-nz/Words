@@ -847,8 +847,14 @@ End
 		            add_guess(me.text)
 		          end
 		        else
-		          if left(me.text,len(me.text)-1) = CurrentComboLabel.Text or right(me.text,len(me.text)-1) = CurrentComboLabel.Text then
-		            add_guess(me.text)
+		          if AnswersLabel.Text = "- / -" then
+		            if me.text = CurrentComboLabel.Text then
+		              add_guess(me.text)
+		            end
+		          else
+		            if left(me.text,len(me.text)-1) = CurrentComboLabel.Text or right(me.text,len(me.text)-1) = CurrentComboLabel.Text then
+		              add_guess(me.text)
+		            end
 		          end
 		        end
 		      end
