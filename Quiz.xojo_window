@@ -229,7 +229,7 @@ Begin Window Quiz
       TabIndex        =   9
       TabPanelIndex   =   0
       TabStop         =   True
-      Text            =   "#ofGuesses"
+      Text            =   "0"
       TextAlign       =   2
       TextColor       =   &c00000000
       TextFont        =   "System"
@@ -500,6 +500,13 @@ End
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
+		Sub choosenext()
+		  guesslist.Remove(0)
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Sub clearentry()
 		  guessField.Text = ""
 		  guessListbox.DeleteAllRows
@@ -587,7 +594,7 @@ End
 		  
 		  guesslist.Append 0
 		  nextnew = 1
-		  CurrentComboLabel.Text = quizlist(guesslist(UBound(guesslist)))
+		  CurrentComboLabel.Text = quizlist(guesslist(0))
 		  clearentry
 		  
 		End Sub
@@ -624,7 +631,7 @@ End
 
 	#tag Method, Flags = &h0
 		Sub setquiz()
-		  CurrentComboLabel.Text = quizlist(UBound(guesslist))
+		  CurrentComboLabel.Text = quizlist(guesslist(0))
 		  if QuizTypeButton.Caption = "Hooks" then
 		    dim count as integer
 		    if len(CurrentComboLabel.Text) > 1then
@@ -752,8 +759,7 @@ End
 		  end
 		  
 		  if correct then
-		    'process correct
-		    'choose next
+		    'choosenext
 		  else
 		    guessListbox.DeleteAllRows
 		    answerListbox.Visible = true
@@ -788,8 +794,8 @@ End
 		  
 		  if correct then
 		    answerListbox.Visible = false
-		    'process incorrect
-		    'choose next
+		    'guesslist.Append guesslist(0)
+		    'choosenext
 		  end
 		  
 		End Sub
