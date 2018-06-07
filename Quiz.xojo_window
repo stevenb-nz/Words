@@ -267,7 +267,7 @@ Begin Window Quiz
       Text            =   "current combo|stem"
       TextAlign       =   1
       TextColor       =   &c00000000
-      TextFont        =   "Monotype Sorts"
+      TextFont        =   "courier"
       TextSize        =   16.0
       TextUnit        =   0
       Top             =   84
@@ -679,12 +679,20 @@ End
 		      next
 		      AnswersLabel.Text = AnswersLabel.Text + if(count>0,str(count),"-")
 		    end
+		    if AnswersLabel.Text = "- / -" then
+		      answerListbox.AddRow CurrentComboLabel.text
+		      CurrentComboLabel.bold = true
+		    else
+		      CurrentComboLabel.bold = false
+		    end
 		  else
 		    dim sql as string
 		    sql = "SELECT Word FROM Words JOIN Combos ON Combos.id = Words.combo_id WHERE Combos.combo='"+CurrentComboLabel.Text+"'"
 		    
 		    dim data as RecordSet
 		    data = app.wordsDB.SQLSelect(sql)
+		    
+		    CurrentComboLabel.bold = false
 		    
 		    while not data.EOF
 		      AnswerListbox.AddRow data.IdxField(1).StringValue
