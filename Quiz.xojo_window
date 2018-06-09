@@ -598,11 +598,7 @@ End
 		      guesslist.Append val(NthField(data.IdxField(1).StringValue,",",i))
 		    next
 		    nextnew = val(data.IdxField(2).StringValue)
-		    if data.IdxField(3).StringValue = "TRUE" then
-		      current_new = true
-		    else
-		      current_new = false
-		    end
+		    current_new = data.IdxField(3).BooleanValue
 		  else
 		    resetquiz
 		  end
@@ -641,16 +637,28 @@ End
 		  data = app.wordsDB.SQLSelect(sql)
 		  
 		  if data.RecordCount = 1 then
-		    app.wordsDB.SQLExecute("UPDATE quiz SET states='"+states+"', current='"+str(nextnew)+"', current_new='"+if(current_new,"TRUE","FALSE")+"' WHERE type='"+QuizTypeButton.Caption+"' AND length='"+str(length)+"'")
+		    app.wordsDB.SQLExecute("UPDATE quiz SET states='"+states+"', current='"+str(nextnew)+"', current_new='"+if(current_new,"1","0")+"' WHERE type='"+QuizTypeButton.Caption+"' AND length='"+str(length)+"'")
 		  else
 		    dim row as new DatabaseRecord
 		    row.Column("type") = QuizTypeButton.Caption
 		    row.Column("length") = str(length)
 		    row.Column("states") = states
 		    row.Column("current") = str(nextnew)
-		    row.Column("current_new") = if(current_new,"TRUE","FALSE")
+		    row.Column("current_new") = if(current_new,"1","0")
 		    app.wordsDB.InsertRecord("Quiz",row)
 		  end
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub setCurrentLabel()
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub setProgressLabel()
 		  
 		End Sub
 	#tag EndMethod
@@ -733,6 +741,9 @@ End
 		    wend
 		    AnswersLabel.Text = str(data.RecordCount)
 		  end
+		  setProgressLabel
+		  setCurrentLabel
+		  
 		End Sub
 	#tag EndMethod
 
