@@ -713,6 +713,15 @@ End
 
 	#tag Method, Flags = &h0
 		Sub setProgressLabel()
+		  dim pl as string
+		  dim sigfig as integer
+		  
+		  sigfig = len(str(ubound(quizlist)+1))
+		  pl = "√: " + str(round( (nextnew-UBound(guesslist)-1) / (UBound(quizlist)+1)*(10^sigfig))/(10^(sigfig-2)) ) + "% ("
+		  pl = pl + str(nextnew-UBound(guesslist)-1) + " of " + str(UBound(quizlist)+1) + ") - X: "
+		  pl = pl + str(UBound(guesslist)+if(current_new,0,1)) + "/100"
+		  
+		  ProgressLabel.Text = pl
 		  
 		End Sub
 	#tag EndMethod
