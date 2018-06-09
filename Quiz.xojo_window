@@ -159,7 +159,7 @@ Begin Window Quiz
       TabIndex        =   7
       TabPanelIndex   =   0
       TabStop         =   True
-      Text            =   "Min: #ofMin (combo|stem for min#) Current: #ofCurrent [X|√] (new or error list)\n"
+      Text            =   "Min: #ofMin (combo|stem for min#) Current: #ofCurrent Nextnew: #ofNextnew\n"
       TextAlign       =   1
       TextColor       =   &c00000000
       TextFont        =   "System"
@@ -169,7 +169,7 @@ Begin Window Quiz
       Transparent     =   False
       Underline       =   False
       Visible         =   True
-      Width           =   365
+      Width           =   313
    End
    Begin Label AnswersLabel
       AutoDeactivate  =   True
@@ -444,6 +444,41 @@ Begin Window Quiz
       _ScrollOffset   =   0
       _ScrollWidth    =   -1
    End
+   Begin Label CurrentNewLabel
+      AutoDeactivate  =   True
+      Bold            =   False
+      DataField       =   ""
+      DataSource      =   ""
+      Enabled         =   True
+      Height          =   20
+      HelpTag         =   ""
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Italic          =   False
+      Left            =   345
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      Multiline       =   False
+      Scope           =   0
+      Selectable      =   False
+      TabIndex        =   15
+      TabPanelIndex   =   0
+      TabStop         =   True
+      Text            =   "[X|√]"
+      TextAlign       =   1
+      TextColor       =   &c00000000
+      TextFont        =   "System"
+      TextSize        =   0.0
+      TextUnit        =   0
+      Top             =   52
+      Transparent     =   False
+      Underline       =   False
+      Visible         =   True
+      Width           =   40
+   End
 End
 #tag EndWindow
 
@@ -653,6 +688,25 @@ End
 
 	#tag Method, Flags = &h0
 		Sub setCurrentLabel()
+		  dim cl as string
+		  dim i,mincom, nextcom as integer
+		  
+		  cl = "Min: "
+		  
+		  mincom = ubound(quizlist)+2
+		  for i = 0 to ubound(guesslist)
+		    if guesslist(i) < mincom then
+		      mincom = guesslist(i)
+		    end
+		  next
+		  cl = cl + str(mincom+1)+" ("+quizlist(mincom).Lowercase+")  Current: "
+		  
+		  cl = cl + str(guesslist(0)+1) + "  Next new: "
+		  
+		  cl = cl + str(if(nextnew > ubound(quizlist),1,nextnew+1))
+		  
+		  CurrentLabel.Text = cl
+		  CurrentNewLabel.Text = if(current_new,"√","X")
 		  
 		End Sub
 	#tag EndMethod
