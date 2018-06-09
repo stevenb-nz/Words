@@ -505,7 +505,7 @@ End
 		  dim rand as integer
 		  
 		  guesslist.Remove(0)
-		  
+		  current_new = false
 		  if nextnew > UBound(quizlist) then
 		    if UBound(guesslist) < 0 then
 		      resetquiz
@@ -515,6 +515,7 @@ End
 		    if rand > UBound(guesslist) then
 		      guesslist.Insert(0,nextnew)
 		      nextnew = nextnew + 1
+		      current_new = true
 		    end
 		  end
 		  clearentry
@@ -589,7 +590,7 @@ End
 		    quizlist = alpha_freq.split("")
 		  end
 		  
-		  sql = "SELECT states,current FROM Quiz WHERE type='"+QuizTypeButton.Caption+"' and length='"+str(length)+"'"
+		  sql = "SELECT states,current,current_new FROM Quiz WHERE type='"+QuizTypeButton.Caption+"' and length='"+str(length)+"'"
 		  data = app.wordsDB.SQLSelect(sql)
 		  
 		  if data.RecordCount = 1 then
@@ -597,6 +598,11 @@ End
 		      guesslist.Append val(NthField(data.IdxField(1).StringValue,",",i))
 		    next
 		    nextnew = val(data.IdxField(2).StringValue)
+		    if data.IdxField(3).StringValue = "TRUE" then
+		      current_new = true
+		    else
+		      current_new = false
+		    end
 		  else
 		    resetquiz
 		  end
@@ -611,6 +617,7 @@ End
 		  
 		  guesslist.Append 0
 		  nextnew = 1
+		  current_new = true
 		  CurrentComboLabel.Text = quizlist(guesslist(0))
 		  clearentry
 		  setquiz
@@ -634,13 +641,14 @@ End
 		  data = app.wordsDB.SQLSelect(sql)
 		  
 		  if data.RecordCount = 1 then
-		    app.wordsDB.SQLExecute("UPDATE quiz SET states='"+states+"', current='"+str(nextnew)+"' WHERE type='"+QuizTypeButton.Caption+"' AND length='"+str(length)+"'")
+		    app.wordsDB.SQLExecute("UPDATE quiz SET states='"+states+"', current='"+str(nextnew)+"', current_new='"+if(current_new,"TRUE","FALSE")+"' WHERE type='"+QuizTypeButton.Caption+"' AND length='"+str(length)+"'")
 		  else
 		    dim row as new DatabaseRecord
 		    row.Column("type") = QuizTypeButton.Caption
 		    row.Column("length") = str(length)
 		    row.Column("states") = states
 		    row.Column("current") = str(nextnew)
+		    row.Column("current_new") = if(current_new,"TRUE","FALSE")
 		    app.wordsDB.InsertRecord("Quiz",row)
 		  end
 		  
@@ -822,6 +830,10 @@ End
 
 	#tag Property, Flags = &h0
 		closable As Boolean
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		current_new As Boolean
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
@@ -1201,5 +1213,10 @@ End
 		Name="nextnew"
 		Group="Behavior"
 		Type="Integer"
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="current_new"
+		Group="Behavior"
+		Type="Boolean"
 	#tag EndViewProperty
 #tag EndViewBehavior
