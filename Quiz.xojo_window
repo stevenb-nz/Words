@@ -59,8 +59,8 @@ Begin Window Quiz
       TabStop         =   True
       Text            =   ""
       TextColor       =   &c00000000
-      TextFont        =   "System"
-      TextSize        =   0.0
+      TextFont        =   "courier"
+      TextSize        =   16.0
       TextUnit        =   0
       Top             =   678
       Transparent     =   False
@@ -380,10 +380,10 @@ Begin Window Quiz
       TabIndex        =   13
       TabPanelIndex   =   0
       TabStop         =   True
-      TextFont        =   "System"
-      TextSize        =   0.0
+      TextFont        =   "courier"
+      TextSize        =   16.0
       TextUnit        =   0
-      Top             =   116
+      Top             =   118
       Transparent     =   False
       Underline       =   False
       UseFocusRing    =   True
@@ -432,8 +432,8 @@ Begin Window Quiz
       TabIndex        =   14
       TabPanelIndex   =   0
       TabStop         =   True
-      TextFont        =   "System"
-      TextSize        =   0.0
+      TextFont        =   "courier"
+      TextSize        =   16.0
       TextUnit        =   0
       Top             =   118
       Transparent     =   False
