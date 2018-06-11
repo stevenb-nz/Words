@@ -613,7 +613,6 @@ End
 
 	#tag Method, Flags = &h0
 		Sub update_subset(word as string)
-		  dim i as Integer
 		  dim combo as string
 		  combo = app.sort_word(word.totext)
 		  dim length as integer
@@ -643,7 +642,6 @@ End
 
 	#tag Method, Flags = &h0
 		Sub update_subsetplusone(word as string)
-		  dim i as Integer
 		  dim combo as string
 		  combo = app.sort_word(word.totext)
 		  dim length as integer
@@ -673,7 +671,6 @@ End
 
 	#tag Method, Flags = &h0
 		Sub update_superset(word as string)
-		  dim i as Integer
 		  dim combo as string
 		  combo = app.sort_word(word.totext)
 		  dim length as integer

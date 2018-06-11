@@ -689,7 +689,7 @@ End
 	#tag Method, Flags = &h0
 		Sub setCurrentLabel()
 		  dim cl as string
-		  dim i,mincom, nextcom as integer
+		  dim i,mincom as integer
 		  
 		  cl = "Min: "
 		  
