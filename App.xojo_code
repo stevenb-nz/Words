@@ -85,7 +85,8 @@ Inherits Application
 			newword = newword + bag(i-1)
 			next
 			words.wordbutton.caption = newword
-			words.updateWords(words.wordbutton.caption)
+			words.updateWords(newword)
+			words.update_history(newword)
 			
 			Return True
 			

@@ -20,7 +20,8 @@ Inherits Listbox
 	#tag Method, Flags = &h0
 		Sub changeWord()
 		  words.WordButton.Caption = me.text
-		  words.updateWords(words.WordButton.Caption)
+		  words.updateWords(me.text)
+		  words.update_history(me.text)
 		  
 		End Sub
 	#tag EndMethod

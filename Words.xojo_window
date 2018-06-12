@@ -413,6 +413,76 @@ Begin Window Words
       _ScrollOffset   =   0
       _ScrollWidth    =   -1
    End
+   Begin Label prevLabel
+      AutoDeactivate  =   True
+      Bold            =   False
+      DataField       =   ""
+      DataSource      =   ""
+      Enabled         =   True
+      Height          =   20
+      HelpTag         =   ""
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Italic          =   False
+      Left            =   20
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      Multiline       =   False
+      Scope           =   0
+      Selectable      =   False
+      TabIndex        =   8
+      TabPanelIndex   =   0
+      TabStop         =   True
+      Text            =   ""
+      TextAlign       =   1
+      TextColor       =   &c00000000
+      TextFont        =   "System"
+      TextSize        =   0.0
+      TextUnit        =   0
+      Top             =   191
+      Transparent     =   False
+      Underline       =   False
+      Visible         =   True
+      Width           =   404
+   End
+   Begin Label nextLabel
+      AutoDeactivate  =   True
+      Bold            =   False
+      DataField       =   ""
+      DataSource      =   ""
+      Enabled         =   True
+      Height          =   20
+      HelpTag         =   ""
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Italic          =   False
+      Left            =   856
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      Multiline       =   False
+      Scope           =   0
+      Selectable      =   False
+      TabIndex        =   9
+      TabPanelIndex   =   0
+      TabStop         =   True
+      Text            =   ""
+      TextAlign       =   1
+      TextColor       =   &c00000000
+      TextFont        =   "System"
+      TextSize        =   0.0
+      TextUnit        =   0
+      Top             =   191
+      Transparent     =   False
+      Underline       =   False
+      Visible         =   True
+      Width           =   404
+   End
 End
 #tag EndWindow
 
@@ -433,6 +503,8 @@ End
 
 	#tag Event
 		Sub Open()
+		  redim history(-1)
+		  
 		  dim left,top,height as Integer
 		  
 		  left = val(app.getSetting("Window Left"))
@@ -563,6 +635,23 @@ End
 		    AnagramListbox.AddRow data.IdxField(1).StringValue
 		    data.MoveNext
 		  wend
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub update_history(combo as string)
+		  while index < UBound(history)
+		    history.Remove UBound(history)
+		  wend
+		  history.Append combo
+		  index = UBound(history)
+		  if index > 0 then
+		    prevLabel.Text = history(index-1)
+		  else
+		    prevLabel.Text = ""
+		  end
+		  nextLabel.text = ""
 		  
 		End Sub
 	#tag EndMethod
@@ -699,6 +788,15 @@ End
 	#tag EndMethod
 
 
+	#tag Property, Flags = &h0
+		history() As String
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		index As Integer
+	#tag EndProperty
+
+
 #tag EndWindowCode
 
 #tag Events WordButton
@@ -714,6 +812,7 @@ End
 		Sub Open()
 		  me.Caption = app.getSetting("Word button text")
 		  updateWords(me.caption)
+		  update_history(me.caption)
 		  
 		End Sub
 	#tag EndEvent
@@ -740,7 +839,8 @@ End
 		  Case 3, 9, 13
 		    if me.text <> WordButton.Caption then
 		      WordButton.Caption = me.text
-		      updateWords(WordButton.Caption)
+		      updateWords(me.text)
+		      update_history(me.text)
 		    end
 		    me.Visible = false
 		    return true
@@ -765,11 +865,26 @@ End
 		Sub LostFocus()
 		  if me.text <> WordButton.Caption then
 		    WordButton.Caption = me.text
-		    updateWords(WordButton.Caption)
+		    updateWords(me.text)
+		    update_history(me.text)
 		  end
 		  me.Visible = false
 		  
 		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events prevLabel
+	#tag Event
+		Function MouseDown(X As Integer, Y As Integer) As Boolean
+		  
+		End Function
+	#tag EndEvent
+#tag EndEvents
+#tag Events nextLabel
+	#tag Event
+		Function MouseDown(X As Integer, Y As Integer) As Boolean
+		  
+		End Function
 	#tag EndEvent
 #tag EndEvents
 #tag ViewBehavior
