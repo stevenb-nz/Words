@@ -5,7 +5,7 @@ Begin Window Quiz
    CloseButton     =   True
    Compatibility   =   ""
    Composite       =   False
-   Frame           =   2
+   Frame           =   1
    FullScreen      =   False
    FullScreenButton=   False
    HasBackColor    =   False
@@ -23,7 +23,7 @@ Begin Window Quiz
    MinWidth        =   64
    Placement       =   1
    Resizeable      =   True
-   Title           =   "Untitled"
+   Title           =   "Quiz"
    Visible         =   True
    Width           =   405
    Begin TextField guessField
