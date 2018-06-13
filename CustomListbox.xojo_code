@@ -19,9 +19,12 @@ Inherits Listbox
 
 	#tag Method, Flags = &h0
 		Sub changeWord()
-		  words.WordButton.Caption = me.text
-		  words.updateWords(me.text)
-		  words.update_history(me.text)
+		  dim new_word as string
+		  
+		  new_word = me.text
+		  words.WordButton.Caption = new_word
+		  words.updateWords(new_word)
+		  words.update_history(new_word)
 		  
 		End Sub
 	#tag EndMethod

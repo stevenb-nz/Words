@@ -503,8 +503,6 @@ End
 
 	#tag Event
 		Sub Open()
-		  redim history(-1)
-		  
 		  dim left,top,height as Integer
 		  
 		  left = val(app.getSetting("Window Left"))
@@ -644,7 +642,9 @@ End
 		  while index < UBound(history)
 		    history.Remove UBound(history)
 		  wend
-		  history.Append combo
+		  if combo <> "" then
+		    history.Append combo
+		  end
 		  index = UBound(history)
 		  if index > 0 then
 		    prevLabel.Text = history(index-1)
@@ -810,6 +810,9 @@ End
 	#tag EndEvent
 	#tag Event
 		Sub Open()
+		  redim history(-1)
+		  index = UBound(history)
+		  
 		  me.Caption = app.getSetting("Word button text")
 		  updateWords(me.caption)
 		  update_history(me.caption)
@@ -876,6 +879,13 @@ End
 #tag Events prevLabel
 	#tag Event
 		Function MouseDown(X As Integer, Y As Integer) As Boolean
+		  if index > 0 then
+		    index = index - 1
+		    nextLabel.Text = WordButton.Caption
+		    WordButton.Caption = prevLabel.text
+		    prevLabel.text = if(index > 0,history(index-1),"")
+		    updateWords(WordButton.Caption)
+		  end
 		  
 		End Function
 	#tag EndEvent
@@ -1112,6 +1122,11 @@ End
 		Visible=true
 		Group="Position"
 		InitialValue="600"
+		Type="Integer"
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="index"
+		Group="Behavior"
 		Type="Integer"
 	#tag EndViewProperty
 #tag EndViewBehavior
