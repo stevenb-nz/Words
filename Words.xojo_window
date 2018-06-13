@@ -893,6 +893,13 @@ End
 #tag Events nextLabel
 	#tag Event
 		Function MouseDown(X As Integer, Y As Integer) As Boolean
+		  if index < UBound(history) then
+		    index = index + 1
+		    prevLabel.Text = WordButton.Caption
+		    WordButton.Caption = nextLabel.text
+		    nextLabel.text = if(index < UBound(history),history(index+1),"")
+		    updateWords(WordButton.Caption)
+		  end
 		  
 		End Function
 	#tag EndEvent
