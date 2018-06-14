@@ -615,6 +615,8 @@ End
 		  update_hooks(word)
 		  update_superset(word)
 		  
+		  Words.Title = "Words ("+str(len(word))+" letter"+if(len(word)=1,"","s")+")"
+		  
 		End Sub
 	#tag EndMethod
 
