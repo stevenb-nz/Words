@@ -996,7 +996,32 @@ End
 	#tag EndEvent
 	#tag Event
 		Sub TextChange()
+		  dim temp1,temp2,temp3 as string
+		  dim i,j,k as integer
+		  
 		  me.text = Uppercase(me.Text)
+		  
+		  if QuizTypeButton.Caption = "Combo" then
+		    temp1 = CurrentComboLabel.Text
+		    i = Min(len(me.text),len(temp1))
+		    if i > 0 then
+		      j = 1
+		      do
+		        if mid(me.text,j,1) <> mid(temp1,j,1) then
+		          temp2 = right(temp1,len(temp1)-j)
+		          temp3 = right(temp1,len(temp1)-j+1)
+		          k = InStr(temp2,mid(me.text,j,1))
+		          if k > 0 then
+		            temp1 = left(temp1,j-1) + mid(temp2,k,1) + left(temp3,k) + right(temp2,len(temp2)-k)
+		          end
+		        else
+		          k=1
+		        end
+		        j = j + 1
+		      loop until k = 0 or j > i
+		    end
+		    CurrentComboLabel.Text = temp1
+		  end
 		  
 		End Sub
 	#tag EndEvent
