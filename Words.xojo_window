@@ -495,6 +495,16 @@ End
 	#tag EndEvent
 
 	#tag Event
+		Function KeyDown(Key As String) As Boolean
+		  if asc(Key) = 27 then
+		    Quiz.ShowModal
+		    return true
+		  end
+		  
+		End Function
+	#tag EndEvent
+
+	#tag Event
 		Sub Moved()
 		  storeBounds
 		  
