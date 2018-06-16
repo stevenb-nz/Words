@@ -499,12 +499,15 @@ End
 		  savequiz
 		  app.updateSetting("quiz type",QuizTypeButton.Caption)
 		  app.updateSetting("quiz length",wordLengthButton.Caption)
+		  Words.Show
 		  
 		End Sub
 	#tag EndEvent
 
 	#tag Event
 		Sub Open()
+		  Words.Visible = false
+		  
 		  closable = false
 		  
 		  dim quiztype as string
