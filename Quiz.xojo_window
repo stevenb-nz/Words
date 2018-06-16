@@ -505,13 +505,32 @@ End
 	#tag EndEvent
 
 	#tag Event
+		Sub Moved()
+		  storeQuizBounds
+		End Sub
+	#tag EndEvent
+
+	#tag Event
 		Sub Open()
 		  Words.Visible = false
 		  
 		  closable = false
 		  
+		  dim left,top as Integer
 		  dim quiztype as string
 		  dim quizlength as integer
+		  
+		  left = val(app.getSetting("Quiz Left"))
+		  top = val(app.getSetting("Quiz Top"))
+		  
+		  Dim tempBounds As New Realbasic.Rect
+		  
+		  tempBounds.Left = If(left >= 0, left, self.Left)
+		  tempBounds.Top = If(top > 0, top, self.Top)
+		  tempBounds.Height = self.Bounds.Height
+		  tempBounds.Width = Self.Bounds.Width
+		  
+		  Self.Bounds = tempBounds
 		  
 		  quiztype = app.getSetting("quiz type")
 		  QuizTypeButton.Caption = if(quiztype="","Combo",quiztype)
@@ -520,6 +539,12 @@ End
 		  
 		  loadquiz
 		  
+		End Sub
+	#tag EndEvent
+
+	#tag Event
+		Sub Resized()
+		  storeQuizBounds
 		End Sub
 	#tag EndEvent
 
@@ -863,6 +888,14 @@ End
 		  return join(tempArray,"")
 		  
 		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub storeQuizBounds()
+		  app.updateSetting("Quiz Top",str(self.Bounds.Top))
+		  app.updateSetting("Quiz Left",str(self.Bounds.Left))
+		  
+		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0

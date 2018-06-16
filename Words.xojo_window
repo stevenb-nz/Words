@@ -518,7 +518,6 @@ End
 		  
 		  Self.Bounds = tempBounds
 		  
-		  
 		End Sub
 	#tag EndEvent
 
