@@ -169,7 +169,7 @@ Begin Window Quiz
       Transparent     =   False
       Underline       =   False
       Visible         =   True
-      Width           =   313
+      Width           =   365
    End
    Begin Label AnswersLabel
       AutoDeactivate  =   True
@@ -443,41 +443,6 @@ Begin Window Quiz
       Width           =   176
       _ScrollOffset   =   0
       _ScrollWidth    =   -1
-   End
-   Begin Label CurrentNewLabel
-      AutoDeactivate  =   True
-      Bold            =   False
-      DataField       =   ""
-      DataSource      =   ""
-      Enabled         =   True
-      Height          =   20
-      HelpTag         =   ""
-      Index           =   -2147483648
-      InitialParent   =   ""
-      Italic          =   False
-      Left            =   345
-      LockBottom      =   False
-      LockedInPosition=   False
-      LockLeft        =   True
-      LockRight       =   False
-      LockTop         =   True
-      Multiline       =   False
-      Scope           =   0
-      Selectable      =   False
-      TabIndex        =   15
-      TabPanelIndex   =   0
-      TabStop         =   True
-      Text            =   "[X|√]"
-      TextAlign       =   1
-      TextColor       =   &c00000000
-      TextFont        =   "System"
-      TextSize        =   0.0
-      TextUnit        =   0
-      Top             =   52
-      Transparent     =   False
-      Underline       =   False
-      Visible         =   True
-      Width           =   40
    End
 End
 #tag EndWindow
@@ -764,7 +729,8 @@ End
 		  cl = cl + str(if(nextnew > ubound(quizlist),1,nextnew+1))
 		  
 		  CurrentLabel.Text = cl
-		  CurrentNewLabel.Text = if(current_new,"√","X")
+		  
+		  CurrentComboLabel.TextColor = if(current_new,RGB(0,0,0),RGB(127,0,0))
 		  
 		End Sub
 	#tag EndMethod
@@ -777,7 +743,7 @@ End
 		  sigfig = len(str(ubound(quizlist)+1))
 		  pl = "√: " + str(round( (nextnew-UBound(guesslist)-1) / (UBound(quizlist)+1)*(10^sigfig))/(10^(sigfig-2)) ) + "% ("
 		  pl = pl + str(nextnew-UBound(guesslist)-1) + " of " + str(UBound(quizlist)+1) + ") - X: "
-		  pl = pl + str(UBound(guesslist)+if(current_new,0,1)) + "/100"
+		  pl = pl + str(UBound(guesslist)+if(current_new,0,1)) + "/100" '100 limit on wrong answers - change to user-selectable?
 		  
 		  ProgressLabel.Text = pl
 		  
