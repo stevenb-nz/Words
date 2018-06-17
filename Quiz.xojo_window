@@ -574,9 +574,8 @@ End
 		      resetquiz
 		    end
 		  else
-		    rand = RandomInt(0, 99)
+		    rand = RandomInt(0, 99) '100 limit on wrong answers - change to user-selected value?
 		    if rand > UBound(guesslist) then
-		      'if Hooks and option to skip zero answer words, then while zero answer, choose next
 		      guesslist.Insert(0,nextnew)
 		      nextnew = nextnew + 1
 		      current_new = true
