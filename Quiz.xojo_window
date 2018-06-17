@@ -576,6 +576,7 @@ End
 		  else
 		    rand = RandomInt(0, 99)
 		    if rand > UBound(guesslist) then
+		      'if Hooks and option to skip zero answer words, then while zero answer, choose next
 		      guesslist.Insert(0,nextnew)
 		      nextnew = nextnew + 1
 		      current_new = true
