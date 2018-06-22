@@ -1003,8 +1003,12 @@ End
 		    end
 		    return true
 		  Case 27 'esc character
-		    closable = true
-		    close
+		    if answerListbox.Visible = false then
+		      closable = true
+		      close
+		    else
+		      return true
+		    end
 		  case 28 to 29
 		    'let left and right arrow keys through
 		  case 32 'divert " " to shuffle
