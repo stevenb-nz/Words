@@ -11,6 +11,12 @@ Inherits Application
 	#tag EndEvent
 
 	#tag Event
+		Sub EnableMenuItems()
+		  
+		End Sub
+	#tag EndEvent
+
+	#tag Event
 		Sub Open()
 		  Dim tables As RecordSet
 		  
@@ -70,24 +76,7 @@ Inherits Application
 
 	#tag MenuHandler
 		Function WordRandom() As Boolean Handles WordRandom.Action
-			dim bagstring as text
-			dim bag(-1) as text
-			dim newword as text
-			dim i,length as integer
-			
-			bagstring = "AAAAAAAAABBCCDDDDEEEEEEEEEEEEFFGGGHHIIIIIIIIIJKLLLLMMNNNNNNOOOOOOOOPPQRRRRRRSSSSTTTTTTUUUUVVWWXYYZ"
-			for each c as text in bagstring.Characters
-			bag.Append c
-			next
-			length = len(words.WordButton.Caption)
-			bag.Shuffle
-			for i = 1 to length
-			newword = newword + bag(i-1)
-			next
-			words.wordbutton.caption = newword
-			words.updateWords(newword)
-			words.update_history(newword)
-			
+			wordRandom(len(words.WordButton.Caption))
 			Return True
 			
 		End Function
@@ -365,6 +354,28 @@ Inherits Application
 		  else
 		    wordsDB.SQLExecute("UPDATE settings SET value='"+value+"' WHERE setting='"+setting+"'")
 		  end
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub wordRandom(length as integer)
+		  dim bagstring as text
+		  dim bag(-1) as text
+		  dim newword as text
+		  dim i as integer
+		  
+		  bagstring = "AAAAAAAAABBCCDDDDEEEEEEEEEEEEFFGGGHHIIIIIIIIIJKLLLLMMNNNNNNOOOOOOOOPPQRRRRRRSSSSTTTTTTUUUUVVWWXYYZ"
+		  for each c as text in bagstring.Characters
+		    bag.Append c
+		  next
+		  bag.Shuffle
+		  for i = 1 to length
+		    newword = newword + bag(i-1)
+		  next
+		  words.wordbutton.caption = newword
+		  words.updateWords(newword)
+		  words.update_history(newword)
 		  
 		End Sub
 	#tag EndMethod

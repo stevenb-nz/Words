@@ -131,6 +131,26 @@ Begin Menu MainMenuBar
          AutoEnable = True
          Visible = True
       End
+      Begin MenuItem WordRandomPlus1
+         SpecialMenu = 0
+         Text = "Random + 1"
+         Index = -2147483648
+         ShortcutKey = "="
+         Shortcut = "Cmd+="
+         MenuModifier = True
+         AutoEnable = True
+         Visible = True
+      End
+      Begin MenuItem WordRandomMinus1
+         SpecialMenu = 0
+         Text = "Random - 1"
+         Index = -2147483648
+         ShortcutKey = "-"
+         Shortcut = "Cmd+-"
+         MenuModifier = True
+         AutoEnable = True
+         Visible = True
+      End
       Begin MenuItem WordQuiz
          SpecialMenu = 0
          Text = "Quiz"
