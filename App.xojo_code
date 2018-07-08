@@ -80,6 +80,7 @@ Inherits Application
 		Function WordRandomMinus1() As Boolean Handles WordRandomMinus1.Action
 			dim length as integer
 			
+			length = len(words.WordButton.Caption)
 			if length > 0 then
 			wordRandom(length - 1)
 			end
@@ -92,6 +93,7 @@ Inherits Application
 		Function WordRandomPlus1() As Boolean Handles WordRandomPlus1.Action
 			dim length as integer
 			
+			length = len(words.WordButton.Caption)
 			if length < 15 then
 			wordRandom(length + 1)
 			end
