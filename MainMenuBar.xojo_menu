@@ -138,7 +138,7 @@ Begin Menu MainMenuBar
          ShortcutKey = "="
          Shortcut = "Cmd+="
          MenuModifier = True
-         AutoEnable = True
+         AutoEnable = False
          Visible = True
       End
       Begin MenuItem WordRandomMinus1
@@ -148,7 +148,7 @@ Begin Menu MainMenuBar
          ShortcutKey = "-"
          Shortcut = "Cmd+-"
          MenuModifier = True
-         AutoEnable = True
+         AutoEnable = False
          Visible = True
       End
       Begin MenuItem WordQuiz
