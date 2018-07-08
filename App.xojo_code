@@ -11,12 +11,6 @@ Inherits Application
 	#tag EndEvent
 
 	#tag Event
-		Sub EnableMenuItems()
-		  
-		End Sub
-	#tag EndEvent
-
-	#tag Event
 		Sub Open()
 		  Dim tables As RecordSet
 		  
@@ -77,6 +71,30 @@ Inherits Application
 	#tag MenuHandler
 		Function WordRandom() As Boolean Handles WordRandom.Action
 			wordRandom(len(words.WordButton.Caption))
+			Return True
+			
+		End Function
+	#tag EndMenuHandler
+
+	#tag MenuHandler
+		Function WordRandomMinus1() As Boolean Handles WordRandomMinus1.Action
+			dim length as integer
+			
+			if length > 0 then
+			wordRandom(length - 1)
+			end
+			Return True
+			
+		End Function
+	#tag EndMenuHandler
+
+	#tag MenuHandler
+		Function WordRandomPlus1() As Boolean Handles WordRandomPlus1.Action
+			dim length as integer
+			
+			if length < 15 then
+			wordRandom(length + 1)
+			end
 			Return True
 			
 		End Function
