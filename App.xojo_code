@@ -81,6 +81,14 @@ Inherits Application
 	#tag EndMenuHandler
 
 	#tag MenuHandler
+		Function WordMastermind() As Boolean Handles WordMastermind.Action
+			Mastermind.ShowModal
+			Return True
+			
+		End Function
+	#tag EndMenuHandler
+
+	#tag MenuHandler
 		Function WordQuiz() As Boolean Handles WordQuiz.Action
 			Quiz.ShowModal
 			Return True

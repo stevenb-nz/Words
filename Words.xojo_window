@@ -497,7 +497,11 @@ End
 	#tag Event
 		Function KeyDown(Key As String) As Boolean
 		  if asc(Key) = 27 then
-		    Quiz.ShowModal
+		    if Keyboard.ShiftKey then
+		      Mastermind.ShowModal
+		    else
+		      Quiz.ShowModal
+		    end
 		    return true
 		  end
 		  
