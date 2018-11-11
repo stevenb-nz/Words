@@ -128,6 +128,14 @@ Inherits Application
 		End Function
 	#tag EndMenuHandler
 
+	#tag MenuHandler
+		Function WordShow() As Boolean Handles WordShow.Action
+			Show.ShowModal
+			Return True
+			
+		End Function
+	#tag EndMenuHandler
+
 
 	#tag Method, Flags = &h0
 		Sub addTables()

@@ -267,19 +267,4 @@ End
 		Type="Boolean"
 		EditorType="Boolean"
 	#tag EndViewProperty
-	#tag ViewProperty
-		Name="closable"
-		Group="Behavior"
-		Type="Boolean"
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="nextnew"
-		Group="Behavior"
-		Type="Integer"
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="current_new"
-		Group="Behavior"
-		Type="Boolean"
-	#tag EndViewProperty
 #tag EndViewBehavior
