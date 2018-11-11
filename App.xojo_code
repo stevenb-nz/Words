@@ -120,6 +120,14 @@ Inherits Application
 		End Function
 	#tag EndMenuHandler
 
+	#tag MenuHandler
+		Function WordRegEx() As Boolean Handles WordRegEx.Action
+			RegularExpressions.ShowModal
+			Return True
+			
+		End Function
+	#tag EndMenuHandler
+
 
 	#tag Method, Flags = &h0
 		Sub addTables()

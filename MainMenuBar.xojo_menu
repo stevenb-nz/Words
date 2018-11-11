@@ -151,6 +151,16 @@ Begin Menu MainMenuBar
          AutoEnable = False
          Visible = True
       End
+      Begin MenuItem WordRegEx
+         SpecialMenu = 0
+         Text = "RegEx"
+         Index = -2147483648
+         ShortcutKey = "E"
+         Shortcut = "Cmd+E"
+         MenuModifier = True
+         AutoEnable = True
+         Visible = True
+      End
       Begin MenuItem WordQuiz
          SpecialMenu = 0
          Text = "Quiz"

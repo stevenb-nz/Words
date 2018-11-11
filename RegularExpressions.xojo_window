@@ -44,7 +44,7 @@ Begin Window RegularExpressions
       GridLinesVertical=   0
       HasHeading      =   False
       HeadingIndex    =   -1
-      Height          =   648
+      Height          =   646
       HelpTag         =   ""
       Hierarchical    =   False
       Index           =   -2147483648
@@ -55,8 +55,8 @@ Begin Window RegularExpressions
       LockBottom      =   True
       LockedInPosition=   False
       LockLeft        =   True
-      LockRight       =   False
-      LockTop         =   False
+      LockRight       =   True
+      LockTop         =   True
       RequiresSelection=   False
       Scope           =   0
       ScrollbarHorizontal=   False
@@ -69,7 +69,7 @@ Begin Window RegularExpressions
       TextFont        =   "System"
       TextSize        =   0.0
       TextUnit        =   0
-      Top             =   52
+      Top             =   54
       Transparent     =   False
       Underline       =   False
       UseFocusRing    =   True
@@ -78,9 +78,9 @@ Begin Window RegularExpressions
       _ScrollOffset   =   0
       _ScrollWidth    =   -1
    End
-   Begin TextField RegExField
+   Begin TextField RegExTextField
       AcceptTabs      =   False
-      Alignment       =   2
+      Alignment       =   0
       AutoDeactivate  =   True
       AutomaticallyCheckSpelling=   False
       BackColor       =   &cFFFFFF00
@@ -91,7 +91,7 @@ Begin Window RegularExpressions
       DataSource      =   ""
       Enabled         =   True
       Format          =   ""
-      Height          =   20
+      Height          =   22
       HelpTag         =   ""
       Index           =   -2147483648
       Italic          =   False
@@ -100,13 +100,13 @@ Begin Window RegularExpressions
       LockBottom      =   False
       LockedInPosition=   False
       LockLeft        =   True
-      LockRight       =   False
+      LockRight       =   True
       LockTop         =   True
       Mask            =   ""
       Password        =   False
       ReadOnly        =   False
       Scope           =   0
-      TabIndex        =   1
+      TabIndex        =   7
       TabPanelIndex   =   0
       TabStop         =   True
       Text            =   ""
@@ -118,342 +118,15 @@ Begin Window RegularExpressions
       Transparent     =   False
       Underline       =   False
       UseFocusRing    =   True
-      Visible         =   False
+      Visible         =   True
       Width           =   404
    End
 End
 #tag EndWindow
 
 #tag WindowCode
-	#tag Event
-		Sub Activate()
-		  ClearFocus
-		  
-		End Sub
-	#tag EndEvent
-
-	#tag Event
-		Function KeyDown(Key As String) As Boolean
-		  if asc(Key) = 27 then
-		    if Keyboard.ShiftKey then
-		      Mastermind.ShowModal
-		    else
-		      Quiz.ShowModal
-		    end
-		    return true
-		  end
-		  
-		End Function
-	#tag EndEvent
-
-	#tag Event
-		Sub Moved()
-		  storeBounds
-		  
-		End Sub
-	#tag EndEvent
-
-	#tag Event
-		Sub Open()
-		  dim left,top,height as Integer
-		  
-		  left = val(app.getSetting("Window Left"))
-		  top = val(app.getSetting("Window Top"))
-		  height = val(app.getSetting("Window Height"))
-		  
-		  Dim tempBounds As New Realbasic.Rect
-		  
-		  tempBounds.Left = If(left >= 0, left, self.Left)
-		  tempBounds.Top = If(top > 0, top, self.Top)
-		  tempBounds.Height = If(height > 0, height, self.Height)
-		  tempBounds.Width = Self.Width
-		  
-		  Self.Bounds = tempBounds
-		  
-		End Sub
-	#tag EndEvent
-
-	#tag Event
-		Sub Resized()
-		  storeBounds
-		  
-		End Sub
-	#tag EndEvent
-
-	#tag Event
-		Sub Resizing()
-		  WordButton.Left = words.Width / 2 - 202
-		  
-		End Sub
-	#tag EndEvent
-
-
-	#tag Method, Flags = &h0
-		Function isWord(word as string) As Boolean
-		  dim sql as string
-		  sql = "SELECT * from Words WHERE Word='"+word+"'"
-		  
-		  dim data as RecordSet
-		  data = app.wordsDB.SQLSelect(sql)
-		  
-		  if data.EOF then
-		    return false
-		  else
-		    return true
-		  end
-		  
-		End Function
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
-		Function one_off(string1 as string, string2 as string) As boolean
-		  dim i,j,k as integer
-		  dim bigger, smaller as string
-		  
-		  if len(string1) > len(string2) then
-		    bigger = string1
-		    smaller = string2
-		  else
-		    bigger = string2
-		    smaller = string1
-		  end
-		  
-		  k=0
-		  for i = 1 to len(bigger)
-		    j = InStr(smaller,mid(bigger,i,1))
-		    if j > 0 then
-		      smaller = left(smaller,j-1)+right(smaller,len(smaller)-j)
-		    else
-		      k = k + 1
-		      if k > 1 then
-		        return false
-		      end
-		    end
-		  next
-		  
-		  return true
-		End Function
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
-		Sub storeBounds()
-		  app.updateSetting("Window Top",str(self.Bounds.Top))
-		  app.updateSetting("Window Height",str(self.Bounds.Height))
-		  app.updateSetting("Window Left",str(self.Bounds.Left))
-		  
-		End Sub
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
-		Sub updateWords(word as string)
-		  WordButton.setCaptionStyle
-		  
-		  HookOfListbox.DeleteAllRows
-		  SubsetListbox.DeleteAllRows
-		  
-		  AnagramListbox.DeleteAllRows
-		  SubsetPlusOneListbox.DeleteAllRows
-		  
-		  HooksListbox.DeleteAllRows
-		  SupersetListbox.DeleteAllRows
-		  
-		  update_hookof(word)
-		  update_subset(word)
-		  
-		  update_anagram(word)
-		  update_subsetplusone(word)
-		  
-		  update_hooks(word)
-		  update_superset(word)
-		  
-		  Words.Title = "Words ("+str(len(word))+" letter"+if(len(word)=1,"","s")+")"
-		  
-		End Sub
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
-		Sub update_anagram(word as string)
-		  dim combo as string
-		  combo = app.sort_word(word.totext)
-		  
-		  dim sql as string
-		  sql = "SELECT Word FROM Words JOIN Combos ON Combos.id = Words.combo_id WHERE Combos.combo='"+combo+"'"
-		  
-		  dim data as RecordSet
-		  data = app.wordsDB.SQLSelect(sql)
-		  
-		  while not data.EOF
-		    AnagramListbox.AddRow data.IdxField(1).StringValue
-		    data.MoveNext
-		  wend
-		  
-		End Sub
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
-		Sub update_history(combo as string)
-		  while index < UBound(history)
-		    history.Remove UBound(history)
-		  wend
-		  if combo <> "" then
-		    history.Append combo
-		  end
-		  index = UBound(history)
-		  if index > 0 then
-		    prevLabel.Text = history(index-1)
-		  else
-		    prevLabel.Text = ""
-		  end
-		  nextLabel.text = ""
-		  
-		End Sub
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
-		Sub update_hookof(word as string)
-		  dim front,back as string
-		  front = left(word,len(word)-1)
-		  back = right(word,len(word)-1)
-		  
-		  if isWord(front) then
-		    HookOfListbox.AddRow front
-		  end
-		  
-		  if isWord(back) then
-		    HookOfListbox.AddRow back
-		  end
-		  
-		End Sub
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
-		Sub update_hooks(word as string)
-		  dim id as integer
-		  id = app.word_id(word)
-		  
-		  dim sql as string
-		  sql = "SELECT Word FROM Words WHERE f_hook_of = "+str(id)
-		  
-		  dim data as RecordSet
-		  data = app.wordsDB.SQLSelect(sql)
-		  
-		  while not data.EOF
-		    HooksListbox.AddRow data.IdxField(1).StringValue
-		    data.MoveNext
-		  wend
-		  
-		  sql = "SELECT Word FROM Words WHERE b_hook_of = "+str(id)
-		  data = app.wordsDB.SQLSelect(sql)
-		  
-		  while not data.EOF
-		    HooksListbox.AddRow data.IdxField(1).StringValue
-		    data.MoveNext
-		  wend
-		  
-		End Sub
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
-		Sub update_subset(word as string)
-		  dim combo as string
-		  combo = app.sort_word(word.totext)
-		  dim length as integer
-		  length = len(combo)-1
-		  
-		  dim sql as string
-		  sql = "SELECT id,Combo FROM Combos WHERE length = "+str(length)+" ORDER BY combo_playability"
-		  
-		  dim data as RecordSet
-		  data = app.wordsDB.SQLSelect(sql)
-		  
-		  while not data.EOF
-		    if one_off(data.IdxField(2).StringValue,combo) then
-		      sql = "SELECT Word FROM Words WHERE combo_id = "+data.IdxField(1).StringValue
-		      dim data2 as RecordSet
-		      data2 = app.wordsDB.SQLSelect(sql)
-		      while not data2.EOF
-		        SubsetListbox.AddRow data2.IdxField(1).StringValue
-		        data2.MoveNext
-		      wend
-		    end
-		    data.MoveNext
-		  wend
-		  
-		End Sub
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
-		Sub update_subsetplusone(word as string)
-		  dim combo as string
-		  combo = app.sort_word(word.totext)
-		  dim length as integer
-		  length = len(combo)
-		  
-		  dim sql as string
-		  sql = "SELECT id,Combo FROM Combos WHERE length = "+str(length)+" ORDER BY combo_playability"
-		  
-		  dim data as RecordSet
-		  data = app.wordsDB.SQLSelect(sql)
-		  
-		  while not data.EOF
-		    if one_off(data.IdxField(2).StringValue,combo) then
-		      sql = "SELECT Word FROM Words WHERE combo_id = "+data.IdxField(1).StringValue
-		      dim data2 as RecordSet
-		      data2 = app.wordsDB.SQLSelect(sql)
-		      while not data2.EOF
-		        SubsetPlusOneListbox.AddRow data2.IdxField(1).StringValue
-		        data2.MoveNext
-		      wend
-		    end
-		    data.MoveNext
-		  wend
-		  
-		End Sub
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
-		Sub update_superset(word as string)
-		  dim combo as string
-		  combo = app.sort_word(word.totext)
-		  dim length as integer
-		  length = len(combo)+1
-		  
-		  dim sql as string
-		  sql = "SELECT id,Combo FROM Combos WHERE length = "+str(length)+" ORDER BY combo_playability"
-		  
-		  dim data as RecordSet
-		  data = app.wordsDB.SQLSelect(sql)
-		  
-		  while not data.EOF
-		    if one_off(data.IdxField(2).StringValue,combo) then
-		      sql = "SELECT Word FROM Words WHERE combo_id = "+data.IdxField(1).StringValue
-		      dim data2 as RecordSet
-		      data2 = app.wordsDB.SQLSelect(sql)
-		      while not data2.EOF
-		        SupersetListbox.AddRow data2.IdxField(1).StringValue
-		        data2.MoveNext
-		      wend
-		    end
-		    data.MoveNext
-		  wend
-		  
-		End Sub
-	#tag EndMethod
-
-
-	#tag Property, Flags = &h0
-		history() As String
-	#tag EndProperty
-
-	#tag Property, Flags = &h0
-		index As Integer
-	#tag EndProperty
-
-
 #tag EndWindowCode
 
-#tag Events RegExField
-#tag EndEvents
 #tag ViewBehavior
 	#tag ViewProperty
 		Name="BackColor"
