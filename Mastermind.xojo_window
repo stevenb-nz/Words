@@ -42,6 +42,9 @@ End
 
 	#tag Method, Flags = &h0
 		Sub storeMastermindBounds()
+		  app.updateSetting("Mastermind Top",str(self.Bounds.Top))
+		  app.updateSetting("Mastermind Height",str(self.Bounds.Height))
+		  app.updateSetting("Mastermind Left",str(self.Bounds.Left))
 		  
 		End Sub
 	#tag EndMethod

@@ -84,6 +84,9 @@ End
 #tag WindowCode
 	#tag Method, Flags = &h0
 		Sub storeWordShowBounds()
+		  app.updateSetting("Word Show Top",str(self.Bounds.Top))
+		  app.updateSetting("Word Show Height",str(self.Bounds.Height))
+		  app.updateSetting("Word Show Left",str(self.Bounds.Left))
 		  
 		End Sub
 	#tag EndMethod

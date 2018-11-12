@@ -127,6 +127,9 @@ End
 #tag WindowCode
 	#tag Method, Flags = &h0
 		Sub storeRegExBounds()
+		  app.updateSetting("RegEx Top",str(self.Bounds.Top))
+		  app.updateSetting("RegEx Height",str(self.Bounds.Height))
+		  app.updateSetting("RegEx Left",str(self.Bounds.Left))
 		  
 		End Sub
 	#tag EndMethod
