@@ -40,6 +40,13 @@ End
 	#tag EndEvent
 
 
+	#tag Method, Flags = &h0
+		Sub storeMastermindBounds()
+		  
+		End Sub
+	#tag EndMethod
+
+
 #tag EndWindowCode
 
 #tag ViewBehavior

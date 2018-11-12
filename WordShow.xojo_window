@@ -1,5 +1,5 @@
 #tag Window
-Begin Window Show
+Begin Window WordShow
    BackColor       =   &cFFFFFF00
    Backdrop        =   0
    CloseButton     =   False
@@ -82,6 +82,13 @@ End
 #tag EndWindow
 
 #tag WindowCode
+	#tag Method, Flags = &h0
+		Sub storeWordShowBounds()
+		  
+		End Sub
+	#tag EndMethod
+
+
 #tag EndWindowCode
 
 #tag ViewBehavior
