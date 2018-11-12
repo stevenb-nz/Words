@@ -168,9 +168,9 @@ Begin Menu MainMenuBar
          AutoEnable = True
          Visible = True
       End
-      Begin MenuItem WordShow
+      Begin MenuItem WordWordShow
          SpecialMenu = 0
-         Text = "Show"
+         Text = "Word Show"
          Index = -2147483648
          AutoEnable = True
          Visible = True

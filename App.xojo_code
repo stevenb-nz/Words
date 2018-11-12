@@ -129,8 +129,8 @@ Inherits Application
 	#tag EndMenuHandler
 
 	#tag MenuHandler
-		Function WordShow() As Boolean Handles WordShow.Action
-			Show.ShowModal
+		Function WordWordShow() As Boolean Handles WordWordShow.Action
+			WordShow.ShowModal
 			Return True
 			
 		End Function

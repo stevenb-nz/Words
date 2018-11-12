@@ -127,6 +127,20 @@ End
 #tag WindowCode
 	#tag Event
 		Sub Open()
+		  dim left,top,height as Integer
+		  
+		  left = val(app.getSetting("RegEx Left"))
+		  top = val(app.getSetting("RegEx Top"))
+		  height = val(app.getSetting("RegEx Height"))
+		  
+		  Dim tempBounds As New Realbasic.Rect
+		  
+		  tempBounds.Left = If(left >= 0, left, self.Left)
+		  tempBounds.Top = If(top > 0, top, self.Top)
+		  tempBounds.Height = If(height > 0, height, self.Height)
+		  tempBounds.Width = Self.Width
+		  
+		  Self.Bounds = tempBounds
 		  
 		End Sub
 	#tag EndEvent
