@@ -12,19 +12,38 @@ Inherits Application
 
 	#tag Event
 		Sub EnableMenuItems()
-		  dim length as integer
-		  
-		  length = len(words.WordButton.Caption)
-		  if length > 0 then
-		    wordrandomminus1.enabled = true
+		  if Words.Visible then
+		    
+		    WordMastermind.Enabled = true
+		    WordQuiz.Enabled = true
+		    WordRandom.Enabled  = true
+		    
+		    dim length as integer
+		    
+		    length = len(words.WordButton.Caption)
+		    if length > 0 then
+		      WordRandomMinus1.Enabled = true
+		    else
+		      WordRandomMinus1.Enabled = false
+		    end
+		    
+		    if length < 15 then
+		      WordRandomPlus1.Enabled = true
+		    else
+		      WordRandomPlus1.Enabled = false
+		    end
+		    
+		    WordRegEx.Enabled = true
+		    WordWordShow.Enabled = true
+		    
 		  else
-		    wordrandomminus1.enabled = false
-		  end
-		  
-		  if length < 15 then
-		    wordrandomplus1.enabled = true
-		  else
+		    WordMastermind.Enabled = false
+		    WordQuiz.Enabled = false
+		    WordRandom.Enabled  = false
+		    WordRandomMinus1.Enabled = false
 		    wordrandomplus1.enabled = false
+		    WordRegEx.Enabled = false
+		    WordWordShow.Enabled = false
 		  end
 		  
 		End Sub
@@ -98,7 +117,7 @@ Inherits Application
 
 	#tag MenuHandler
 		Function WordRandom() As Boolean Handles WordRandom.Action
-			wordRandom(len(words.WordButton.Caption))
+			wordRandomAction(len(words.WordButton.Caption))
 			Return True
 			
 		End Function
@@ -106,7 +125,7 @@ Inherits Application
 
 	#tag MenuHandler
 		Function WordRandomMinus1() As Boolean Handles WordRandomMinus1.Action
-			wordRandom(len(words.WordButton.Caption) - 1)
+			wordRandomAction(len(words.WordButton.Caption) - 1)
 			Return True
 			
 		End Function
@@ -114,7 +133,7 @@ Inherits Application
 
 	#tag MenuHandler
 		Function WordRandomPlus1() As Boolean Handles WordRandomPlus1.Action
-			wordRandom(len(words.WordButton.Caption) + 1)
+			wordRandomAction(len(words.WordButton.Caption) + 1)
 			Return True
 			
 		End Function
@@ -413,7 +432,7 @@ Inherits Application
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub wordRandom(length as integer)
+		Sub wordRandomAction(length as integer)
 		  dim bagstring as text
 		  dim bag(-1) as text
 		  dim newword as text

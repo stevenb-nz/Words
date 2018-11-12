@@ -128,7 +128,7 @@ Begin Menu MainMenuBar
          ShortcutKey = "R"
          Shortcut = "Cmd+R"
          MenuModifier = True
-         AutoEnable = True
+         AutoEnable = False
          Visible = True
       End
       Begin MenuItem WordRandomPlus1
@@ -158,28 +158,28 @@ Begin Menu MainMenuBar
          ShortcutKey = "E"
          Shortcut = "Cmd+E"
          MenuModifier = True
-         AutoEnable = True
+         AutoEnable = False
          Visible = True
       End
       Begin MenuItem WordQuiz
          SpecialMenu = 0
          Text = "Quiz"
          Index = -2147483648
-         AutoEnable = True
+         AutoEnable = False
          Visible = True
       End
       Begin MenuItem WordWordShow
          SpecialMenu = 0
          Text = "Word Show"
          Index = -2147483648
-         AutoEnable = True
+         AutoEnable = False
          Visible = True
       End
       Begin MenuItem WordMastermind
          SpecialMenu = 0
          Text = "Mastermind"
          Index = -2147483648
-         AutoEnable = True
+         AutoEnable = False
          Visible = True
       End
    End

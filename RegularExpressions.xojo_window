@@ -126,6 +126,13 @@ End
 
 #tag WindowCode
 	#tag Event
+		Sub Moved()
+		  storeRegExBounds
+		  
+		End Sub
+	#tag EndEvent
+
+	#tag Event
 		Sub Open()
 		  dim left,top,height as Integer
 		  
@@ -141,6 +148,14 @@ End
 		  tempBounds.Width = Self.Width
 		  
 		  Self.Bounds = tempBounds
+		  
+		End Sub
+	#tag EndEvent
+
+	#tag Event
+		Sub Resized()
+		  storeRegExBounds
+		  
 		  
 		End Sub
 	#tag EndEvent

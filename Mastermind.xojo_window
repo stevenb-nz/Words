@@ -40,6 +40,13 @@ End
 	#tag EndEvent
 
 	#tag Event
+		Sub Moved()
+		  storeMastermindBounds
+		  
+		End Sub
+	#tag EndEvent
+
+	#tag Event
 		Sub Open()
 		  dim left,top,height as Integer
 		  
@@ -55,6 +62,13 @@ End
 		  tempBounds.Width = Self.Width
 		  
 		  Self.Bounds = tempBounds
+		  
+		End Sub
+	#tag EndEvent
+
+	#tag Event
+		Sub Resized()
+		  storeMastermindBounds
 		  
 		End Sub
 	#tag EndEvent
