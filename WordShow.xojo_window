@@ -82,6 +82,13 @@ End
 #tag EndWindow
 
 #tag WindowCode
+	#tag Event
+		Sub Open()
+		  
+		End Sub
+	#tag EndEvent
+
+
 	#tag Method, Flags = &h0
 		Sub storeWordShowBounds()
 		  app.updateSetting("Word Show Top",str(self.Bounds.Top))

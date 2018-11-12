@@ -125,6 +125,13 @@ End
 #tag EndWindow
 
 #tag WindowCode
+	#tag Event
+		Sub Open()
+		  
+		End Sub
+	#tag EndEvent
+
+
 	#tag Method, Flags = &h0
 		Sub storeRegExBounds()
 		  app.updateSetting("RegEx Top",str(self.Bounds.Top))
