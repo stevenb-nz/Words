@@ -193,8 +193,6 @@ Inherits Application
 		    data.MoveNext
 		  wend
 		  
-		  'wordsDB.SQLExecute("CREATE TABLE Words (id Integer, Word VarChar NOT NULL, reversed VarChar, f_hook_of Integer, b_hook_of Integer, combo_id Integer, playability Integer, PRIMARY KEY(id));")
-		  
 		End Sub
 	#tag EndMethod
 

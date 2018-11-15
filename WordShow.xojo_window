@@ -394,4 +394,9 @@ End
 		InitialValue="600"
 		Type="Integer"
 	#tag EndViewProperty
+	#tag ViewProperty
+		Name="closable"
+		Group="Behavior"
+		Type="Boolean"
+	#tag EndViewProperty
 #tag EndViewBehavior

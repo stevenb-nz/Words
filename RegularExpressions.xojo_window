@@ -202,11 +202,34 @@ End
 	#tag Event
 		Function KeyDown(Key As String) As Boolean
 		  Select Case asc(Key)
+		  Case 13
+		    Dim rg As New RegEx
+		    Dim myMatch As RegExMatch
+		    dim sql as string
+		    dim data as RecordSet
+		    
+		    RegExListbox.DeleteAllRows
+		    rg.SearchPattern = me.Text
+		    sql = "SELECT Word from Words"
+		    data = app.wordsDB.SQLSelect(sql)
+		    while not data.EOF
+		      myMatch = rg.Search(data.IdxField(1).StringValue)
+		      If myMatch <> Nil Then
+		        if myMatch.SubExpressionString(0) = data.IdxField(1).StringValue then
+		          RegExListbox.AddRow myMatch.SubExpressionString(0)
+		        end
+		      End
+		      data.MoveNext
+		    wend
+		    return true
 		  Case 27
 		    closable = true
 		    close
 		  End Select
 		  
+		  Exception err As RegExException
+		    return true
+		    
 		End Function
 	#tag EndEvent
 #tag EndEvents
@@ -436,5 +459,10 @@ End
 		Group="Position"
 		InitialValue="600"
 		Type="Integer"
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="closable"
+		Group="Behavior"
+		Type="Boolean"
 	#tag EndViewProperty
 #tag EndViewBehavior
