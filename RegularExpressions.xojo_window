@@ -153,6 +153,10 @@ End
 	#tag Event
 		Sub Open()
 		  dim left,top,height as Integer
+		  dim sql as string
+		  
+		  sql = "SELECT Word from Words"
+		  data = app.wordsDB.SQLSelect(sql)
 		  
 		  Words.Visible = false
 		  
@@ -195,6 +199,10 @@ End
 		closable As Boolean
 	#tag EndProperty
 
+	#tag Property, Flags = &h0
+		data As RecordSet
+	#tag EndProperty
+
 
 #tag EndWindowCode
 
@@ -205,13 +213,10 @@ End
 		  Case 13
 		    Dim rg As New RegEx
 		    Dim myMatch As RegExMatch
-		    dim sql as string
-		    dim data as RecordSet
 		    
 		    RegExListbox.DeleteAllRows
 		    rg.SearchPattern = me.Text
-		    sql = "SELECT Word from Words"
-		    data = app.wordsDB.SQLSelect(sql)
+		    data.MoveFirst
 		    while not data.EOF
 		      myMatch = rg.Search(data.IdxField(1).StringValue)
 		      If myMatch <> Nil Then
