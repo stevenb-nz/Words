@@ -94,6 +94,8 @@ End
 		Sub Open()
 		  dim left,top,height as Integer
 		  
+		  Words.Visible = false
+		  
 		  left = val(app.getSetting("Word Show Left"))
 		  top = val(app.getSetting("Word Show Top"))
 		  height = val(app.getSetting("Word Show Height"))
@@ -126,6 +128,11 @@ End
 		  
 		End Sub
 	#tag EndMethod
+
+
+	#tag Property, Flags = &h0
+		closable As Boolean
+	#tag EndProperty
 
 
 #tag EndWindowCode

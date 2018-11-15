@@ -136,6 +136,8 @@ End
 		Sub Open()
 		  dim left,top,height as Integer
 		  
+		  Words.Visible = false
+		  
 		  left = val(app.getSetting("RegEx Left"))
 		  top = val(app.getSetting("RegEx Top"))
 		  height = val(app.getSetting("RegEx Height"))
@@ -169,6 +171,11 @@ End
 		  
 		End Sub
 	#tag EndMethod
+
+
+	#tag Property, Flags = &h0
+		closable As Boolean
+	#tag EndProperty
 
 
 #tag EndWindowCode

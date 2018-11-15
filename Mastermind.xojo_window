@@ -50,6 +50,8 @@ End
 		Sub Open()
 		  dim left,top,height as Integer
 		  
+		  Words.Visible = false
+		  
 		  left = val(app.getSetting("Mastermind Left"))
 		  top = val(app.getSetting("Mastermind Top"))
 		  height = val(app.getSetting("Mastermind Height"))
@@ -82,6 +84,11 @@ End
 		  
 		End Sub
 	#tag EndMethod
+
+
+	#tag Property, Flags = &h0
+		closable As Boolean
+	#tag EndProperty
 
 
 #tag EndWindowCode
