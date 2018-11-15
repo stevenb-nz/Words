@@ -69,7 +69,7 @@ Begin Window RegularExpressions
       TextFont        =   "System"
       TextSize        =   0.0
       TextUnit        =   0
-      Top             =   54
+      Top             =   20
       Transparent     =   False
       Underline       =   False
       UseFocusRing    =   True
@@ -97,11 +97,11 @@ Begin Window RegularExpressions
       Italic          =   False
       Left            =   20
       LimitText       =   0
-      LockBottom      =   False
+      LockBottom      =   True
       LockedInPosition=   False
       LockLeft        =   True
       LockRight       =   True
-      LockTop         =   True
+      LockTop         =   False
       Mask            =   ""
       Password        =   False
       ReadOnly        =   False
@@ -114,7 +114,7 @@ Begin Window RegularExpressions
       TextFont        =   "System"
       TextSize        =   0.0
       TextUnit        =   0
-      Top             =   20
+      Top             =   678
       Transparent     =   False
       Underline       =   False
       UseFocusRing    =   True
@@ -198,6 +198,18 @@ End
 
 #tag EndWindowCode
 
+#tag Events RegExTextField
+	#tag Event
+		Function KeyDown(Key As String) As Boolean
+		  Select Case asc(Key)
+		  Case 27
+		    closable = true
+		    close
+		  End Select
+		  
+		End Function
+	#tag EndEvent
+#tag EndEvents
 #tag ViewBehavior
 	#tag ViewProperty
 		Name="BackColor"

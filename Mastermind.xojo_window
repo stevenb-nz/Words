@@ -50,9 +50,11 @@ End
 
 	#tag Event
 		Function KeyDown(Key As String) As Boolean
-		  if asc(Key) = 27 then
+		  Select Case asc(Key)
+		  Case 27
+		    closable = true
 		    close
-		  end
+		  End Select
 		  
 		End Function
 	#tag EndEvent

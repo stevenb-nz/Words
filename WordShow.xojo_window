@@ -44,14 +44,14 @@ Begin Window WordShow
       GridLinesVertical=   0
       HasHeading      =   False
       HeadingIndex    =   -1
-      Height          =   680
+      Height          =   720
       HelpTag         =   ""
       Hierarchical    =   False
       Index           =   -2147483648
       InitialParent   =   ""
       InitialValue    =   ""
       Italic          =   False
-      Left            =   20
+      Left            =   0
       LockBottom      =   True
       LockedInPosition=   False
       LockLeft        =   True
@@ -69,12 +69,12 @@ Begin Window WordShow
       TextFont        =   "System"
       TextSize        =   0.0
       TextUnit        =   0
-      Top             =   20
+      Top             =   0
       Transparent     =   False
       Underline       =   False
       UseFocusRing    =   True
       Visible         =   True
-      Width           =   404
+      Width           =   444
       _ScrollOffset   =   0
       _ScrollWidth    =   -1
    End
@@ -155,6 +155,18 @@ End
 
 #tag EndWindowCode
 
+#tag Events WordShowListbox
+	#tag Event
+		Function KeyDown(Key As String) As Boolean
+		  Select Case asc(Key)
+		  Case 27
+		    closable = true
+		    close
+		  End Select
+		  
+		End Function
+	#tag EndEvent
+#tag EndEvents
 #tag ViewBehavior
 	#tag ViewProperty
 		Name="BackColor"
