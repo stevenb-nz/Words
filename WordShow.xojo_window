@@ -83,6 +83,24 @@ End
 
 #tag WindowCode
 	#tag Event
+		Function CancelClose(appQuitting as Boolean) As Boolean
+		  if closable then
+		    return false
+		  else
+		    return true
+		  end
+		  
+		End Function
+	#tag EndEvent
+
+	#tag Event
+		Sub Close()
+		  Words.Show
+		  
+		End Sub
+	#tag EndEvent
+
+	#tag Event
 		Sub Moved()
 		  storeWordShowBounds
 		  
