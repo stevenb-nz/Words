@@ -209,13 +209,19 @@ End
 #tag Events RegExTextField
 	#tag Event
 		Function KeyDown(Key As String) As Boolean
+		  Dim rg As New RegEx
+		  Dim myMatch As RegExMatch
+		  
 		  Select Case asc(Key)
 		  Case 13
-		    Dim rg As New RegEx
-		    Dim myMatch As RegExMatch
-		    
 		    RegExListbox.DeleteAllRows
 		    rg.SearchPattern = me.Text
+		    try
+		      myMatch = rg.Search("")
+		    catch e as RegExSearchPatternException
+		      MsgBox e.Message
+		      return true
+		    end try
 		    data.MoveFirst
 		    while not data.EOF
 		      myMatch = rg.Search(data.IdxField(1).StringValue)
@@ -232,9 +238,6 @@ End
 		    close
 		  End Select
 		  
-		  Exception err As RegExException
-		    return true
-		    
 		End Function
 	#tag EndEvent
 #tag EndEvents
