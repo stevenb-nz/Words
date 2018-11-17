@@ -234,6 +234,16 @@ End
 		  
 		End Function
 	#tag EndEvent
+	#tag Event
+		Function KeyDown(Key As String) As Boolean
+		  Select Case asc(Key)
+		  Case 27
+		    closable = true
+		    close
+		  End Select
+		  
+		End Function
+	#tag EndEvent
 #tag EndEvents
 #tag Events RegExTextField
 	#tag Event
