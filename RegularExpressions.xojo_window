@@ -248,7 +248,8 @@ End
 		    try
 		      myMatch = rg.Search("")
 		    catch e as RegExSearchPatternException
-		      MsgBox e.Message
+		      RegExListbox.AddRow "Invalid regular expression:"
+		      RegExListbox.AddRow """"+e.Message+""""
 		      return true
 		    end try
 		    data.MoveFirst
