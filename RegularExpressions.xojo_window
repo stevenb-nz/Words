@@ -61,14 +61,14 @@ Begin Window RegularExpressions
       Scope           =   0
       ScrollbarHorizontal=   False
       ScrollBarVertical=   True
-      SelectionType   =   0
+      SelectionType   =   1
       ShowDropIndicator=   False
       TabIndex        =   6
       TabPanelIndex   =   0
       TabStop         =   True
-      TextFont        =   "System"
+      TextFont        =   "Lucida Console"
       TextSize        =   0.0
-      TextUnit        =   0
+      TextUnit        =   2
       Top             =   20
       Transparent     =   False
       Underline       =   False
@@ -250,6 +250,7 @@ End
 		Function KeyDown(Key As String) As Boolean
 		  Dim rg As New RegEx
 		  Dim myMatch As RegExMatch
+		  dim i as integer
 		  
 		  Select Case asc(Key)
 		  Case 13
@@ -272,6 +273,8 @@ End
 		      End
 		      data.MoveNext
 		    wend
+		    i = RegExListbox.ListCount
+		    RegExListbox.heading(0) = str(i)+" Word"+if(i=1,"","s")
 		    return true
 		  Case 27
 		    closable = true
