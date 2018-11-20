@@ -244,6 +244,7 @@ End
 		    wordLength = wordLength + 1
 		  end
 		  GuessesListbox.Heading(0) = "Guess ("+str(wordLength)+" letters)"
+		  currentWord = wordlists(wordLength-2).wordlist(floor(rnd*UBound(wordlists(wordLength-2).wordlist)))
 		  
 		End Sub
 	#tag EndMethod
@@ -260,6 +261,10 @@ End
 
 	#tag Property, Flags = &h0
 		closable As Boolean
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		currentWord As String
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
