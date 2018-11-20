@@ -207,6 +207,8 @@ End
 		  
 		  Self.Bounds = tempBounds
 		  
+		  newGame
+		  
 		End Sub
 	#tag EndEvent
 
@@ -217,6 +219,20 @@ End
 		End Sub
 	#tag EndEvent
 
+
+	#tag Method, Flags = &h0
+		Sub newGame()
+		  GuessesListbox.DeleteAllRows
+		  
+		  if wordLength < 2 or wordLength = 15 then
+		    wordLength = 2
+		  else
+		    wordLength = wordLength + 1
+		  end
+		  GuessesListbox.Heading(0) = "Guess ("+str(wordLength)+" letters)"
+		  
+		End Sub
+	#tag EndMethod
 
 	#tag Method, Flags = &h0
 		Sub storeMastermindBounds()
@@ -232,6 +248,10 @@ End
 		closable As Boolean
 	#tag EndProperty
 
+	#tag Property, Flags = &h0
+		wordLength As Integer
+	#tag EndProperty
+
 
 #tag EndWindowCode
 
@@ -245,6 +265,14 @@ End
 		  End Select
 		  
 		End Function
+	#tag EndEvent
+#tag EndEvents
+#tag Events NewGameButton
+	#tag Event
+		Sub Action()
+		  newGame
+		  
+		End Sub
 	#tag EndEvent
 #tag EndEvents
 #tag ViewBehavior
