@@ -83,7 +83,7 @@ Begin Window Mastermind
       Alignment       =   0
       AutoDeactivate  =   True
       AutomaticallyCheckSpelling=   False
-      BackColor       =   &cFFFFFF00
+      BackColor       =   &cFFCCCC00
       Bold            =   False
       Border          =   True
       CueText         =   ""
@@ -284,11 +284,17 @@ End
 		  Select Case asc(Key)
 		  case 8
 		  case 13
+		    if me.BackColor = &cCCFFCC then
+		      'process guess
+		    end
+		    me.text = ""
+		    return true
 		  Case 27
 		    closable = true
 		    close
 		  case 28 to 29
 		  case 65 to 90, 97 to 122
+		  case 127
 		  Else
 		    return true
 		  End Select
@@ -298,7 +304,11 @@ End
 	#tag Event
 		Sub TextChange()
 		  me.text = Uppercase(me.Text)
-		  
+		  if len(me.text) = wordLength then 'and me.text = valid word
+		    me.BackColor = &cCCFFCC
+		  else
+		    me.BackColor = &cFFCCCC
+		  end
 		End Sub
 	#tag EndEvent
 #tag EndEvents
