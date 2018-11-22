@@ -282,12 +282,24 @@ End
 	#tag Event
 		Function KeyDown(Key As String) As Boolean
 		  Select Case asc(Key)
+		  case 8
+		  case 13
 		  Case 27
 		    closable = true
 		    close
+		  case 28 to 29
+		  case 65 to 90, 97 to 122
+		  Else
+		    return true
 		  End Select
 		  
 		End Function
+	#tag EndEvent
+	#tag Event
+		Sub TextChange()
+		  me.text = Uppercase(me.Text)
+		  
+		End Sub
 	#tag EndEvent
 #tag EndEvents
 #tag Events NewGameButton
@@ -532,5 +544,10 @@ End
 		Name="wordLength"
 		Group="Behavior"
 		Type="Integer"
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="currentWord"
+		Group="Behavior"
+		Type="String"
 	#tag EndViewProperty
 #tag EndViewBehavior
