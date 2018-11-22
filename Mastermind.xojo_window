@@ -33,7 +33,7 @@ Begin Window Mastermind
       Border          =   True
       ColumnCount     =   2
       ColumnsResizable=   False
-      ColumnWidths    =   "67% 33%"
+      ColumnWidths    =   "240, *"
       DataField       =   ""
       DataSource      =   ""
       DefaultRowHeight=   -1
@@ -147,7 +147,7 @@ Begin Window Mastermind
       TextFont        =   "System"
       TextSize        =   0.0
       TextUnit        =   0
-      Top             =   679
+      Top             =   678
       Transparent     =   False
       Underline       =   False
       Visible         =   True
@@ -166,23 +166,23 @@ Begin Window Mastermind
       InitialParent   =   ""
       Italic          =   False
       Left            =   272
-      LockBottom      =   False
+      LockBottom      =   True
       LockedInPosition=   False
       LockLeft        =   True
       LockRight       =   False
-      LockTop         =   True
+      LockTop         =   False
       Scope           =   0
-      State           =   0
+      State           =   1
       TabIndex        =   3
       TabPanelIndex   =   0
       TabStop         =   True
       TextFont        =   "System"
       TextSize        =   0.0
       TextUnit        =   0
-      Top             =   679
+      Top             =   678
       Transparent     =   False
       Underline       =   False
-      Value           =   False
+      Value           =   True
       Visible         =   True
       Width           =   20
    End
@@ -266,6 +266,15 @@ End
 		End Sub
 	#tag EndEvent
 
+	#tag Event
+		Sub Resizing()
+		  ValidWordCheckBox.left = self.Width - 128
+		  GuessesListbox.ColumnWidths = str(GuessField.width)+", *"
+		  refresh
+		  
+		End Sub
+	#tag EndEvent
+
 
 	#tag Method, Flags = &h0
 		Sub newGame()
@@ -287,6 +296,25 @@ End
 		  app.updateSetting("Mastermind Top",str(self.Bounds.Top))
 		  app.updateSetting("Mastermind Height",str(self.Bounds.Height))
 		  app.updateSetting("Mastermind Left",str(self.Bounds.Left))
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub validateEntry()
+		  if len(guessfield.text) = wordLength then
+		    if ValidWordCheckBox.State = CheckBox.CheckedStates.Checked then
+		      if words.isWord(guessfield.Text) then
+		        guessfield.BackColor = &cCCFFCC
+		      else
+		        guessfield.BackColor = &cFFCCCC
+		      end
+		    else
+		      guessfield.BackColor = &cCCFFCC
+		    end
+		  else
+		    guessfield.BackColor = &cFFCCCC
+		  end
 		  
 		End Sub
 	#tag EndMethod
@@ -337,11 +365,8 @@ End
 	#tag Event
 		Sub TextChange()
 		  me.text = Uppercase(me.Text)
-		  if len(me.text) = wordLength then 'and me.text = valid word
-		    me.BackColor = &cCCFFCC
-		  else
-		    me.BackColor = &cFFCCCC
-		  end
+		  validateEntry
+		  
 		End Sub
 	#tag EndEvent
 #tag EndEvents
@@ -349,6 +374,14 @@ End
 	#tag Event
 		Sub Action()
 		  newGame
+		  
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events ValidWordCheckBox
+	#tag Event
+		Sub Action()
+		  validateEntry
 		  
 		End Sub
 	#tag EndEvent
