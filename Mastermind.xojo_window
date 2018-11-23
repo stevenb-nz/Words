@@ -278,7 +278,15 @@ End
 
 	#tag Method, Flags = &h0
 		Function checkprevious() As Boolean
+		  dim i as integer
+		  
+		  for i = 1 to GuessesListbox.ListCount
+		    if GuessesListbox.cell(i-1,0) = GuessField.Text then
+		      return false
+		    end
+		  next
 		  return true
+		  
 		End Function
 	#tag EndMethod
 
