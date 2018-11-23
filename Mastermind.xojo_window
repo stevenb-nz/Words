@@ -37,7 +37,7 @@ Begin Window Mastermind
       DataField       =   ""
       DataSource      =   ""
       DefaultRowHeight=   -1
-      Enabled         =   False
+      Enabled         =   True
       EnableDrag      =   False
       EnableDragReorder=   False
       GridLinesHorizontal=   0
@@ -66,7 +66,7 @@ Begin Window Mastermind
       TabIndex        =   0
       TabPanelIndex   =   0
       TabStop         =   True
-      TextFont        =   "System"
+      TextFont        =   "lucida console"
       TextSize        =   0.0
       TextUnit        =   0
       Top             =   20
@@ -277,6 +277,12 @@ End
 
 
 	#tag Method, Flags = &h0
+		Function checkprevious() As Boolean
+		  return true
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Sub newGame()
 		  GuessesListbox.DeleteAllRows
 		  
@@ -287,6 +293,39 @@ End
 		  end
 		  GuessesListbox.Heading(0) = "Guess ("+str(wordLength)+" letters)"
 		  currentWord = wordlists(wordLength-2).wordlist(floor(rnd*UBound(wordlists(wordLength-2).wordlist)))
+		  GuessField.Enabled = true
+		  GuessField.SetFocus
+		  NewGameButton.Default = false
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub processGuess()
+		  dim i,j as integer
+		  dim w1,w2 as string
+		  
+		  GuessesListbox.AddRow GuessField.text
+		  for i = 1 to wordlength
+		    if mid(GuessField.text,i,1) = mid(currentWord,i,1) then
+		      GuessesListbox.cell(GuessesListbox.ListCount-1,1) = GuessesListbox.cell(GuessesListbox.ListCount-1,1)+"•"
+		    else
+		      w1 = w1 + mid(GuessField.text,i,1)
+		      w2 = w2 + mid(currentWord,i,1)
+		    end
+		  next
+		  if len(GuessesListbox.cell(GuessesListbox.ListCount-1,1)) = wordLength then
+		    GuessField.Enabled = False
+		    NewGameButton.Default = True
+		  else
+		    for i = 1 to len(w1)
+		      j = InStr(w2,mid(w1,i,1))
+		      if j > 0 then
+		        GuessesListbox.cell(GuessesListbox.ListCount-1,1) = GuessesListbox.cell(GuessesListbox.ListCount-1,1)+"°"
+		        w2 = left(w2,j-1)+right(w2,len(w2)-j)
+		      end
+		    next
+		  end
 		  
 		End Sub
 	#tag EndMethod
@@ -302,7 +341,7 @@ End
 
 	#tag Method, Flags = &h0
 		Sub validateEntry()
-		  if len(guessfield.text) = wordLength then
+		  if len(guessfield.text) = wordLength and checkprevious then
 		    if ValidWordCheckBox.State = CheckBox.CheckedStates.Checked then
 		      if words.isWord(guessfield.Text) then
 		        guessfield.BackColor = &cCCFFCC
@@ -346,7 +385,7 @@ End
 		  case 8
 		  case 13
 		    if me.BackColor = &cCCFFCC then
-		      'process guess
+		      processGuess
 		    end
 		    me.text = ""
 		    return true
