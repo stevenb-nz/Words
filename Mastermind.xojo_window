@@ -83,7 +83,7 @@ Begin Window Mastermind
       Alignment       =   0
       AutoDeactivate  =   True
       AutomaticallyCheckSpelling=   False
-      BackColor       =   &cFFCCCC00
+      BackColor       =   &cFFFFFF00
       Bold            =   False
       Border          =   True
       CueText         =   ""
@@ -302,6 +302,7 @@ End
 		  GuessesListbox.Heading(0) = "Guess ("+str(wordLength)+" letters)"
 		  currentWord = wordlists(wordLength-2).wordlist(floor(rnd*UBound(wordlists(wordLength-2).wordlist)))
 		  GuessField.Enabled = true
+		  guessfield.BackColor = &cFFCCCC
 		  GuessField.SetFocus
 		  NewGameButton.Default = false
 		  
@@ -349,18 +350,22 @@ End
 
 	#tag Method, Flags = &h0
 		Sub validateEntry()
-		  if len(guessfield.text) = wordLength and checkprevious then
-		    if ValidWordCheckBox.State = CheckBox.CheckedStates.Checked then
-		      if words.isWord(guessfield.Text) then
-		        guessfield.BackColor = &cCCFFCC
+		  if GuessField.Enabled then
+		    if len(guessfield.text) = wordLength and checkprevious then
+		      if ValidWordCheckBox.State = CheckBox.CheckedStates.Checked then
+		        if words.isWord(guessfield.Text) then
+		          guessfield.BackColor = &cCCFFCC
+		        else
+		          guessfield.BackColor = &cFFCCCC
+		        end
 		      else
-		        guessfield.BackColor = &cFFCCCC
+		        guessfield.BackColor = &cCCFFCC
 		      end
 		    else
-		      guessfield.BackColor = &cCCFFCC
+		      guessfield.BackColor = &cFFCCCC
 		    end
 		  else
-		    guessfield.BackColor = &cFFCCCC
+		    guessfield.BackColor = &cFFFFFF
 		  end
 		  
 		End Sub
