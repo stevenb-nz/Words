@@ -330,7 +330,7 @@ End
 		    for i = 1 to len(w1)
 		      j = InStr(w2,mid(w1,i,1))
 		      if j > 0 then
-		        GuessesListbox.cell(GuessesListbox.ListCount-1,1) = GuessesListbox.cell(GuessesListbox.ListCount-1,1)+"°"
+		        GuessesListbox.cell(GuessesListbox.ListCount-1,1) = GuessesListbox.cell(GuessesListbox.ListCount-1,1)+"◦"
 		        w2 = left(w2,j-1)+right(w2,len(w2)-j)
 		      end
 		    next
