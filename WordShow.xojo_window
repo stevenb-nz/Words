@@ -95,6 +95,12 @@ End
 
 	#tag Event
 		Sub Close()
+		  dim i as integer
+		  
+		  for i = 2 to 15
+		    app.updateSetting("Word Show "+str(i),str(progress(i-2)))
+		  next
+		  
 		  Words.Show
 		  
 		End Sub
@@ -139,6 +145,7 @@ End
 		      data.MoveNext
 		    wend
 		    wordlists.Append w
+		    progress.Append val(app.getSetting("Word Show "+str(i)))
 		  next
 		  
 		End Sub
@@ -164,6 +171,10 @@ End
 
 	#tag Property, Flags = &h0
 		closable As Boolean
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		progress(-1) As Integer
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
