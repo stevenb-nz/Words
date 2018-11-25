@@ -97,8 +97,8 @@ End
 		Sub Close()
 		  dim i as integer
 		  
-		  for i = 2 to 15
-		    app.updateSetting("Word Show "+str(i),str(progress(i-2)))
+		  for i = 3 to 8
+		    app.updateSetting("Word Show "+str(i),str(progress(i-3)))
 		  next
 		  
 		  Words.Show
@@ -136,7 +136,7 @@ End
 		  
 		  Self.Bounds = tempBounds
 		  
-		  for i = 2 to 15
+		  for i = 3 to 8
 		    w = new wordlist
 		    sql = "SELECT Combo FROM Combos WHERE length = "+str(i)+" ORDER BY combo_playability"
 		    data = app.wordsDB.SQLSelect(sql)
