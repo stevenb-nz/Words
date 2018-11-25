@@ -110,7 +110,10 @@ End
 
 	#tag Event
 		Sub Open()
-		  dim left,top,height as Integer
+		  dim i,left,top,height as Integer
+		  dim sql as string
+		  dim data as RecordSet
+		  dim w as wordlist
 		  
 		  Words.Visible = false
 		  
@@ -126,6 +129,17 @@ End
 		  tempBounds.Width = Self.Width
 		  
 		  Self.Bounds = tempBounds
+		  
+		  for i = 2 to 15
+		    w = new wordlist
+		    sql = "SELECT Combo FROM Combos WHERE length = "+str(i)+" ORDER BY combo_playability"
+		    data = app.wordsDB.SQLSelect(sql)
+		    while not data.eof
+		      w.wordlist.Append data.IdxField(1).StringValue
+		      data.MoveNext
+		    wend
+		    wordlists.Append w
+		  next
 		  
 		End Sub
 	#tag EndEvent
@@ -150,6 +164,10 @@ End
 
 	#tag Property, Flags = &h0
 		closable As Boolean
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		wordlists(-1) As wordlist
 	#tag EndProperty
 
 
