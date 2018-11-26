@@ -122,6 +122,7 @@ End
 		  dim w as wordlist
 		  
 		  Words.Visible = false
+		  stopped  = true
 		  
 		  left = val(app.getSetting("Word Show Left"))
 		  top = val(app.getSetting("Word Show Top"))
@@ -178,6 +179,10 @@ End
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
+		stopped As boolean
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
 		wordlists(-1) As wordlist
 	#tag EndProperty
 
@@ -189,9 +194,18 @@ End
 		Function KeyDown(Key As String) As Boolean
 		  Select Case asc(Key)
 		  Case 27
-		    closable = true
-		    close
+		    if stopped then
+		      closable = true
+		      close
+		    end
+		    return true
 		  End Select
+		  
+		End Function
+	#tag EndEvent
+	#tag Event
+		Function MouseDown(x As Integer, y As Integer) As Boolean
+		  stopped = not stopped
 		  
 		End Function
 	#tag EndEvent
