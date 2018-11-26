@@ -206,6 +206,9 @@ End
 	#tag Event
 		Function MouseDown(x As Integer, y As Integer) As Boolean
 		  stopped = not stopped
+		  if not stopped then
+		    'start
+		  end
 		  
 		End Function
 	#tag EndEvent
@@ -441,5 +444,10 @@ End
 		Name="closable"
 		Group="Behavior"
 		Type="Boolean"
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="stopped"
+		Group="Behavior"
+		Type="boolean"
 	#tag EndViewProperty
 #tag EndViewBehavior
