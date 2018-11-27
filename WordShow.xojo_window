@@ -20,12 +20,12 @@ Begin Window WordShow
    MenuBarVisible  =   True
    MinHeight       =   64
    MinimizeButton  =   True
-   MinWidth        =   64
+   MinWidth        =   400
    Placement       =   0
    Resizeable      =   False
    Title           =   "Word Show"
    Visible         =   True
-   Width           =   444
+   Width           =   400
    Begin listbox WordShowListbox
       AutoDeactivate  =   True
       AutoHideScrollbars=   True
@@ -44,12 +44,12 @@ Begin Window WordShow
       GridLinesVertical=   0
       HasHeading      =   False
       HeadingIndex    =   -1
-      Height          =   634
+      Height          =   588
       HelpTag         =   ""
       Hierarchical    =   False
       Index           =   -2147483648
       InitialParent   =   ""
-      InitialValue    =   ""
+      InitialValue    =   "\n"
       Italic          =   False
       Left            =   0
       LockBottom      =   True
@@ -66,15 +66,15 @@ Begin Window WordShow
       TabIndex        =   6
       TabPanelIndex   =   0
       TabStop         =   True
-      TextFont        =   "System"
-      TextSize        =   48.0
+      TextFont        =   "Andale Mono"
+      TextSize        =   44.0
       TextUnit        =   0
-      Top             =   86
+      Top             =   132
       Transparent     =   False
       Underline       =   False
       UseFocusRing    =   True
       Visible         =   True
-      Width           =   444
+      Width           =   400
       _ScrollOffset   =   0
       _ScrollWidth    =   -1
    End
@@ -104,10 +104,10 @@ Begin Window WordShow
       Text            =   "0:00:00"
       TextAlign       =   0
       TextColor       =   &c00000000
-      TextFont        =   "System"
-      TextSize        =   48.0
+      TextFont        =   "Andale Mono"
+      TextSize        =   44.0
       TextUnit        =   0
-      Top             =   20
+      Top             =   0
       Transparent     =   False
       Underline       =   False
       Visible         =   True
@@ -139,14 +139,49 @@ Begin Window WordShow
       Text            =   "0"
       TextAlign       =   2
       TextColor       =   &c00000000
-      TextFont        =   "System"
-      TextSize        =   48.0
+      TextFont        =   "Andale Mono"
+      TextSize        =   44.0
       TextUnit        =   0
-      Top             =   20
+      Top             =   0
       Transparent     =   False
       Underline       =   False
       Visible         =   True
-      Width           =   196
+      Width           =   152
+   End
+   Begin Label questionLabel
+      AutoDeactivate  =   True
+      Bold            =   False
+      DataField       =   ""
+      DataSource      =   ""
+      Enabled         =   True
+      Height          =   54
+      HelpTag         =   ""
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Italic          =   False
+      Left            =   20
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   True
+      LockTop         =   True
+      Multiline       =   False
+      Scope           =   0
+      Selectable      =   False
+      TabIndex        =   9
+      TabPanelIndex   =   0
+      TabStop         =   True
+      Text            =   ""
+      TextAlign       =   1
+      TextColor       =   &c00000000
+      TextFont        =   "Andale Mono"
+      TextSize        =   44.0
+      TextUnit        =   0
+      Top             =   66
+      Transparent     =   False
+      Underline       =   False
+      Visible         =   True
+      Width           =   360
    End
 End
 #tag EndWindow
@@ -193,6 +228,7 @@ End
 		  
 		  Words.Visible = false
 		  stopped  = true
+		  WordShowListbox.ColumnAlignment(0) = Listbox.AlignCenter
 		  
 		  left = val(app.getSetting("Word Show Left"))
 		  top = val(app.getSetting("Word Show Top"))
