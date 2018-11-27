@@ -483,7 +483,7 @@ Begin Window Words
       Visible         =   True
       Width           =   238
    End
-   Begin CustomListbox HooksListbox1
+   Begin CustomListbox OtherSuperstringsListbox
       AutoDeactivate  =   True
       AutoHideScrollbars=   True
       Bold            =   False
@@ -535,7 +535,7 @@ Begin Window Words
       _ScrollOffset   =   0
       _ScrollWidth    =   -1
    End
-   Begin CustomListbox SupersetListbox1
+   Begin CustomListbox OtherSupersetsListbox
       AutoDeactivate  =   True
       AutoHideScrollbars=   True
       Bold            =   False
@@ -622,7 +622,7 @@ Begin Window Words
       Visible         =   True
       Width           =   238
    End
-   Begin CustomListbox HookOfListbox1
+   Begin CustomListbox OtherSubstringsListbox
       AutoDeactivate  =   True
       AutoHideScrollbars=   True
       Bold            =   False
@@ -674,7 +674,7 @@ Begin Window Words
       _ScrollOffset   =   0
       _ScrollWidth    =   -1
    End
-   Begin CustomListbox SubsetListbox1
+   Begin CustomListbox OtherSubsetsListbox
       AutoDeactivate  =   True
       AutoHideScrollbars=   True
       Bold            =   False
