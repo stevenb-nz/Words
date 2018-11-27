@@ -51,7 +51,7 @@ Begin Window Words
       InitialParent   =   ""
       InitialValue    =   ""
       Italic          =   False
-      Left            =   270
+      Left            =   20
       LockBottom      =   True
       LockedInPosition=   False
       LockLeft        =   True
@@ -74,7 +74,7 @@ Begin Window Words
       Underline       =   False
       UseFocusRing    =   True
       Visible         =   True
-      Width           =   238
+      Width           =   404
       _ScrollOffset   =   0
       _ScrollWidth    =   -1
    End
@@ -103,7 +103,7 @@ Begin Window Words
       InitialParent   =   ""
       InitialValue    =   ""
       Italic          =   False
-      Left            =   772
+      Left            =   856
       LockBottom      =   True
       LockedInPosition=   False
       LockLeft        =   False
@@ -126,7 +126,7 @@ Begin Window Words
       Underline       =   False
       UseFocusRing    =   True
       Visible         =   True
-      Width           =   238
+      Width           =   404
       _ScrollOffset   =   0
       _ScrollWidth    =   -1
    End
@@ -155,7 +155,7 @@ Begin Window Words
       InitialParent   =   ""
       InitialValue    =   ""
       Italic          =   False
-      Left            =   772
+      Left            =   856
       LockBottom      =   False
       LockedInPosition=   False
       LockLeft        =   False
@@ -178,7 +178,7 @@ Begin Window Words
       Underline       =   False
       UseFocusRing    =   True
       Visible         =   True
-      Width           =   238
+      Width           =   404
       _ScrollOffset   =   0
       _ScrollWidth    =   -1
    End
@@ -207,7 +207,7 @@ Begin Window Words
       InitialParent   =   ""
       InitialValue    =   ""
       Italic          =   False
-      Left            =   520
+      Left            =   438
       LockBottom      =   True
       LockedInPosition=   False
       LockLeft        =   True
@@ -230,7 +230,7 @@ Begin Window Words
       Underline       =   False
       UseFocusRing    =   True
       Visible         =   True
-      Width           =   240
+      Width           =   404
       _ScrollOffset   =   0
       _ScrollWidth    =   -1
    End
@@ -259,7 +259,7 @@ Begin Window Words
       InitialParent   =   ""
       InitialValue    =   ""
       Italic          =   False
-      Left            =   520
+      Left            =   436
       LockBottom      =   False
       LockedInPosition=   False
       LockLeft        =   True
@@ -282,7 +282,7 @@ Begin Window Words
       Underline       =   False
       UseFocusRing    =   True
       Visible         =   True
-      Width           =   240
+      Width           =   404
       _ScrollOffset   =   0
       _ScrollWidth    =   -1
    End
@@ -299,7 +299,7 @@ Begin Window Words
       Index           =   -2147483648
       InitialParent   =   ""
       Italic          =   False
-      Left            =   520
+      Left            =   438
       LockBottom      =   False
       LockedInPosition=   False
       LockLeft        =   True
@@ -316,7 +316,7 @@ Begin Window Words
       Transparent     =   False
       Underline       =   False
       Visible         =   True
-      Width           =   240
+      Width           =   404
    End
    Begin TextField WordField
       AcceptTabs      =   False
@@ -335,7 +335,7 @@ Begin Window Words
       HelpTag         =   ""
       Index           =   -2147483648
       Italic          =   False
-      Left            =   520
+      Left            =   438
       LimitText       =   0
       LockBottom      =   False
       LockedInPosition=   False
@@ -359,7 +359,7 @@ Begin Window Words
       Underline       =   False
       UseFocusRing    =   True
       Visible         =   False
-      Width           =   240
+      Width           =   404
    End
    Begin CustomListbox HookOfListbox
       AutoDeactivate  =   True
@@ -386,7 +386,7 @@ Begin Window Words
       InitialParent   =   ""
       InitialValue    =   ""
       Italic          =   False
-      Left            =   270
+      Left            =   20
       LockBottom      =   False
       LockedInPosition=   False
       LockLeft        =   True
@@ -409,7 +409,7 @@ Begin Window Words
       Underline       =   False
       UseFocusRing    =   True
       Visible         =   True
-      Width           =   238
+      Width           =   404
       _ScrollOffset   =   0
       _ScrollWidth    =   -1
    End
@@ -424,7 +424,7 @@ Begin Window Words
       Index           =   -2147483648
       InitialParent   =   ""
       Italic          =   False
-      Left            =   270
+      Left            =   20
       LockBottom      =   False
       LockedInPosition=   False
       LockLeft        =   True
@@ -446,7 +446,7 @@ Begin Window Words
       Transparent     =   False
       Underline       =   False
       Visible         =   True
-      Width           =   238
+      Width           =   404
    End
    Begin Label nextLabel
       AutoDeactivate  =   True
@@ -459,7 +459,7 @@ Begin Window Words
       Index           =   -2147483648
       InitialParent   =   ""
       Italic          =   False
-      Left            =   772
+      Left            =   856
       LockBottom      =   False
       LockedInPosition=   False
       LockLeft        =   True
@@ -481,285 +481,7 @@ Begin Window Words
       Transparent     =   False
       Underline       =   False
       Visible         =   True
-      Width           =   238
-   End
-   Begin CustomListbox HooksListbox1
-      AutoDeactivate  =   True
-      AutoHideScrollbars=   True
-      Bold            =   False
-      Border          =   True
-      ColumnCount     =   1
-      ColumnsResizable=   False
-      ColumnWidths    =   ""
-      DataField       =   ""
-      DataSource      =   ""
-      DefaultRowHeight=   -1
-      Enabled         =   True
-      EnableDrag      =   False
-      EnableDragReorder=   False
-      GridLinesHorizontal=   0
-      GridLinesVertical=   0
-      HasHeading      =   False
-      HeadingIndex    =   -1
-      Height          =   159
-      HelpTag         =   ""
-      Hierarchical    =   False
-      Index           =   -2147483648
-      InitialParent   =   ""
-      InitialValue    =   ""
-      Italic          =   False
-      Left            =   1022
-      LockBottom      =   False
-      LockedInPosition=   False
-      LockLeft        =   False
-      LockRight       =   True
-      LockTop         =   True
-      RequiresSelection=   False
-      Scope           =   0
-      ScrollbarHorizontal=   False
-      ScrollBarVertical=   True
-      SelectionType   =   0
-      ShowDropIndicator=   False
-      TabIndex        =   10
-      TabPanelIndex   =   0
-      TabStop         =   True
-      TextFont        =   "System"
-      TextSize        =   0.0
-      TextUnit        =   0
-      Top             =   20
-      Transparent     =   False
-      Underline       =   False
-      UseFocusRing    =   True
-      Visible         =   True
-      Width           =   238
-      _ScrollOffset   =   0
-      _ScrollWidth    =   -1
-   End
-   Begin CustomListbox SupersetListbox1
-      AutoDeactivate  =   True
-      AutoHideScrollbars=   True
-      Bold            =   False
-      Border          =   True
-      ColumnCount     =   1
-      ColumnsResizable=   False
-      ColumnWidths    =   ""
-      DataField       =   ""
-      DataSource      =   ""
-      DefaultRowHeight=   -1
-      Enabled         =   True
-      EnableDrag      =   False
-      EnableDragReorder=   False
-      GridLinesHorizontal=   0
-      GridLinesVertical=   0
-      HasHeading      =   False
-      HeadingIndex    =   -1
-      Height          =   509
-      HelpTag         =   ""
-      Hierarchical    =   False
-      Index           =   -2147483648
-      InitialParent   =   ""
-      InitialValue    =   ""
-      Italic          =   False
-      Left            =   1022
-      LockBottom      =   True
-      LockedInPosition=   False
-      LockLeft        =   False
-      LockRight       =   True
-      LockTop         =   True
-      RequiresSelection=   False
-      Scope           =   0
-      ScrollbarHorizontal=   False
-      ScrollBarVertical=   True
-      SelectionType   =   0
-      ShowDropIndicator=   False
-      TabIndex        =   11
-      TabPanelIndex   =   0
-      TabStop         =   True
-      TextFont        =   "System"
-      TextSize        =   0.0
-      TextUnit        =   0
-      Top             =   191
-      Transparent     =   False
-      Underline       =   False
-      UseFocusRing    =   True
-      Visible         =   True
-      Width           =   238
-      _ScrollOffset   =   0
-      _ScrollWidth    =   -1
-   End
-   Begin Label nextLabel1
-      AutoDeactivate  =   True
-      Bold            =   False
-      DataField       =   ""
-      DataSource      =   ""
-      Enabled         =   True
-      Height          =   20
-      HelpTag         =   ""
-      Index           =   -2147483648
-      InitialParent   =   ""
-      Italic          =   False
-      Left            =   1022
-      LockBottom      =   False
-      LockedInPosition=   False
-      LockLeft        =   True
-      LockRight       =   False
-      LockTop         =   True
-      Multiline       =   False
-      Scope           =   0
-      Selectable      =   False
-      TabIndex        =   12
-      TabPanelIndex   =   0
-      TabStop         =   True
-      Text            =   ""
-      TextAlign       =   1
-      TextColor       =   &c00000000
-      TextFont        =   "System"
-      TextSize        =   0.0
-      TextUnit        =   0
-      Top             =   191
-      Transparent     =   False
-      Underline       =   False
-      Visible         =   True
-      Width           =   238
-   End
-   Begin CustomListbox HookOfListbox1
-      AutoDeactivate  =   True
-      AutoHideScrollbars=   True
-      Bold            =   False
-      Border          =   True
-      ColumnCount     =   1
-      ColumnsResizable=   False
-      ColumnWidths    =   ""
-      DataField       =   ""
-      DataSource      =   ""
-      DefaultRowHeight=   -1
-      Enabled         =   True
-      EnableDrag      =   False
-      EnableDragReorder=   False
-      GridLinesHorizontal=   0
-      GridLinesVertical=   0
-      HasHeading      =   False
-      HeadingIndex    =   -1
-      Height          =   159
-      HelpTag         =   ""
-      Hierarchical    =   False
-      Index           =   -2147483648
-      InitialParent   =   ""
-      InitialValue    =   ""
-      Italic          =   False
-      Left            =   20
-      LockBottom      =   False
-      LockedInPosition=   False
-      LockLeft        =   True
-      LockRight       =   False
-      LockTop         =   True
-      RequiresSelection=   False
-      Scope           =   0
-      ScrollbarHorizontal=   False
-      ScrollBarVertical=   True
-      SelectionType   =   0
-      ShowDropIndicator=   False
-      TabIndex        =   13
-      TabPanelIndex   =   0
-      TabStop         =   True
-      TextFont        =   "System"
-      TextSize        =   0.0
-      TextUnit        =   0
-      Top             =   20
-      Transparent     =   False
-      Underline       =   False
-      UseFocusRing    =   True
-      Visible         =   True
-      Width           =   238
-      _ScrollOffset   =   0
-      _ScrollWidth    =   -1
-   End
-   Begin CustomListbox SubsetListbox1
-      AutoDeactivate  =   True
-      AutoHideScrollbars=   True
-      Bold            =   False
-      Border          =   True
-      ColumnCount     =   1
-      ColumnsResizable=   False
-      ColumnWidths    =   ""
-      DataField       =   ""
-      DataSource      =   ""
-      DefaultRowHeight=   -1
-      Enabled         =   True
-      EnableDrag      =   False
-      EnableDragReorder=   False
-      GridLinesHorizontal=   0
-      GridLinesVertical=   0
-      HasHeading      =   False
-      HeadingIndex    =   -1
-      Height          =   509
-      HelpTag         =   ""
-      Hierarchical    =   False
-      Index           =   -2147483648
-      InitialParent   =   ""
-      InitialValue    =   ""
-      Italic          =   False
-      Left            =   20
-      LockBottom      =   True
-      LockedInPosition=   False
-      LockLeft        =   True
-      LockRight       =   False
-      LockTop         =   True
-      RequiresSelection=   False
-      Scope           =   0
-      ScrollbarHorizontal=   False
-      ScrollBarVertical=   True
-      SelectionType   =   0
-      ShowDropIndicator=   False
-      TabIndex        =   14
-      TabPanelIndex   =   0
-      TabStop         =   True
-      TextFont        =   "System"
-      TextSize        =   0.0
-      TextUnit        =   0
-      Top             =   191
-      Transparent     =   False
-      Underline       =   False
-      UseFocusRing    =   True
-      Visible         =   True
-      Width           =   238
-      _ScrollOffset   =   0
-      _ScrollWidth    =   -1
-   End
-   Begin Label prevLabel1
-      AutoDeactivate  =   True
-      Bold            =   False
-      DataField       =   ""
-      DataSource      =   ""
-      Enabled         =   True
-      Height          =   20
-      HelpTag         =   ""
-      Index           =   -2147483648
-      InitialParent   =   ""
-      Italic          =   False
-      Left            =   20
-      LockBottom      =   False
-      LockedInPosition=   False
-      LockLeft        =   True
-      LockRight       =   False
-      LockTop         =   True
-      Multiline       =   False
-      Scope           =   0
-      Selectable      =   False
-      TabIndex        =   15
-      TabPanelIndex   =   0
-      TabStop         =   True
-      Text            =   ""
-      TextAlign       =   1
-      TextColor       =   &c00000000
-      TextFont        =   "System"
-      TextSize        =   0.0
-      TextUnit        =   0
-      Top             =   191
-      Transparent     =   False
-      Underline       =   False
-      Visible         =   True
-      Width           =   238
+      Width           =   404
    End
 End
 #tag EndWindow
@@ -1191,34 +913,6 @@ End
 		    prevLabel.Text = WordButton.Caption
 		    WordButton.Caption = nextLabel.text
 		    nextLabel.text = if(index < UBound(history),history(index+1),"")
-		    updateWords(WordButton.Caption)
-		  end
-		  
-		End Function
-	#tag EndEvent
-#tag EndEvents
-#tag Events nextLabel1
-	#tag Event
-		Function MouseDown(X As Integer, Y As Integer) As Boolean
-		  if index < UBound(history) then
-		    index = index + 1
-		    prevLabel.Text = WordButton.Caption
-		    WordButton.Caption = nextLabel.text
-		    nextLabel.text = if(index < UBound(history),history(index+1),"")
-		    updateWords(WordButton.Caption)
-		  end
-		  
-		End Function
-	#tag EndEvent
-#tag EndEvents
-#tag Events prevLabel1
-	#tag Event
-		Function MouseDown(X As Integer, Y As Integer) As Boolean
-		  if index > 0 then
-		    index = index - 1
-		    nextLabel.Text = WordButton.Caption
-		    WordButton.Caption = prevLabel.text
-		    prevLabel.text = if(index > 0,history(index-1),"")
 		    updateWords(WordButton.Caption)
 		  end
 		  
