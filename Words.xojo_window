@@ -587,41 +587,6 @@ Begin Window Words
       _ScrollOffset   =   0
       _ScrollWidth    =   -1
    End
-   Begin Label nextLabel1
-      AutoDeactivate  =   True
-      Bold            =   False
-      DataField       =   ""
-      DataSource      =   ""
-      Enabled         =   True
-      Height          =   20
-      HelpTag         =   ""
-      Index           =   -2147483648
-      InitialParent   =   ""
-      Italic          =   False
-      Left            =   1022
-      LockBottom      =   False
-      LockedInPosition=   False
-      LockLeft        =   True
-      LockRight       =   False
-      LockTop         =   True
-      Multiline       =   False
-      Scope           =   0
-      Selectable      =   False
-      TabIndex        =   12
-      TabPanelIndex   =   0
-      TabStop         =   True
-      Text            =   ""
-      TextAlign       =   1
-      TextColor       =   &c00000000
-      TextFont        =   "System"
-      TextSize        =   0.0
-      TextUnit        =   0
-      Top             =   191
-      Transparent     =   False
-      Underline       =   False
-      Visible         =   True
-      Width           =   238
-   End
    Begin CustomListbox OtherSubstringsListbox
       AutoDeactivate  =   True
       AutoHideScrollbars=   True
@@ -725,41 +690,6 @@ Begin Window Words
       Width           =   238
       _ScrollOffset   =   0
       _ScrollWidth    =   -1
-   End
-   Begin Label prevLabel1
-      AutoDeactivate  =   True
-      Bold            =   False
-      DataField       =   ""
-      DataSource      =   ""
-      Enabled         =   True
-      Height          =   20
-      HelpTag         =   ""
-      Index           =   -2147483648
-      InitialParent   =   ""
-      Italic          =   False
-      Left            =   20
-      LockBottom      =   False
-      LockedInPosition=   False
-      LockLeft        =   True
-      LockRight       =   False
-      LockTop         =   True
-      Multiline       =   False
-      Scope           =   0
-      Selectable      =   False
-      TabIndex        =   15
-      TabPanelIndex   =   0
-      TabStop         =   True
-      Text            =   ""
-      TextAlign       =   1
-      TextColor       =   &c00000000
-      TextFont        =   "System"
-      TextSize        =   0.0
-      TextUnit        =   0
-      Top             =   191
-      Transparent     =   False
-      Underline       =   False
-      Visible         =   True
-      Width           =   238
    End
 End
 #tag EndWindow
@@ -888,6 +818,9 @@ End
 		Sub updateWords(word as string)
 		  WordButton.setCaptionStyle
 		  
+		  OtherSubstringsListbox.DeleteAllRows
+		  OtherSubsetsListbox.DeleteAllRows
+		  
 		  HookOfListbox.DeleteAllRows
 		  SubsetListbox.DeleteAllRows
 		  
@@ -897,6 +830,12 @@ End
 		  HooksListbox.DeleteAllRows
 		  SupersetListbox.DeleteAllRows
 		  
+		  OtherSuperstringsListbox.DeleteAllRows
+		  OtherSupersetsListbox.DeleteAllRows
+		  
+		  'update_othersubstrings(word)
+		  'update_othersubsets(word)
+		  
 		  update_hookof(word)
 		  update_subset(word)
 		  
@@ -905,6 +844,9 @@ End
 		  
 		  update_hooks(word)
 		  update_superset(word)
+		  
+		  'update_othersuperstrings(word)
+		  'update_othersupersets(word)
 		  
 		  Words.Title = "Words ("+str(len(word))+" letter"+if(len(word)=1,"","s")+")"
 		  
@@ -1191,34 +1133,6 @@ End
 		    prevLabel.Text = WordButton.Caption
 		    WordButton.Caption = nextLabel.text
 		    nextLabel.text = if(index < UBound(history),history(index+1),"")
-		    updateWords(WordButton.Caption)
-		  end
-		  
-		End Function
-	#tag EndEvent
-#tag EndEvents
-#tag Events nextLabel1
-	#tag Event
-		Function MouseDown(X As Integer, Y As Integer) As Boolean
-		  if index < UBound(history) then
-		    index = index + 1
-		    prevLabel.Text = WordButton.Caption
-		    WordButton.Caption = nextLabel.text
-		    nextLabel.text = if(index < UBound(history),history(index+1),"")
-		    updateWords(WordButton.Caption)
-		  end
-		  
-		End Function
-	#tag EndEvent
-#tag EndEvents
-#tag Events prevLabel1
-	#tag Event
-		Function MouseDown(X As Integer, Y As Integer) As Boolean
-		  if index > 0 then
-		    index = index - 1
-		    nextLabel.Text = WordButton.Caption
-		    WordButton.Caption = prevLabel.text
-		    prevLabel.text = if(index > 0,history(index-1),"")
 		    updateWords(WordButton.Caption)
 		  end
 		  
