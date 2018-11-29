@@ -833,8 +833,8 @@ End
 		  OtherSuperstringsListbox.DeleteAllRows
 		  OtherSupersetsListbox.DeleteAllRows
 		  
-		  'update_othersubstrings(word)
-		  'update_othersubsets(word)
+		  update_othersubstrings(word)
+		  update_othersubsets(word)
 		  
 		  update_hookof(word)
 		  update_subset(word)
@@ -845,8 +845,8 @@ End
 		  update_hooks(word)
 		  update_superset(word)
 		  
-		  'update_othersuperstrings(word)
-		  'update_othersupersets(word)
+		  update_othersuperstrings(word)
+		  update_othersupersets(word)
 		  
 		  Words.Title = "Words ("+str(len(word))+" letter"+if(len(word)=1,"","s")+")"
 		  
@@ -929,6 +929,108 @@ End
 		  
 		  while not data.EOF
 		    HooksListbox.AddRow data.IdxField(1).StringValue
+		    data.MoveNext
+		  wend
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub update_othersubsets(word as string)
+		  dim combo as string
+		  combo = app.sort_word(word.totext)
+		  dim length as integer
+		  length = len(combo)-1
+		  
+		  dim sql as string
+		  sql = "SELECT id,Combo FROM Combos WHERE length = "+str(length)+" ORDER BY combo_playability"
+		  
+		  dim data as RecordSet
+		  data = app.wordsDB.SQLSelect(sql)
+		  
+		  while not data.EOF
+		    if one_off(data.IdxField(2).StringValue,combo) then
+		      sql = "SELECT Word FROM Words WHERE combo_id = "+data.IdxField(1).StringValue
+		      dim data2 as RecordSet
+		      data2 = app.wordsDB.SQLSelect(sql)
+		      while not data2.EOF
+		        OtherSubsetsListbox.AddRow data2.IdxField(1).StringValue
+		        data2.MoveNext
+		      wend
+		    end
+		    data.MoveNext
+		  wend
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub update_othersubstrings(word as string)
+		  dim front,back as string
+		  front = left(word,len(word)-1)
+		  back = right(word,len(word)-1)
+		  
+		  if isWord(front) then
+		    OtherSubstringsListbox.AddRow front
+		  end
+		  
+		  if isWord(back) then
+		    OtherSubstringsListbox.AddRow back
+		  end
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub update_othersupersets(word as string)
+		  dim combo as string
+		  combo = app.sort_word(word.totext)
+		  dim length as integer
+		  length = len(combo)+1
+		  
+		  dim sql as string
+		  sql = "SELECT id,Combo FROM Combos WHERE length = "+str(length)+" ORDER BY combo_playability"
+		  
+		  dim data as RecordSet
+		  data = app.wordsDB.SQLSelect(sql)
+		  
+		  while not data.EOF
+		    if one_off(data.IdxField(2).StringValue,combo) then
+		      sql = "SELECT Word FROM Words WHERE combo_id = "+data.IdxField(1).StringValue
+		      dim data2 as RecordSet
+		      data2 = app.wordsDB.SQLSelect(sql)
+		      while not data2.EOF
+		        OtherSupersetsListbox.AddRow data2.IdxField(1).StringValue
+		        data2.MoveNext
+		      wend
+		    end
+		    data.MoveNext
+		  wend
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub update_othersuperstrings(word as string)
+		  dim id as integer
+		  id = app.word_id(word)
+		  
+		  dim sql as string
+		  sql = "SELECT Word FROM Words WHERE f_hook_of = "+str(id)
+		  
+		  dim data as RecordSet
+		  data = app.wordsDB.SQLSelect(sql)
+		  
+		  while not data.EOF
+		    OtherSuperstringsListbox.AddRow data.IdxField(1).StringValue
+		    data.MoveNext
+		  wend
+		  
+		  sql = "SELECT Word FROM Words WHERE b_hook_of = "+str(id)
+		  data = app.wordsDB.SQLSelect(sql)
+		  
+		  while not data.EOF
+		    OtherSuperstringsListbox.AddRow data.IdxField(1).StringValue
 		    data.MoveNext
 		  wend
 		  
