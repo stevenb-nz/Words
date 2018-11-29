@@ -759,6 +759,37 @@ End
 
 
 	#tag Method, Flags = &h0
+		Function incombo(combo1 as string, combo2 as string) As boolean
+		  dim bigcombo, smallcombo as string
+		  
+		  bigcombo = combo1
+		  smallcombo = combo2
+		  
+		  do
+		    select case left(bigcombo,1)
+		    case is < left(smallcombo,1)
+		      if len(bigcombo) = 1 then
+		        return false
+		      end
+		      bigcombo = right(bigcombo,len(bigcombo)-1)
+		    case is > left(smallcombo,1)
+		      return false
+		    else
+		      if len(smallcombo) = 1 then
+		        return true
+		      end
+		      if len(bigcombo) = 1 then
+		        return false
+		      end
+		      smallcombo = right(smallcombo,len(smallcombo)-1)
+		      bigcombo = right(bigcombo,len(bigcombo)-1)
+		    end
+		  loop
+		  
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Function isWord(word as string) As Boolean
 		  dim sql as string
 		  sql = "SELECT * from Words WHERE Word='"+word+"'"
@@ -833,6 +864,11 @@ End
 		  OtherSuperstringsListbox.DeleteAllRows
 		  OtherSupersetsListbox.DeleteAllRows
 		  
+		  OtherSubsetsListbox.Visible = false
+		  OtherSubsetsListbox.ScrollBarVertical = false
+		  OtherSupersetsListbox.Visible = false
+		  OtherSupersetsListbox.ScrollBarVertical = false
+		  
 		  update_othersubstrings(word)
 		  update_othersubsets(word)
 		  
@@ -847,6 +883,11 @@ End
 		  
 		  update_othersuperstrings(word)
 		  update_othersupersets(word)
+		  
+		  OtherSubsetsListbox.Visible = true
+		  OtherSubsetsListbox.ScrollBarVertical = true
+		  OtherSupersetsListbox.Visible = true
+		  OtherSupersetsListbox.ScrollBarVertical = true
 		  
 		  Words.Title = "Words ("+str(len(word))+" letter"+if(len(word)=1,"","s")+")"
 		  
@@ -941,22 +982,31 @@ End
 		  combo = app.sort_word(word.totext)
 		  dim length as integer
 		  length = len(combo)-1
+		  dim startTime, endTime as double
 		  
 		  dim sql as string
-		  sql = "SELECT id,Combo FROM Combos WHERE length = "+str(length)+" ORDER BY combo_playability"
+		  sql = "SELECT id,Combo FROM Combos WHERE length < "+str(length)+" ORDER BY length DESC"
 		  
 		  dim data as RecordSet
 		  data = app.wordsDB.SQLSelect(sql)
 		  
+		  Dim d As New Date
+		  startTime = d.TotalSeconds
+		  
 		  while not data.EOF
-		    if one_off(data.IdxField(2).StringValue,combo) then
-		      sql = "SELECT Word FROM Words WHERE combo_id = "+data.IdxField(1).StringValue
+		    if incombo(combo,data.IdxField(2).StringValue) then
+		      sql = "SELECT Word FROM Words WHERE combo_id = "+data.IdxField(1).StringValue+" ORDER BY Word"
 		      dim data2 as RecordSet
 		      data2 = app.wordsDB.SQLSelect(sql)
 		      while not data2.EOF
 		        OtherSubsetsListbox.AddRow data2.IdxField(1).StringValue
 		        data2.MoveNext
 		      wend
+		      d = New Date
+		      endTime = d.TotalSeconds
+		      if endTime - startTime > 15 then
+		        exit sub
+		      end
 		    end
 		    data.MoveNext
 		  wend
@@ -988,22 +1038,31 @@ End
 		  combo = app.sort_word(word.totext)
 		  dim length as integer
 		  length = len(combo)+1
+		  dim startTime, endTime as double
 		  
 		  dim sql as string
-		  sql = "SELECT id,Combo FROM Combos WHERE length = "+str(length)+" ORDER BY combo_playability"
+		  sql = "SELECT id,Combo FROM Combos WHERE length > "+str(length)+" ORDER BY length"
 		  
 		  dim data as RecordSet
 		  data = app.wordsDB.SQLSelect(sql)
 		  
+		  Dim d As New Date
+		  startTime = d.TotalSeconds
+		  
 		  while not data.EOF
-		    if one_off(data.IdxField(2).StringValue,combo) then
-		      sql = "SELECT Word FROM Words WHERE combo_id = "+data.IdxField(1).StringValue
+		    if incombo(data.IdxField(2).StringValue,combo) then
+		      sql = "SELECT Word FROM Words WHERE combo_id = "+data.IdxField(1).StringValue+" ORDER BY Word"
 		      dim data2 as RecordSet
 		      data2 = app.wordsDB.SQLSelect(sql)
 		      while not data2.EOF
 		        OtherSupersetsListbox.AddRow data2.IdxField(1).StringValue
 		        data2.MoveNext
 		      wend
+		      d = New Date
+		      endTime = d.TotalSeconds
+		      if endTime - startTime > 15 then
+		        exit sub
+		      end
 		    end
 		    data.MoveNext
 		  wend
