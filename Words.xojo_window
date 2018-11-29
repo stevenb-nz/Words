@@ -966,17 +966,18 @@ End
 
 	#tag Method, Flags = &h0
 		Sub update_othersubstrings(word as string)
-		  dim front,back as string
-		  front = left(word,len(word)-1)
-		  back = right(word,len(word)-1)
+		  dim sql as string
+		  dim data as RecordSet
 		  
-		  if isWord(front) then
-		    OtherSubstringsListbox.AddRow front
-		  end
+		  sql = "SELECT Word FROM Words JOIN Combos ON Words.combo_id = Combos.id WHERE length < "+str(len(word)-1)+" ORDER BY length DESC"
+		  data = app.wordsDB.SQLSelect(sql)
 		  
-		  if isWord(back) then
-		    OtherSubstringsListbox.AddRow back
-		  end
+		  while not data.eof
+		    if instr(word,data.IdxField(1).StringValue) > 0 then
+		      OtherSubstringsListbox.AddRow data.IdxField(1).StringValue
+		    end
+		    data.movenext
+		  wend
 		  
 		End Sub
 	#tag EndMethod
@@ -1012,26 +1013,17 @@ End
 
 	#tag Method, Flags = &h0
 		Sub update_othersuperstrings(word as string)
-		  dim id as integer
-		  id = app.word_id(word)
-		  
 		  dim sql as string
-		  sql = "SELECT Word FROM Words WHERE f_hook_of = "+str(id)
-		  
 		  dim data as RecordSet
+		  
+		  sql = "SELECT Word FROM Words JOIN Combos ON Words.combo_id = Combos.id WHERE length > "+str(len(word)+1)+" ORDER BY length"
 		  data = app.wordsDB.SQLSelect(sql)
 		  
-		  while not data.EOF
-		    OtherSuperstringsListbox.AddRow data.IdxField(1).StringValue
-		    data.MoveNext
-		  wend
-		  
-		  sql = "SELECT Word FROM Words WHERE b_hook_of = "+str(id)
-		  data = app.wordsDB.SQLSelect(sql)
-		  
-		  while not data.EOF
-		    OtherSuperstringsListbox.AddRow data.IdxField(1).StringValue
-		    data.MoveNext
+		  while not data.eof
+		    if instr(data.IdxField(1).StringValue,word) > 0 then
+		      OtherSuperstringsListbox.AddRow data.IdxField(1).StringValue
+		    end
+		    data.movenext
 		  wend
 		  
 		End Sub
