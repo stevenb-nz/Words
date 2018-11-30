@@ -303,7 +303,7 @@ Begin Window Words
       LockBottom      =   False
       LockedInPosition=   False
       LockLeft        =   True
-      LockRight       =   False
+      LockRight       =   True
       LockTop         =   True
       Scope           =   0
       TabIndex        =   0
@@ -553,7 +553,7 @@ Begin Window Words
       GridLinesVertical=   0
       HasHeading      =   False
       HeadingIndex    =   -1
-      Height          =   509
+      Height          =   477
       HelpTag         =   ""
       Hierarchical    =   False
       Index           =   -2147483648
@@ -578,7 +578,7 @@ Begin Window Words
       TextFont        =   "System"
       TextSize        =   0.0
       TextUnit        =   0
-      Top             =   191
+      Top             =   223
       Transparent     =   False
       Underline       =   False
       UseFocusRing    =   True
@@ -657,7 +657,7 @@ Begin Window Words
       GridLinesVertical=   0
       HasHeading      =   False
       HeadingIndex    =   -1
-      Height          =   509
+      Height          =   477
       HelpTag         =   ""
       Hierarchical    =   False
       Index           =   -2147483648
@@ -682,7 +682,7 @@ Begin Window Words
       TextFont        =   "System"
       TextSize        =   0.0
       TextUnit        =   0
-      Top             =   191
+      Top             =   223
       Transparent     =   False
       Underline       =   False
       UseFocusRing    =   True
@@ -690,6 +690,70 @@ Begin Window Words
       Width           =   238
       _ScrollOffset   =   0
       _ScrollWidth    =   -1
+   End
+   Begin PushButton OtherSubsetsPushButton
+      AutoDeactivate  =   True
+      Bold            =   False
+      ButtonStyle     =   "0"
+      Cancel          =   False
+      Caption         =   "Other Subsets"
+      Default         =   False
+      Enabled         =   True
+      Height          =   20
+      HelpTag         =   ""
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Italic          =   False
+      Left            =   20
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      Scope           =   0
+      TabIndex        =   15
+      TabPanelIndex   =   0
+      TabStop         =   True
+      TextFont        =   "System"
+      TextSize        =   0.0
+      TextUnit        =   0
+      Top             =   191
+      Transparent     =   False
+      Underline       =   False
+      Visible         =   True
+      Width           =   158
+   End
+   Begin PushButton OtherSupersetsPushButton
+      AutoDeactivate  =   True
+      Bold            =   False
+      ButtonStyle     =   "0"
+      Cancel          =   False
+      Caption         =   "Other Supersets"
+      Default         =   False
+      Enabled         =   True
+      Height          =   20
+      HelpTag         =   ""
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Italic          =   False
+      Left            =   1102
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   False
+      LockRight       =   True
+      LockTop         =   True
+      Scope           =   0
+      TabIndex        =   16
+      TabPanelIndex   =   0
+      TabStop         =   True
+      TextFont        =   "System"
+      TextSize        =   0.0
+      TextUnit        =   0
+      Top             =   191
+      Transparent     =   False
+      Underline       =   False
+      Visible         =   True
+      Width           =   158
    End
 End
 #tag EndWindow
@@ -746,13 +810,6 @@ End
 	#tag Event
 		Sub Resized()
 		  storeBounds
-		  
-		End Sub
-	#tag EndEvent
-
-	#tag Event
-		Sub Resizing()
-		  WordButton.Left = words.Width / 2 - 202
 		  
 		End Sub
 	#tag EndEvent
