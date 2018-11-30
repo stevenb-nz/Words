@@ -818,30 +818,23 @@ End
 	#tag Method, Flags = &h0
 		Function incombo(combo1 as string, combo2 as string) As boolean
 		  dim bigcombo, smallcombo as string
+		  dim i,j,k as integer
 		  
 		  bigcombo = combo1
 		  smallcombo = combo2
 		  
-		  do
-		    select case left(bigcombo,1)
-		    case is < left(smallcombo,1)
-		      if len(bigcombo) = 1 then
-		        return false
-		      end
-		      bigcombo = right(bigcombo,len(bigcombo)-1)
-		    case is > left(smallcombo,1)
+		  i = 0
+		  j = len(smallcombo)
+		  k = 1
+		  
+		  while i < j
+		    i = i + 1
+		    k = instr(k,bigcombo,mid(smallcombo,i,1))
+		    if k = 0 then
 		      return false
-		    else
-		      if len(smallcombo) = 1 then
-		        return true
-		      end
-		      if len(bigcombo) = 1 then
-		        return false
-		      end
-		      smallcombo = right(smallcombo,len(smallcombo)-1)
-		      bigcombo = right(bigcombo,len(bigcombo)-1)
 		    end
-		  loop
+		  wend
+		  return true
 		  
 		End Function
 	#tag EndMethod
@@ -921,13 +914,7 @@ End
 		  OtherSuperstringsListbox.DeleteAllRows
 		  OtherSupersetsListbox.DeleteAllRows
 		  
-		  OtherSubsetsListbox.Visible = false
-		  OtherSubsetsListbox.ScrollBarVertical = false
-		  OtherSupersetsListbox.Visible = false
-		  OtherSupersetsListbox.ScrollBarVertical = false
-		  
 		  update_othersubstrings(word)
-		  update_othersubsets(word)
 		  
 		  update_hookof(word)
 		  update_subset(word)
@@ -939,12 +926,6 @@ End
 		  update_superset(word)
 		  
 		  update_othersuperstrings(word)
-		  update_othersupersets(word)
-		  
-		  OtherSubsetsListbox.Visible = true
-		  OtherSubsetsListbox.ScrollBarVertical = true
-		  OtherSupersetsListbox.Visible = true
-		  OtherSupersetsListbox.ScrollBarVertical = true
 		  
 		  Words.Title = "Words ("+str(len(word))+" letter"+if(len(word)=1,"","s")+")"
 		  
@@ -1039,16 +1020,12 @@ End
 		  combo = app.sort_word(word.totext)
 		  dim length as integer
 		  length = len(combo)-1
-		  dim startTime, endTime as double
 		  
 		  dim sql as string
-		  sql = "SELECT id,Combo FROM Combos WHERE length < "+str(length)+" ORDER BY length DESC"
+		  sql = "SELECT id,Combo FROM Combos WHERE length = "+str(length-1)+" ORDER BY length DESC"
 		  
 		  dim data as RecordSet
 		  data = app.wordsDB.SQLSelect(sql)
-		  
-		  Dim d As New Date
-		  startTime = d.TotalSeconds
 		  
 		  while not data.EOF
 		    if incombo(combo,data.IdxField(2).StringValue) then
@@ -1059,11 +1036,6 @@ End
 		        OtherSubsetsListbox.AddRow data2.IdxField(1).StringValue
 		        data2.MoveNext
 		      wend
-		      d = New Date
-		      endTime = d.TotalSeconds
-		      if endTime - startTime > 15 then
-		        exit sub
-		      end
 		    end
 		    data.MoveNext
 		  wend
@@ -1095,16 +1067,12 @@ End
 		  combo = app.sort_word(word.totext)
 		  dim length as integer
 		  length = len(combo)+1
-		  dim startTime, endTime as double
 		  
 		  dim sql as string
-		  sql = "SELECT id,Combo FROM Combos WHERE length > "+str(length)+" ORDER BY length"
+		  sql = "SELECT id,Combo FROM Combos WHERE length = "+str(length+1)+" ORDER BY length"
 		  
 		  dim data as RecordSet
 		  data = app.wordsDB.SQLSelect(sql)
-		  
-		  Dim d As New Date
-		  startTime = d.TotalSeconds
 		  
 		  while not data.EOF
 		    if incombo(data.IdxField(2).StringValue,combo) then
@@ -1115,11 +1083,6 @@ End
 		        OtherSupersetsListbox.AddRow data2.IdxField(1).StringValue
 		        data2.MoveNext
 		      wend
-		      d = New Date
-		      endTime = d.TotalSeconds
-		      if endTime - startTime > 15 then
-		        exit sub
-		      end
 		    end
 		    data.MoveNext
 		  wend
@@ -1347,6 +1310,42 @@ End
 		  end
 		  
 		End Function
+	#tag EndEvent
+#tag EndEvents
+#tag Events OtherSubsetsPushButton
+	#tag Event
+		Sub Action()
+		  dim word as string
+		  
+		  word = WordButton.Caption
+		  
+		  OtherSubsetsListbox.Visible = false
+		  OtherSubsetsListbox.ScrollBarVertical = false
+		  
+		  update_othersubsets(word)
+		  
+		  OtherSubsetsListbox.Visible = true
+		  OtherSubsetsListbox.ScrollBarVertical = true
+		  
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events OtherSupersetsPushButton
+	#tag Event
+		Sub Action()
+		  dim word as string
+		  
+		  word = WordButton.Caption
+		  
+		  OtherSupersetsListbox.Visible = false
+		  OtherSupersetsListbox.ScrollBarVertical = false
+		  
+		  update_othersupersets(word)
+		  
+		  OtherSupersetsListbox.Visible = true
+		  OtherSupersetsListbox.ScrollBarVertical = true
+		  
+		End Sub
 	#tag EndEvent
 #tag EndEvents
 #tag ViewBehavior
