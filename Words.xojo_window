@@ -915,6 +915,8 @@ End
 		  OtherSupersetsListbox.DeleteAllRows
 		  
 		  update_othersubstrings(word)
+		  nsubset = len(word) - 2
+		  OtherSubsetsPushButton.Enabled = nsubset > 1
 		  
 		  update_hookof(word)
 		  update_subset(word)
@@ -926,6 +928,8 @@ End
 		  update_superset(word)
 		  
 		  update_othersuperstrings(word)
+		  nsuperset = len(word) + 2
+		  OtherSupersetsPushButton.Enabled = nsuperset < 16
 		  
 		  Words.Title = "Words ("+str(len(word))+" letter"+if(len(word)=1,"","s")+")"
 		  
@@ -1022,7 +1026,7 @@ End
 		  length = len(combo)-1
 		  
 		  dim sql as string
-		  sql = "SELECT id,Combo FROM Combos WHERE length = "+str(length-1)+" ORDER BY length DESC"
+		  sql = "SELECT id,Combo FROM Combos WHERE length = "+str(nsubset)+" ORDER BY length DESC"
 		  
 		  dim data as RecordSet
 		  data = app.wordsDB.SQLSelect(sql)
@@ -1069,7 +1073,7 @@ End
 		  length = len(combo)+1
 		  
 		  dim sql as string
-		  sql = "SELECT id,Combo FROM Combos WHERE length = "+str(length+1)+" ORDER BY length"
+		  sql = "SELECT id,Combo FROM Combos WHERE length = "+str(nsuperset)+" ORDER BY length"
 		  
 		  dim data as RecordSet
 		  data = app.wordsDB.SQLSelect(sql)
@@ -1204,6 +1208,14 @@ End
 		index As Integer
 	#tag EndProperty
 
+	#tag Property, Flags = &h0
+		nsubset As Integer
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		nsuperset As Integer
+	#tag EndProperty
+
 
 #tag EndWindowCode
 
@@ -1327,6 +1339,9 @@ End
 		  OtherSubsetsListbox.Visible = true
 		  OtherSubsetsListbox.ScrollBarVertical = true
 		  
+		  nsubset = nsubset - 1
+		  me.Enabled = nsubset > 1
+		  
 		End Sub
 	#tag EndEvent
 #tag EndEvents
@@ -1345,6 +1360,8 @@ End
 		  OtherSupersetsListbox.Visible = true
 		  OtherSupersetsListbox.ScrollBarVertical = true
 		  
+		  nsuperset = nsuperset + 1
+		  me.Enabled = nsuperset < 16
 		End Sub
 	#tag EndEvent
 #tag EndEvents
@@ -1577,6 +1594,16 @@ End
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="index"
+		Group="Behavior"
+		Type="Integer"
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="nsubset"
+		Group="Behavior"
+		Type="Integer"
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="nsuperset"
 		Group="Behavior"
 		Type="Integer"
 	#tag EndViewProperty
