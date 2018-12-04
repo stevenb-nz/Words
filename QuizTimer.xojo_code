@@ -1,5 +1,5 @@
 #tag Class
-Protected Class CustomTimer
+Protected Class QuizTimer
 Inherits Timer
 	#tag Event
 		Sub Action()

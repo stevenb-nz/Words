@@ -562,4 +562,9 @@ End
 		Group="Behavior"
 		Type="boolean"
 	#tag EndViewProperty
+	#tag ViewProperty
+		Name="current"
+		Group="Behavior"
+		Type="Integer"
+	#tag EndViewProperty
 #tag EndViewBehavior

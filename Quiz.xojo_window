@@ -520,9 +520,9 @@ End
 		  GuessesLabel.Text = guessListbox.ListCount.ToText
 		  guessField.text = ""
 		  guessField.BackColor = &cFFCCCC
-		  myTimer = new CustomTimer
-		  mytimer.Period = 750
-		  mytimer.Mode = Timer.ModeSingle
+		  myQuizTimer = new QuizTimer
+		  myQuizTimer.Period = 750
+		  myQuizTimer.Mode = Timer.ModeSingle
 		  
 		End Sub
 	#tag EndMethod
@@ -947,7 +947,7 @@ End
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
-		myTimer As CustomTimer
+		myQuizTimer As QuizTimer
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
