@@ -205,6 +205,7 @@ End
 		  for i = 3 to 8
 		    app.updateSetting("Word Show "+str(i),str(progress(i-3)))
 		  next
+		  app.updateSetting("Word Show current",str(current-3))
 		  
 		  Words.Show
 		  
@@ -253,6 +254,7 @@ End
 		    wend
 		    wordlists.Append w
 		    progress.Append val(app.getSetting("Word Show "+str(i)))
+		    current = val(app.getSetting("Word Show current"))+3
 		  next
 		  
 		End Sub
@@ -278,6 +280,10 @@ End
 
 	#tag Property, Flags = &h0
 		closable As Boolean
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		current As Integer
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
