@@ -287,6 +287,10 @@ End
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
+		myWordShowTimer As WordShowTimer
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
 		progress(-1) As Integer
 	#tag EndProperty
 
