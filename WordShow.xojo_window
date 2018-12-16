@@ -49,7 +49,7 @@ Begin Window WordShow
       Hierarchical    =   False
       Index           =   -2147483648
       InitialParent   =   ""
-      InitialValue    =   "\n"
+      InitialValue    =   ""
       Italic          =   False
       Left            =   0
       LockBottom      =   True
@@ -60,7 +60,7 @@ Begin Window WordShow
       RequiresSelection=   False
       Scope           =   0
       ScrollbarHorizontal=   False
-      ScrollBarVertical=   True
+      ScrollBarVertical=   False
       SelectionType   =   0
       ShowDropIndicator=   False
       TabIndex        =   6
