@@ -339,7 +339,9 @@ End
 		Function MouseDown(x As Integer, y As Integer) As Boolean
 		  stopped = not stopped
 		  if not stopped then
-		    'start
+		    'set elapsed to zero
+		    'fill in current question, increment total count, set up next question 
+		    'set timer seconds to length of word
 		  end
 		  
 		End Function
