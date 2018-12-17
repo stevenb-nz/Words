@@ -201,11 +201,19 @@ End
 	#tag Event
 		Sub Close()
 		  dim i as integer
+		  dim s as string
 		  
 		  for i = 3 to 8
 		    app.updateSetting("Word Show "+str(i),str(progress(i-3)))
 		  next
 		  app.updateSetting("Word Show current",str(current-3))
+		  
+		  for i = 0 to 19
+		    if i < WordShowListbox.ListCount then
+		      s = s + ","+WordShowListbox.list(i)
+		    end
+		  next
+		  app.updateSetting("Word Show history",s)
 		  
 		  Words.Show
 		  
@@ -226,6 +234,7 @@ End
 		  dim sql as string
 		  dim data as RecordSet
 		  dim w as wordlist
+		  dim history(-1) as string
 		  
 		  Words.Visible = false
 		  stopped  = true
@@ -255,6 +264,11 @@ End
 		    wordlists.Append w
 		    progress.Append val(app.getSetting("Word Show "+str(i)))
 		    current = val(app.getSetting("Word Show current"))+3
+		  next
+		  WordShowListbox.DeleteAllRows
+		  history = app.getSetting("Word Show history").split(",")
+		  for i = 1 to history.Ubound
+		    WordShowListbox.AddRow history(i)
 		  next
 		  
 		End Sub
