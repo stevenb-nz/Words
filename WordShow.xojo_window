@@ -207,6 +207,7 @@ End
 		    app.updateSetting("Word Show "+str(i),str(progress(i-3)))
 		  next
 		  app.updateSetting("Word Show current",str(current-3))
+		  app.updateSetting("Word Show count",countLabel.Text)
 		  
 		  for i = 0 to 19
 		    if i < WordShowListbox.ListCount then
@@ -263,8 +264,9 @@ End
 		    wend
 		    wordlists.Append w
 		    progress.Append val(app.getSetting("Word Show "+str(i)))
-		    current = val(app.getSetting("Word Show current"))+3
 		  next
+		  current = val(app.getSetting("Word Show current"))+3
+		  countLabel.Text = app.getSetting("Word Show count")
 		  WordShowListbox.DeleteAllRows
 		  history = app.getSetting("Word Show history").split(",")
 		  for i = 1 to history.Ubound
