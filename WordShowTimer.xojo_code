@@ -8,8 +8,8 @@ Inherits Timer
 		  'dim t as textoutputStream
 		  'dim d as date
 		  '
-		  'if waitmode = "a" then
-		  'waitmode = "q"
+		  'if not stoppable then
+		  'stoppable = true
 		  'sw1 = NthField(s,chr(13),nextcomb*2-1)
 		  'sw2 = NthField(s,chr(13),nextcomb*2)
 		  'swc = CountFields(sw2,",")
@@ -23,7 +23,7 @@ Inherits Timer
 		  'next
 		  'staticText1.text = sw3 + right(staticText1.text,len(staticText1.text)-instr(statictext1.text,chr(13))-1)
 		  'app.timerglobal = 2000 * swc + 1000
-		  'if quitmode = "yes" then
+		  'if stopped then
 		  'timer1.period = app.timerglobal
 		  'else
 		  'timer1.period = 0
@@ -39,7 +39,7 @@ Inherits Timer
 		  'elapsedseconds = elapsedseconds - elapsedminutes * 60
 		  'statictext2.text = Format(elapsedhours,"00")+":"+Format(elapsedminutes,"00")+":"+Format(elapsedseconds,"00")
 		  'statictext3.text = str(nextcomb)
-		  'if quitmode = "stopped" then
+		  'if stopped then
 		  't = prefs.createtextFile
 		  't.writeline str(nextcomb)
 		  't.writeline replaceall(staticText1.text,chr(13),"•")
@@ -48,7 +48,7 @@ Inherits Timer
 		  't.close
 		  'quit
 		  'else
-		  'waitmode = "a"
+		  'stoppable = false
 		  'sw1 = cvsw(NthField(s,chr(13),nextcomb*2-1))
 		  'sw2 = NthField(s,chr(13),nextcomb*2)
 		  'swc = CountFields(sw2,",")

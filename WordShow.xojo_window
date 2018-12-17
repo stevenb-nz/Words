@@ -311,6 +311,10 @@ End
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
+		stoppable As Boolean
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
 		stopped As boolean
 	#tag EndProperty
 
