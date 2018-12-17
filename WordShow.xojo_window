@@ -343,7 +343,7 @@ End
 		Function MouseDown(x As Integer, y As Integer) As Boolean
 		  stopped = not stopped
 		  if not stopped then
-		    'set elapsed to zero
+		    'new base for elapsed time
 		    'fill in current question, increment total count, set up next question 
 		    'set timer seconds to length of word
 		  end
@@ -592,5 +592,10 @@ End
 		Name="current"
 		Group="Behavior"
 		Type="Integer"
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="stoppable"
+		Group="Behavior"
+		Type="Boolean"
 	#tag EndViewProperty
 #tag EndViewBehavior
