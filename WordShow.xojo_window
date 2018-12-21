@@ -295,6 +295,10 @@ End
 
 
 	#tag Property, Flags = &h0
+		base_time As Double
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
 		closable As Boolean
 	#tag EndProperty
 
@@ -343,7 +347,9 @@ End
 		Function MouseDown(x As Integer, y As Integer) As Boolean
 		  stopped = not stopped
 		  if not stopped then
-		    'new base for elapsed time
+		    dim d as new Date
+		    base_time = d.TotalSeconds
+		    
 		    'fill in current question, increment total count, set up next question 
 		    'set timer seconds to length of word
 		  end
