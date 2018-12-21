@@ -349,7 +349,7 @@ End
 		  if not stopped then
 		    dim d as new Date
 		    base_time = d.TotalSeconds
-		    
+		    countLabel.Text = str(val(countLabel.text)+1)
 		    'fill in current question, increment total count, set up next question 
 		    'set timer seconds to length of word
 		  end
