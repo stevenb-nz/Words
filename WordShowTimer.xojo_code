@@ -7,7 +7,7 @@ Inherits Timer
 		  dim added_time as Double
 		  
 		  added_time = d.TotalSeconds
-		  WordShow.timeLabel.text = str(added_time - WordShow.base_time)
+		  WordShow.timeLabel.text = str(WordShow.base_time + (added_time - WordShow.lap_time))
 		  if WordShow.showingAnswer then
 		    WordShow.showingAnswer = false
 		    WordShow.stopping = false

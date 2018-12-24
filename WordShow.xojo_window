@@ -309,6 +309,10 @@ End
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
+		lap_time As Double
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
 		myWordShowTimer As WordShowTimer
 	#tag EndProperty
 
@@ -354,8 +358,9 @@ End
 		  if showingQuestion then
 		    stopping = not stopping
 		  ElseIf not showingAnswer then
+		    base_time = val(timeLabel.text)
 		    dim d as new Date
-		    base_time = d.TotalSeconds
+		    lap_time = d.TotalSeconds
 		    countLabel.Text = str(val(countLabel.text)+1)
 		    'put up next question
 		    showingQuestion = true
