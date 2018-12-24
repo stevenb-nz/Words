@@ -357,9 +357,11 @@ End
 		    dim d as new Date
 		    base_time = d.TotalSeconds
 		    countLabel.Text = str(val(countLabel.text)+1)
-		    'fill in current question, increment total count, set up next question 
-		    'set timer seconds to length of word
+		    'put up next question
 		    showingQuestion = true
+		    myWordShowTimer = new WordShowTimer
+		    myWordShowTimer.Period = 2000
+		    myWordShowTimer.Mode = Timer.ModeSingle
 		  end
 		  
 		End Function
@@ -616,5 +618,10 @@ End
 		Name="base_time"
 		Group="Behavior"
 		Type="Double"
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="showingAnswer"
+		Group="Behavior"
+		Type="Boolean"
 	#tag EndViewProperty
 #tag EndViewBehavior
