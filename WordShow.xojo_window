@@ -238,7 +238,9 @@ End
 		  dim history(-1) as string
 		  
 		  Words.Visible = false
-		  stopped  = true
+		  showingAnswer = false
+		  showingQuestion = false
+		  stopping = false
 		  WordShowListbox.ColumnAlignment(0) = Listbox.AlignCenter
 		  
 		  left = val(app.getSetting("Word Show Left"))
@@ -338,7 +340,7 @@ End
 		Function KeyDown(Key As String) As Boolean
 		  Select Case asc(Key)
 		  Case 27
-		    if stopped then
+		    if not showingQuestion and not showingAnswer then
 		      closable = true
 		      close
 		    end
@@ -349,13 +351,19 @@ End
 	#tag EndEvent
 	#tag Event
 		Function MouseDown(x As Integer, y As Integer) As Boolean
-		  stopped = not stopped
-		  if not stopped then
+		  if showingQuestion then
+		    stopping = not stopping
+		  ElseIf showingAnswer then
+		    if not stopping then
+		      stopping = true
+		    end
+		  else
 		    dim d as new Date
 		    base_time = d.TotalSeconds
 		    countLabel.Text = str(val(countLabel.text)+1)
 		    'fill in current question, increment total count, set up next question 
 		    'set timer seconds to length of word
+		    showingQuestion = true
 		  end
 		  
 		End Function
