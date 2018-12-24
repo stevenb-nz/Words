@@ -353,11 +353,7 @@ End
 		Function MouseDown(x As Integer, y As Integer) As Boolean
 		  if showingQuestion then
 		    stopping = not stopping
-		  ElseIf showingAnswer then
-		    if not stopping then
-		      stopping = true
-		    end
-		  else
+		  ElseIf not showingAnswer then
 		    dim d as new Date
 		    base_time = d.TotalSeconds
 		    countLabel.Text = str(val(countLabel.text)+1)
