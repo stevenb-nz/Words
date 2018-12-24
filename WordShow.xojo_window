@@ -315,11 +315,15 @@ End
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
-		stoppable As Boolean
+		showingAnswer As Boolean
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
-		stopped As boolean
+		showingQuestion As Boolean
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		stopping As boolean
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
@@ -590,7 +594,7 @@ End
 		Type="Boolean"
 	#tag EndViewProperty
 	#tag ViewProperty
-		Name="stopped"
+		Name="stopping"
 		Group="Behavior"
 		Type="boolean"
 	#tag EndViewProperty
@@ -600,8 +604,13 @@ End
 		Type="Integer"
 	#tag EndViewProperty
 	#tag ViewProperty
-		Name="stoppable"
+		Name="showingQuestion"
 		Group="Behavior"
 		Type="Boolean"
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="base_time"
+		Group="Behavior"
+		Type="Double"
 	#tag EndViewProperty
 #tag EndViewBehavior
