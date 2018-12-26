@@ -4,10 +4,16 @@ Inherits Timer
 	#tag Event
 		Sub Action()
 		  dim d as new Date
-		  dim added_time as Double
+		  dim added_time, temp_time as Double
 		  
 		  added_time = d.TotalSeconds
-		  WordShow.timeLabel.text = str(WordShow.base_time + (added_time - WordShow.lap_time))
+		  WordShow.display_time = WordShow.base_time + (added_time - WordShow.lap_time)
+		  temp_time = 5430'WordShow.display_time
+		  WordShow.timeLabel.text = format(temp_time\3600,"#")+":"
+		  temp_time = temp_time mod 3600
+		  WordShow.timeLabel.text = WordShow.timeLabel.text + format(temp_time\60,"00")+":"
+		  temp_time = temp_time mod 60
+		  WordShow.timeLabel.text = WordShow.timeLabel.text + format(temp_time\60,"00")
 		  if WordShow.showingAnswer then
 		    WordShow.showingAnswer = false
 		    WordShow.stopping = false

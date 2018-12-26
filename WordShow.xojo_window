@@ -207,7 +207,7 @@ End
 		    app.updateSetting("Word Show "+str(i),str(progress(i-3)))
 		  next
 		  app.updateSetting("Word Show current",str(current-3))
-		  app.updateSetting("Word Show count",countLabel.Text)
+		  'app.updateSetting("Word Show count",countLabel.Text)
 		  
 		  for i = 0 to 19
 		    if i < WordShowListbox.ListCount then
@@ -269,6 +269,7 @@ End
 		  next
 		  current = val(app.getSetting("Word Show current"))+3
 		  countLabel.Text = app.getSetting("Word Show count")
+		  display_time = 0
 		  WordShowListbox.DeleteAllRows
 		  history = app.getSetting("Word Show history").split(",")
 		  for i = 1 to history.Ubound
@@ -306,6 +307,10 @@ End
 
 	#tag Property, Flags = &h0
 		current As Integer
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		display_time As Double
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
@@ -358,7 +363,7 @@ End
 		  if showingQuestion then
 		    stopping = not stopping
 		  ElseIf not showingAnswer then
-		    base_time = val(timeLabel.text)
+		    base_time = display_time
 		    dim d as new Date
 		    lap_time = d.TotalSeconds
 		    countLabel.Text = str(val(countLabel.text)+1)
@@ -628,5 +633,10 @@ End
 		Name="showingAnswer"
 		Group="Behavior"
 		Type="Boolean"
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="lap_time"
+		Group="Behavior"
+		Type="Double"
 	#tag EndViewProperty
 #tag EndViewBehavior
