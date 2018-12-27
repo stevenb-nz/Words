@@ -4,16 +4,11 @@ Inherits Timer
 	#tag Event
 		Sub Action()
 		  dim d as new Date
-		  dim added_time, temp_time as Double
+		  dim added_time as Double
 		  
 		  added_time = d.TotalSeconds
 		  WordShow.display_time = WordShow.base_time + (added_time - WordShow.lap_time)
-		  temp_time = WordShow.display_time
-		  WordShow.timeLabel.text = format(temp_time\3600,"#")+":"
-		  temp_time = temp_time mod 3600
-		  WordShow.timeLabel.text = WordShow.timeLabel.text + format(temp_time\60,"00")+":"
-		  temp_time = temp_time mod 60
-		  WordShow.timeLabel.text = WordShow.timeLabel.text + format(temp_time,"00")
+		  WordShow.timeLabel.text = display(WordShow.display_time)
 		  if WordShow.showingAnswer then
 		    WordShow.showingAnswer = false
 		    WordShow.stopping = false
@@ -35,8 +30,25 @@ Inherits Timer
 		    end
 		  end
 		  
+		  
 		End Sub
 	#tag EndEvent
+
+
+	#tag Method, Flags = &h0
+		Function display(seconds As Double) As string
+		  dim rs as string
+		  
+		  rs = format(seconds\3600,"#")+":"
+		  seconds = seconds mod 3600
+		  rs = rs + format(seconds\60,"00")+":"
+		  seconds = seconds mod 60
+		  rs = rs + format(seconds,"00")
+		  
+		  return rs
+		  
+		End Function
+	#tag EndMethod
 
 
 	#tag ViewBehavior
