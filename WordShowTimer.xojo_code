@@ -18,14 +18,14 @@ Inherits Timer
 		      WordShow.showingQuestion = false
 		      WordShow.showingAnswer = true
 		      WordShow.myWordShowTimer = new WordShowTimer
-		      WordShow.myWordShowTimer.Period = 1000
+		      WordShow.myWordShowTimer.Period = 1000 '(number of answers * 2 + 1) * 1000
 		      WordShow.myWordShowTimer.Mode = Timer.ModeSingle
 		    else
 		      'display current answer
 		      WordShow.countLabel.Text = str(val(WordShow.countLabel.text)+1)
 		      'put up next question
 		      WordShow.myWordShowTimer = new WordShowTimer
-		      WordShow.myWordShowTimer.Period = 3000
+		      WordShow.myWordShowTimer.Period = 3000 '((number of answers * 2 + 1) + number of letters in next question) * 1000
 		      WordShow.myWordShowTimer.Mode = Timer.ModeSingle
 		    end
 		  end

@@ -206,7 +206,7 @@ End
 		  for i = 3 to 8
 		    app.updateSetting("Word Show "+str(i),str(progress(i-3)))
 		  next
-		  app.updateSetting("Word Show current",str(current-3))
+		  app.updateSetting("Word Show current",str(current_list-3))
 		  'app.updateSetting("Word Show count",countLabel.Text)
 		  
 		  for i = 0 to 19
@@ -267,7 +267,7 @@ End
 		    wordlists.Append w
 		    progress.Append val(app.getSetting("Word Show "+str(i)))
 		  next
-		  current = val(app.getSetting("Word Show current"))+3
+		  current_list = val(app.getSetting("Word Show current"))+3
 		  countLabel.Text = app.getSetting("Word Show count")
 		  display_time = 0
 		  WordShowListbox.DeleteAllRows
@@ -306,7 +306,7 @@ End
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
-		current As Integer
+		current_list As Integer
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
@@ -370,7 +370,7 @@ End
 		    'put up next question
 		    showingQuestion = true
 		    myWordShowTimer = new WordShowTimer
-		    myWordShowTimer.Period = 2000
+		    myWordShowTimer.Period = 2000 'number of letters in next question * 1000
 		    myWordShowTimer.Mode = Timer.ModeSingle
 		  end
 		  
@@ -615,7 +615,7 @@ End
 		Type="boolean"
 	#tag EndViewProperty
 	#tag ViewProperty
-		Name="current"
+		Name="current_list"
 		Group="Behavior"
 		Type="Integer"
 	#tag EndViewProperty
@@ -636,6 +636,11 @@ End
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="lap_time"
+		Group="Behavior"
+		Type="Double"
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="display_time"
 		Group="Behavior"
 		Type="Double"
 	#tag EndViewProperty
