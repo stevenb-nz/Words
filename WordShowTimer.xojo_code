@@ -51,6 +51,15 @@ Inherits Timer
 	#tag EndMethod
 
 
+	#tag Property, Flags = &h0
+		awords As String
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		qword As String
+	#tag EndProperty
+
+
 	#tag ViewBehavior
 		#tag ViewProperty
 			Name="Name"

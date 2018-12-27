@@ -214,7 +214,7 @@ End
 		      s = s + ","+WordShowListbox.list(i)
 		    end
 		  next
-		  app.updateSetting("Word Show history",s)
+		  'app.updateSetting("Word Show history",s)
 		  
 		  Words.Show
 		  
