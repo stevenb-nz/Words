@@ -36,6 +36,12 @@ Inherits Timer
 
 
 	#tag Method, Flags = &h0
+		Function combo_details(combo as string) As string
+		  
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Function display(seconds As Double) As string
 		  dim rs as string
 		  
@@ -101,6 +107,18 @@ Inherits Timer
 			Group="Behavior"
 			InitialValue="1000"
 			Type="Integer"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="awords"
+			Group="Behavior"
+			Type="String"
+			EditorType="MultiLineEditor"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="qword"
+			Group="Behavior"
+			Type="String"
+			EditorType="MultiLineEditor"
 		#tag EndViewProperty
 	#tag EndViewBehavior
 End Class
