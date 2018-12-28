@@ -58,6 +58,10 @@ Inherits Timer
 
 
 	#tag Property, Flags = &h0
+		answer As string
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
 		awords As String
 	#tag EndProperty
 
