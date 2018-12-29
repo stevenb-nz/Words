@@ -5,6 +5,7 @@ Inherits Timer
 		Sub Action()
 		  dim d as new Date
 		  dim added_time as Double
+		  dim i as integer
 		  
 		  added_time = d.TotalSeconds
 		  WordShow.display_time = WordShow.base_time + (added_time - WordShow.lap_time)
@@ -14,32 +15,30 @@ Inherits Timer
 		    WordShow.stopping = false
 		  else
 		    if WordShow.stopping then
-		      'display current answer
+		      for i = 0 to UBound(WordShow.awords)
+		        wordshow.WordShowListbox.InsertRow(0,WordShow.awords(i))
+		      next
+		      wordshow.questionLabel.text = ""
 		      WordShow.showingQuestion = false
 		      WordShow.showingAnswer = true
 		      WordShow.myWordShowTimer = new WordShowTimer
-		      WordShow.myWordShowTimer.Period = 1000 '(number of answers * 2 + 1) * 1000
+		      WordShow.myWordShowTimer.Period = 1 '(number of answers * 2 + 1) * 1000
 		      WordShow.myWordShowTimer.Mode = Timer.ModeSingle
 		    else
-		      'display current answer
+		      for i = 0 to UBound(WordShow.awords)
+		        wordshow.WordShowListbox.InsertRow(0,WordShow.awords(i))
+		      next
 		      WordShow.countLabel.Text = str(val(WordShow.countLabel.text)+1)
-		      'put up next question
+		      WordShow.questionLabel.Text = WordShow.combo_details(WordShow.wordlists(WordShow.current_list-3).wordlist(WordShow.progress(WordShow.current_list-3)))
 		      WordShow.myWordShowTimer = new WordShowTimer
-		      WordShow.myWordShowTimer.Period = 3000 '((number of answers * 2 + 1) + number of letters in next question) * 1000
+		      WordShow.myWordShowTimer.Period = 3 '((number of answers * 2 + 1) + number of letters in next question) * 1000
 		      WordShow.myWordShowTimer.Mode = Timer.ModeSingle
 		    end
 		  end
 		  
-		  
 		End Sub
 	#tag EndEvent
 
-
-	#tag Method, Flags = &h0
-		Function combo_details(combo as string) As string
-		  
-		End Function
-	#tag EndMethod
 
 	#tag Method, Flags = &h0
 		Function display(seconds As Double) As string
@@ -55,19 +54,6 @@ Inherits Timer
 		  
 		End Function
 	#tag EndMethod
-
-
-	#tag Property, Flags = &h0
-		answer As string
-	#tag EndProperty
-
-	#tag Property, Flags = &h0
-		awords As String
-	#tag EndProperty
-
-	#tag Property, Flags = &h0
-		qword As String
-	#tag EndProperty
 
 
 	#tag ViewBehavior
@@ -111,18 +97,6 @@ Inherits Timer
 			Group="Behavior"
 			InitialValue="1000"
 			Type="Integer"
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="awords"
-			Group="Behavior"
-			Type="String"
-			EditorType="MultiLineEditor"
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="qword"
-			Group="Behavior"
-			Type="String"
-			EditorType="MultiLineEditor"
 		#tag EndViewProperty
 	#tag EndViewBehavior
 End Class

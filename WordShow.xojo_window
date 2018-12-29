@@ -203,10 +203,10 @@ End
 		  dim i as integer
 		  dim s as string
 		  
-		  for i = 3 to 8
-		    app.updateSetting("Word Show "+str(i),str(progress(i-3)))
-		  next
-		  app.updateSetting("Word Show current",str(current_list-3))
+		  'for i = 3 to 8
+		  'app.updateSetting("Word Show "+str(i),str(progress(i-3)))
+		  'next
+		  'app.updateSetting("Word Show current",str(current_list-3))
 		  'app.updateSetting("Word Show count",countLabel.Text)
 		  
 		  for i = 0 to 19
@@ -288,6 +288,47 @@ End
 
 
 	#tag Method, Flags = &h0
+		Function combo_details(combo As String) As String
+		  dim vs,cs As string
+		  dim i as integer
+		  
+		  progress(current_list-3) = progress(current_list-3) + 1
+		  if progress(current_list-3) > UBound(wordlists(current_list-3).wordlist) then
+		    progress(current_list-3) = 0
+		  end
+		  
+		  current_list = current_list + 1
+		  if current_list > 8 then
+		    current_list = 3
+		  end
+		  
+		  dim sql as string
+		  sql = "SELECT Word FROM Words JOIN Combos ON Combos.id = Words.combo_id WHERE Combos.combo='"+combo+"' ORDER BY Word DESC"
+		  
+		  dim data as RecordSet
+		  data = app.wordsDB.SQLSelect(sql)
+		  
+		  redim awords(-1)
+		  
+		  while not data.EOF
+		    awords.Append data.IdxField(1).StringValue
+		    data.MoveNext
+		  wend
+		  
+		  for i = 1 to len(combo)
+		    if instr("AEIOU",mid(combo,i,1)) > 0 then
+		      vs = vs + mid(combo,i,1)
+		    else
+		      cs = cs + mid(combo,i,1)
+		    end
+		  next
+		  
+		  return cs+"|"+vs+" - "+str(UBound(awords)+1)
+		  
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Sub storeWordShowBounds()
 		  app.updateSetting("Word Show Top",str(self.Bounds.Top))
 		  app.updateSetting("Word Show Height",str(self.Bounds.Height))
@@ -296,6 +337,14 @@ End
 		End Sub
 	#tag EndMethod
 
+
+	#tag Property, Flags = &h0
+		answer As string
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		awords(-1) As string
+	#tag EndProperty
 
 	#tag Property, Flags = &h0
 		base_time As Double
@@ -323,6 +372,10 @@ End
 
 	#tag Property, Flags = &h0
 		progress(-1) As Integer
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		qword As string
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
@@ -367,10 +420,10 @@ End
 		    dim d as new Date
 		    lap_time = d.TotalSeconds
 		    countLabel.Text = str(val(countLabel.text)+1)
-		    'put up next question
+		    questionLabel.Text = combo_details(wordlists(current_list-3).wordlist(progress(current_list-3)))
 		    showingQuestion = true
 		    myWordShowTimer = new WordShowTimer
-		    myWordShowTimer.Period = 2000 'number of letters in next question * 1000
+		    myWordShowTimer.Period = 2 'number of letters in next question * 1000
 		    myWordShowTimer.Mode = Timer.ModeSingle
 		  end
 		  
