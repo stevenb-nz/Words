@@ -22,7 +22,7 @@ Inherits Timer
 		      WordShow.showingQuestion = false
 		      WordShow.showingAnswer = true
 		      WordShow.myWordShowTimer = new WordShowTimer
-		      WordShow.myWordShowTimer.Period = 1 '(number of answers * 2 + 1) * 1000
+		      WordShow.myWordShowTimer.Period = ((ubound(WordShow.awords)+1)*2+1)*1000
 		      WordShow.myWordShowTimer.Mode = Timer.ModeSingle
 		    else
 		      for i = 0 to UBound(WordShow.awords)
@@ -31,7 +31,7 @@ Inherits Timer
 		      WordShow.countLabel.Text = str(val(WordShow.countLabel.text)+1)
 		      WordShow.questionLabel.Text = WordShow.combo_details(WordShow.wordlists(WordShow.current_list-3).wordlist(WordShow.progress(WordShow.current_list-3)))
 		      WordShow.myWordShowTimer = new WordShowTimer
-		      WordShow.myWordShowTimer.Period = 3 '((number of answers * 2 + 1) + number of letters in next question) * 1000
+		      WordShow.myWordShowTimer.Period = (Len(WordShow.awords(0))+((ubound(WordShow.awords)+1)*2+1))*1000
 		      WordShow.myWordShowTimer.Mode = Timer.ModeSingle
 		    end
 		  end

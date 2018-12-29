@@ -203,18 +203,18 @@ End
 		  dim i as integer
 		  dim s as string
 		  
-		  'for i = 3 to 8
-		  'app.updateSetting("Word Show "+str(i),str(progress(i-3)))
-		  'next
-		  'app.updateSetting("Word Show current",str(current_list-3))
-		  'app.updateSetting("Word Show count",countLabel.Text)
+		  for i = 3 to 8
+		    app.updateSetting("Word Show "+str(i),str(progress(i-3)))
+		  next
+		  app.updateSetting("Word Show current",str(current_list-3))
+		  app.updateSetting("Word Show count",countLabel.Text)
 		  
 		  for i = 0 to 19
 		    if i < WordShowListbox.ListCount then
 		      s = s + ","+WordShowListbox.list(i)
 		    end
 		  next
-		  'app.updateSetting("Word Show history",s)
+		  app.updateSetting("Word Show history",s)
 		  
 		  Words.Show
 		  
@@ -423,7 +423,7 @@ End
 		    questionLabel.Text = combo_details(wordlists(current_list-3).wordlist(progress(current_list-3)))
 		    showingQuestion = true
 		    myWordShowTimer = new WordShowTimer
-		    myWordShowTimer.Period = 2 'number of letters in next question * 1000
+		    myWordShowTimer.Period = Len(awords(0))*1000
 		    myWordShowTimer.Mode = Timer.ModeSingle
 		  end
 		  
@@ -696,5 +696,15 @@ End
 		Name="display_time"
 		Group="Behavior"
 		Type="Double"
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="answer"
+		Group="Behavior"
+		Type="string"
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="qword"
+		Group="Behavior"
+		Type="string"
 	#tag EndViewProperty
 #tag EndViewBehavior
