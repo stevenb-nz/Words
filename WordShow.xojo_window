@@ -183,6 +183,31 @@ Begin Window WordShow
       Visible         =   True
       Width           =   360
    End
+   Begin Rectangle StatusRectangle
+      AutoDeactivate  =   True
+      BorderWidth     =   0
+      BottomRightColor=   &c00000000
+      Enabled         =   True
+      FillColor       =   &cFB202500
+      Height          =   12
+      HelpTag         =   ""
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Left            =   0
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   True
+      LockTop         =   True
+      Scope           =   0
+      TabIndex        =   10
+      TabPanelIndex   =   0
+      Top             =   120
+      TopLeftColor    =   &c00000000
+      Transparent     =   False
+      Visible         =   True
+      Width           =   400
+   End
 End
 #tag EndWindow
 
@@ -311,7 +336,7 @@ End
 		  redim awords(-1)
 		  
 		  while not data.EOF
-		    awords.Append data.IdxField(1).StringValue
+		    awords.Append lowercase(data.IdxField(1).StringValue)
 		    data.MoveNext
 		  wend
 		  
@@ -323,7 +348,7 @@ End
 		    end
 		  next
 		  
-		  return cs+"|"+vs+" - "+str(UBound(awords)+1)
+		  return lowercase(cs+"|"+vs+" - "+str(UBound(awords)+1))
 		  
 		End Function
 	#tag EndMethod
@@ -413,8 +438,14 @@ End
 	#tag EndEvent
 	#tag Event
 		Function MouseDown(x As Integer, y As Integer) As Boolean
+		  dim hexColor as String
+		  dim intColor as Int32
+		  
 		  if showingQuestion then
 		    stopping = not stopping
+		    hexColor = str(StatusRectangle.FillColor)
+		    intColor = &h1FE9900 - val(hexColor)
+		    StatusRectangle.FillColor = color(intColor)
 		  ElseIf not showingAnswer then
 		    base_time = display_time
 		    dim d as new Date
@@ -422,6 +453,7 @@ End
 		    countLabel.Text = str(val(countLabel.text)+1)
 		    questionLabel.Text = combo_details(wordlists(current_list-3).wordlist(progress(current_list-3)))
 		    showingQuestion = true
+		    StatusRectangle.FillColor = &c00FF00
 		    myWordShowTimer = new WordShowTimer
 		    myWordShowTimer.Period = Len(awords(0))*1000
 		    myWordShowTimer.Mode = Timer.ModeSingle

@@ -13,6 +13,7 @@ Inherits Timer
 		  if WordShow.showingAnswer then
 		    WordShow.showingAnswer = false
 		    WordShow.stopping = false
+		    WordShow.StatusRectangle.FillColor = &cFF0000
 		  else
 		    if WordShow.stopping then
 		      for i = 0 to UBound(WordShow.awords)
