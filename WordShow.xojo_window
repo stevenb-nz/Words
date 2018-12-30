@@ -8,7 +8,7 @@ Begin Window WordShow
    Frame           =   0
    FullScreen      =   False
    FullScreenButton=   False
-   HasBackColor    =   False
+   HasBackColor    =   True
    Height          =   720
    ImplicitInstance=   True
    LiveResize      =   True
@@ -154,7 +154,7 @@ Begin Window WordShow
       DataField       =   ""
       DataSource      =   ""
       Enabled         =   True
-      Height          =   54
+      Height          =   64
       HelpTag         =   ""
       Index           =   -2147483648
       InitialParent   =   ""
@@ -177,7 +177,7 @@ Begin Window WordShow
       TextFont        =   "Andale Mono"
       TextSize        =   44.0
       TextUnit        =   0
-      Top             =   66
+      Top             =   56
       Transparent     =   False
       Underline       =   False
       Visible         =   True
@@ -428,6 +428,14 @@ End
 		  end
 		  
 		End Function
+	#tag EndEvent
+	#tag Event
+		Sub Change()
+		  if -1 < me.ListIndex then
+		    me.ListIndex = -1
+		  end
+		  me.ScrollPosition = 0
+		End Sub
 	#tag EndEvent
 #tag EndEvents
 #tag ViewBehavior
@@ -701,10 +709,12 @@ End
 		Name="answer"
 		Group="Behavior"
 		Type="string"
+		EditorType="MultiLineEditor"
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="qword"
 		Group="Behavior"
 		Type="string"
+		EditorType="MultiLineEditor"
 	#tag EndViewProperty
 #tag EndViewBehavior
