@@ -188,7 +188,7 @@ Begin Window WordShow
       BorderWidth     =   0
       BottomRightColor=   &c00000000
       Enabled         =   True
-      FillColor       =   &cFB202500
+      FillColor       =   &cFF000000
       Height          =   12
       HelpTag         =   ""
       Index           =   -2147483648
@@ -468,6 +468,27 @@ End
 		  end
 		  me.ScrollPosition = 0
 		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events StatusRectangle
+	#tag Event
+		Function MouseDown(X As Integer, Y As Integer) As Boolean
+		  dim i,n as integer
+		  
+		  if me.FillColor = &cFF0000 then
+		    n = MsgBox("Do you really want to reset to the first word?", 36)
+		    If n = 6 Then
+		      timeLabel.Text = "0:00:00"
+		      display_time = 0
+		      countLabel.Text = str(0)
+		      WordShowListbox.DeleteAllRows
+		      current_list = 3
+		      for i = 0 to UBound(progress)
+		        progress(i) = 0
+		      next
+		    End
+		  end
+		End Function
 	#tag EndEvent
 #tag EndEvents
 #tag ViewBehavior
