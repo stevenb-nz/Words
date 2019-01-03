@@ -721,7 +721,7 @@ Begin Window Words
       Transparent     =   False
       Underline       =   False
       Visible         =   True
-      Width           =   158
+      Width           =   238
    End
    Begin PushButton OtherSupersetsPushButton
       AutoDeactivate  =   True
@@ -736,7 +736,7 @@ Begin Window Words
       Index           =   -2147483648
       InitialParent   =   ""
       Italic          =   False
-      Left            =   1102
+      Left            =   1022
       LockBottom      =   False
       LockedInPosition=   False
       LockLeft        =   False
@@ -753,7 +753,7 @@ Begin Window Words
       Transparent     =   False
       Underline       =   False
       Visible         =   True
-      Width           =   158
+      Width           =   238
    End
 End
 #tag EndWindow
@@ -919,6 +919,11 @@ End
 		  update_othersubstrings(word)
 		  nsubset = len(word) - 2
 		  OtherSubsetsPushButton.Enabled = nsubset > 1
+		  if OtherSubsetsPushButton.Enabled then
+		    OtherSubsetsPushButton.caption = "Other Subsets ("+str(nsubset)+" letters)"
+		  else
+		    OtherSubsetsPushButton.caption = "Other Subsets"
+		  end
 		  
 		  update_hookof(word)
 		  update_subset(word)
@@ -932,6 +937,11 @@ End
 		  update_othersuperstrings(word)
 		  nsuperset = len(word) + 2
 		  OtherSupersetsPushButton.Enabled = nsuperset < 16
+		  if OtherSupersetsPushButton.Enabled then
+		    OtherSupersetsPushButton.caption = "Other Supersets ("+str(nsuperset)+" letters)"
+		  else
+		    OtherSupersetsPushButton.caption = "Other Supersets"
+		  end
 		  
 		  Words.Title = "Words ("+str(len(word))+" letter"+if(len(word)=1,"","s")+")"
 		  
@@ -1343,6 +1353,11 @@ End
 		  
 		  nsubset = nsubset - 1
 		  me.Enabled = nsubset > 1
+		  if me.Enabled then
+		    me.caption = "Other Subsets ("+str(nsubset)+" letters)"
+		  else
+		    me.caption = "Other Subsets"
+		  end
 		  
 		End Sub
 	#tag EndEvent
@@ -1364,6 +1379,12 @@ End
 		  
 		  nsuperset = nsuperset + 1
 		  me.Enabled = nsuperset < 16
+		  if me.Enabled then
+		    me.caption = "Other Supersets ("+str(nsuperset)+" letters)"
+		  else
+		    me.caption = "Other Supersets"
+		  end
+		  
 		End Sub
 	#tag EndEvent
 #tag EndEvents
