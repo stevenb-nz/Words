@@ -817,31 +817,16 @@ End
 
 	#tag Method, Flags = &h0
 		Function incombo(combo1 as string, combo2 as string) As boolean
-		  'dim bigcombo, smallcombo as string
-		  'dim i,j,k as integer
-		  '
-		  'bigcombo = combo1
-		  'smallcombo = combo2
-		  '
-		  'i = 0
-		  'j = len(smallcombo)
-		  'k = 1
-		  '
-		  'while i < j
-		  'i = i + 1
-		  'k = instr(k,bigcombo,mid(smallcombo,i,1))
-		  'if k = 0 then
-		  'return false
-		  'end
-		  'wend
-		  'return true
+		  dim cl1,cl2,i1,i2 as integer
 		  
-		  dim cl2,i1,i2 as integer
-		  
+		  cl1 = len(combo1)
 		  cl2 = len(combo2)
 		  i1 = 1
 		  i2 = 1
 		  do until i2 > cl2
+		    if i1 > cl1 then
+		      return false
+		    end
 		    if mid(combo1,i1,1) > mid(combo2,i2,1) then
 		      return false
 		    end
