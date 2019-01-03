@@ -42,7 +42,7 @@ Begin Window Words
       EnableDragReorder=   False
       GridLinesHorizontal=   0
       GridLinesVertical=   0
-      HasHeading      =   False
+      HasHeading      =   True
       HeadingIndex    =   -1
       Height          =   477
       HelpTag         =   ""
@@ -94,7 +94,7 @@ Begin Window Words
       EnableDragReorder=   False
       GridLinesHorizontal=   0
       GridLinesVertical=   0
-      HasHeading      =   False
+      HasHeading      =   True
       HeadingIndex    =   -1
       Height          =   477
       HelpTag         =   ""
@@ -146,7 +146,7 @@ Begin Window Words
       EnableDragReorder=   False
       GridLinesHorizontal=   0
       GridLinesVertical=   0
-      HasHeading      =   False
+      HasHeading      =   True
       HeadingIndex    =   -1
       Height          =   159
       HelpTag         =   ""
@@ -198,7 +198,7 @@ Begin Window Words
       EnableDragReorder=   False
       GridLinesHorizontal=   0
       GridLinesVertical=   0
-      HasHeading      =   False
+      HasHeading      =   True
       HeadingIndex    =   -1
       Height          =   477
       HelpTag         =   ""
@@ -250,7 +250,7 @@ Begin Window Words
       EnableDragReorder=   False
       GridLinesHorizontal=   0
       GridLinesVertical=   0
-      HasHeading      =   False
+      HasHeading      =   True
       HeadingIndex    =   -1
       Height          =   159
       HelpTag         =   ""
@@ -377,7 +377,7 @@ Begin Window Words
       EnableDragReorder=   False
       GridLinesHorizontal=   0
       GridLinesVertical=   0
-      HasHeading      =   False
+      HasHeading      =   True
       HeadingIndex    =   -1
       Height          =   159
       HelpTag         =   ""
@@ -499,7 +499,7 @@ Begin Window Words
       EnableDragReorder=   False
       GridLinesHorizontal=   0
       GridLinesVertical=   0
-      HasHeading      =   False
+      HasHeading      =   True
       HeadingIndex    =   -1
       Height          =   159
       HelpTag         =   ""
@@ -551,7 +551,7 @@ Begin Window Words
       EnableDragReorder=   False
       GridLinesHorizontal=   0
       GridLinesVertical=   0
-      HasHeading      =   False
+      HasHeading      =   True
       HeadingIndex    =   -1
       Height          =   477
       HelpTag         =   ""
@@ -603,7 +603,7 @@ Begin Window Words
       EnableDragReorder=   False
       GridLinesHorizontal=   0
       GridLinesVertical=   0
-      HasHeading      =   False
+      HasHeading      =   True
       HeadingIndex    =   -1
       Height          =   159
       HelpTag         =   ""
@@ -655,7 +655,7 @@ Begin Window Words
       EnableDragReorder=   False
       GridLinesHorizontal=   0
       GridLinesVertical=   0
-      HasHeading      =   False
+      HasHeading      =   True
       HeadingIndex    =   -1
       Height          =   477
       HelpTag         =   ""
@@ -924,6 +924,7 @@ End
 		  else
 		    OtherSubsetsPushButton.caption = "Other Subsets"
 		  end
+		  OtherSubsetsListbox.set_heading
 		  
 		  update_hookof(word)
 		  update_subset(word)
@@ -942,6 +943,7 @@ End
 		  else
 		    OtherSupersetsPushButton.caption = "Other Supersets"
 		  end
+		  OtherSupersetsListbox.set_heading
 		  
 		  Words.Title = "Words ("+str(len(word))+" letter"+if(len(word)=1,"","s")+")"
 		  
@@ -963,6 +965,7 @@ End
 		    AnagramListbox.AddRow data.IdxField(1).StringValue
 		    data.MoveNext
 		  wend
+		  AnagramListbox.set_heading
 		  
 		End Sub
 	#tag EndMethod
@@ -999,6 +1002,7 @@ End
 		  if isWord(back) then
 		    HookOfListbox.AddRow back
 		  end
+		  HookOfListbox.set_heading
 		  
 		End Sub
 	#tag EndMethod
@@ -1026,6 +1030,7 @@ End
 		    HooksListbox.AddRow data.IdxField(1).StringValue
 		    data.MoveNext
 		  wend
+		  HooksListbox.set_heading
 		  
 		End Sub
 	#tag EndMethod
@@ -1055,6 +1060,7 @@ End
 		    end
 		    data.MoveNext
 		  wend
+		  OtherSubsetsListbox.set_heading
 		  
 		End Sub
 	#tag EndMethod
@@ -1073,6 +1079,7 @@ End
 		    end
 		    data.movenext
 		  wend
+		  OtherSubstringsListbox.set_heading
 		  
 		End Sub
 	#tag EndMethod
@@ -1102,6 +1109,7 @@ End
 		    end
 		    data.MoveNext
 		  wend
+		  OtherSupersetsListbox.set_heading
 		  
 		End Sub
 	#tag EndMethod
@@ -1120,6 +1128,7 @@ End
 		    end
 		    data.movenext
 		  wend
+		  OtherSuperstringsListbox.set_heading
 		  
 		End Sub
 	#tag EndMethod
@@ -1149,6 +1158,7 @@ End
 		    end
 		    data.MoveNext
 		  wend
+		  SubsetListbox.set_heading
 		  
 		End Sub
 	#tag EndMethod
@@ -1178,6 +1188,7 @@ End
 		    end
 		    data.MoveNext
 		  wend
+		  SubsetPlusOneListbox.set_heading
 		  
 		End Sub
 	#tag EndMethod
@@ -1207,6 +1218,7 @@ End
 		    end
 		    data.MoveNext
 		  wend
+		  SupersetListbox.set_heading
 		  
 		End Sub
 	#tag EndMethod

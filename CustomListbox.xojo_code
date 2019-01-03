@@ -29,6 +29,13 @@ Inherits Listbox
 		End Sub
 	#tag EndMethod
 
+	#tag Method, Flags = &h0
+		Sub set_heading()
+		  me.Heading(0) = str(me.ListCount)
+		  
+		End Sub
+	#tag EndMethod
+
 
 	#tag ViewBehavior
 		#tag ViewProperty
