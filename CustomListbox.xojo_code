@@ -31,10 +31,18 @@ Inherits Listbox
 
 	#tag Method, Flags = &h0
 		Sub set_heading()
-		  me.Heading(0) = str(me.ListCount)
+		  me.Heading(0) = str(me.ListCount) + me.heading_text
+		  if me.ListCount <> 1 then
+		    me.Heading(0) = me.Heading(0)+"s"
+		  end
 		  
 		End Sub
 	#tag EndMethod
+
+
+	#tag Property, Flags = &h0
+		heading_text As String
+	#tag EndProperty
 
 
 	#tag ViewBehavior
@@ -397,6 +405,12 @@ Inherits Listbox
 		#tag ViewProperty
 			Name="InitialParent"
 			Type="String"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="heading_text"
+			Group="Behavior"
+			Type="String"
+			EditorType="MultiLineEditor"
 		#tag EndViewProperty
 	#tag EndViewBehavior
 End Class

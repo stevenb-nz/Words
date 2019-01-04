@@ -1243,6 +1243,12 @@ End
 
 #tag EndWindowCode
 
+#tag Events SubsetListbox
+#tag EndEvents
+#tag Events SupersetListbox
+#tag EndEvents
+#tag Events SubsetPlusOneListbox
+#tag EndEvents
 #tag Events WordButton
 	#tag Event
 		Sub Action()
@@ -1258,6 +1264,18 @@ End
 		  index = UBound(history)
 		  
 		  me.Caption = app.getSetting("Word button text")
+		  
+		  AnagramListbox.heading_text = " anagram"
+		  HookOfListbox.heading_text = " 'hook of'"
+		  HooksListbox.heading_text = " hook"
+		  OtherSubsetsListbox.heading_text = " other subset"
+		  OtherSubstringsListbox.heading_text = " other substring"
+		  OtherSupersetsListbox.heading_text = " other superset"
+		  OtherSuperstringsListbox.heading_text = " other superstring"
+		  SubsetListbox.heading_text = " subset"
+		  SubsetPlusOneListbox.heading_text = " 'subset+1'"
+		  SupersetListbox.heading_text = " superset"
+		  
 		  updateWords(me.caption)
 		  update_history(me.caption)
 		  
@@ -1347,6 +1365,10 @@ End
 		  
 		End Function
 	#tag EndEvent
+#tag EndEvents
+#tag Events OtherSuperstringsListbox
+#tag EndEvents
+#tag Events OtherSubstringsListbox
 #tag EndEvents
 #tag Events OtherSubsetsPushButton
 	#tag Event
