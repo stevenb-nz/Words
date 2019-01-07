@@ -44,6 +44,7 @@ Begin Window Words
       GridLinesVertical=   0
       HasHeading      =   True
       HeadingIndex    =   -1
+      heading_text    =   ""
       Height          =   477
       HelpTag         =   ""
       Hierarchical    =   False
@@ -96,6 +97,7 @@ Begin Window Words
       GridLinesVertical=   0
       HasHeading      =   True
       HeadingIndex    =   -1
+      heading_text    =   ""
       Height          =   477
       HelpTag         =   ""
       Hierarchical    =   False
@@ -148,6 +150,7 @@ Begin Window Words
       GridLinesVertical=   0
       HasHeading      =   True
       HeadingIndex    =   -1
+      heading_text    =   ""
       Height          =   159
       HelpTag         =   ""
       Hierarchical    =   False
@@ -200,6 +203,7 @@ Begin Window Words
       GridLinesVertical=   0
       HasHeading      =   True
       HeadingIndex    =   -1
+      heading_text    =   ""
       Height          =   477
       HelpTag         =   ""
       Hierarchical    =   False
@@ -252,6 +256,7 @@ Begin Window Words
       GridLinesVertical=   0
       HasHeading      =   True
       HeadingIndex    =   -1
+      heading_text    =   ""
       Height          =   159
       HelpTag         =   ""
       Hierarchical    =   False
@@ -379,6 +384,7 @@ Begin Window Words
       GridLinesVertical=   0
       HasHeading      =   True
       HeadingIndex    =   -1
+      heading_text    =   ""
       Height          =   159
       HelpTag         =   ""
       Hierarchical    =   False
@@ -501,6 +507,7 @@ Begin Window Words
       GridLinesVertical=   0
       HasHeading      =   True
       HeadingIndex    =   -1
+      heading_text    =   ""
       Height          =   159
       HelpTag         =   ""
       Hierarchical    =   False
@@ -553,6 +560,7 @@ Begin Window Words
       GridLinesVertical=   0
       HasHeading      =   True
       HeadingIndex    =   -1
+      heading_text    =   ""
       Height          =   477
       HelpTag         =   ""
       Hierarchical    =   False
@@ -605,6 +613,7 @@ Begin Window Words
       GridLinesVertical=   0
       HasHeading      =   True
       HeadingIndex    =   -1
+      heading_text    =   ""
       Height          =   159
       HelpTag         =   ""
       Hierarchical    =   False
@@ -657,6 +666,7 @@ Begin Window Words
       GridLinesVertical=   0
       HasHeading      =   True
       HeadingIndex    =   -1
+      heading_text    =   ""
       Height          =   477
       HelpTag         =   ""
       Hierarchical    =   False
@@ -1243,12 +1253,6 @@ End
 
 #tag EndWindowCode
 
-#tag Events SubsetListbox
-#tag EndEvents
-#tag Events SupersetListbox
-#tag EndEvents
-#tag Events SubsetPlusOneListbox
-#tag EndEvents
 #tag Events WordButton
 	#tag Event
 		Sub Action()
@@ -1365,10 +1369,6 @@ End
 		  
 		End Function
 	#tag EndEvent
-#tag EndEvents
-#tag Events OtherSuperstringsListbox
-#tag EndEvents
-#tag Events OtherSubstringsListbox
 #tag EndEvents
 #tag Events OtherSubsetsPushButton
 	#tag Event
