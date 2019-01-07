@@ -186,7 +186,7 @@ Begin Window Mastermind
       Visible         =   True
       Width           =   20
    End
-   Begin Label TriedLabel
+   Begin Label NotTriedLabel
       AutoDeactivate  =   True
       Bold            =   False
       DataField       =   ""
@@ -209,8 +209,8 @@ Begin Window Mastermind
       TabIndex        =   4
       TabPanelIndex   =   0
       TabStop         =   True
-      Text            =   ""
-      TextAlign       =   0
+      Text            =   "A B C D E F G H I J K L M N O P Q R S T U V W X Y Z"
+      TextAlign       =   1
       TextColor       =   &c00000000
       TextFont        =   "System"
       TextSize        =   0.0
@@ -414,6 +414,9 @@ End
 	#tag Method, Flags = &h0
 		Sub newGame()
 		  GuessesListbox.DeleteAllRows
+		  ConfirmedTextField.text = ""
+		  ExcludedTextField.Text = ""
+		  NotTriedLabel.text = "A B C D E F G H I J K L M N O P Q R S T U V W X Y Z"
 		  
 		  if wordLength < 2 or wordLength = 15 then
 		    wordLength = 2
@@ -456,6 +459,12 @@ End
 		      end
 		    next
 		  end
+		  for i = 1 to wordLength
+		    j = instr(NotTriedLabel.text,mid(GuessField.text,i,1))
+		    if j > 0 then
+		      NotTriedLabel.text = left(NotTriedLabel.text,j-1)+right(NotTriedLabel.text,len(NotTriedLabel.text)-j)
+		    end
+		  next
 		  
 		End Sub
 	#tag EndMethod
@@ -555,6 +564,22 @@ End
 	#tag Event
 		Sub Action()
 		  validateEntry
+		  
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events ConfirmedTextField
+	#tag Event
+		Sub TextChange()
+		  me.text = Uppercase(me.Text)
+		  
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events ExcludedTextField
+	#tag Event
+		Sub TextChange()
+		  me.text = Uppercase(me.Text)
 		  
 		End Sub
 	#tag EndEvent
