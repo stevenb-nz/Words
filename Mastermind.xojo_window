@@ -44,7 +44,7 @@ Begin Window Mastermind
       GridLinesVertical=   0
       HasHeading      =   True
       HeadingIndex    =   -1
-      Height          =   580
+      Height          =   548
       HelpTag         =   ""
       Hierarchical    =   False
       Index           =   -2147483648
@@ -69,7 +69,7 @@ Begin Window Mastermind
       TextFont        =   "lucida console"
       TextSize        =   0.0
       TextUnit        =   0
-      Top             =   20
+      Top             =   52
       Transparent     =   False
       Underline       =   False
       UseFocusRing    =   False
@@ -306,6 +306,41 @@ Begin Window Mastermind
       UseFocusRing    =   True
       Visible         =   True
       Width           =   174
+   End
+   Begin Label HighScoreLabel
+      AutoDeactivate  =   True
+      Bold            =   False
+      DataField       =   ""
+      DataSource      =   ""
+      Enabled         =   True
+      Height          =   20
+      HelpTag         =   ""
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Italic          =   False
+      Left            =   20
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   True
+      LockTop         =   True
+      Multiline       =   False
+      Scope           =   0
+      Selectable      =   False
+      TabIndex        =   7
+      TabPanelIndex   =   0
+      TabStop         =   True
+      Text            =   "High score: -"
+      TextAlign       =   0
+      TextColor       =   &c00000000
+      TextFont        =   "System"
+      TextSize        =   0.0
+      TextUnit        =   0
+      Top             =   20
+      Transparent     =   False
+      Underline       =   False
+      Visible         =   True
+      Width           =   360
    End
 End
 #tag EndWindow
