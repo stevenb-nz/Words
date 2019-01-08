@@ -466,9 +466,9 @@ End
 		    wordLength = wordLength + 1
 		  end
 		  if highscore(wordLength-2) > 0 then
-		    HighScoreLabel.text = "High score: " + str(highscore(wordLength-2))
+		    HighScoreLabel.text = "Low score: " + str(highscore(wordLength-2))
 		  else
-		    HighScoreLabel.text = "High score: -"
+		    HighScoreLabel.text = "Low score: -"
 		  end
 		  GuessesListbox.Heading(0) = "Guess ("+str(wordLength)+" letters)"
 		  currentWord = wordlists(wordLength-2).wordlist(floor(rnd*UBound(wordlists(wordLength-2).wordlist)))
@@ -485,6 +485,12 @@ End
 		  dim i,j as integer
 		  dim w1,w2 as string
 		  
+		  for i = 1 to wordLength
+		    j = instr(NotTriedLabel.text,mid(GuessField.text,i,1))
+		    if j > 0 then
+		      NotTriedLabel.text = left(NotTriedLabel.text,j-1)+right(NotTriedLabel.text,len(NotTriedLabel.text)-j)
+		    end
+		  next
 		  GuessesListbox.AddRow GuessField.text
 		  for i = 1 to wordlength
 		    if mid(GuessField.text,i,1) = mid(currentWord,i,1) then
@@ -497,6 +503,10 @@ End
 		  if len(GuessesListbox.cell(GuessesListbox.ListCount-1,1)) = wordLength then
 		    GuessField.Enabled = False
 		    NewGameButton.Default = True
+		    if highscore(wordLength-2) = 0 or GuessesListbox.ListCount < highscore(wordLength-2) then
+		      highscore(wordLength-2) = GuessesListbox.ListCount
+		      HighScoreLabel.text = "Low score: " + str(highscore(wordLength-2))
+		    end
 		  else
 		    for i = 1 to len(w1)
 		      j = InStr(w2,mid(w1,i,1))
@@ -506,12 +516,6 @@ End
 		      end
 		    next
 		  end
-		  for i = 1 to wordLength
-		    j = instr(NotTriedLabel.text,mid(GuessField.text,i,1))
-		    if j > 0 then
-		      NotTriedLabel.text = left(NotTriedLabel.text,j-1)+right(NotTriedLabel.text,len(NotTriedLabel.text)-j)
-		    end
-		  next
 		  
 		End Sub
 	#tag EndMethod
