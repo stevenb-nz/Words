@@ -359,6 +359,12 @@ End
 
 	#tag Event
 		Sub Close()
+		  dim i as integer
+		  
+		  for i = 2 to 15
+		    app.updateSetting("Mastermind "+str(i),str(highscore(i-2)))
+		  next
+		  
 		  Words.Show
 		  
 		End Sub
@@ -408,6 +414,7 @@ End
 		      data.MoveNext
 		    wend
 		    wordlists.Append w
+		    highscore.Append val(app.getSetting("Mastermind "+str(i)))
 		  next
 		  
 		  newGame
@@ -457,6 +464,11 @@ End
 		    wordLength = 2
 		  else
 		    wordLength = wordLength + 1
+		  end
+		  if highscore(wordLength-2) > 0 then
+		    HighScoreLabel.text = "High score: " + str(highscore(wordLength-2))
+		  else
+		    HighScoreLabel.text = "High score: -"
 		  end
 		  GuessesListbox.Heading(0) = "Guess ("+str(wordLength)+" letters)"
 		  currentWord = wordlists(wordLength-2).wordlist(floor(rnd*UBound(wordlists(wordLength-2).wordlist)))
@@ -543,6 +555,10 @@ End
 
 	#tag Property, Flags = &h0
 		currentWord As String
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		highscore(-1) As Integer
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
