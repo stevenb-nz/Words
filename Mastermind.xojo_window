@@ -340,7 +340,42 @@ Begin Window Mastermind
       Transparent     =   False
       Underline       =   False
       Visible         =   True
-      Width           =   360
+      Width           =   174
+   End
+   Begin Label ThisScoreLabel
+      AutoDeactivate  =   True
+      Bold            =   False
+      DataField       =   ""
+      DataSource      =   ""
+      Enabled         =   True
+      Height          =   20
+      HelpTag         =   ""
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Italic          =   False
+      Left            =   206
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   True
+      LockTop         =   True
+      Multiline       =   False
+      Scope           =   0
+      Selectable      =   False
+      TabIndex        =   8
+      TabPanelIndex   =   0
+      TabStop         =   True
+      Text            =   "This score: -"
+      TextAlign       =   0
+      TextColor       =   &c00000000
+      TextFont        =   "System"
+      TextSize        =   0.0
+      TextUnit        =   0
+      Top             =   20
+      Transparent     =   False
+      Underline       =   False
+      Visible         =   True
+      Width           =   174
    End
 End
 #tag EndWindow
@@ -456,6 +491,7 @@ End
 	#tag Method, Flags = &h0
 		Sub newGame()
 		  GuessesListbox.DeleteAllRows
+		  ThisScoreLabel.text = "This score: -"
 		  ConfirmedTextField.text = ""
 		  ExcludedTextField.Text = ""
 		  NotTriedLabel.text = "A B C D E F G H I J K L M N O P Q R S T U V W X Y Z"
@@ -492,6 +528,7 @@ End
 		    end
 		  next
 		  GuessesListbox.AddRow GuessField.text
+		  ThisScoreLabel.text = "This score: " + str(GuessesListbox.ListCount)
 		  for i = 1 to wordlength
 		    if mid(GuessField.text,i,1) = mid(currentWord,i,1) then
 		      GuessesListbox.cell(GuessesListbox.ListCount-1,1) = GuessesListbox.cell(GuessesListbox.ListCount-1,1)+"•"
