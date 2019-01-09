@@ -618,6 +618,10 @@ End
 		Function KeyDown(Key As String) As Boolean
 		  Select Case asc(Key)
 		  case 8
+		  case 9
+		    ExcludedTextField.SetFocus
+		    ExcludedTextField.SelLength = 0
+		    return true
 		  case 13
 		    if me.BackColor = &cCCFFCC then
 		      processGuess
