@@ -663,7 +663,8 @@ End
 #tag Events ConfirmedTextField
 	#tag Event
 		Sub TextChange()
-		  me.text = Uppercase(me.Text)
+		  me.text = Uppercase(app.sort_word(me.Text.ToText))
+		  GuessField.SetFocus
 		  
 		End Sub
 	#tag EndEvent
@@ -671,7 +672,8 @@ End
 #tag Events ExcludedTextField
 	#tag Event
 		Sub TextChange()
-		  me.text = Uppercase(me.Text)
+		  me.text = Uppercase(app.sort_word(me.Text.ToText))
+		  GuessField.SetFocus
 		  
 		End Sub
 	#tag EndEvent
