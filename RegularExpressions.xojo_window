@@ -44,7 +44,7 @@ Begin Window RegularExpressions
       GridLinesVertical=   0
       HasHeading      =   True
       HeadingIndex    =   -1
-      Height          =   646
+      Height          =   614
       HelpTag         =   ""
       Hierarchical    =   False
       Index           =   -2147483648
@@ -118,6 +118,41 @@ Begin Window RegularExpressions
       Transparent     =   False
       Underline       =   False
       UseFocusRing    =   True
+      Visible         =   True
+      Width           =   404
+   End
+   Begin Label linkLabel
+      AutoDeactivate  =   True
+      Bold            =   False
+      DataField       =   ""
+      DataSource      =   ""
+      Enabled         =   True
+      Height          =   20
+      HelpTag         =   ""
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Italic          =   False
+      Left            =   20
+      LockBottom      =   True
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   True
+      LockTop         =   False
+      Multiline       =   False
+      Scope           =   0
+      Selectable      =   False
+      TabIndex        =   8
+      TabPanelIndex   =   0
+      TabStop         =   True
+      Text            =   "Regular Expressions reference"
+      TextAlign       =   1
+      TextColor       =   &c0000FF00
+      TextFont        =   "System"
+      TextSize        =   0.0
+      TextUnit        =   0
+      Top             =   646
+      Transparent     =   False
+      Underline       =   False
       Visible         =   True
       Width           =   404
    End
@@ -280,6 +315,14 @@ End
 		    closable = true
 		    close
 		  End Select
+		  
+		End Function
+	#tag EndEvent
+#tag EndEvents
+#tag Events linkLabel
+	#tag Event
+		Function MouseDown(X As Integer, Y As Integer) As Boolean
+		  Showurl("https://www.rexegg.com/regex-quickstart.html")
 		  
 		End Function
 	#tag EndEvent
