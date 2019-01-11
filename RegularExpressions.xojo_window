@@ -322,7 +322,7 @@ End
 #tag Events linkLabel
 	#tag Event
 		Function MouseDown(X As Integer, Y As Integer) As Boolean
-		  Showurl("https://www.rexegg.com/regex-quickstart.html")
+		  Showurl("https://docs.xojo.com/index.php/RegEx")
 		  
 		End Function
 	#tag EndEvent
