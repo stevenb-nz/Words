@@ -161,6 +161,13 @@ Begin Menu MainMenuBar
          AutoEnable = False
          Visible = True
       End
+      Begin MenuItem WordJudge
+         SpecialMenu = 0
+         Text = "Judge"
+         Index = -2147483648
+         AutoEnable = False
+         Visible = True
+      End
       Begin MenuItem WordQuiz
          SpecialMenu = 0
          Text = "Quiz"
