@@ -15,6 +15,7 @@ Inherits Application
 		  if Words.Visible then
 		    
 		    WordMastermind.Enabled = true
+		    WordJudge.Enable = true
 		    WordQuiz.Enabled = true
 		    WordRandom.Enabled  = true
 		    
@@ -38,6 +39,7 @@ Inherits Application
 		    
 		  else
 		    WordMastermind.Enabled = false
+		    WordJudge.Enabled = false
 		    WordQuiz.Enabled = false
 		    WordRandom.Enabled  = false
 		    WordRandomMinus1.Enabled = false
@@ -94,6 +96,14 @@ Inherits Application
 	#tag MenuHandler
 		Function FileImport() As Boolean Handles FileImport.Action
 			importWords
+			Return True
+			
+		End Function
+	#tag EndMenuHandler
+
+	#tag MenuHandler
+		Function WordJudge() As Boolean Handles WordJudge.Action
+			Judge.ShowModal
 			Return True
 			
 		End Function
