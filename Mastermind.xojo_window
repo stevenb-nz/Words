@@ -406,12 +406,6 @@ End
 	#tag EndEvent
 
 	#tag Event
-		Function KeyDown(Key As String) As Boolean
-		  
-		End Function
-	#tag EndEvent
-
-	#tag Event
 		Sub Moved()
 		  storeMastermindBounds
 		  
