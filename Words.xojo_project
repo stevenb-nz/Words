@@ -14,6 +14,7 @@ Window=Mastermind;Mastermind.xojo_window;&h0000000029551FFF;&h0000000000000000;f
 Class=QuizTimer;QuizTimer.xojo_code;&h00000000046367FF;&h0000000000000000;false
 Class=WordShowTimer;WordShowTimer.xojo_code;&h000000004C724FFF;&h0000000000000000;false
 Class=wordlist;wordlist.xojo_code;&h000000004302C7FF;&h0000000000000000;false
+Window=Judge;Judge.xojo_window;&h0000000039FA5FFF;&h0000000000000000;false
 DefaultWindow=Words
 AppMenuBar=MainMenuBar
 MajorVersion=1
