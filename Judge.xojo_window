@@ -35,11 +35,11 @@ Begin Window Judge
       Index           =   -2147483648
       InitialParent   =   ""
       Left            =   250
-      LockBottom      =   False
+      LockBottom      =   True
       LockedInPosition=   False
-      LockLeft        =   True
-      LockRight       =   False
-      LockTop         =   True
+      LockLeft        =   False
+      LockRight       =   True
+      LockTop         =   False
       Scope           =   0
       TabIndex        =   0
       TabPanelIndex   =   0
@@ -61,11 +61,11 @@ Begin Window Judge
       InitialParent   =   ""
       Italic          =   False
       Left            =   218
-      LockBottom      =   False
+      LockBottom      =   True
       LockedInPosition=   False
-      LockLeft        =   True
-      LockRight       =   False
-      LockTop         =   True
+      LockLeft        =   False
+      LockRight       =   True
+      LockTop         =   False
       Multiline       =   False
       Scope           =   0
       Selectable      =   False
@@ -96,11 +96,11 @@ Begin Window Judge
       InitialParent   =   ""
       Italic          =   False
       Left            =   20
-      LockBottom      =   False
+      LockBottom      =   True
       LockedInPosition=   False
       LockLeft        =   True
-      LockRight       =   False
-      LockTop         =   True
+      LockRight       =   True
+      LockTop         =   False
       Multiline       =   False
       Scope           =   0
       Selectable      =   False
@@ -138,11 +138,11 @@ Begin Window Judge
       Italic          =   False
       Left            =   20
       LimitText       =   0
-      LockBottom      =   False
+      LockBottom      =   True
       LockedInPosition=   False
       LockLeft        =   True
-      LockRight       =   False
-      LockTop         =   True
+      LockRight       =   True
+      LockTop         =   False
       Mask            =   ""
       Password        =   False
       ReadOnly        =   False
@@ -172,7 +172,7 @@ Begin Window Judge
       Border          =   True
       DataField       =   ""
       DataSource      =   ""
-      Enabled         =   True
+      Enabled         =   False
       Format          =   ""
       Height          =   134
       HelpTag         =   ""
@@ -183,10 +183,10 @@ Begin Window Judge
       LimitText       =   0
       LineHeight      =   0.0
       LineSpacing     =   1.0
-      LockBottom      =   False
+      LockBottom      =   True
       LockedInPosition=   False
       LockLeft        =   True
-      LockRight       =   False
+      LockRight       =   True
       LockTop         =   True
       Mask            =   ""
       Multiline       =   True
@@ -225,7 +225,7 @@ Begin Window Judge
       LockBottom      =   False
       LockedInPosition=   False
       LockLeft        =   True
-      LockRight       =   False
+      LockRight       =   True
       LockTop         =   True
       Multiline       =   False
       Scope           =   0
@@ -244,6 +244,38 @@ Begin Window Judge
       Underline       =   False
       Visible         =   True
       Width           =   243
+      Begin PushButton CheckButton
+         AutoDeactivate  =   True
+         Bold            =   False
+         ButtonStyle     =   "0"
+         Cancel          =   False
+         Caption         =   "Check"
+         Default         =   False
+         Enabled         =   True
+         Height          =   20
+         HelpTag         =   ""
+         Index           =   -2147483648
+         InitialParent   =   "StatusLabel"
+         Italic          =   False
+         Left            =   102
+         LockBottom      =   False
+         LockedInPosition=   False
+         LockLeft        =   True
+         LockRight       =   True
+         LockTop         =   True
+         Scope           =   0
+         TabIndex        =   0
+         TabPanelIndex   =   0
+         TabStop         =   True
+         TextFont        =   "System"
+         TextSize        =   0.0
+         TextUnit        =   0
+         Top             =   25
+         Transparent     =   False
+         Underline       =   False
+         Visible         =   False
+         Width           =   80
+      End
    End
 End
 #tag EndWindow
@@ -251,3 +283,15 @@ End
 #tag WindowCode
 #tag EndWindowCode
 
+#tag Events WordsUpDownArrows
+	#tag Event
+		Sub Down()
+		  
+		End Sub
+	#tag EndEvent
+	#tag Event
+		Sub Up()
+		  
+		End Sub
+	#tag EndEvent
+#tag EndEvents
