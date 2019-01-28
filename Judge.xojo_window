@@ -286,11 +286,25 @@ End
 #tag Events WordsUpDownArrows
 	#tag Event
 		Sub Down()
+		  dim i as integer
+		  
+		  i = val(NumberWordsLabel.text)
+		  
+		  if i > 1 then
+		    NumberWordsLabel.Text = str(i-1)
+		  end
 		  
 		End Sub
 	#tag EndEvent
 	#tag Event
 		Sub Up()
+		  dim i as integer
+		  
+		  i = val(NumberWordsLabel.text)
+		  
+		  if i < 8 then
+		    NumberWordsLabel.Text = str(i+1)
+		  end
 		  
 		End Sub
 	#tag EndEvent
