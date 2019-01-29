@@ -309,3 +309,29 @@ End
 		End Sub
 	#tag EndEvent
 #tag EndEvents
+#tag Events EntryTextField
+	#tag Event
+		Function KeyDown(Key As String) As Boolean
+		  Select Case asc(Key)
+		  case 8
+		  case 13
+		    return true
+		  Case 27
+		    closable = true
+		    close
+		  case 28 to 29
+		  case 65 to 90, 97 to 122
+		  case 127
+		  Else
+		    return true
+		  End Select
+		  
+		End Function
+	#tag EndEvent
+	#tag Event
+		Sub TextChange()
+		  me.text = Uppercase(me.Text)
+		  
+		End Sub
+	#tag EndEvent
+#tag EndEvents
