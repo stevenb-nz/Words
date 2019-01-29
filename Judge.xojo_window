@@ -307,6 +307,9 @@ End
 		  i = val(NumberWordsLabel.text)
 		  
 		  if i < 8 then
+		    if i = 0 then
+		      'reset
+		    end
 		    NumberWordsLabel.Text = str(i+1)
 		  end
 		  
@@ -335,6 +338,26 @@ End
 	#tag Event
 		Sub TextChange()
 		  me.text = Uppercase(me.Text)
+		  
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events CheckButton
+	#tag Event
+		Sub Action()
+		  ' ...
+		  
+		  
+		  'set NumberWordsLabel to zero
+		  
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events WordsListbox
+	#tag Event
+		Sub DoubleClick()
+		  me.removerow me.listindex
+		  'EntryTextField.SetFocus
 		  
 		End Sub
 	#tag EndEvent
