@@ -263,7 +263,7 @@ Begin Window Judge
       RequiresSelection=   False
       Scope           =   0
       ScrollbarHorizontal=   False
-      ScrollBarVertical=   True
+      ScrollBarVertical=   False
       SelectionType   =   0
       ShowDropIndicator=   False
       TabIndex        =   6
