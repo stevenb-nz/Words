@@ -308,7 +308,10 @@ End
 		  
 		  if i < 8 then
 		    if i = 0 then
-		      'reset
+		      StatusLabel.Text = ""
+		      CheckButton.Visible = false
+		      WordsListbox.DeleteAllRows
+		      EntryTextField.SetFocus
 		    end
 		    NumberWordsLabel.Text = str(i+1)
 		  end
@@ -357,7 +360,7 @@ End
 	#tag Event
 		Sub DoubleClick()
 		  me.removerow me.listindex
-		  'EntryTextField.SetFocus
+		  EntryTextField.SetFocus
 		  
 		End Sub
 	#tag EndEvent
