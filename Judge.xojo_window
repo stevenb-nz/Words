@@ -397,6 +397,12 @@ End
 		  
 		End Sub
 	#tag EndEvent
+	#tag Event
+		Sub GotFocus()
+		  EntryTextField.SetFocus
+		  
+		End Sub
+	#tag EndEvent
 #tag EndEvents
 #tag ViewBehavior
 	#tag ViewProperty

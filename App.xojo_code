@@ -15,7 +15,7 @@ Inherits Application
 		  if Words.Visible then
 		    
 		    WordMastermind.Enabled = true
-		    WordJudge.Enable = true
+		    WordJudge.Enabled = true
 		    WordQuiz.Enabled = true
 		    WordRandom.Enabled  = true
 		    
