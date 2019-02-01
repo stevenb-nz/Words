@@ -342,7 +342,6 @@ End
 		  if i < 8 then
 		    if i = 0 then
 		      StatusLabel.Text = ""
-		      CheckButton.Visible = false
 		      WordsListbox.DeleteAllRows
 		      EntryTextField.SetFocus
 		    end
@@ -400,10 +399,8 @@ End
 #tag Events CheckButton
 	#tag Event
 		Sub Action()
-		  ' ...
-		  
-		  
-		  'set NumberWordsLabel to zero
+		  NumberWordsLabel.Text = "0"
+		  me.Visible = false
 		  
 		End Sub
 	#tag EndEvent
