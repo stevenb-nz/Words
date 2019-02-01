@@ -355,9 +355,28 @@ End
 #tag Events EntryTextField
 	#tag Event
 		Function KeyDown(Key As String) As Boolean
+		  dim i,l,lc as integer
+		  dim check as boolean
+		  
 		  Select Case asc(Key)
 		  case 8
 		  case 13
+		    l = len(me.text)
+		    if l > 1 and l < 16 then
+		      lc = WordsListbox.ListCount
+		      if lc < 8 then
+		        check = true
+		        for i = 1 to WordsListbox.ListCount
+		          if WordsListbox.Cell(i-1,0) = me.text then
+		            check = false
+		          end
+		        next
+		        if check then
+		          WordsListbox.AddRow me.text
+		          me.text = ""
+		        end
+		      end
+		    end
 		    return true
 		  Case 27
 		    closable = true
@@ -632,6 +651,6 @@ End
 	#tag ViewProperty
 		Name="closable"
 		Group="Behavior"
-		Type="Integer"
+		Type="Boolean"
 	#tag EndViewProperty
 #tag EndViewBehavior
