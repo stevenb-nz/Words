@@ -313,6 +313,13 @@ End
 	#tag EndEvent
 
 
+	#tag Method, Flags = &h0
+		Sub checkButtonCheck()
+		  
+		End Sub
+	#tag EndMethod
+
+
 	#tag Property, Flags = &h0
 		closable As Boolean
 	#tag EndProperty
@@ -329,6 +336,7 @@ End
 		  
 		  if i > 1 then
 		    NumberWordsLabel.Text = str(i-1)
+		    checkButtonCheck
 		  end
 		  
 		End Sub
@@ -346,6 +354,7 @@ End
 		      EntryTextField.SetFocus
 		    end
 		    NumberWordsLabel.Text = str(i+1)
+		    checkButtonCheck
 		  end
 		  
 		End Sub
@@ -373,6 +382,7 @@ End
 		        if check then
 		          WordsListbox.AddRow me.text
 		          me.text = ""
+		          checkButtonCheck
 		        end
 		      end
 		    end
@@ -409,6 +419,7 @@ End
 	#tag Event
 		Sub DoubleClick()
 		  me.removerow me.listindex
+		  checkButtonCheck
 		  EntryTextField.SetFocus
 		  
 		End Sub
