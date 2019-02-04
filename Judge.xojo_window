@@ -424,10 +424,23 @@ End
 		  me.Visible = false
 		  check = true
 		  for i = 1 to WordsListbox.ListCount
-		    if WordsListbox.Cell(i-1,0) > "z" then
+		    if not words.isWord(WordsListbox.Cell(i-1,0)) then
 		      check = false
 		    end
 		  next
+		  if check then
+		    if WordsListbox.ListCount = 1 then
+		      StatusLabel.Text = "The word is CORRECT."
+		    else
+		      StatusLabel.Text = "All words CORRECT."
+		    end
+		  else
+		    if WordsListbox.ListCount = 1 then
+		      StatusLabel.Text = "The word is WRONG."
+		    else
+		      StatusLabel.Text = "At least one WRONG."
+		    end
+		  end
 		  NumberWordsLabel.Text = "0"
 		  EntryTextField.CueText = "Set the number of words to challenge."
 		  
