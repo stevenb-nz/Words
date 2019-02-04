@@ -315,6 +315,11 @@ End
 
 	#tag Method, Flags = &h0
 		Sub checkButtonCheck()
+		  if WordsListbox.ListCount = val(NumberWordsLabel.text) then
+		    CheckButton.Visible = true
+		  else
+		    CheckButton.Visible = false
+		  end
 		  
 		End Sub
 	#tag EndMethod
