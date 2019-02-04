@@ -127,7 +127,7 @@ Begin Window Judge
       BackColor       =   &cFFFFFF00
       Bold            =   False
       Border          =   True
-      CueText         =   ""
+      CueText         =   "Set the number of words to challenge."
       DataField       =   ""
       DataSource      =   ""
       Enabled         =   True
@@ -356,6 +356,7 @@ End
 		    if i = 0 then
 		      StatusLabel.Text = ""
 		      WordsListbox.DeleteAllRows
+		      EntryTextField.CueText = ""
 		      EntryTextField.SetFocus
 		    end
 		    NumberWordsLabel.Text = str(i+1)
@@ -397,6 +398,9 @@ End
 		    close
 		  case 28 to 29
 		  case 65 to 90, 97 to 122
+		    if val(NumberWordsLabel.text) = 0 then
+		      return true
+		    end
 		  case 127
 		  Else
 		    return true
@@ -414,8 +418,18 @@ End
 #tag Events CheckButton
 	#tag Event
 		Sub Action()
-		  NumberWordsLabel.Text = "0"
+		  dim i as Integer
+		  dim check as boolean
+		  
 		  me.Visible = false
+		  check = true
+		  for i = 1 to WordsListbox.ListCount
+		    if WordsListbox.Cell(i-1,0) > "z" then
+		      check = false
+		    end
+		  next
+		  NumberWordsLabel.Text = "0"
+		  EntryTextField.CueText = "Set the number of words to challenge."
 		  
 		End Sub
 	#tag EndEvent
