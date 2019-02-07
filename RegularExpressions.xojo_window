@@ -298,6 +298,7 @@ End
 		      RegExListbox.AddRow """"+e.Message+""""
 		      return true
 		    end try
+		    'add me.text to history?
 		    data.MoveFirst
 		    while not data.EOF
 		      myMatch = rg.Search(data.IdxField(1).StringValue)
@@ -314,6 +315,8 @@ End
 		  Case 27
 		    closable = true
 		    close
+		  Case 30
+		    'up arrow
 		  End Select
 		  
 		End Function
