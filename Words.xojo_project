@@ -9,6 +9,7 @@ Class=WordButton;WordButton.xojo_code;&h00000000000AAFFF;&h0000000000000000;fals
 Window=RegularExpressions;RegularExpressions.xojo_window;&h000000005F9197FF;&h0000000000000000;false
 Window=Judge;Judge.xojo_window;&h0000000039FA5FFF;&h0000000000000000;false
 Window=Quiz;Quiz.xojo_window;&h000000004C450FFF;&h0000000000000000;false
+Window=QuizStatsWindow;QuizStatsWindow.xojo_window;&h000000000B12A7FF;&h0000000000000000;false
 Class=QuizTimer;QuizTimer.xojo_code;&h00000000046367FF;&h0000000000000000;false
 Window=WordShow;WordShow.xojo_window;&h0000000052B687FF;&h0000000000000000;false
 Class=WordShowTimer;WordShowTimer.xojo_code;&h000000004C724FFF;&h0000000000000000;false

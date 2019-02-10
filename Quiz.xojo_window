@@ -1051,7 +1051,8 @@ End
 #tag Events ProgressLabel
 	#tag Event
 		Function MouseDown(X As Integer, Y As Integer) As Boolean
-		  'display stats window
+		  QuizStatsWindow.Show
+		  
 		End Function
 	#tag EndEvent
 #tag EndEvents
