@@ -1048,6 +1048,13 @@ End
 		End Sub
 	#tag EndEvent
 #tag EndEvents
+#tag Events ProgressLabel
+	#tag Event
+		Function MouseDown(X As Integer, Y As Integer) As Boolean
+		  'display stats window
+		End Function
+	#tag EndEvent
+#tag EndEvents
 #tag Events QuizTypeButton
 	#tag Event
 		Sub Action()
