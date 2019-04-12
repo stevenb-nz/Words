@@ -30,10 +30,11 @@ Inherits Listbox
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub set_heading()
-		  me.Heading(0) = str(me.ListCount) + me.heading_text
-		  if me.ListCount <> 1 then
-		    me.Heading(0) = me.Heading(0)+"s"
+		Sub set_heading(letters as String)
+		  if me.ListCount = 1 then
+		    me.Heading(0) = str(me.ListCount) + me.heading_text + letters
+		  else
+		    me.Heading(0) = str(me.ListCount) + me.heading_text+"s" + letters
 		  end
 		  
 		End Sub

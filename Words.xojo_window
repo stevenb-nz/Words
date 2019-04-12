@@ -934,7 +934,7 @@ End
 		  else
 		    OtherSubsetsPushButton.caption = "Other Subsets"
 		  end
-		  OtherSubsetsListbox.set_heading
+		  OtherSubsetsListbox.set_heading("")
 		  
 		  update_hookof(word)
 		  update_subset(word)
@@ -953,7 +953,7 @@ End
 		  else
 		    OtherSupersetsPushButton.caption = "Other Supersets"
 		  end
-		  OtherSupersetsListbox.set_heading
+		  OtherSupersetsListbox.set_heading("")
 		  
 		  Words.Title = "Words ("+str(len(word))+" letter"+if(len(word)=1,"","s")+")"
 		  
@@ -975,7 +975,7 @@ End
 		    AnagramListbox.AddRow data.IdxField(1).StringValue
 		    data.MoveNext
 		  wend
-		  AnagramListbox.set_heading
+		  AnagramListbox.set_heading("")
 		  
 		End Sub
 	#tag EndMethod
@@ -1012,7 +1012,7 @@ End
 		  if isWord(back) then
 		    HookOfListbox.AddRow back
 		  end
-		  HookOfListbox.set_heading
+		  HookOfListbox.set_heading("")
 		  
 		End Sub
 	#tag EndMethod
@@ -1040,7 +1040,7 @@ End
 		    HooksListbox.AddRow data.IdxField(1).StringValue
 		    data.MoveNext
 		  wend
-		  HooksListbox.set_heading
+		  HooksListbox.set_heading("")
 		  
 		End Sub
 	#tag EndMethod
@@ -1070,7 +1070,7 @@ End
 		    end
 		    data.MoveNext
 		  wend
-		  OtherSubsetsListbox.set_heading
+		  OtherSubsetsListbox.set_heading("")
 		  
 		End Sub
 	#tag EndMethod
@@ -1089,7 +1089,7 @@ End
 		    end
 		    data.movenext
 		  wend
-		  OtherSubstringsListbox.set_heading
+		  OtherSubstringsListbox.set_heading("")
 		  
 		End Sub
 	#tag EndMethod
@@ -1119,7 +1119,7 @@ End
 		    end
 		    data.MoveNext
 		  wend
-		  OtherSupersetsListbox.set_heading
+		  OtherSupersetsListbox.set_heading("")
 		  
 		End Sub
 	#tag EndMethod
@@ -1138,7 +1138,7 @@ End
 		    end
 		    data.movenext
 		  wend
-		  OtherSuperstringsListbox.set_heading
+		  OtherSuperstringsListbox.set_heading("")
 		  
 		End Sub
 	#tag EndMethod
@@ -1168,7 +1168,7 @@ End
 		    end
 		    data.MoveNext
 		  wend
-		  SubsetListbox.set_heading
+		  SubsetListbox.set_heading(" ("+str(len(words.WordButton.Caption)-1)+" letters)")
 		  
 		End Sub
 	#tag EndMethod
@@ -1198,7 +1198,7 @@ End
 		    end
 		    data.MoveNext
 		  wend
-		  SubsetPlusOneListbox.set_heading
+		  SubsetPlusOneListbox.set_heading("")
 		  
 		End Sub
 	#tag EndMethod
@@ -1228,7 +1228,7 @@ End
 		    end
 		    data.MoveNext
 		  wend
-		  SupersetListbox.set_heading
+		  SupersetListbox.set_heading(" ("+str(len(words.WordButton.Caption)+1)+" letters)")
 		  
 		End Sub
 	#tag EndMethod
