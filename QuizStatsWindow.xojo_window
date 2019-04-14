@@ -31,6 +31,15 @@ End
 
 #tag WindowCode
 	#tag Event
+		Function KeyDown(Key As String) As Boolean
+		  if asc(Key) = 27 then
+		    close
+		  end
+		  
+		End Function
+	#tag EndEvent
+
+	#tag Event
 		Function MouseDown(X As Integer, Y As Integer) As Boolean
 		  close
 		  
