@@ -1051,7 +1051,59 @@ End
 #tag Events ProgressLabel
 	#tag Event
 		Function MouseDown(X As Integer, Y As Integer) As Boolean
+		  
 		  QuizStatsWindow.Show
+		  
+		  
+		  'dim i,length as integer
+		  'dim alpha_freq,sql as string
+		  'redim quizlist(-1)
+		  'redim guesslist(-1)
+		  '
+		  'length = val(wordLengthButton.Caption)
+		  'if QuizTypeButton.Caption = "Combo" then
+		  'sql = "SELECT Combo FROM Combos WHERE length = "+str(length)+" ORDER BY combo_playability"
+		  'else
+		  'sql = "SELECT Word FROM Words JOIN Combos ON Words.combo_id = Combos.id WHERE length = "+str(length-1)+" ORDER BY combo_playability"
+		  'end if
+		  '
+		  'dim data as RecordSet
+		  'data = app.wordsDB.SQLSelect(sql)
+		  '
+		  'if data.RecordCount > 0 then
+		  'while not data.eof
+		  'quizlist.Append data.IdxField(1).StringValue
+		  'data.MoveNext
+		  'wend
+		  'else
+		  'alpha_freq = "EAIONRTDLSUGBCFHMPVWYJKQXZ"
+		  'quizlist = alpha_freq.split("")
+		  'end
+		  '
+		  'sql = "SELECT states,current,current_new FROM Quiz WHERE type='"+QuizTypeButton.Caption+"' and length='"+str(length)+"'"
+		  'data = app.wordsDB.SQLSelect(sql)
+		  '
+		  'if data.RecordCount = 1 then
+		  'for i = 1 to CountFields(data.IdxField(1).StringValue,",")
+		  'guesslist.Append val(NthField(data.IdxField(1).StringValue,",",i))
+		  'next
+		  'nextnew = val(data.IdxField(2).StringValue)
+		  'current_new = data.IdxField(3).BooleanValue
+		  'else
+		  'resetquiz
+		  'end
+		  'setquiz
+		  
+		  
+		  'dim pl as string
+		  'dim sigfig as integer
+		  '
+		  'sigfig = len(str(ubound(quizlist)+1))
+		  'pl = "√: " + str(round( (nextnew-UBound(guesslist)-1) / (UBound(quizlist)+1)*(10^sigfig))/(10^(sigfig-2)) ) + "% ("
+		  'pl = pl + str(nextnew-UBound(guesslist)-1) + " of " + str(UBound(quizlist)+1) + ") - X: "
+		  'pl = pl + str(UBound(guesslist)+if(current_new,0,1)) + "/100" '100 limit on wrong answers - change to user-selectable?
+		  '
+		  'ProgressLabel.Text = pl
 		  
 		End Function
 	#tag EndEvent
