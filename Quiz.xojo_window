@@ -1051,8 +1051,81 @@ End
 #tag Events ProgressLabel
 	#tag Event
 		Function MouseDown(X As Integer, Y As Integer) As Boolean
+		  dim currentnewtemp as Boolean
+		  dim i,length,nextnewtemp,sigfig as integer
+		  dim alpha_freq,sql as string
+		  dim data as RecordSet
+		  dim guesslisttemp(-1) as Integer
+		  dim quizlisttemp(-1) as string
+		  
+		  for length = 2 to 15
+		    sql = "SELECT Combo FROM Combos WHERE length = "+str(length)+" ORDER BY combo_playability"
+		    data = app.wordsDB.SQLSelect(sql)
+		    while not data.eof
+		      quizlisttemp.Append data.IdxField(1).StringValue
+		      data.MoveNext
+		    wend
+		    sql = "SELECT states,current,current_new FROM Quiz WHERE type='Combo' and length='"+str(length)+"'"
+		    data = app.wordsDB.SQLSelect(sql)
+		    if data.RecordCount = 1 then
+		      for i = 1 to CountFields(data.IdxField(1).StringValue,",")
+		        guesslisttemp.Append val(NthField(data.IdxField(1).StringValue,",",i))
+		      next
+		      nextnewtemp = val(data.IdxField(2).StringValue)
+		      currentnewtemp = data.IdxField(3).BooleanValue
+		    else
+		      '
+		    end
+		    
+		    sigfig = len(str(ubound(quizlisttemp)+1))
+		    QuizStatsWindow.QuizStatsListbox.Cell(length-2,1) = str(round( (nextnewtemp-UBound(guesslisttemp)-1) / (UBound(quizlisttemp)+1)*(10^sigfig))/(10^(sigfig-2)) ) + "%"
+		    QuizStatsWindow.QuizStatsListbox.Cell(length-2,2) = str(nextnewtemp)
+		    QuizStatsWindow.QuizStatsListbox.Cell(length-2,3) = str(UBound(quizlisttemp)+1)
+		    
+		    redim guesslisttemp(-1)
+		    redim quizlisttemp(-1)
+		    
+		    sql = "SELECT Word FROM Words JOIN Combos ON Words.combo_id = Combos.id WHERE length = "+str(length-1)+" ORDER BY combo_playability"
+		    data = app.wordsDB.SQLSelect(sql)
+		    if data.RecordCount > 0 then
+		      while not data.eof
+		        quizlisttemp.Append data.IdxField(1).StringValue
+		        data.MoveNext
+		      wend
+		    else
+		      alpha_freq = "EAIONRTDLSUGBCFHMPVWYJKQXZ"
+		      quizlisttemp = alpha_freq.split("")
+		    end
+		    sql = "SELECT states,current,current_new FROM Quiz WHERE type='Hooks' and length='"+str(length)+"'"
+		    data = app.wordsDB.SQLSelect(sql)
+		    if data.RecordCount = 1 then
+		      for i = 1 to CountFields(data.IdxField(1).StringValue,",")
+		        guesslist.Append val(NthField(data.IdxField(1).StringValue,",",i))
+		      next
+		      nextnewtemp = val(data.IdxField(2).StringValue)
+		      currentnewtemp = data.IdxField(3).BooleanValue
+		    else
+		      '
+		    end
+		    
+		    sigfig = len(str(ubound(quizlisttemp)+1))
+		    QuizStatsWindow.QuizStatsListbox.Cell(length-2,4) = str(round( (nextnewtemp-UBound(guesslisttemp)-1) / (UBound(quizlisttemp)+1)*(10^sigfig))/(10^(sigfig-2)) ) + "%"
+		    QuizStatsWindow.QuizStatsListbox.Cell(length-2,5) = str(nextnewtemp)
+		    QuizStatsWindow.QuizStatsListbox.Cell(length-2,6) = str(UBound(quizlisttemp)+1)
+		  next
 		  
 		  QuizStatsWindow.Show
+		  
+		  
+		  'dim pl as string
+		  'dim sigfig as integer
+		  '
+		  'sigfig = len(str(ubound(quizlist)+1))
+		  'pl = "√: " + str(round( (nextnew-UBound(guesslist)-1) / (UBound(quizlist)+1)*(10^sigfig))/(10^(sigfig-2)) ) + "% ("
+		  'pl = pl + str(nextnew-UBound(guesslist)-1) + " of " + str(UBound(quizlist)+1) + ") - X: "
+		  'pl = pl + str(UBound(guesslist)+if(current_new,0,1)) + "/100" '100 limit on wrong answers - change to user-selectable?
+		  '
+		  'ProgressLabel.Text = pl
 		  
 		  
 		  'dim i,length as integer
@@ -1095,15 +1168,7 @@ End
 		  'setquiz
 		  
 		  
-		  'dim pl as string
-		  'dim sigfig as integer
-		  '
-		  'sigfig = len(str(ubound(quizlist)+1))
-		  'pl = "√: " + str(round( (nextnew-UBound(guesslist)-1) / (UBound(quizlist)+1)*(10^sigfig))/(10^(sigfig-2)) ) + "% ("
-		  'pl = pl + str(nextnew-UBound(guesslist)-1) + " of " + str(UBound(quizlist)+1) + ") - X: "
-		  'pl = pl + str(UBound(guesslist)+if(current_new,0,1)) + "/100" '100 limit on wrong answers - change to user-selectable?
-		  '
-		  'ProgressLabel.Text = pl
+		  
 		  
 		End Function
 	#tag EndEvent
