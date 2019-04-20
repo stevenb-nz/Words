@@ -1051,14 +1051,26 @@ End
 #tag Events ProgressLabel
 	#tag Event
 		Function MouseDown(X As Integer, Y As Integer) As Boolean
-		  dim currentnewtemp as Boolean
 		  dim i,length,nextnewtemp,sigfig as integer
 		  dim alpha_freq,sql as string
 		  dim data as RecordSet
 		  dim guesslisttemp(-1) as Integer
 		  dim quizlisttemp(-1) as string
 		  
+		  for i = 0 to 6
+		    QuizStatsWindow.QuizStatsListbox.ColumnAlignment(i) = Listbox.AlignRight
+		  next
+		  QuizStatsWindow.QuizStatsListbox.ColumnAlignment(1) = Listbox.AlignDecimal
+		  QuizStatsWindow.QuizStatsListbox.ColumnAlignmentOffset(1) = -35
+		  QuizStatsWindow.QuizStatsListbox.ColumnAlignment(4) = Listbox.AlignDecimal
+		  QuizStatsWindow.QuizStatsListbox.ColumnAlignmentOffset(4) = -35
+		  
+		  savequiz
+		  
 		  for length = 2 to 15
+		    redim guesslisttemp(-1)
+		    redim quizlisttemp(-1)
+		    
 		    sql = "SELECT Combo FROM Combos WHERE length = "+str(length)+" ORDER BY combo_playability"
 		    data = app.wordsDB.SQLSelect(sql)
 		    while not data.eof
@@ -1072,9 +1084,6 @@ End
 		        guesslisttemp.Append val(NthField(data.IdxField(1).StringValue,",",i))
 		      next
 		      nextnewtemp = val(data.IdxField(2).StringValue)
-		      currentnewtemp = data.IdxField(3).BooleanValue
-		    else
-		      '
 		    end
 		    
 		    sigfig = len(str(ubound(quizlisttemp)+1))
@@ -1100,12 +1109,9 @@ End
 		    data = app.wordsDB.SQLSelect(sql)
 		    if data.RecordCount = 1 then
 		      for i = 1 to CountFields(data.IdxField(1).StringValue,",")
-		        guesslist.Append val(NthField(data.IdxField(1).StringValue,",",i))
+		        guesslisttemp.Append val(NthField(data.IdxField(1).StringValue,",",i))
 		      next
 		      nextnewtemp = val(data.IdxField(2).StringValue)
-		      currentnewtemp = data.IdxField(3).BooleanValue
-		    else
-		      '
 		    end
 		    
 		    sigfig = len(str(ubound(quizlisttemp)+1))
@@ -1115,60 +1121,6 @@ End
 		  next
 		  
 		  QuizStatsWindow.Show
-		  
-		  
-		  'dim pl as string
-		  'dim sigfig as integer
-		  '
-		  'sigfig = len(str(ubound(quizlist)+1))
-		  'pl = "√: " + str(round( (nextnew-UBound(guesslist)-1) / (UBound(quizlist)+1)*(10^sigfig))/(10^(sigfig-2)) ) + "% ("
-		  'pl = pl + str(nextnew-UBound(guesslist)-1) + " of " + str(UBound(quizlist)+1) + ") - X: "
-		  'pl = pl + str(UBound(guesslist)+if(current_new,0,1)) + "/100" '100 limit on wrong answers - change to user-selectable?
-		  '
-		  'ProgressLabel.Text = pl
-		  
-		  
-		  'dim i,length as integer
-		  'dim alpha_freq,sql as string
-		  'redim quizlist(-1)
-		  'redim guesslist(-1)
-		  '
-		  'length = val(wordLengthButton.Caption)
-		  'if QuizTypeButton.Caption = "Combo" then
-		  'sql = "SELECT Combo FROM Combos WHERE length = "+str(length)+" ORDER BY combo_playability"
-		  'else
-		  'sql = "SELECT Word FROM Words JOIN Combos ON Words.combo_id = Combos.id WHERE length = "+str(length-1)+" ORDER BY combo_playability"
-		  'end if
-		  '
-		  'dim data as RecordSet
-		  'data = app.wordsDB.SQLSelect(sql)
-		  '
-		  'if data.RecordCount > 0 then
-		  'while not data.eof
-		  'quizlist.Append data.IdxField(1).StringValue
-		  'data.MoveNext
-		  'wend
-		  'else
-		  'alpha_freq = "EAIONRTDLSUGBCFHMPVWYJKQXZ"
-		  'quizlist = alpha_freq.split("")
-		  'end
-		  '
-		  'sql = "SELECT states,current,current_new FROM Quiz WHERE type='"+QuizTypeButton.Caption+"' and length='"+str(length)+"'"
-		  'data = app.wordsDB.SQLSelect(sql)
-		  '
-		  'if data.RecordCount = 1 then
-		  'for i = 1 to CountFields(data.IdxField(1).StringValue,",")
-		  'guesslist.Append val(NthField(data.IdxField(1).StringValue,",",i))
-		  'next
-		  'nextnew = val(data.IdxField(2).StringValue)
-		  'current_new = data.IdxField(3).BooleanValue
-		  'else
-		  'resetquiz
-		  'end
-		  'setquiz
-		  
-		  
-		  
 		  
 		End Function
 	#tag EndEvent
