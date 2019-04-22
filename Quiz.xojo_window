@@ -1130,13 +1130,28 @@ End
 		  savequiz
 		  dim c as integer
 		  
-		  c = val(me.caption)
-		  
-		  if c > 14 then
-		    me.caption = str(2)
+		  if Keyboard.AsyncShiftKey then
+		    
+		    c = val(me.caption)
+		    
+		    if c < 3 then
+		      me.caption = str(15)
+		    else
+		      me.caption = str(c - 1)
+		    end
+		    
 		  else
-		    me.caption = str(c + 1)
+		    
+		    c = val(me.caption)
+		    
+		    if c > 14 then
+		      me.caption = str(2)
+		    else
+		      me.caption = str(c + 1)
+		    end
+		    
 		  end
+		  
 		  clearentry
 		  loadquiz
 		  
