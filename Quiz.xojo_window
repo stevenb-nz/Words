@@ -1052,10 +1052,9 @@ End
 	#tag Event
 		Function MouseDown(X As Integer, Y As Integer) As Boolean
 		  dim i,length,nextnewtemp,sigfig as integer
-		  dim alpha_freq,sql as string
+		  dim sql as string
 		  dim data as RecordSet
-		  dim guesslisttemp(-1) as Integer
-		  dim quizlisttemp(-1) as string
+		  dim guesslistlen, quizlistlen as Integer
 		  
 		  for i = 0 to 6
 		    QuizStatsWindow.QuizStatsListbox.ColumnAlignment(i) = Listbox.AlignRight
@@ -1068,56 +1067,41 @@ End
 		  savequiz
 		  
 		  for length = 2 to 15
-		    redim guesslisttemp(-1)
-		    redim quizlisttemp(-1)
-		    
 		    sql = "SELECT Combo FROM Combos WHERE length = "+str(length)+" ORDER BY combo_playability"
 		    data = app.wordsDB.SQLSelect(sql)
-		    while not data.eof
-		      quizlisttemp.Append data.IdxField(1).StringValue
-		      data.MoveNext
-		    wend
+		    quizlistlen = data.RecordCount
 		    sql = "SELECT states,current,current_new FROM Quiz WHERE type='Combo' and length='"+str(length)+"'"
 		    data = app.wordsDB.SQLSelect(sql)
+		    guesslistlen = 0
 		    if data.RecordCount = 1 then
-		      for i = 1 to CountFields(data.IdxField(1).StringValue,",")
-		        guesslisttemp.Append val(NthField(data.IdxField(1).StringValue,",",i))
-		      next
+		      guesslistlen = CountFields(data.IdxField(1).StringValue,",")
 		      nextnewtemp = val(data.IdxField(2).StringValue)
 		    end
 		    
-		    sigfig = len(str(ubound(quizlisttemp)+1))
-		    QuizStatsWindow.QuizStatsListbox.Cell(length-2,1) = str(round( (nextnewtemp-UBound(guesslisttemp)-1) / (UBound(quizlisttemp)+1)*(10^sigfig))/(10^(sigfig-2)) ) + "%"
+		    sigfig = len(str(quizlistlen))
+		    QuizStatsWindow.QuizStatsListbox.Cell(length-2,1) = str(round( (nextnewtemp-guesslistlen) / quizlistlen*(10^sigfig))/(10^(sigfig-2)) ) + "%"
 		    QuizStatsWindow.QuizStatsListbox.Cell(length-2,2) = str(nextnewtemp)
-		    QuizStatsWindow.QuizStatsListbox.Cell(length-2,3) = str(UBound(quizlisttemp)+1)
-		    
-		    redim guesslisttemp(-1)
-		    redim quizlisttemp(-1)
+		    QuizStatsWindow.QuizStatsListbox.Cell(length-2,3) = str(quizlistlen)
 		    
 		    sql = "SELECT Word FROM Words JOIN Combos ON Words.combo_id = Combos.id WHERE length = "+str(length-1)+" ORDER BY combo_playability"
 		    data = app.wordsDB.SQLSelect(sql)
 		    if data.RecordCount > 0 then
-		      while not data.eof
-		        quizlisttemp.Append data.IdxField(1).StringValue
-		        data.MoveNext
-		      wend
+		      quizlistlen = data.RecordCount
 		    else
-		      alpha_freq = "EAIONRTDLSUGBCFHMPVWYJKQXZ"
-		      quizlisttemp = alpha_freq.split("")
+		      quizlistlen = 26
 		    end
 		    sql = "SELECT states,current,current_new FROM Quiz WHERE type='Hooks' and length='"+str(length)+"'"
 		    data = app.wordsDB.SQLSelect(sql)
+		    guesslistlen = 0
 		    if data.RecordCount = 1 then
-		      for i = 1 to CountFields(data.IdxField(1).StringValue,",")
-		        guesslisttemp.Append val(NthField(data.IdxField(1).StringValue,",",i))
-		      next
+		      guesslistlen = CountFields(data.IdxField(1).StringValue,",")
 		      nextnewtemp = val(data.IdxField(2).StringValue)
 		    end
 		    
-		    sigfig = len(str(ubound(quizlisttemp)+1))
-		    QuizStatsWindow.QuizStatsListbox.Cell(length-2,4) = str(round( (nextnewtemp-UBound(guesslisttemp)-1) / (UBound(quizlisttemp)+1)*(10^sigfig))/(10^(sigfig-2)) ) + "%"
+		    sigfig = len(str(quizlistlen))
+		    QuizStatsWindow.QuizStatsListbox.Cell(length-2,4) = str(round( (nextnewtemp-guesslistlen) / quizlistlen*(10^sigfig))/(10^(sigfig-2)) ) + "%"
 		    QuizStatsWindow.QuizStatsListbox.Cell(length-2,5) = str(nextnewtemp)
-		    QuizStatsWindow.QuizStatsListbox.Cell(length-2,6) = str(UBound(quizlisttemp)+1)
+		    QuizStatsWindow.QuizStatsListbox.Cell(length-2,6) = str(quizlistlen)
 		  next
 		  
 		  QuizStatsWindow.Show
