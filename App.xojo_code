@@ -17,21 +17,28 @@ Inherits Application
 		    WordMastermind.Enabled = true
 		    WordJudge.Enabled = true
 		    WordQuiz.Enabled = true
-		    WordRandom.Enabled  = true
 		    
-		    dim length as integer
-		    
-		    length = len(words.WordButton.Caption)
-		    if length > 0 then
-		      WordRandomMinus1.Enabled = true
-		    else
+		    if words.WordField.Visible then
+		      WordRandom.Enabled = false
 		      WordRandomMinus1.Enabled = false
-		    end
-		    
-		    if length < 15 then
-		      WordRandomPlus1.Enabled = true
-		    else
 		      WordRandomPlus1.Enabled = false
+		    else
+		      WordRandom.Enabled  = true
+		      
+		      dim length as integer
+		      
+		      length = len(words.WordButton.Caption)
+		      if length > 0 then
+		        WordRandomMinus1.Enabled = true
+		      else
+		        WordRandomMinus1.Enabled = false
+		      end
+		      
+		      if length < 15 then
+		        WordRandomPlus1.Enabled = true
+		      else
+		        WordRandomPlus1.Enabled = false
+		      end
 		    end
 		    
 		    WordRegEx.Enabled = true

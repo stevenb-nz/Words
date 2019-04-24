@@ -778,13 +778,20 @@ End
 
 	#tag Event
 		Function KeyDown(Key As String) As Boolean
-		  if asc(Key) = 27 then
+		  select case asc(Key)
+		  case 0
+		    WordField.Text = WordButton.Caption
+		    WordField.Visible = true
+		    WordField.SetFocus
+		  case 27
 		    if Keyboard.ShiftKey then
 		      Mastermind.ShowModal
 		    else
 		      Quiz.ShowModal
 		    end
 		    return true
+		  else
+		    'MsgBox str(asc(Key))
 		  end
 		  
 		End Function
