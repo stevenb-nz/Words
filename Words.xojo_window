@@ -1263,10 +1263,16 @@ End
 #tag Events WordButton
 	#tag Event
 		Sub Action()
-		  WordField.Text = me.Caption
-		  WordField.Visible = true
-		  WordField.SetFocus
-		  
+		  if Keyboard.AsyncShiftKey then
+		    'work out cryptofingerprint for this word (if word)
+		    'list words with same
+		    
+		    'add cryptofingerprint for each word to DB on import?
+		  else
+		    WordField.Text = me.Caption
+		    WordField.Visible = true
+		    WordField.SetFocus
+		  end
 		End Sub
 	#tag EndEvent
 	#tag Event
