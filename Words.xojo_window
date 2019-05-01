@@ -1240,6 +1240,12 @@ End
 		End Sub
 	#tag EndMethod
 
+	#tag Method, Flags = &h0
+		Function wordpattern(word as String) As String
+		  
+		End Function
+	#tag EndMethod
+
 
 	#tag Property, Flags = &h0
 		history() As String
@@ -1264,6 +1270,7 @@ End
 	#tag Event
 		Sub Action()
 		  if Keyboard.AsyncShiftKey then
+		    MsgBox wordpattern(me.caption)
 		    'work out cryptofingerprint for this word (if word)
 		    'list words with same
 		    
