@@ -1285,11 +1285,21 @@ End
 	#tag Event
 		Sub Action()
 		  if Keyboard.AsyncShiftKey then
-		    MsgBox wordpattern(me.caption)
-		    'work out cryptofingerprint for this word (if word)
-		    'list words with same
+		    dim sql as string
+		    dim data as RecordSet
 		    
-		    'add cryptofingerprint for each word to DB on import?
+		    WordPatterns.Title = me.caption
+		    
+		    sql = "SELECT Word FROM Words JOIN Combos ON Words.combo_id = Combos.id WHERE length = "+str(len(me.caption))+" ORDER BY playability"
+		    data = app.wordsDB.SQLSelect(sql)
+		    
+		    while not data.eof
+		      if wordpattern(data.IdxField(1).StringValue) = wordpattern(me.Caption) then
+		        WordPatterns.WPListbox.AddRow data.IdxField(1).StringValue
+		      end
+		      data.movenext
+		    wend
+		    WordPatterns.ShowModal
 		  else
 		    WordField.Text = me.Caption
 		    WordField.Visible = true
