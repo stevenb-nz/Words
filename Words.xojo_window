@@ -1242,6 +1242,21 @@ End
 
 	#tag Method, Flags = &h0
 		Function wordpattern(word as String) As String
+		  dim d as new Dictionary
+		  dim i,v as integer
+		  dim c,pattern as string
+		  
+		  pattern = ""
+		  v = 1
+		  for i = 1 to len(word)
+		    c = mid(word,i,1)
+		    if not d.HasKey(c) then
+		      d.Value(c) = Hex(v)
+		      v = v + 1
+		    end
+		    pattern = pattern + d.Value(c)
+		  next
+		  return pattern
 		  
 		End Function
 	#tag EndMethod
