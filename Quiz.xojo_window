@@ -517,7 +517,7 @@ End
 	#tag Method, Flags = &h0
 		Sub add_guess(guess as string)
 		  guesslistbox.AddRow guess
-		  GuessesLabel.Text = guessListbox.ListCount.ToText
+		  update_guessesLabel
 		  guessField.text = ""
 		  guessField.BackColor = &cFFCCCC
 		  myQuizTimer = new QuizTimer
@@ -557,7 +557,7 @@ End
 		  guessField.Text = ""
 		  guessListbox.DeleteAllRows
 		  answerListbox.DeleteAllRows
-		  GuessesLabel.Text = guessListbox.ListCount.ToText
+		  update_guessesLabel
 		  
 		End Sub
 	#tag EndMethod
@@ -933,6 +933,17 @@ End
 		End Sub
 	#tag EndMethod
 
+	#tag Method, Flags = &h0
+		Sub update_guessesLabel()
+		  if AnswersLabel.Text = "- / -" then
+		    GuessesLabel.Text = AnswersLabel.Text
+		  else
+		    GuessesLabel.Text = guessListbox.ListCount.ToText
+		  end
+		  
+		End Sub
+	#tag EndMethod
+
 
 	#tag Property, Flags = &h0
 		closable As Boolean
@@ -969,7 +980,7 @@ End
 		    if guessField.Text = "" then
 		      if guessListbox.LastIndex >= 0 then
 		        guessListbox.RemoveRow guessListbox.LastIndex
-		        GuessesLabel.Text = guessListbox.ListCount.ToText
+		        update_guessesLabel
 		      end
 		      return true
 		    end
@@ -1162,7 +1173,7 @@ End
 	#tag Event
 		Sub DoubleClick()
 		  me.removerow me.listindex
-		  GuessesLabel.Text = me.ListCount.ToText
+		  update_guessesLabel
 		  guessField.SetFocus
 		  
 		End Sub
