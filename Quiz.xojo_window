@@ -897,6 +897,7 @@ End
 		    choosenext
 		  else
 		    guessListbox.DeleteAllRows
+		    update_guessesLabel
 		    answerListbox.Visible = true
 		  end
 		  
@@ -938,8 +939,32 @@ End
 
 	#tag Method, Flags = &h0
 		Sub update_guessesLabel()
-		  if AnswersLabel.Text = "- / -" then
-		    GuessesLabel.Text = AnswersLabel.Text
+		  if QuizTypeButton.Caption = "Hooks" then
+		    if AnswersLabel.Text = "- / -" then
+		      GuessesLabel.Text = AnswersLabel.Text
+		    else
+		      dim b, f, i as Double
+		      dim bb,ff as Boolean
+		      dim w as string
+		      
+		      b = 0
+		      f = 0
+		      
+		      for i = 1 to guessListbox.ListCount
+		        w = guessListbox.List(i-1)
+		        bb = left(w, len(w)-1) = CurrentComboLabel.Text
+		        ff = right(w, len(w)-1) = CurrentComboLabel.Text
+		        if bb and ff then
+		          b = b + 0.5
+		          f = f + 0.5
+		        elseif bb then
+		          b = b + 1
+		        else
+		          f = f + 1
+		        end
+		      next
+		      GuessesLabel.Text = if(f > 0,str(f),"-")+" / "+if(b > 0,str(b),"-")
+		    end
 		  else
 		    GuessesLabel.Text = guessListbox.ListCount.ToText
 		  end
