@@ -784,6 +784,7 @@ End
 		      
 		      count = data.RecordCount
 		      AnswersLabel.Text = AnswersLabel.Text + if(count>0,str(count),"-")
+		      update_guessesLabel
 		    else
 		      dim i as integer
 		      dim word as string
@@ -806,6 +807,7 @@ End
 		        end
 		      next
 		      AnswersLabel.Text = AnswersLabel.Text + if(count>0,str(count),"-")
+		      update_guessesLabel
 		    end
 		    if AnswersLabel.Text = "- / -" then
 		      answerListbox.AddRow CurrentComboLabel.text
@@ -827,6 +829,7 @@ End
 		      data.MoveNext
 		    wend
 		    AnswersLabel.Text = str(data.RecordCount)
+		    update_guessesLabel
 		  end
 		  setProgressLabel
 		  setCurrentLabel
