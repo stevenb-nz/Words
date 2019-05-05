@@ -500,7 +500,7 @@ End
 		  quiztype = app.getSetting("quiz type")
 		  QuizTypeButton.Caption = if(quiztype="","Combo",quiztype)
 		  quizlength = val(app.getSetting("quiz length"))
-		  wordLengthButton.Caption = if(quizlength=0,"2",str(quizlength))
+		  wordLengthButton.Caption = if(quizlength=0,"C",str(quizlength))
 		  
 		  loadquiz
 		  
@@ -599,6 +599,9 @@ End
 		  redim guesslist(-1)
 		  
 		  length = val(wordLengthButton.Caption)
+		  if length = 0 then
+		    length = 2
+		  end
 		  if QuizTypeButton.Caption = "Combo" then
 		    sql = "SELECT Combo FROM Combos WHERE length = "+str(length)+" ORDER BY combo_playability"
 		  else
@@ -686,6 +689,9 @@ End
 		  dim data as RecordSet
 		  
 		  length = val(wordLengthButton.Caption)
+		  if length = 0 then
+		    length = 2
+		  end
 		  states = str(guesslist(0))
 		  for i = 1 to UBound(guesslist)
 		    states = states + "," + str(guesslist(i))
@@ -1171,22 +1177,30 @@ End
 		  
 		  if Keyboard.AsyncShiftKey then
 		    
-		    c = val(me.caption)
-		    
-		    if c < 3 then
-		      me.caption = str(15)
+		    if me.Caption = "C" then
+		      me.Caption = str(15)
 		    else
-		      me.caption = str(c - 1)
+		      c = val(me.caption)
+		      
+		      if c < 3 then
+		        me.caption = "C"
+		      else
+		        me.caption = str(c - 1)
+		      end
 		    end
 		    
 		  else
 		    
-		    c = val(me.caption)
-		    
-		    if c > 14 then
+		    if me.Caption = "C" then
 		      me.caption = str(2)
 		    else
-		      me.caption = str(c + 1)
+		      c = val(me.caption)
+		      
+		      if c > 14 then
+		        me.caption = "C"
+		      else
+		        me.caption = str(c + 1)
+		      end
 		    end
 		    
 		  end
