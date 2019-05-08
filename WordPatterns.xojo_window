@@ -123,6 +123,21 @@ End
 
 #tag EndWindowCode
 
+#tag Events WPListbox
+	#tag Event
+		Sub DoubleClick()
+		  dim new_word as string
+		  
+		  new_word = me.text
+		  words.WordButton.Caption = new_word
+		  words.updateWords(new_word)
+		  words.update_history(new_word)
+		  closable = true
+		  Close
+		  
+		End Sub
+	#tag EndEvent
+#tag EndEvents
 #tag ViewBehavior
 	#tag ViewProperty
 		Name="Name"
