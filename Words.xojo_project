@@ -17,6 +17,7 @@ Window=Mastermind;Mastermind.xojo_window;&h0000000029551FFF;&h0000000000000000;f
 BuildSteps=Build Automation;Build Automation.xojo_code;&h00000000056CCD22;&h0000000000000000;false
 Class=wordlist;wordlist.xojo_code;&h000000004302C7FF;&h0000000000000000;false
 Window=WordPatterns;WordPatterns.xojo_window;&h000000000E76DFFF;&h0000000000000000;false
+Window=CustomQuiz;CustomQuiz.xojo_window;&h00000000308377FF;&h0000000000000000;false
 DefaultWindow=Words
 AppMenuBar=MainMenuBar
 MajorVersion=1
