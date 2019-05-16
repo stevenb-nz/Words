@@ -202,6 +202,23 @@ End
 		End Sub
 	#tag EndEvent
 #tag EndEvents
+#tag Events ClearButton
+	#tag Event
+		Sub Action()
+		  CQListbox.DeleteAllRows
+		  
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events CloseButton
+	#tag Event
+		Sub Action()
+		  closable = true
+		  Close
+		  
+		End Sub
+	#tag EndEvent
+#tag EndEvents
 #tag ViewBehavior
 	#tag ViewProperty
 		Name="Name"
