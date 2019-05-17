@@ -1305,6 +1305,7 @@ End
 		    WordField.Visible = true
 		    WordField.SetFocus
 		  end
+		  
 		End Sub
 	#tag EndEvent
 	#tag Event
@@ -1393,6 +1394,7 @@ End
 		  if index > 0 then
 		    index = index - 1
 		    nextLabel.Text = WordButton.Caption
+		    WordField.Visible = false
 		    WordButton.Caption = prevLabel.text
 		    prevLabel.text = if(index > 0,history(index-1),"")
 		    updateWords(WordButton.Caption)
@@ -1407,6 +1409,7 @@ End
 		  if index < UBound(history) then
 		    index = index + 1
 		    prevLabel.Text = WordButton.Caption
+		    WordField.Visible = false
 		    WordButton.Caption = nextLabel.text
 		    nextLabel.text = if(index < UBound(history),history(index+1),"")
 		    updateWords(WordButton.Caption)

@@ -10,7 +10,11 @@ Inherits Listbox
 	#tag Event
 		Function KeyDown(Key As String) As Boolean
 		  if asc(Key) = 13 then
-		    changeWord
+		    if me.text = "" then
+		      
+		    else
+		      changeWord
+		    end
 		    return true
 		  end
 		End Function
