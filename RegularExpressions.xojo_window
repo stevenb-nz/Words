@@ -272,6 +272,19 @@ End
 	#tag Event
 		Function KeyDown(Key As String) As Boolean
 		  Select Case asc(Key)
+		  case 13
+		    if me.text = "" then
+		      
+		    else
+		      dim new_word as string
+		      
+		      new_word = me.text
+		      words.WordButton.Caption = new_word
+		      words.updateWords(new_word)
+		      words.update_history(new_word)
+		      closable = true
+		      Close
+		    end
 		  Case 27
 		    closable = true
 		    close
