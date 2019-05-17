@@ -178,6 +178,13 @@ Begin Menu MainMenuBar
          AutoEnable = False
          Visible = True
       End
+      Begin MenuItem WordCustomQuiz
+         SpecialMenu = 0
+         Text = "Custom Quiz"
+         Index = -2147483648
+         AutoEnable = False
+         Visible = True
+      End
       Begin MenuItem WordWordShow
          SpecialMenu = 0
          Text = "Word Show"
