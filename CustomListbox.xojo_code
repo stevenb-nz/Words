@@ -11,7 +11,9 @@ Inherits Listbox
 		Function KeyDown(Key As String) As Boolean
 		  if asc(Key) = 13 then
 		    if me.text = "" then
-		      
+		      if me.ListCount > 0 then
+		        CustomQuizList.add(me)
+		      end
 		    else
 		      changeWord
 		    end

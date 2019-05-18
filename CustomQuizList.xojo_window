@@ -1,5 +1,5 @@
 #tag Window
-Begin Window CustomQuiz
+Begin Window CustomQuizList
    BackColor       =   &cFFFFFF00
    Backdrop        =   0
    CloseButton     =   True
@@ -23,7 +23,7 @@ Begin Window CustomQuiz
    MinWidth        =   64
    Placement       =   0
    Resizeable      =   True
-   Title           =   "Custom Quiz"
+   Title           =   "Custom Quiz List"
    Visible         =   True
    Width           =   444
    Begin Listbox CQListbox
@@ -178,6 +178,13 @@ End
 		  
 		End Sub
 	#tag EndEvent
+
+
+	#tag Method, Flags = &h0
+		Sub add(newWords as Listbox)
+		  MsgBox str(newWords.ListCount)
+		End Sub
+	#tag EndMethod
 
 
 	#tag Property, Flags = &h0

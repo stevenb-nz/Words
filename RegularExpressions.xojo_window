@@ -274,7 +274,9 @@ End
 		  Select Case asc(Key)
 		  case 13
 		    if me.text = "" then
-		      
+		      if me.ListCount > 0 then
+		        CustomQuizList.add(me)
+		      end
 		    else
 		      dim new_word as string
 		      

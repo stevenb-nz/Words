@@ -112,7 +112,7 @@ Inherits Application
 
 	#tag MenuHandler
 		Function WordCustomQuiz() As Boolean Handles WordCustomQuiz.Action
-			CustomQuiz.ShowModal
+			CustomQuizList.ShowModal
 			Return True
 			
 		End Function
