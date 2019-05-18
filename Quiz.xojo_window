@@ -761,7 +761,7 @@ End
 		  CurrentComboLabel.Text = quizlist(guesslist(0))
 		  if QuizTypeButton.Caption = "Hooks" then
 		    dim count as integer
-		    if len(CurrentComboLabel.Text) > 1then
+		    if len(CurrentComboLabel.Text) > 1 then
 		      dim id as integer
 		      id = app.word_id(CurrentComboLabel.Text)
 		      
