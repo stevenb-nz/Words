@@ -182,7 +182,22 @@ End
 
 	#tag Method, Flags = &h0
 		Sub add(newWords as Listbox)
-		  MsgBox str(newWords.ListCount)
+		  dim i,j as integer
+		  dim check as Boolean
+		  
+		  for i = 0 to newWords.ListCount-1
+		    check = true
+		    for j = 0 to CQListbox.ListCount-1
+		      if newWords.List(i) = CQListbox.List(j) then
+		        check = false
+		        exit
+		      end
+		    next
+		    if check then
+		      CQListbox.AddRow newWords.List(i)
+		    end
+		  next
+		  
 		End Sub
 	#tag EndMethod
 
