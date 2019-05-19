@@ -497,14 +497,6 @@ Inherits Application
 
 
 	#tag Property, Flags = &h0
-		QuizCustomCombos() As String
-	#tag EndProperty
-
-	#tag Property, Flags = &h0
-		QuizCustomHooks() As String
-	#tag EndProperty
-
-	#tag Property, Flags = &h0
 		wordsDB As SQLiteDatabase
 	#tag EndProperty
 
