@@ -172,13 +172,6 @@ End
 	#tag EndEvent
 
 	#tag Event
-		Sub Close()
-		  Words.Show
-		  
-		End Sub
-	#tag EndEvent
-
-	#tag Event
 		Sub Moved()
 		  storeRegExBounds
 		  
@@ -277,6 +270,8 @@ End
 		      if me.ListCount > 0 then
 		        CustomQuizList.add(me)
 		      end
+		      closable = true
+		      close
 		    else
 		      dim new_word as string
 		      
@@ -286,10 +281,12 @@ End
 		      words.update_history(new_word)
 		      closable = true
 		      Close
+		      words.show
 		    end
 		  Case 27
 		    closable = true
 		    close
+		    words.show
 		  End Select
 		  
 		End Function
@@ -304,6 +301,7 @@ End
 		  words.update_history(new_word)
 		  closable = true
 		  Close
+		  words.show
 		  
 		End Sub
 	#tag EndEvent
