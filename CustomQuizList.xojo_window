@@ -165,14 +165,6 @@ End
 	#tag EndEvent
 
 	#tag Event
-		Function KeyDown(Key As String) As Boolean
-		  closable = true
-		  close
-		  
-		End Function
-	#tag EndEvent
-
-	#tag Event
 		Sub Open()
 		  Words.Visible = false
 		  
@@ -182,8 +174,18 @@ End
 
 	#tag Method, Flags = &h0
 		Sub add(newWords as Listbox)
+		  dim cql as string
+		  dim cqlarray() as string
 		  dim i,j as integer
 		  dim check as Boolean
+		  
+		  cql = app.getSetting("cql")
+		  if len(cql) > 0 then
+		    cqlarray = cql.Split(",")
+		  end
+		  for i = 0 to cqlarray.Ubound
+		    CQListbox.AddRow cqlarray(i)
+		  next
 		  
 		  for i = 0 to newWords.ListCount-1
 		    check = true
@@ -230,6 +232,24 @@ End
 #tag Events CloseButton
 	#tag Event
 		Sub Action()
+		  dim cql, newcql as string
+		  dim i as integer
+		  
+		  if CQListbox.ListCount > 0 then
+		    newcql = CQListbox.list(0)
+		    for i = 1 to CQListbox.ListCount-1
+		      newcql = newcql + ","
+		      newcql = newcql + CQListbox.list(i)
+		    next
+		  else
+		    newcql = ""
+		  end
+		  cql = app.getSetting("cql")
+		  if newcql <> cql then
+		    app.updateSetting("cql",newcql)
+		    app.updateSetting("cql state","new")
+		  end
+		  
 		  closable = true
 		  Close
 		  
