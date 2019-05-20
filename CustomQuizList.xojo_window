@@ -212,14 +212,9 @@ End
 #tag Events CQListbox
 	#tag Event
 		Sub DoubleClick()
-		  dim new_word as string
-		  
-		  new_word = me.text
-		  words.WordButton.Caption = new_word
-		  words.updateWords(new_word)
-		  words.update_history(new_word)
-		  closable = true
-		  Close
+		  if me.ListIndex > -1 and me.ListIndex < me.ListCount then
+		    me.RemoveRow(me.ListIndex)
+		  end
 		  
 		End Sub
 	#tag EndEvent
