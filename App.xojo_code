@@ -112,7 +112,19 @@ Inherits Application
 
 	#tag MenuHandler
 		Function WordCustomQuiz() As Boolean Handles WordCustomQuiz.Action
-			CustomQuizList.ShowModal
+			dim cql as string
+			dim cqlarray() as string
+			dim i as integer
+			
+			cql = app.getSetting("cql")
+			if len(cql) > 0 then
+			cqlarray = cql.Split(",")
+			end
+			for i = 0 to cqlarray.Ubound
+			CustomQuizList.CQListbox.AddRow cqlarray(i)
+			next
+			
+			'CustomQuizList.ShowModal
 			Return True
 			
 		End Function
