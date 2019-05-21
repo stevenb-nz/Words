@@ -124,7 +124,7 @@ Inherits Application
 			CustomQuizList.CQListbox.AddRow cqlarray(i)
 			next
 			
-			'CustomQuizList.ShowModal
+			CustomQuizList.ShowModal
 			Return True
 			
 		End Function

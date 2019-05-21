@@ -61,7 +61,7 @@ Begin Window CustomQuizList
       Scope           =   0
       ScrollbarHorizontal=   False
       ScrollBarVertical=   True
-      SelectionType   =   0
+      SelectionType   =   1
       ShowDropIndicator=   False
       TabIndex        =   0
       TabPanelIndex   =   0
@@ -219,6 +219,22 @@ End
 		  end
 		  
 		End Sub
+	#tag EndEvent
+	#tag Event
+		Function KeyDown(Key As String) As Boolean
+		  dim i as integer
+		  
+		  select case asc(key)
+		  case 8
+		    for i = CQListbox.ListCount DownTo 1
+		      if CQListbox.Selected(i-1) then
+		        CQListbox.RemoveRow(i-1)
+		      end
+		    next
+		  else
+		  end
+		  
+		End Function
 	#tag EndEvent
 #tag EndEvents
 #tag Events ClearButton
