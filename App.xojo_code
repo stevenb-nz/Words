@@ -123,8 +123,7 @@ Inherits Application
 			for i = 0 to cqlarray.Ubound
 			CustomQuizList.CQListbox.AddRow cqlarray(i)
 			next
-			
-			CustomQuizList.ShowModal
+			CustomQuizList.updateWindowTitle
 			Return True
 			
 		End Function

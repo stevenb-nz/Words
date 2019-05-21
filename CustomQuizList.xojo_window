@@ -199,6 +199,14 @@ End
 		      CQListbox.AddRow newWords.List(i)
 		    end
 		  next
+		  updateWindowTitle
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub updateWindowTitle()
+		  CustomQuizList.Title = "Custom Quiz List" + " ("+str(CustomQuizList.CQListbox.ListCount)+" item"+if(CustomQuizList.CQListbox.ListCount=1,"","s")+")"
 		  
 		End Sub
 	#tag EndMethod
@@ -216,6 +224,7 @@ End
 		Sub DoubleClick()
 		  if me.ListIndex > -1 and me.ListIndex < me.ListCount then
 		    me.RemoveRow(me.ListIndex)
+		    updateWindowTitle
 		  end
 		  
 		End Sub
@@ -229,6 +238,7 @@ End
 		    for i = CQListbox.ListCount DownTo 1
 		      if CQListbox.Selected(i-1) then
 		        CQListbox.RemoveRow(i-1)
+		        updateWindowTitle
 		      end
 		    next
 		  else
