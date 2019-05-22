@@ -31,9 +31,9 @@ Begin Window CustomQuizList
       AutoHideScrollbars=   True
       Bold            =   False
       Border          =   True
-      ColumnCount     =   1
+      ColumnCount     =   2
       ColumnsResizable=   False
-      ColumnWidths    =   ""
+      ColumnWidths    =   "75%	25%"
       DataField       =   ""
       DataSource      =   ""
       DefaultRowHeight=   -1
@@ -42,14 +42,14 @@ Begin Window CustomQuizList
       EnableDragReorder=   False
       GridLinesHorizontal=   0
       GridLinesVertical=   0
-      HasHeading      =   False
+      HasHeading      =   True
       HeadingIndex    =   -1
       Height          =   648
       HelpTag         =   ""
       Hierarchical    =   False
       Index           =   -2147483648
       InitialParent   =   ""
-      InitialValue    =   ""
+      InitialValue    =   "Words	Length\n"
       Italic          =   False
       Left            =   20
       LockBottom      =   True
@@ -243,6 +243,33 @@ End
 		    next
 		  else
 		  end
+		  
+		End Function
+	#tag EndEvent
+	#tag Event
+		Function CompareRows(row1 as Integer, row2 as Integer, column as Integer, ByRef result as Integer) As Boolean
+		  Select Case column
+		  Case 0
+		    Return False
+		  Case 1
+		    result = Sign(len(me.cell(row1,0)) - len(me.cell(row2,0)))
+		    if result = 0 then
+		      if me.ColumnSortDirection(1) = listbox.SortAscending then
+		        if me.cell(row1,0) < me.cell(row2,0) then
+		          result = -1
+		        ElseIf me.cell(row1,0) > me.cell(row2,0) then
+		          result = 1
+		        end 
+		      else
+		        if me.cell(row1,0) < me.cell(row2,0) then
+		          result = 1
+		        ElseIf me.cell(row1,0) > me.cell(row2,0) then
+		          result = -1
+		        end
+		      end
+		    end
+		    Return True
+		  End Select
 		  
 		End Function
 	#tag EndEvent
