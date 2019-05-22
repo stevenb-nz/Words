@@ -92,11 +92,11 @@ Begin Window CustomQuizList
       InitialParent   =   ""
       Italic          =   False
       Left            =   20
-      LockBottom      =   False
+      LockBottom      =   True
       LockedInPosition=   False
       LockLeft        =   True
       LockRight       =   False
-      LockTop         =   True
+      LockTop         =   False
       Scope           =   0
       TabIndex        =   1
       TabPanelIndex   =   0
@@ -124,11 +124,11 @@ Begin Window CustomQuizList
       InitialParent   =   ""
       Italic          =   False
       Left            =   344
-      LockBottom      =   False
+      LockBottom      =   True
       LockedInPosition=   False
-      LockLeft        =   True
-      LockRight       =   False
-      LockTop         =   True
+      LockLeft        =   False
+      LockRight       =   True
+      LockTop         =   False
       Scope           =   0
       TabIndex        =   2
       TabPanelIndex   =   0
@@ -141,6 +141,38 @@ Begin Window CustomQuizList
       Underline       =   False
       Visible         =   True
       Width           =   80
+   End
+   Begin PushButton LoadFromFileButton
+      AutoDeactivate  =   True
+      Bold            =   False
+      ButtonStyle     =   "0"
+      Cancel          =   False
+      Caption         =   "Load from File"
+      Default         =   False
+      Enabled         =   True
+      Height          =   20
+      HelpTag         =   ""
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Italic          =   False
+      Left            =   112
+      LockBottom      =   True
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   False
+      Scope           =   0
+      TabIndex        =   3
+      TabPanelIndex   =   0
+      TabStop         =   True
+      TextFont        =   "System"
+      TextSize        =   0.0
+      TextUnit        =   0
+      Top             =   680
+      Transparent     =   False
+      Underline       =   False
+      Visible         =   True
+      Width           =   110
    End
 End
 #tag EndWindow
@@ -305,6 +337,52 @@ End
 		  
 		  closable = true
 		  Close
+		  
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events LoadFromFileButton
+	#tag Event
+		Sub Action()
+		  dim f as FolderItem
+		  dim t as TextInputStream
+		  dim s as String
+		  dim check as Boolean
+		  dim i,j as integer
+		  
+		  f = GetOpenFolderItem("")
+		  if f <> nil then
+		    t = TextInputStream.Open(f)
+		    check = true
+		    while not t.EOF
+		      s = t.ReadLine
+		      s = s.Uppercase
+		      for i = 1 to len(s)
+		        if asc(mid(s,i,1)) < 65 or asc(mid(s,i,1)) > 90 then
+		          check = false
+		        end
+		      next
+		    wend
+		    t.Close
+		    if check then
+		      t = TextInputStream.Open(f)
+		      while not t.EOF
+		        s = t.ReadLine
+		        s = s.Uppercase
+		        check = true
+		        for j = 0 to CQListbox.ListCount-1
+		          if s = CQListbox.List(j) then
+		            check = false
+		            exit
+		          end
+		        next
+		        if check then
+		          CQListbox.AddRow s
+		        end
+		      wend
+		      t.Close
+		    end
+		  end if
 		  
 		End Sub
 	#tag EndEvent
