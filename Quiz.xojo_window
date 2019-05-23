@@ -1183,7 +1183,11 @@ End
 		      c = val(me.caption)
 		      
 		      if c < 3 then
-		        me.caption = "C"
+		        if app.getSetting("cql") = "" then
+		          me.Caption = str(15)
+		        else
+		          me.caption = "C"
+		        end
 		      else
 		        me.caption = str(c - 1)
 		      end
@@ -1197,7 +1201,11 @@ End
 		      c = val(me.caption)
 		      
 		      if c > 14 then
-		        me.caption = "C"
+		        if app.getSetting("cql") = "" then
+		          me.Caption = str(2)
+		        else
+		          me.caption = "C"
+		        end
 		      else
 		        me.caption = str(c + 1)
 		      end
