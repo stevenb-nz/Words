@@ -341,6 +341,7 @@ End
 		  Case 27
 		    closable = true
 		    close
+		    words.show
 		  Case 30
 		    'up arrow
 		  End Select
