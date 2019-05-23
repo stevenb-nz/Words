@@ -599,9 +599,6 @@ End
 		  redim guesslist(-1)
 		  
 		  length = val(wordLengthButton.Caption)
-		  if length = 0 then
-		    length = 2
-		  end
 		  if QuizTypeButton.Caption = "Combo" then
 		    sql = "SELECT Combo FROM Combos WHERE length = "+str(length)+" ORDER BY combo_playability"
 		  else

@@ -178,9 +178,9 @@ Begin Menu MainMenuBar
          AutoEnable = False
          Visible = True
       End
-      Begin MenuItem WordCustomQuiz
+      Begin MenuItem WordCustomQuizList
          SpecialMenu = 0
-         Text = "Custom Quiz"
+         Text = "Custom Quiz List"
          Index = -2147483648
          AutoEnable = False
          Visible = True

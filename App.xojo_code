@@ -17,7 +17,7 @@ Inherits Application
 		    WordMastermind.Enabled = true
 		    WordJudge.Enabled = true
 		    WordQuiz.Enabled = true
-		    WordCustomQuiz.Enabled = true
+		    WordCustomQuizList.Enabled = true
 		    
 		    if words.WordField.Visible then
 		      WordRandom.Enabled = false
@@ -49,7 +49,7 @@ Inherits Application
 		    WordMastermind.Enabled = false
 		    WordJudge.Enabled = false
 		    WordQuiz.Enabled = false
-		    WordCustomQuiz.Enabled = false
+		    WordCustomQuizList.Enabled = false
 		    WordRandom.Enabled  = false
 		    WordRandomMinus1.Enabled = false
 		    wordrandomplus1.enabled = false
@@ -111,7 +111,7 @@ Inherits Application
 	#tag EndMenuHandler
 
 	#tag MenuHandler
-		Function WordCustomQuiz() As Boolean Handles WordCustomQuiz.Action
+		Function wordCustomQuizList() As Boolean Handles wordCustomQuizList.Action
 			dim cql as string
 			dim cqlarray() as string
 			dim i as integer
