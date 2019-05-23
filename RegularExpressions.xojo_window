@@ -324,7 +324,6 @@ End
 		      RegExListbox.AddRow """"+e.Message+""""
 		      return true
 		    end try
-		    'add me.text to history?
 		    data.MoveFirst
 		    while not data.EOF
 		      myMatch = rg.Search(data.IdxField(1).StringValue)
@@ -332,6 +331,7 @@ End
 		        if myMatch.SubExpressionString(0) = data.IdxField(1).StringValue then
 		          RegExListbox.AddRow myMatch.SubExpressionString(0)
 		        end
+		        app.updateSetting("last good regex",me.text)
 		      End
 		      data.MoveNext
 		    wend
@@ -343,7 +343,7 @@ End
 		    close
 		    words.show
 		  Case 30
-		    'up arrow
+		    me.text = app.getSetting("last good regex")
 		  End Select
 		  
 		End Function
