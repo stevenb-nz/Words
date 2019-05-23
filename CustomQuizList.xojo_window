@@ -381,6 +381,7 @@ End
 		        end
 		      wend
 		      t.Close
+		      updateWindowTitle
 		    end
 		  end if
 		  
