@@ -636,6 +636,24 @@ End
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
+		Function make_combos_from_custom() As string()
+		  dim new_combos() as string
+		  
+		  return new_combos
+		  
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Function make_hooks_from_custom() As string()
+		  dim new_hooks() as string
+		  
+		  return new_hooks
+		  
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Sub match_entry(combo as string)
 		  dim temp1,temp2,temp3 as string
 		  dim i,j,k as integer
