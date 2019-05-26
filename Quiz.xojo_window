@@ -670,7 +670,54 @@ End
 
 	#tag Method, Flags = &h0
 		Function make_hooks_from_custom() As string()
-		  dim new_hooks() as string
+		  dim cql,fhook,bhook as string
+		  dim cqlarray(), new_hooks() as string
+		  dim i,j as integer
+		  dim check as boolean
+		  dim sql as string
+		  dim data as RecordSet
+		  
+		  cql = app.getSetting("cql")
+		  cqlarray = cql.Split(",")
+		  
+		  for i = 0 to cqlarray.Ubound
+		    fhook = right(cqlarray(i),len(cqlarray(i))-1)
+		    if len(fhook) = 1 then
+		      new_hooks.Append fhook
+		    else
+		      sql = "SELECT Word FROM Words WHERE Word='"+fhook+"'"
+		      data = app.wordsDB.SQLSelect(sql)
+		      if data.RecordCount = 1 then
+		        check = true
+		        for j = 0 to new_hooks.Ubound
+		          if fhook = new_hooks(j) then
+		            check = false
+		          end
+		        next
+		        if check then
+		          new_hooks.Append fhook
+		        end
+		      end
+		    end
+		    bhook = left(cqlarray(i),len(cqlarray(i))-1)
+		    if len(bhook) = 1 then
+		      new_hooks.Append bhook
+		    else
+		      sql = "SELECT Word FROM Words WHERE Word='"+bhook+"'"
+		      data = app.wordsDB.SQLSelect(sql)
+		      if data.RecordCount = 1 then
+		        check = true
+		        for j = 0 to new_hooks.Ubound
+		          if bhook = new_hooks(j) then
+		            check = false
+		          end
+		        next
+		        if check then
+		          new_hooks.Append bhook
+		        end
+		      end
+		    end
+		  next
 		  
 		  return new_hooks
 		  
