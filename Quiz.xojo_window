@@ -637,8 +637,32 @@ End
 
 	#tag Method, Flags = &h0
 		Function make_combos_from_custom() As string()
-		  dim new_combos() as string
+		  dim cql,combo as string
+		  dim cqlarray(), new_combos() as string
+		  dim i,j as integer
+		  dim check as boolean
+		  dim sql as string
+		  dim data as RecordSet
 		  
+		  cql = app.getSetting("cql")
+		  cqlarray = cql.Split(",")
+		  
+		  for i = 0 to cqlarray.Ubound
+		    combo = app.sort_word(cqlarray(i).totext)
+		    sql = "SELECT Word FROM Words JOIN Combos ON Combos.id = Words.combo_id WHERE Combos.combo='"+combo+"'"
+		    data = app.wordsDB.SQLSelect(sql)
+		    if data.RecordCount > 0 then
+		      check = true
+		      for j = 0 to new_combos.Ubound
+		        if combo = new_combos(j) then
+		          check = false
+		        end
+		      next
+		      if check then
+		        new_combos.Append combo
+		      end
+		    end
+		  next
 		  return new_combos
 		  
 		End Function
