@@ -667,8 +667,8 @@ End
 		Function make_hooks_from_custom() As string()
 		  dim cql,fhook,bhook as string
 		  dim cqlarray(), new_hooks() as string
-		  dim i,j as integer
-		  dim check as boolean
+		  dim d as new Dictionary
+		  dim i as integer
 		  dim sql as string
 		  dim data as RecordSet
 		  
@@ -678,36 +678,32 @@ End
 		  for i = 0 to cqlarray.Ubound
 		    fhook = right(cqlarray(i),len(cqlarray(i))-1)
 		    if len(fhook) = 1 then
-		      new_hooks.Append fhook
+		      if not d.HasKey(fhook) then
+		        d.Value(fhook) = true
+		        new_hooks.Append fhook
+		      end
 		    else
 		      sql = "SELECT Word FROM Words WHERE Word='"+fhook+"'"
 		      data = app.wordsDB.SQLSelect(sql)
 		      if data.RecordCount = 1 then
-		        check = true
-		        for j = 0 to new_hooks.Ubound
-		          if fhook = new_hooks(j) then
-		            check = false
-		          end
-		        next
-		        if check then
+		        if not d.HasKey(fhook) then
+		          d.Value(fhook) = true
 		          new_hooks.Append fhook
 		        end
 		      end
 		    end
 		    bhook = left(cqlarray(i),len(cqlarray(i))-1)
 		    if len(bhook) = 1 then
-		      new_hooks.Append bhook
+		      if not d.HasKey(bhook) then
+		        d.Value(bhook) = true
+		        new_hooks.Append bhook
+		      end
 		    else
 		      sql = "SELECT Word FROM Words WHERE Word='"+bhook+"'"
 		      data = app.wordsDB.SQLSelect(sql)
 		      if data.RecordCount = 1 then
-		        check = true
-		        for j = 0 to new_hooks.Ubound
-		          if bhook = new_hooks(j) then
-		            check = false
-		          end
-		        next
-		        if check then
+		        if not d.HasKey(bhook) then
+		          d.Value(bhook) = true
 		          new_hooks.Append bhook
 		        end
 		      end
