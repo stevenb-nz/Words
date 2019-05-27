@@ -639,8 +639,8 @@ End
 		Function make_combos_from_custom() As string()
 		  dim cql,combo as string
 		  dim cqlarray(), new_combos() as string
-		  dim i,j as integer
-		  dim check as boolean
+		  dim d as new Dictionary
+		  dim i as integer
 		  dim sql as string
 		  dim data as RecordSet
 		  
@@ -652,13 +652,8 @@ End
 		    sql = "SELECT Word FROM Words JOIN Combos ON Combos.id = Words.combo_id WHERE Combos.combo='"+combo+"'"
 		    data = app.wordsDB.SQLSelect(sql)
 		    if data.RecordCount > 0 then
-		      check = true
-		      for j = 0 to new_combos.Ubound
-		        if combo = new_combos(j) then
-		          check = false
-		        end
-		      next
-		      if check then
+		      if not d.HasKey(combo) then
+		        d.value(combo) = true
 		        new_combos.Append combo
 		      end
 		    end
