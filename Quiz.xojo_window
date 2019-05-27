@@ -1057,6 +1057,14 @@ End
 
 
 	#tag Property, Flags = &h0
+		cc_quizlist() As String
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		ch_quizlist() As String
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
 		closable As Boolean
 	#tag EndProperty
 
@@ -1263,7 +1271,21 @@ End
 		        if app.getSetting("cql") = "" then
 		          me.Caption = str(15)
 		        else
-		          me.caption = "C"
+		          if QuizTypeButton.Caption = "Hooks" then
+		            ch_quizlist = make_hooks_from_custom
+		            if ch_quizlist.Ubound < 0 then
+		              me.Caption = str(15)
+		            else
+		              me.caption = "C"
+		            end
+		          else
+		            cc_quizlist = make_combos_from_custom
+		            if cc_quizlist.Ubound < 0 then
+		              me.Caption = str(15)
+		            else
+		              me.caption = "C"
+		            end
+		          end
 		        end
 		      else
 		        me.caption = str(c - 1)
@@ -1281,7 +1303,21 @@ End
 		        if app.getSetting("cql") = "" then
 		          me.Caption = str(2)
 		        else
-		          me.caption = "C"
+		          if QuizTypeButton.Caption = "Hooks" then
+		            ch_quizlist = make_hooks_from_custom
+		            if ch_quizlist.Ubound < 0 then
+		              me.Caption = str(2)
+		            else
+		              me.caption = "C"
+		            end
+		          else
+		            cc_quizlist = make_combos_from_custom
+		            if cc_quizlist.Ubound < 0 then
+		              me.Caption = str(2)
+		            else
+		              me.caption = "C"
+		            end
+		          end
 		        end
 		      else
 		        me.caption = str(c + 1)
