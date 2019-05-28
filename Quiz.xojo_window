@@ -595,27 +595,44 @@ End
 		Sub loadquiz()
 		  dim i,length as integer
 		  dim alpha_freq,sql as string
+		  dim data as RecordSet
 		  redim quizlist(-1)
 		  redim guesslist(-1)
 		  
 		  length = val(wordLengthButton.Caption)
-		  if QuizTypeButton.Caption = "Combo" then
-		    sql = "SELECT Combo FROM Combos WHERE length = "+str(length)+" ORDER BY combo_playability"
+		  if length = 0 then
+		    if QuizTypeButton.Caption = "Combo" then
+		      quizlist = app.getSetting("cqlcombos").Split(",")
+		      if app.getSetting("cqlcombos state") = "new" then
+		        app.updateSetting("cqlcombos state","current")
+		        resetquiz
+		      end
+		    else
+		      quizlist = app.getSetting("cqlhooks").Split(",")
+		      if app.getSetting("cqlhooks state") = "new" then
+		        app.updateSetting("cqlhooks state","current")
+		        resetquiz
+		      end
+		    end
 		  else
-		    sql = "SELECT Word FROM Words JOIN Combos ON Words.combo_id = Combos.id WHERE length = "+str(length-1)+" ORDER BY combo_playability"
-		  end if
-		  
-		  dim data as RecordSet
-		  data = app.wordsDB.SQLSelect(sql)
-		  
-		  if data.RecordCount > 0 then
-		    while not data.eof
-		      quizlist.Append data.IdxField(1).StringValue
-		      data.MoveNext
-		    wend
-		  else
-		    alpha_freq = "EAIONRTDLSUGBCFHMPVWYJKQXZ"
-		    quizlist = alpha_freq.split("")
+		    if QuizTypeButton.Caption = "Combo" then
+		      sql = "SELECT Combo FROM Combos WHERE length = "+str(length)+" ORDER BY combo_playability"
+		    else
+		      sql = "SELECT Word FROM Words JOIN Combos ON Words.combo_id = Combos.id WHERE length = "+str(length-1)+" ORDER BY combo_playability"
+		    end if
+		    
+		    data = app.wordsDB.SQLSelect(sql)
+		    
+		    if data.RecordCount > 0 then
+		      while not data.eof
+		        quizlist.Append data.IdxField(1).StringValue
+		        data.MoveNext
+		      wend
+		    else
+		      alpha_freq = "EAIONRTDLSUGBCFHMPVWYJKQXZ"
+		      quizlist = alpha_freq.split("")
+		    end
+		    
 		  end
 		  
 		  sql = "SELECT states,current,current_new FROM Quiz WHERE type='"+QuizTypeButton.Caption+"' and length='"+str(length)+"'"
@@ -686,9 +703,6 @@ End
 		  dim data as RecordSet
 		  
 		  length = val(wordLengthButton.Caption)
-		  if length = 0 then
-		    length = 2
-		  end
 		  states = str(guesslist(0))
 		  for i = 1 to UBound(guesslist)
 		    states = states + "," + str(guesslist(i))
