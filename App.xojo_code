@@ -117,12 +117,12 @@ Inherits Application
 			dim i as integer
 			
 			cql = app.getSetting("cql")
-			if len(cql) > 0 then
+			if cql <> "" then
 			cqlarray = cql.Split(",")
-			end
 			for i = 0 to cqlarray.Ubound
 			CustomQuizList.CQListbox.AddRow cqlarray(i)
 			next
+			end
 			CustomQuizList.updateWindowTitle
 			Return True
 			

@@ -237,6 +237,86 @@ End
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
+		Function make_combos_from_custom() As string()
+		  dim cql,combo as string
+		  dim cqlarray(), new_combos() as string
+		  dim d as new Dictionary
+		  dim i as integer
+		  dim sql as string
+		  dim data as RecordSet
+		  
+		  cql = app.getSetting("cql")
+		  cqlarray = cql.Split(",")
+		  
+		  for i = 0 to cqlarray.Ubound
+		    combo = app.sort_word(cqlarray(i).totext)
+		    sql = "SELECT Word FROM Words JOIN Combos ON Combos.id = Words.combo_id WHERE Combos.combo='"+combo+"'"
+		    data = app.wordsDB.SQLSelect(sql)
+		    if data.RecordCount > 0 then
+		      if not d.HasKey(combo) then
+		        d.value(combo) = true
+		        new_combos.Append combo
+		      end
+		    end
+		  next
+		  return new_combos
+		  
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Function make_hooks_from_custom() As string()
+		  dim cql,fhook,bhook as string
+		  dim cqlarray(), new_hooks() as string
+		  dim d as new Dictionary
+		  dim i as integer
+		  dim sql as string
+		  dim data as RecordSet
+		  
+		  cql = app.getSetting("cql")
+		  cqlarray = cql.Split(",")
+		  
+		  for i = 0 to cqlarray.Ubound
+		    fhook = right(cqlarray(i),len(cqlarray(i))-1)
+		    if len(fhook) = 1 then
+		      if not d.HasKey(fhook) then
+		        d.Value(fhook) = true
+		        new_hooks.Append fhook
+		      end
+		    else
+		      sql = "SELECT Word FROM Words WHERE Word='"+fhook+"'"
+		      data = app.wordsDB.SQLSelect(sql)
+		      if data.RecordCount = 1 then
+		        if not d.HasKey(fhook) then
+		          d.Value(fhook) = true
+		          new_hooks.Append fhook
+		        end
+		      end
+		    end
+		    bhook = left(cqlarray(i),len(cqlarray(i))-1)
+		    if len(bhook) = 1 then
+		      if not d.HasKey(bhook) then
+		        d.Value(bhook) = true
+		        new_hooks.Append bhook
+		      end
+		    else
+		      sql = "SELECT Word FROM Words WHERE Word='"+bhook+"'"
+		      data = app.wordsDB.SQLSelect(sql)
+		      if data.RecordCount = 1 then
+		        if not d.HasKey(bhook) then
+		          d.Value(bhook) = true
+		          new_hooks.Append bhook
+		        end
+		      end
+		    end
+		  next
+		  
+		  return new_hooks
+		  
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Sub updateWindowTitle()
 		  CustomQuizList.Title = "Custom Quiz List" + " ("+str(CustomQuizList.CQListbox.ListCount)+" item"+if(CustomQuizList.CQListbox.ListCount=1,"","s")+")"
 		  
@@ -335,7 +415,7 @@ End
 		    app.updateSetting("cql",newcql)
 		  end
 		  
-		  cc_quizlist = quiz.make_combos_from_custom
+		  cc_quizlist = make_combos_from_custom
 		  if cc_quizlist.Ubound > -1 then
 		    newcqlcombos = cc_quizlist(0)
 		    for i = 1 to cc_quizlist.Ubound
@@ -351,7 +431,7 @@ End
 		    app.updateSetting("cqlcombos state","new")
 		  end
 		  
-		  ch_quizlist = quiz.make_hooks_from_custom
+		  ch_quizlist = make_hooks_from_custom
 		  if ch_quizlist.Ubound > -1 then
 		    newcqlhooks = ch_quizlist(0)
 		    for i = 1 to ch_quizlist.Ubound
