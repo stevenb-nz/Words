@@ -435,14 +435,14 @@ End
 		  end
 		  
 		  cc_quizlist = make_combos_from_custom
-		  if cc_quizlist.Ubound > -1 then
+		  if cc_quizlist.Ubound < 0 then
+		    newcqlcombos = ""
+		  else
 		    newcqlcombos = cc_quizlist(0)
 		    for i = 1 to cc_quizlist.Ubound
 		      newcqlcombos = newcqlcombos + ","
 		      newcqlcombos = newcqlcombos + cc_quizlist(i)
 		    next
-		  else
-		    newcqlcombos = ""
 		  end
 		  cqlcombos = app.getSetting("cqlcombos")
 		  if newcqlcombos <> cqlcombos then
@@ -451,14 +451,14 @@ End
 		  end
 		  
 		  ch_quizlist = make_hooks_from_custom
-		  if ch_quizlist.Ubound > -1 then
+		  if ch_quizlist.Ubound < 0 then
+		    newcqlhooks = ""
+		  else
 		    newcqlhooks = ch_quizlist(0)
 		    for i = 1 to ch_quizlist.Ubound
 		      newcqlhooks = newcqlhooks + ","
 		      newcqlhooks = newcqlhooks + ch_quizlist(i)
 		    next
-		  else
-		    newcqlhooks = ""
 		  end
 		  cqlhooks = app.getSetting("cqlhooks")
 		  if newcqlhooks <> cqlhooks then
