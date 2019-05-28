@@ -317,7 +317,8 @@ End
 #tag Events CloseButton
 	#tag Event
 		Sub Action()
-		  dim cql, newcql as string
+		  dim cql, cqlcombos, cqlhooks, newcql, newcqlcombos, newcqlhooks as string
+		  dim cc_quizlist(), ch_quizlist() as string
 		  dim i as integer
 		  
 		  if CQListbox.ListCount > 0 then
@@ -332,7 +333,38 @@ End
 		  cql = app.getSetting("cql")
 		  if newcql <> cql then
 		    app.updateSetting("cql",newcql)
-		    app.updateSetting("cql state","new")
+		  end
+		  
+		  cc_quizlist = quiz.make_combos_from_custom
+		  if cc_quizlist.Ubound > -1 then
+		    newcqlcombos = cc_quizlist(0)
+		    for i = 1 to cc_quizlist.Ubound
+		      newcqlcombos = newcqlcombos + ","
+		      newcqlcombos = newcqlcombos + cc_quizlist(i)
+		    next
+		  else
+		    newcqlcombos = ""
+		  end
+		  cqlcombos = app.getSetting("cqlcombos")
+		  if newcqlcombos <> cqlcombos then
+		    app.updateSetting("cqlcombos",newcqlcombos)
+		    app.updateSetting("cqlcombos state","new")
+		  end
+		  
+		  ch_quizlist = quiz.make_hooks_from_custom
+		  if ch_quizlist.Ubound > -1 then
+		    newcqlhooks = ch_quizlist(0)
+		    for i = 1 to ch_quizlist.Ubound
+		      newcqlhooks = newcqlhooks + ","
+		      newcqlhooks = newcqlhooks + ch_quizlist(i)
+		    next
+		  else
+		    newcqlhooks = ""
+		  end
+		  cqlhooks = app.getSetting("cqlhooks")
+		  if newcqlhooks <> cqlhooks then
+		    app.updateSetting("cqlhooks",newcqlhooks)
+		    app.updateSetting("cqlhooks state","new")
 		  end
 		  
 		  closable = true
