@@ -1130,10 +1130,14 @@ End
 		  
 		  savequiz
 		  
-		  for length = 2 to 15
-		    sql = "SELECT Combo FROM Combos WHERE length = "+str(length)+" ORDER BY combo_playability"
-		    data = app.wordsDB.SQLSelect(sql)
-		    quizlistlen = data.RecordCount
+		  for length = 1 to 15
+		    if length = 1 then
+		      quizlistlen = app.getSetting("cqlcombos").CountFields(",")
+		    else
+		      sql = "SELECT Combo FROM Combos WHERE length = "+str(length)+" ORDER BY combo_playability"
+		      data = app.wordsDB.SQLSelect(sql)
+		      quizlistlen = data.RecordCount
+		    end
 		    sql = "SELECT states,current,current_new FROM Quiz WHERE type='Combo' and length='"+str(length)+"'"
 		    data = app.wordsDB.SQLSelect(sql)
 		    guesslistlen = 0
@@ -1141,18 +1145,21 @@ End
 		      guesslistlen = CountFields(data.IdxField(1).StringValue,",")
 		      nextnewtemp = val(data.IdxField(2).StringValue)
 		    end
-		    
 		    sigfig = len(str(quizlistlen))
-		    QuizStatsWindow.QuizStatsListbox.Cell(length-2,1) = str(round( (nextnewtemp-guesslistlen) / quizlistlen*(10^sigfig))/(10^(sigfig-2)) ) + "%"
-		    QuizStatsWindow.QuizStatsListbox.Cell(length-2,2) = str(nextnewtemp)
-		    QuizStatsWindow.QuizStatsListbox.Cell(length-2,3) = str(quizlistlen)
+		    QuizStatsWindow.QuizStatsListbox.Cell(length-1,1) = str(round( (nextnewtemp-guesslistlen) / quizlistlen*(10^sigfig))/(10^(sigfig-2)) ) + "%"
+		    QuizStatsWindow.QuizStatsListbox.Cell(length-1,2) = str(nextnewtemp-guesslistlen)
+		    QuizStatsWindow.QuizStatsListbox.Cell(length-1,3) = str(quizlistlen)
 		    
-		    sql = "SELECT Word FROM Words JOIN Combos ON Words.combo_id = Combos.id WHERE length = "+str(length-1)+" ORDER BY combo_playability"
-		    data = app.wordsDB.SQLSelect(sql)
-		    if data.RecordCount > 0 then
-		      quizlistlen = data.RecordCount
+		    if length = 1 then
+		      quizlistlen = app.getSetting("cqlhooks").CountFields(",")
 		    else
-		      quizlistlen = 26
+		      sql = "SELECT Word FROM Words JOIN Combos ON Words.combo_id = Combos.id WHERE length = "+str(length-1)+" ORDER BY combo_playability"
+		      data = app.wordsDB.SQLSelect(sql)
+		      if data.RecordCount > 0 then
+		        quizlistlen = data.RecordCount
+		      else
+		        quizlistlen = 26
+		      end
 		    end
 		    sql = "SELECT states,current,current_new FROM Quiz WHERE type='Hooks' and length='"+str(length)+"'"
 		    data = app.wordsDB.SQLSelect(sql)
@@ -1163,9 +1170,9 @@ End
 		    end
 		    
 		    sigfig = len(str(quizlistlen))
-		    QuizStatsWindow.QuizStatsListbox.Cell(length-2,4) = str(round( (nextnewtemp-guesslistlen) / quizlistlen*(10^sigfig))/(10^(sigfig-2)) ) + "%"
-		    QuizStatsWindow.QuizStatsListbox.Cell(length-2,5) = str(nextnewtemp)
-		    QuizStatsWindow.QuizStatsListbox.Cell(length-2,6) = str(quizlistlen)
+		    QuizStatsWindow.QuizStatsListbox.Cell(length-1,4) = str(round( (nextnewtemp-guesslistlen) / quizlistlen*(10^sigfig))/(10^(sigfig-2)) ) + "%"
+		    QuizStatsWindow.QuizStatsListbox.Cell(length-1,5) = str(nextnewtemp-guesslistlen)
+		    QuizStatsWindow.QuizStatsListbox.Cell(length-1,6) = str(quizlistlen)
 		  next
 		  
 		  QuizStatsWindow.Show
