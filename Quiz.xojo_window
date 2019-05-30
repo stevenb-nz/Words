@@ -500,6 +500,17 @@ End
 		  quiztype = app.getSetting("quiz type")
 		  QuizTypeButton.Caption = if(quiztype="","Combo",quiztype)
 		  quizlength = val(app.getSetting("quiz length"))
+		  if quizlength = 0 then
+		    if quiztype = "Combo" then
+		      if app.getSetting("cqlcombos") = "" then
+		        quizlength = 2
+		      end
+		    else
+		      if app.getSetting("cqlhooks") = "" then
+		        quizlength = 2
+		      end
+		    end
+		  end
 		  wordLengthButton.Caption = if(quizlength=0,"C",str(quizlength))
 		  
 		  loadquiz
