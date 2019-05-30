@@ -1171,8 +1171,8 @@ End
 		      nextnewtemp = val(data.IdxField(2).StringValue)
 		    end
 		    sigfig = len(str(quizlistlen))
-		    QuizStatsWindow.QuizStatsListbox.Cell(length-1,1) = str(round( (nextnewtemp-guesslistlen) / quizlistlen*(10^sigfig))/(10^(sigfig-2)) ) + "%"
-		    QuizStatsWindow.QuizStatsListbox.Cell(length-1,2) = str(nextnewtemp-guesslistlen)
+		    QuizStatsWindow.QuizStatsListbox.Cell(length-1,1) = if(quizlistlen=0,"-",str(round( (nextnewtemp-guesslistlen) / quizlistlen*(10^sigfig))/(10^(sigfig-2)) ) + "%")
+		    QuizStatsWindow.QuizStatsListbox.Cell(length-1,2) = if(quizlistlen=0,"-",str(nextnewtemp-guesslistlen))
 		    QuizStatsWindow.QuizStatsListbox.Cell(length-1,3) = str(quizlistlen)
 		    
 		    if length = 1 then
@@ -1195,8 +1195,8 @@ End
 		    end
 		    
 		    sigfig = len(str(quizlistlen))
-		    QuizStatsWindow.QuizStatsListbox.Cell(length-1,4) = str(round( (nextnewtemp-guesslistlen) / quizlistlen*(10^sigfig))/(10^(sigfig-2)) ) + "%"
-		    QuizStatsWindow.QuizStatsListbox.Cell(length-1,5) = str(nextnewtemp-guesslistlen)
+		    QuizStatsWindow.QuizStatsListbox.Cell(length-1,4) = if(quizlistlen=0,"-",str(round( (nextnewtemp-guesslistlen) / quizlistlen*(10^sigfig))/(10^(sigfig-2)) ) + "%")
+		    QuizStatsWindow.QuizStatsListbox.Cell(length-1,5) = if(quizlistlen=0,"-",str(nextnewtemp-guesslistlen))
 		    QuizStatsWindow.QuizStatsListbox.Cell(length-1,6) = str(quizlistlen)
 		  next
 		  
