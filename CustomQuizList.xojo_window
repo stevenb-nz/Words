@@ -25,7 +25,7 @@ Begin Window CustomQuizList
    Resizeable      =   True
    Title           =   "Custom Quiz List"
    Visible         =   True
-   Width           =   444
+   Width           =   468
    Begin Listbox CQListbox
       AutoDeactivate  =   True
       AutoHideScrollbars=   True
@@ -74,7 +74,7 @@ Begin Window CustomQuizList
       Underline       =   False
       UseFocusRing    =   True
       Visible         =   True
-      Width           =   404
+      Width           =   428
       _ScrollOffset   =   0
       _ScrollWidth    =   -1
    End
@@ -123,7 +123,7 @@ Begin Window CustomQuizList
       Index           =   -2147483648
       InitialParent   =   ""
       Italic          =   False
-      Left            =   344
+      Left            =   368
       LockBottom      =   True
       LockedInPosition=   False
       LockLeft        =   False
@@ -163,6 +163,38 @@ Begin Window CustomQuizList
       LockTop         =   False
       Scope           =   0
       TabIndex        =   3
+      TabPanelIndex   =   0
+      TabStop         =   True
+      TextFont        =   "System"
+      TextSize        =   0.0
+      TextUnit        =   0
+      Top             =   680
+      Transparent     =   False
+      Underline       =   False
+      Visible         =   True
+      Width           =   110
+   End
+   Begin PushButton SaveToFileButton
+      AutoDeactivate  =   True
+      Bold            =   False
+      ButtonStyle     =   "0"
+      Cancel          =   False
+      Caption         =   "Save To File"
+      Default         =   False
+      Enabled         =   True
+      Height          =   20
+      HelpTag         =   ""
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Italic          =   False
+      Left            =   234
+      LockBottom      =   True
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   False
+      Scope           =   0
+      TabIndex        =   4
       TabPanelIndex   =   0
       TabStop         =   True
       TextFont        =   "System"
@@ -498,6 +530,25 @@ End
 		      updateWindowTitle
 		    end
 		  end if
+		  
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events SaveToFileButton
+	#tag Event
+		Sub Action()
+		  dim f as FolderItem
+		  dim t as TextOutputStream
+		  dim i as integer
+		  
+		  f = GetSaveFolderItem(FileTypes.Text,"cql.txt")
+		  if f <> nil then
+		    t = TextOutputStream.Create(f)
+		    for i = 1 to CQListbox.ListCount
+		      t.WriteLine(CQListbox.List(i-1))
+		    next
+		    t.Close
+		  end
 		  
 		End Sub
 	#tag EndEvent
