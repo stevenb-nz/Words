@@ -110,7 +110,7 @@ Begin Window CustomQuizList
       Visible         =   True
       Width           =   80
    End
-   Begin PushButton CloseButton
+   Begin PushButton SaveButton
       AutoDeactivate  =   True
       Bold            =   False
       ButtonStyle     =   "0"
@@ -277,23 +277,6 @@ End
 		  cqlarray = cql.Split(",")
 		  
 		  for i = 0 to cqlarray.Ubound
-		    if len(cqlarray(i)) < 15 then
-		      if len(cqlarray(i)) = 1 then
-		        if not d.HasKey(cqlarray(i)) then
-		          d.Value(cqlarray(i)) = true
-		          new_hooks.Append cqlarray(i)
-		        end
-		      else
-		        sql = "SELECT Word FROM Words WHERE Word='"+cqlarray(i)+"'"
-		        data = app.wordsDB.SQLSelect(sql)
-		        if data.RecordCount = 1 then
-		          if not d.HasKey(cqlarray(i)) then
-		            d.Value(cqlarray(i)) = true
-		            new_hooks.Append cqlarray(i)
-		          end
-		        end
-		      end
-		    end
 		    if len(cqlarray(i)) < 16 then
 		      fhook = right(cqlarray(i),len(cqlarray(i))-1)
 		      if len(fhook) = 1 then
@@ -413,7 +396,7 @@ End
 		End Sub
 	#tag EndEvent
 #tag EndEvents
-#tag Events CloseButton
+#tag Events SaveButton
 	#tag Event
 		Sub Action()
 		  dim cql, cqlcombos, cqlhooks, newcql, newcqlcombos, newcqlhooks as string

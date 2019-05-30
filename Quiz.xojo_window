@@ -606,12 +606,38 @@ End
 		      if app.getSetting("cqlcombos state") = "new" then
 		        app.updateSetting("cqlcombos state","current")
 		        resetquiz
+		      else
+		        sql = "SELECT states,current,current_new FROM Quiz WHERE type='"+QuizTypeButton.Caption+"' and length='"+str(length)+"'"
+		        data = app.wordsDB.SQLSelect(sql)
+		        
+		        if data.RecordCount = 1 then
+		          for i = 1 to CountFields(data.IdxField(1).StringValue,",")
+		            guesslist.Append val(NthField(data.IdxField(1).StringValue,",",i))
+		          next
+		          nextnew = val(data.IdxField(2).StringValue)
+		          current_new = data.IdxField(3).BooleanValue
+		        else
+		          resetquiz
+		        end
 		      end
 		    else
 		      quizlist = app.getSetting("cqlhooks").Split(",")
 		      if app.getSetting("cqlhooks state") = "new" then
 		        app.updateSetting("cqlhooks state","current")
 		        resetquiz
+		      else
+		        sql = "SELECT states,current,current_new FROM Quiz WHERE type='"+QuizTypeButton.Caption+"' and length='"+str(length)+"'"
+		        data = app.wordsDB.SQLSelect(sql)
+		        
+		        if data.RecordCount = 1 then
+		          for i = 1 to CountFields(data.IdxField(1).StringValue,",")
+		            guesslist.Append val(NthField(data.IdxField(1).StringValue,",",i))
+		          next
+		          nextnew = val(data.IdxField(2).StringValue)
+		          current_new = data.IdxField(3).BooleanValue
+		        else
+		          resetquiz
+		        end
 		      end
 		    end
 		  else
@@ -633,19 +659,18 @@ End
 		      quizlist = alpha_freq.split("")
 		    end
 		    
-		  end
-		  
-		  sql = "SELECT states,current,current_new FROM Quiz WHERE type='"+QuizTypeButton.Caption+"' and length='"+str(length)+"'"
-		  data = app.wordsDB.SQLSelect(sql)
-		  
-		  if data.RecordCount = 1 then
-		    for i = 1 to CountFields(data.IdxField(1).StringValue,",")
-		      guesslist.Append val(NthField(data.IdxField(1).StringValue,",",i))
-		    next
-		    nextnew = val(data.IdxField(2).StringValue)
-		    current_new = data.IdxField(3).BooleanValue
-		  else
-		    resetquiz
+		    sql = "SELECT states,current,current_new FROM Quiz WHERE type='"+QuizTypeButton.Caption+"' and length='"+str(length)+"'"
+		    data = app.wordsDB.SQLSelect(sql)
+		    
+		    if data.RecordCount = 1 then
+		      for i = 1 to CountFields(data.IdxField(1).StringValue,",")
+		        guesslist.Append val(NthField(data.IdxField(1).StringValue,",",i))
+		      next
+		      nextnew = val(data.IdxField(2).StringValue)
+		      current_new = data.IdxField(3).BooleanValue
+		    else
+		      resetquiz
+		    end
 		  end
 		  setquiz
 		  
