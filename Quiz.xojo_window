@@ -1222,8 +1222,18 @@ End
 		  savequiz
 		  if me.Caption = "Combo" then
 		    me.Caption = "Hooks"
+		    if wordLengthButton.Caption = "C" then
+		      if app.getSetting("cqlhooks") = "" then
+		        wordLengthButton.Caption = "2"
+		      end
+		    end
 		  else
 		    me.Caption = "Combo"
+		    if wordLengthButton.Caption = "C" then
+		      if app.getSetting("cqlcombos") = "" then
+		        wordLengthButton.Caption = "2"
+		      end
+		    end
 		  end
 		  clearentry
 		  loadquiz
