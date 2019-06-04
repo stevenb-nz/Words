@@ -31,9 +31,9 @@ Begin Window CustomQuizList
       AutoHideScrollbars=   True
       Bold            =   False
       Border          =   True
-      ColumnCount     =   2
+      ColumnCount     =   3
       ColumnsResizable=   False
-      ColumnWidths    =   "75%	25%"
+      ColumnWidths    =   "75%, 25%, 0%"
       DataField       =   ""
       DataSource      =   ""
       DefaultRowHeight=   -1
@@ -49,7 +49,7 @@ Begin Window CustomQuizList
       Hierarchical    =   False
       Index           =   -2147483648
       InitialParent   =   ""
-      InitialValue    =   "Words	Length\n"
+      InitialValue    =   "Words	Length	Playability\n"
       Italic          =   False
       Left            =   20
       LockBottom      =   True
