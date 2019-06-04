@@ -248,7 +248,7 @@ End
 		    cqlarray = cql.Split(",")
 		  end
 		  for i = 0 to cqlarray.Ubound
-		    CQListbox.AddRow cqlarray(i)
+		    add_with_play(cqlarray(i))
 		  next
 		  
 		  for i = 0 to newWords.ListCount-1
@@ -260,10 +260,24 @@ End
 		      end
 		    next
 		    if check then
-		      CQListbox.AddRow newWords.List(i)
+		      add_with_play(newWords.List(i))
 		    end
 		  next
 		  updateWindowTitle
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub add_with_play(word as String)
+		  dim sql as string
+		  sql = "SELECT Word,playability from Words WHERE Word='"+word+"'"
+		  
+		  dim data as RecordSet
+		  data =app.wordsDB.SQLSelect(sql)
+		  
+		  CQListbox.AddRow word
+		  CQListbox.Cell(CQListbox.LastIndex, 2) = if(data.RecordCount = 1 , data.IdxField(2).StringValue, "100000")
 		  
 		End Sub
 	#tag EndMethod
@@ -352,6 +366,9 @@ End
 
 	#tag Method, Flags = &h0
 		Sub sortcql()
+		  CQListBox.ColumnSortDirection(2) = ListBox.SortDescending
+		  CQListBox.SortedColumn = 2
+		  CQListBox.Sort
 		  
 		End Sub
 	#tag EndMethod
@@ -419,6 +436,12 @@ End
 		          result = -1
 		        end
 		      end
+		    end
+		    Return True
+		  case 2
+		    result = Sign(len(me.cell(row2,0)) - len(me.cell(row1,0)))
+		    if result = 0 then
+		      result = Sign(val(me.cell(row2,2)) - val(me.cell(row1,2)))
 		    end
 		    Return True
 		  End Select
@@ -531,7 +554,7 @@ End
 		          end
 		        next
 		        if check then
-		          CQListbox.AddRow s
+		          add_with_play(s)
 		        end
 		      wend
 		      t.Close

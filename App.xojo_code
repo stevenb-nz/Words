@@ -120,7 +120,7 @@ Inherits Application
 			if cql <> "" then
 			cqlarray = cql.Split(",")
 			for i = 0 to cqlarray.Ubound
-			CustomQuizList.CQListbox.AddRow cqlarray(i)
+			CustomQuizList.add_with_play(cqlarray(i))
 			next
 			end
 			CustomQuizList.updateWindowTitle
