@@ -351,6 +351,12 @@ End
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
+		Sub sortcql()
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Sub updateWindowTitle()
 		  CustomQuizList.Title = "Custom Quiz List" + " ("+str(CustomQuizList.CQListbox.ListCount)+" item"+if(CustomQuizList.CQListbox.ListCount=1,"","s")+")"
 		  
@@ -434,6 +440,8 @@ End
 		  dim cql, cqlcombos, cqlhooks, newcql, newcqlcombos, newcqlhooks as string
 		  dim cc_quizlist(), ch_quizlist() as string
 		  dim i as integer
+		  
+		  sortcql
 		  
 		  if CQListbox.ListCount > 0 then
 		    newcql = CQListbox.list(0)

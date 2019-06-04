@@ -101,8 +101,6 @@ End
 
 #tag EndWindowCode
 
-#tag Events QuizStatsListbox
-#tag EndEvents
 #tag ViewBehavior
 	#tag ViewProperty
 		Name="Name"
