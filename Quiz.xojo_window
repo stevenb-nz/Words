@@ -618,7 +618,7 @@ End
 		        app.updateSetting("cqlcombos state","current")
 		        resetquiz
 		      else
-		        sql = "SELECT states,current,current_new FROM Quiz WHERE type='"+QuizTypeButton.Caption+"' and length='"+str(length)+"'"
+		        sql = "SELECT states,current,current_new FROM Quiz WHERE type='"+QuizTypeButton.Caption+"' and length='"+if(length=0,"C",str(length))+"'"
 		        data = app.wordsDB.SQLSelect(sql)
 		        
 		        if data.RecordCount = 1 then
@@ -637,7 +637,7 @@ End
 		        app.updateSetting("cqlhooks state","current")
 		        resetquiz
 		      else
-		        sql = "SELECT states,current,current_new FROM Quiz WHERE type='"+QuizTypeButton.Caption+"' and length='"+str(length)+"'"
+		        sql = "SELECT states,current,current_new FROM Quiz WHERE type='"+QuizTypeButton.Caption+"' and length='"+if(length=0,"C",str(length))+"'"
 		        data = app.wordsDB.SQLSelect(sql)
 		        
 		        if data.RecordCount = 1 then
@@ -744,11 +744,11 @@ End
 		    states = states + "," + str(guesslist(i))
 		  next
 		  
-		  sql = "SELECT states,current FROM Quiz WHERE type='"+QuizTypeButton.Caption+"' AND length='"+str(length)+"'"
+		  sql = "SELECT states,current FROM Quiz WHERE type='"+QuizTypeButton.Caption+"' AND length='"+if(length=0,"C",str(length))+"'"
 		  data = app.wordsDB.SQLSelect(sql)
 		  
 		  if data.RecordCount = 1 then
-		    app.wordsDB.SQLExecute("UPDATE quiz SET states='"+states+"', current='"+str(nextnew)+"', current_new='"+if(current_new,"1","0")+"' WHERE type='"+QuizTypeButton.Caption+"' AND length='"+str(length)+"'")
+		    app.wordsDB.SQLExecute("UPDATE quiz SET states='"+states+"', current='"+str(nextnew)+"', current_new='"+if(current_new,"1","0")+"' WHERE type='"+QuizTypeButton.Caption+"' AND length='"+if(length=0,"C",str(length))+"'")
 		  else
 		    dim row as new DatabaseRecord
 		    row.Column("type") = QuizTypeButton.Caption
@@ -1174,7 +1174,7 @@ End
 		      data = app.wordsDB.SQLSelect(sql)
 		      quizlistlen = data.RecordCount
 		    end
-		    sql = "SELECT states,current,current_new FROM Quiz WHERE type='Combo' and length='"+str(length)+"'"
+		    sql = "SELECT states,current,current_new FROM Quiz WHERE type='Combo' and length='"+if(length=1,"C",str(length))+"'"
 		    data = app.wordsDB.SQLSelect(sql)
 		    guesslistlen = 0
 		    if data.RecordCount = 1 then
@@ -1197,7 +1197,7 @@ End
 		        quizlistlen = 26
 		      end
 		    end
-		    sql = "SELECT states,current,current_new FROM Quiz WHERE type='Hooks' and length='"+str(length)+"'"
+		    sql = "SELECT states,current,current_new FROM Quiz WHERE type='Hooks' and length='"+if(length=1,"C",str(length))+"'"
 		    data = app.wordsDB.SQLSelect(sql)
 		    guesslistlen = 0
 		    if data.RecordCount = 1 then
