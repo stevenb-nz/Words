@@ -547,6 +547,7 @@ End
 		  current_new = false
 		  if nextnew > UBound(quizlist) then
 		    if UBound(guesslist) < 0 then
+		      MsgBox "All Correct - Well Done!"
 		      resetquiz
 		    end
 		  else
