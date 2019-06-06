@@ -1074,7 +1074,10 @@ End
 		      return true
 		    end
 		  case 13
-		    if me.Text = "" then
+		    dim current_guess as String
+		    current_guess = me.text
+		    
+		    if current_guess = "" then
 		      if me.BackColor = &cFFFFFF and guessListbox.ListCount = answerListbox.ListCount then
 		        if answerListbox.Visible then
 		          submit_reentry
@@ -1083,19 +1086,22 @@ End
 		        end
 		      end
 		    else
-		      if not guessed(me.text) then
+		      if not guessed(current_guess) then
 		        if QuizTypeButton.Caption = "Combo" then
-		          if sort_string(me.text) = sort_string(CurrentComboLabel.text) then
-		            add_guess(me.text)
+		          if sort_string(current_guess) = sort_string(CurrentComboLabel.text) then
+		            add_guess(current_guess)
 		          end
 		        else
 		          if AnswersLabel.Text = "- / -" then
-		            if me.text = CurrentComboLabel.Text then
-		              add_guess(me.text)
+		            if current_guess = CurrentComboLabel.Text then
+		              add_guess(current_guess)
 		            end
 		          else
-		            if left(me.text,len(me.text)-1) = CurrentComboLabel.Text or right(me.text,len(me.text)-1) = CurrentComboLabel.Text then
-		              add_guess(me.text)
+		            if left(current_guess,len(current_guess)-1) = CurrentComboLabel.Text then
+		              add_guess(current_guess)
+		            end
+		            if right(current_guess,len(current_guess)-1) = CurrentComboLabel.Text then
+		              add_guess(current_guess)
 		            end
 		          end
 		        end
