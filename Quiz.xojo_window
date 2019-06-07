@@ -9,16 +9,16 @@ Begin Window Quiz
    FullScreen      =   False
    FullScreenButton=   False
    HasBackColor    =   False
-   Height          =   720
+   Height          =   736
    ImplicitInstance=   True
    LiveResize      =   True
    MacProcID       =   0
-   MaxHeight       =   720
+   MaxHeight       =   736
    MaximizeButton  =   True
    MaxWidth        =   405
    MenuBar         =   0
    MenuBarVisible  =   True
-   MinHeight       =   720
+   MinHeight       =   736
    MinimizeButton  =   True
    MinWidth        =   405
    Placement       =   1
@@ -62,7 +62,7 @@ Begin Window Quiz
       TextFont        =   "courier"
       TextSize        =   16.0
       TextUnit        =   0
-      Top             =   678
+      Top             =   694
       Transparent     =   False
       Underline       =   False
       UseFocusRing    =   True
@@ -95,7 +95,7 @@ Begin Window Quiz
       TextFont        =   "System"
       TextSize        =   0.0
       TextUnit        =   0
-      Top             =   680
+      Top             =   696
       Transparent     =   False
       Underline       =   False
       Visible         =   True
@@ -302,7 +302,7 @@ Begin Window Quiz
       TextFont        =   "System"
       TextSize        =   0.0
       TextUnit        =   0
-      Top             =   680
+      Top             =   696
       Transparent     =   False
       Underline       =   False
       Visible         =   True
@@ -334,7 +334,7 @@ Begin Window Quiz
       TextFont        =   "System"
       TextSize        =   0.0
       TextUnit        =   0
-      Top             =   680
+      Top             =   696
       Transparent     =   False
       Underline       =   False
       Visible         =   True
@@ -358,7 +358,7 @@ Begin Window Quiz
       GridLinesVertical=   0
       HasHeading      =   False
       HeadingIndex    =   -1
-      Height          =   550
+      Height          =   566
       HelpTag         =   ""
       Hierarchical    =   False
       Index           =   -2147483648
@@ -410,7 +410,7 @@ Begin Window Quiz
       GridLinesVertical=   0
       HasHeading      =   False
       HeadingIndex    =   -1
-      Height          =   550
+      Height          =   566
       HelpTag         =   ""
       Hierarchical    =   False
       Index           =   -2147483648
