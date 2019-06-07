@@ -806,6 +806,7 @@ End
 
 	#tag Method, Flags = &h0
 		Sub setquiz()
+		  answerListbox.DeleteAllRows
 		  CurrentComboLabel.Text = quizlist(guesslist(0))
 		  if QuizTypeButton.Caption = "Hooks" then
 		    dim count as integer
