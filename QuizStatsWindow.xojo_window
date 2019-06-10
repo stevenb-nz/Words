@@ -42,7 +42,7 @@ Begin Window QuizStatsWindow
       EnableDragReorder=   False
       GridLinesHorizontal=   2
       GridLinesVertical=   0
-      HasHeading      =   True
+      HasHeading      =   False
       HeadingIndex    =   -1
       Height          =   256
       HelpTag         =   ""
@@ -101,6 +101,24 @@ End
 
 #tag EndWindowCode
 
+#tag Events QuizStatsListbox
+	#tag Event
+		Sub DoubleClick()
+		  Dim row, column As Integer
+		  row = Me.RowFromXY(System.MouseX - Me.Left - Self.Left, System.MouseY - Me.Top - Self.Top)
+		  column = Me.ColumnFromXY(System.MouseX - Me.Left - Self.Left, System.MouseY - Me.Top - Self.Top)
+		  if row > 0 then
+		    select case floor((column+2)/3)
+		    case 1
+		      MsgBox "Combos"
+		    case 2
+		      MsgBox "Hooks"
+		    end
+		  end
+		  
+		End Sub
+	#tag EndEvent
+#tag EndEvents
 #tag ViewBehavior
 	#tag ViewProperty
 		Name="Name"

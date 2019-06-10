@@ -1190,9 +1190,9 @@ End
 		      nextnewtemp = val(data.IdxField(2).StringValue)
 		    end
 		    sigfig = len(str(quizlistlen))
-		    QuizStatsWindow.QuizStatsListbox.Cell(length-1,1) = if(quizlistlen=0,"-",str(round( (nextnewtemp-guesslistlen) / quizlistlen*(10^sigfig))/(10^(sigfig-2)) ) + "%")
-		    QuizStatsWindow.QuizStatsListbox.Cell(length-1,2) = if(quizlistlen=0,"-",str(nextnewtemp-guesslistlen))
-		    QuizStatsWindow.QuizStatsListbox.Cell(length-1,3) = str(quizlistlen)
+		    QuizStatsWindow.QuizStatsListbox.Cell(length,1) = if(quizlistlen=0,"-",str(round( (nextnewtemp-guesslistlen) / quizlistlen*(10^sigfig))/(10^(sigfig-2)) ) + "%")
+		    QuizStatsWindow.QuizStatsListbox.Cell(length,2) = if(quizlistlen=0,"-",str(nextnewtemp-guesslistlen))
+		    QuizStatsWindow.QuizStatsListbox.Cell(length,3) = str(quizlistlen)
 		    
 		    if length = 1 then
 		      quizlistlen = app.getSetting("cqlhooks").CountFields(",")
@@ -1214,9 +1214,9 @@ End
 		    end
 		    
 		    sigfig = len(str(quizlistlen))
-		    QuizStatsWindow.QuizStatsListbox.Cell(length-1,4) = if(quizlistlen=0,"-",str(round( (nextnewtemp-guesslistlen) / quizlistlen*(10^sigfig))/(10^(sigfig-2)) ) + "%")
-		    QuizStatsWindow.QuizStatsListbox.Cell(length-1,5) = if(quizlistlen=0,"-",str(nextnewtemp-guesslistlen))
-		    QuizStatsWindow.QuizStatsListbox.Cell(length-1,6) = str(quizlistlen)
+		    QuizStatsWindow.QuizStatsListbox.Cell(length,4) = if(quizlistlen=0,"-",str(round( (nextnewtemp-guesslistlen) / quizlistlen*(10^sigfig))/(10^(sigfig-2)) ) + "%")
+		    QuizStatsWindow.QuizStatsListbox.Cell(length,5) = if(quizlistlen=0,"-",str(nextnewtemp-guesslistlen))
+		    QuizStatsWindow.QuizStatsListbox.Cell(length,6) = str(quizlistlen)
 		  next
 		  
 		  QuizStatsWindow.Show
@@ -1331,6 +1331,19 @@ End
 		  guessField.SetFocus
 		  
 		End Sub
+	#tag EndEvent
+	#tag Event
+		Function KeyDown(Key As String) As Boolean
+		  if asc(key)=27 then
+		    if answerListbox.Visible = false then
+		      closable = true
+		      close
+		    else
+		      return true
+		    end
+		  end
+		  
+		End Function
 	#tag EndEvent
 #tag EndEvents
 #tag ViewBehavior
