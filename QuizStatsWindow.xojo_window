@@ -110,11 +110,24 @@ End
 		  if row > 0 then
 		    select case floor((column+2)/3)
 		    case 1
-		      MsgBox "Combos"
+		      if row = 1 then
+		        quiz.wordLengthButton.Caption = "C"
+		      else
+		        quiz.wordLengthButton.Caption = str(row)
+		      end
+		      quiz.QuizTypeButton.Caption = "Combo"
 		    case 2
-		      MsgBox "Hooks"
+		      if row = 1 then
+		        quiz.wordLengthButton.Caption = "C"
+		      else
+		        quiz.wordLengthButton.Caption = str(row)
+		      end
+		      quiz.QuizTypeButton.Caption = "Hooks"
 		    end
 		  end
+		  Close
+		  quiz.clearentry
+		  quiz.loadquiz
 		  
 		End Sub
 	#tag EndEvent
