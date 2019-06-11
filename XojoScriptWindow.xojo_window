@@ -25,8 +25,8 @@ Begin Window XojoScriptWindow
    Resizeable      =   False
    Title           =   "Xojo Script"
    Visible         =   True
-   Width           =   444
-   Begin listbox RegExListbox
+   Width           =   500
+   Begin listbox XojoScriptPreviousListBox
       AutoDeactivate  =   True
       AutoHideScrollbars=   True
       Bold            =   False
@@ -44,7 +44,7 @@ Begin Window XojoScriptWindow
       GridLinesVertical=   0
       HasHeading      =   True
       HeadingIndex    =   -1
-      Height          =   614
+      Height          =   334
       HelpTag         =   ""
       Hierarchical    =   False
       Index           =   -2147483648
@@ -55,7 +55,7 @@ Begin Window XojoScriptWindow
       LockBottom      =   True
       LockedInPosition=   False
       LockLeft        =   True
-      LockRight       =   True
+      LockRight       =   False
       LockTop         =   True
       RequiresSelection=   False
       Scope           =   0
@@ -74,11 +74,11 @@ Begin Window XojoScriptWindow
       Underline       =   False
       UseFocusRing    =   True
       Visible         =   True
-      Width           =   404
+      Width           =   224
       _ScrollOffset   =   0
       _ScrollWidth    =   -1
    End
-   Begin TextField RegExTextField
+   Begin TextArea XojoScriptTextArea
       AcceptTabs      =   False
       Alignment       =   0
       AutoDeactivate  =   True
@@ -86,26 +86,31 @@ Begin Window XojoScriptWindow
       BackColor       =   &cFFFFFF00
       Bold            =   False
       Border          =   True
-      CueText         =   ""
       DataField       =   ""
       DataSource      =   ""
       Enabled         =   True
       Format          =   ""
-      Height          =   22
+      Height          =   334
       HelpTag         =   ""
+      HideSelection   =   True
       Index           =   -2147483648
       Italic          =   False
       Left            =   20
       LimitText       =   0
+      LineHeight      =   0.0
+      LineSpacing     =   1.0
       LockBottom      =   True
       LockedInPosition=   False
       LockLeft        =   True
       LockRight       =   True
       LockTop         =   False
       Mask            =   ""
-      Password        =   False
+      Multiline       =   True
       ReadOnly        =   False
       Scope           =   0
+      ScrollbarHorizontal=   False
+      ScrollbarVertical=   True
+      Styled          =   True
       TabIndex        =   7
       TabPanelIndex   =   0
       TabStop         =   True
@@ -114,47 +119,64 @@ Begin Window XojoScriptWindow
       TextFont        =   "System"
       TextSize        =   0.0
       TextUnit        =   0
-      Top             =   678
+      Top             =   366
       Transparent     =   False
       Underline       =   False
       UseFocusRing    =   True
       Visible         =   True
-      Width           =   404
+      Width           =   460
    End
-   Begin Label linkLabel
+   Begin listbox XojoScriptCurrentListBox
       AutoDeactivate  =   True
+      AutoHideScrollbars=   True
       Bold            =   False
+      Border          =   True
+      ColumnCount     =   2
+      ColumnsResizable=   False
+      ColumnWidths    =   "75%	25%"
       DataField       =   ""
       DataSource      =   ""
+      DefaultRowHeight=   -1
       Enabled         =   True
-      Height          =   20
+      EnableDrag      =   False
+      EnableDragReorder=   False
+      GridLinesHorizontal=   0
+      GridLinesVertical=   0
+      HasHeading      =   True
+      HeadingIndex    =   -1
+      Height          =   334
       HelpTag         =   ""
+      Hierarchical    =   False
       Index           =   -2147483648
       InitialParent   =   ""
+      InitialValue    =   "Words	Length\n"
       Italic          =   False
-      Left            =   20
+      Left            =   256
       LockBottom      =   True
       LockedInPosition=   False
-      LockLeft        =   True
+      LockLeft        =   False
       LockRight       =   True
-      LockTop         =   False
-      Multiline       =   False
+      LockTop         =   True
+      RequiresSelection=   False
       Scope           =   0
-      Selectable      =   False
+      ScrollbarHorizontal=   False
+      ScrollBarVertical=   True
+      SelectionType   =   1
+      ShowDropIndicator=   False
       TabIndex        =   8
       TabPanelIndex   =   0
       TabStop         =   True
-      Text            =   "Regular Expressions reference"
-      TextAlign       =   1
-      TextColor       =   &c0000FF00
-      TextFont        =   "System"
+      TextFont        =   "Lucida Console"
       TextSize        =   0.0
-      TextUnit        =   0
-      Top             =   646
+      TextUnit        =   2
+      Top             =   20
       Transparent     =   False
       Underline       =   False
+      UseFocusRing    =   True
       Visible         =   True
-      Width           =   404
+      Width           =   224
+      _ScrollOffset   =   0
+      _ScrollWidth    =   -1
    End
 End
 #tag EndWindow
@@ -206,6 +228,15 @@ End
 
 	#tag Event
 		Sub Resized()
+		  dim newwidth as integer
+		  
+		  newwidth = (XojoScriptWindow.Width-52)/2
+		  
+		  XojoScriptPreviousListBox.Width = newwidth
+		  XojoScriptCurrentListBox.Width = newwidth
+		  XojoScriptCurrentListBox.Left = newwidth + 32
+		  Refresh
+		  
 		  storeRegExBounds
 		  
 		  
@@ -234,7 +265,7 @@ End
 
 #tag EndWindowCode
 
-#tag Events RegExListbox
+#tag Events XojoScriptPreviousListBox
 	#tag Event
 		Function CompareRows(row1 as Integer, row2 as Integer, column as Integer, ByRef result as Integer) As Boolean
 		  Select Case column
@@ -306,7 +337,7 @@ End
 		End Sub
 	#tag EndEvent
 #tag EndEvents
-#tag Events RegExTextField
+#tag Events XojoScriptTextArea
 	#tag Event
 		Function KeyDown(Key As String) As Boolean
 		  Dim rg As New RegEx
@@ -315,13 +346,13 @@ End
 		  
 		  Select Case asc(Key)
 		  Case 13
-		    RegExListbox.DeleteAllRows
+		    'RegExListbox.DeleteAllRows
 		    rg.SearchPattern = me.Text
 		    try
 		      myMatch = rg.Search("")
 		    catch e as RegExSearchPatternException
-		      RegExListbox.AddRow "Invalid regular expression:"
-		      RegExListbox.AddRow """"+e.Message+""""
+		      'RegExListbox.AddRow "Invalid regular expression:"
+		      'RegExListbox.AddRow """"+e.Message+""""
 		      return true
 		    end try
 		    data.MoveFirst
@@ -329,14 +360,14 @@ End
 		      myMatch = rg.Search(data.IdxField(1).StringValue)
 		      If myMatch <> Nil Then
 		        if myMatch.SubExpressionString(0) = data.IdxField(1).StringValue then
-		          RegExListbox.AddRow myMatch.SubExpressionString(0)
+		          'RegExListbox.AddRow myMatch.SubExpressionString(0)
 		        end
 		        app.updateSetting("last good regex",me.text)
 		      End
 		      data.MoveNext
 		    wend
-		    i = RegExListbox.ListCount
-		    RegExListbox.heading(0) = str(i)+" Word"+if(i=1,"","s")
+		    'i = RegExListbox.ListCount
+		    'RegExListbox.heading(0) = str(i)+" Word"+if(i=1,"","s")
 		    return true
 		  Case 27
 		    closable = true
@@ -349,12 +380,76 @@ End
 		End Function
 	#tag EndEvent
 #tag EndEvents
-#tag Events linkLabel
+#tag Events XojoScriptCurrentListBox
 	#tag Event
-		Function MouseDown(X As Integer, Y As Integer) As Boolean
-		  Showurl("https://docs.xojo.com/index.php/RegEx")
+		Function CompareRows(row1 as Integer, row2 as Integer, column as Integer, ByRef result as Integer) As Boolean
+		  Select Case column
+		  Case 0
+		    Return False
+		  Case 1
+		    result = Sign(len(me.cell(row1,0)) - len(me.cell(row2,0)))
+		    if result = 0 then
+		      if me.ColumnSortDirection(1) = listbox.SortAscending then
+		        if me.cell(row1,0) < me.cell(row2,0) then
+		          result = -1
+		        ElseIf me.cell(row1,0) > me.cell(row2,0) then
+		          result = 1
+		        end 
+		      else
+		        if me.cell(row1,0) < me.cell(row2,0) then
+		          result = 1
+		        ElseIf me.cell(row1,0) > me.cell(row2,0) then
+		          result = -1
+		        end
+		      end
+		    end
+		    Return True
+		  End Select
 		  
 		End Function
+	#tag EndEvent
+	#tag Event
+		Function KeyDown(Key As String) As Boolean
+		  Select Case asc(Key)
+		  case 13
+		    if me.text = "" then
+		      if me.ListCount > 0 then
+		        CustomQuizList.add(me)
+		      end
+		      closable = true
+		      close
+		    else
+		      dim new_word as string
+		      
+		      new_word = me.text
+		      words.WordButton.Caption = new_word
+		      words.updateWords(new_word)
+		      words.update_history(new_word)
+		      closable = true
+		      Close
+		      words.show
+		    end
+		  Case 27
+		    closable = true
+		    close
+		    words.show
+		  End Select
+		  
+		End Function
+	#tag EndEvent
+	#tag Event
+		Sub DoubleClick()
+		  dim new_word as string
+		  
+		  new_word = me.text
+		  words.WordButton.Caption = new_word
+		  words.updateWords(new_word)
+		  words.update_history(new_word)
+		  closable = true
+		  Close
+		  words.show
+		  
+		End Sub
 	#tag EndEvent
 #tag EndEvents
 #tag ViewBehavior
