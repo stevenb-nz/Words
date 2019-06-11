@@ -7,6 +7,7 @@ Window=Words;Words.xojo_window;&h0000000037FECA65;&h0000000000000000;false
 Class=CustomListbox;CustomListbox.xojo_code;&h000000000D9087FF;&h0000000000000000;false
 Class=WordButton;WordButton.xojo_code;&h00000000000AAFFF;&h0000000000000000;false
 Window=RegularExpressions;RegularExpressions.xojo_window;&h000000005F9197FF;&h0000000000000000;false
+Window=XojoScriptWindow;XojoScriptWindow.xojo_window;&h000000003E2227FF;&h0000000000000000;false
 Window=Judge;Judge.xojo_window;&h0000000039FA5FFF;&h0000000000000000;false
 Window=Quiz;Quiz.xojo_window;&h000000004C450FFF;&h0000000000000000;false
 Window=QuizStatsWindow;QuizStatsWindow.xojo_window;&h000000000B12A7FF;&h0000000000000000;false
