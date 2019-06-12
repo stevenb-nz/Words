@@ -43,6 +43,7 @@ Inherits Application
 		    end
 		    
 		    WordRegEx.Enabled = true
+		    WordXojoScript.Enabled = true
 		    WordWordShow.Enabled = true
 		    
 		  else
@@ -54,6 +55,7 @@ Inherits Application
 		    WordRandomMinus1.Enabled = false
 		    wordrandomplus1.enabled = false
 		    WordRegEx.Enabled = false
+		    WordXojoScript.Enabled = false
 		    WordWordShow.Enabled = false
 		  end
 		  
@@ -188,6 +190,14 @@ Inherits Application
 	#tag MenuHandler
 		Function WordWordShow() As Boolean Handles WordWordShow.Action
 			WordShow.ShowModal
+			Return True
+			
+		End Function
+	#tag EndMenuHandler
+
+	#tag MenuHandler
+		Function WordXojoScript() As Boolean Handles WordXojoScript.Action
+			XojoScriptWindow.ShowModal
 			Return True
 			
 		End Function
