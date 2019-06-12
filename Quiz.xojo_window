@@ -1343,6 +1343,8 @@ End
 		    else
 		      return true
 		    end
+		  else
+		    guessField.SetFocus
 		  end
 		  
 		End Function
