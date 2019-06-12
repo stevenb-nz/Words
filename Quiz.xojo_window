@@ -1325,6 +1325,18 @@ End
 		End Sub
 	#tag EndEvent
 #tag EndEvents
+#tag Events answerListbox
+	#tag Event
+		Function KeyDown(Key As String) As Boolean
+		  if asc(key)=27 then
+		    return true
+		  else
+		    guessField.SetFocus
+		  end
+		  
+		End Function
+	#tag EndEvent
+#tag EndEvents
 #tag Events guessListbox
 	#tag Event
 		Sub DoubleClick()
