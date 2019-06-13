@@ -195,7 +195,7 @@ End
 
 	#tag Event
 		Sub Moved()
-		  storeRegExBounds
+		  storeXojoScriptBounds
 		  
 		End Sub
 	#tag EndEvent
@@ -203,16 +203,12 @@ End
 	#tag Event
 		Sub Open()
 		  dim left,top,height as Integer
-		  dim sql as string
-		  
-		  sql = "SELECT Word from Words"
-		  data = app.wordsDB.SQLSelect(sql)
 		  
 		  Words.Visible = false
 		  
-		  left = val(app.getSetting("RegEx Left"))
-		  top = val(app.getSetting("RegEx Top"))
-		  height = val(app.getSetting("RegEx Height"))
+		  left = val(app.getSetting("XojoScript Left"))
+		  top = val(app.getSetting("XojoScript Top"))
+		  height = val(app.getSetting("XojoScript Height"))
 		  
 		  Dim tempBounds As New Realbasic.Rect
 		  
@@ -237,7 +233,7 @@ End
 		  XojoScriptCurrentListBox.Left = newwidth + 32
 		  Refresh
 		  
-		  storeRegExBounds
+		  storeXojoScriptBounds
 		  
 		  
 		End Sub
@@ -245,10 +241,10 @@ End
 
 
 	#tag Method, Flags = &h0
-		Sub storeRegExBounds()
-		  app.updateSetting("RegEx Top",str(self.Bounds.Top))
-		  app.updateSetting("RegEx Height",str(self.Bounds.Height))
-		  app.updateSetting("RegEx Left",str(self.Bounds.Left))
+		Sub storeXojoScriptBounds()
+		  app.updateSetting("XojoScript Top",str(self.Bounds.Top))
+		  app.updateSetting("XojoScript Height",str(self.Bounds.Height))
+		  app.updateSetting("XojoScript Left",str(self.Bounds.Left))
 		  
 		End Sub
 	#tag EndMethod
@@ -256,10 +252,6 @@ End
 
 	#tag Property, Flags = &h0
 		closable As Boolean
-	#tag EndProperty
-
-	#tag Property, Flags = &h0
-		data As RecordSet
 	#tag EndProperty
 
 
@@ -355,17 +347,17 @@ End
 		      'RegExListbox.AddRow """"+e.Message+""""
 		      return true
 		    end try
-		    data.MoveFirst
-		    while not data.EOF
-		      myMatch = rg.Search(data.IdxField(1).StringValue)
-		      If myMatch <> Nil Then
-		        if myMatch.SubExpressionString(0) = data.IdxField(1).StringValue then
-		          'RegExListbox.AddRow myMatch.SubExpressionString(0)
-		        end
-		        app.updateSetting("last good regex",me.text)
-		      End
-		      data.MoveNext
-		    wend
+		    'data.MoveFirst
+		    'while not data.EOF
+		    'myMatch = rg.Search(data.IdxField(1).StringValue)
+		    'If myMatch <> Nil Then
+		    'if myMatch.SubExpressionString(0) = data.IdxField(1).StringValue then
+		    ''RegExListbox.AddRow myMatch.SubExpressionString(0)
+		    'end
+		    'app.updateSetting("last good regex",me.text)
+		    'End
+		    'data.MoveNext
+		    'wend
 		    'i = RegExListbox.ListCount
 		    'RegExListbox.heading(0) = str(i)+" Word"+if(i=1,"","s")
 		    return true
