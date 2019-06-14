@@ -44,7 +44,7 @@ Begin Window XojoScriptWindow
       GridLinesVertical=   0
       HasHeading      =   True
       HeadingIndex    =   -1
-      Height          =   334
+      Height          =   302
       HelpTag         =   ""
       Hierarchical    =   False
       Index           =   -2147483648
@@ -69,7 +69,7 @@ Begin Window XojoScriptWindow
       TextFont        =   "Lucida Console"
       TextSize        =   0.0
       TextUnit        =   2
-      Top             =   20
+      Top             =   52
       Transparent     =   False
       Underline       =   False
       UseFocusRing    =   True
@@ -144,7 +144,7 @@ Begin Window XojoScriptWindow
       GridLinesVertical=   0
       HasHeading      =   True
       HeadingIndex    =   -1
-      Height          =   334
+      Height          =   302
       HelpTag         =   ""
       Hierarchical    =   False
       Index           =   -2147483648
@@ -169,7 +169,7 @@ Begin Window XojoScriptWindow
       TextFont        =   "Lucida Console"
       TextSize        =   0.0
       TextUnit        =   2
-      Top             =   20
+      Top             =   52
       Transparent     =   False
       Underline       =   False
       UseFocusRing    =   True
@@ -177,6 +177,76 @@ Begin Window XojoScriptWindow
       Width           =   224
       _ScrollOffset   =   0
       _ScrollWidth    =   -1
+   End
+   Begin Label PreviousLabel
+      AutoDeactivate  =   True
+      Bold            =   False
+      DataField       =   ""
+      DataSource      =   ""
+      Enabled         =   True
+      Height          =   20
+      HelpTag         =   ""
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Italic          =   False
+      Left            =   20
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      Multiline       =   False
+      Scope           =   0
+      Selectable      =   False
+      TabIndex        =   9
+      TabPanelIndex   =   0
+      TabStop         =   True
+      Text            =   "Previous"
+      TextAlign       =   1
+      TextColor       =   &c00000000
+      TextFont        =   "System"
+      TextSize        =   0.0
+      TextUnit        =   0
+      Top             =   20
+      Transparent     =   False
+      Underline       =   False
+      Visible         =   True
+      Width           =   224
+   End
+   Begin Label CurrentLabel
+      AutoDeactivate  =   True
+      Bold            =   False
+      DataField       =   ""
+      DataSource      =   ""
+      Enabled         =   True
+      Height          =   20
+      HelpTag         =   ""
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Italic          =   False
+      Left            =   256
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   False
+      LockRight       =   True
+      LockTop         =   True
+      Multiline       =   False
+      Scope           =   0
+      Selectable      =   False
+      TabIndex        =   10
+      TabPanelIndex   =   0
+      TabStop         =   True
+      Text            =   "Current"
+      TextAlign       =   1
+      TextColor       =   &c00000000
+      TextFont        =   "System"
+      TextSize        =   0.0
+      TextUnit        =   0
+      Top             =   20
+      Transparent     =   False
+      Underline       =   False
+      Visible         =   True
+      Width           =   224
    End
 End
 #tag EndWindow
@@ -229,8 +299,11 @@ End
 		  newwidth = (XojoScriptWindow.Width-52)/2
 		  
 		  XojoScriptPreviousListBox.Width = newwidth
+		  PreviousLabel.Width = newwidth
 		  XojoScriptCurrentListBox.Width = newwidth
+		  CurrentLabel.Width = newwidth
 		  XojoScriptCurrentListBox.Left = newwidth + 32
+		  CurrentLabel.Left = newwidth +32
 		  Refresh
 		  
 		  storeXojoScriptBounds
