@@ -1080,7 +1080,7 @@ End
 		    current_guess = me.text
 		    
 		    if current_guess = "" then
-		      if me.BackColor = &cFFFFFF and guessListbox.ListCount = answerListbox.ListCount then
+		      if me.BackColor = &cFFFFFF and GuessesLabel.Text = AnswersLabel.Text then
 		        if answerListbox.Visible then
 		          submit_reentry
 		        else
