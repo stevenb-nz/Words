@@ -9,7 +9,7 @@ Begin Window XojoScriptWindow
    FullScreen      =   False
    FullScreenButton=   False
    HasBackColor    =   False
-   Height          =   720
+   Height          =   900
    ImplicitInstance=   True
    LiveResize      =   True
    MacProcID       =   0
@@ -44,7 +44,7 @@ Begin Window XojoScriptWindow
       GridLinesVertical=   0
       HasHeading      =   True
       HeadingIndex    =   -1
-      Height          =   302
+      Height          =   408
       HelpTag         =   ""
       Hierarchical    =   False
       Index           =   -2147483648
@@ -78,7 +78,7 @@ Begin Window XojoScriptWindow
       _ScrollOffset   =   0
       _ScrollWidth    =   -1
    End
-   Begin TextArea XojoScriptTextArea
+   Begin TextArea trueFunctionTextArea
       AcceptTabs      =   False
       Alignment       =   0
       AutoDeactivate  =   True
@@ -90,7 +90,7 @@ Begin Window XojoScriptWindow
       DataSource      =   ""
       Enabled         =   True
       Format          =   ""
-      Height          =   334
+      Height          =   120
       HelpTag         =   ""
       HideSelection   =   True
       Index           =   -2147483648
@@ -119,7 +119,7 @@ Begin Window XojoScriptWindow
       TextFont        =   "System"
       TextSize        =   0.0
       TextUnit        =   0
-      Top             =   366
+      Top             =   656
       Transparent     =   False
       Underline       =   False
       UseFocusRing    =   True
@@ -144,7 +144,7 @@ Begin Window XojoScriptWindow
       GridLinesVertical=   0
       HasHeading      =   True
       HeadingIndex    =   -1
-      Height          =   302
+      Height          =   408
       HelpTag         =   ""
       Hierarchical    =   False
       Index           =   -2147483648
@@ -247,6 +247,319 @@ Begin Window XojoScriptWindow
       Underline       =   False
       Visible         =   True
       Width           =   224
+   End
+   Begin TextArea toAddTextArea
+      AcceptTabs      =   False
+      Alignment       =   0
+      AutoDeactivate  =   True
+      AutomaticallyCheckSpelling=   False
+      BackColor       =   &cFFFFFF00
+      Bold            =   False
+      Border          =   True
+      DataField       =   ""
+      DataSource      =   ""
+      Enabled         =   True
+      Format          =   ""
+      Height          =   60
+      HelpTag         =   ""
+      HideSelection   =   True
+      Index           =   -2147483648
+      Italic          =   False
+      Left            =   20
+      LimitText       =   0
+      LineHeight      =   0.0
+      LineSpacing     =   1.0
+      LockBottom      =   True
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   True
+      LockTop         =   False
+      Mask            =   ""
+      Multiline       =   True
+      ReadOnly        =   False
+      Scope           =   0
+      ScrollbarHorizontal=   False
+      ScrollbarVertical=   True
+      Styled          =   True
+      TabIndex        =   11
+      TabPanelIndex   =   0
+      TabStop         =   True
+      Text            =   ""
+      TextColor       =   &c00000000
+      TextFont        =   "System"
+      TextSize        =   0.0
+      TextUnit        =   0
+      Top             =   820
+      Transparent     =   False
+      Underline       =   False
+      UseFocusRing    =   True
+      Visible         =   True
+      Width           =   460
+   End
+   Begin Label addLabel
+      AutoDeactivate  =   True
+      Bold            =   False
+      DataField       =   ""
+      DataSource      =   ""
+      Enabled         =   True
+      Height          =   20
+      HelpTag         =   ""
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Italic          =   False
+      Left            =   20
+      LockBottom      =   True
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   True
+      LockTop         =   False
+      Multiline       =   False
+      Scope           =   0
+      Selectable      =   False
+      TabIndex        =   12
+      TabPanelIndex   =   0
+      TabStop         =   True
+      Text            =   "Add this to current:"
+      TextAlign       =   0
+      TextColor       =   &c00000000
+      TextFont        =   "System"
+      TextSize        =   0.0
+      TextUnit        =   0
+      Top             =   788
+      Transparent     =   False
+      Underline       =   False
+      Visible         =   True
+      Width           =   460
+   End
+   Begin Label trueLabel
+      AutoDeactivate  =   True
+      Bold            =   False
+      DataField       =   ""
+      DataSource      =   ""
+      Enabled         =   False
+      Height          =   20
+      HelpTag         =   ""
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Italic          =   False
+      Left            =   20
+      LockBottom      =   True
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   True
+      LockTop         =   False
+      Multiline       =   False
+      Scope           =   0
+      Selectable      =   False
+      TabIndex        =   13
+      TabPanelIndex   =   0
+      TabStop         =   True
+      Text            =   "If this is true:"
+      TextAlign       =   0
+      TextColor       =   &c00000000
+      TextFont        =   "System"
+      TextSize        =   0.0
+      TextUnit        =   0
+      Top             =   624
+      Transparent     =   False
+      Underline       =   False
+      Visible         =   True
+      Width           =   460
+   End
+   Begin GroupBox ReloadGroupBox
+      AutoDeactivate  =   True
+      Bold            =   False
+      Caption         =   "For each:"
+      Enabled         =   True
+      Height          =   140
+      HelpTag         =   ""
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Italic          =   False
+      Left            =   20
+      LockBottom      =   True
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   False
+      Scope           =   0
+      TabIndex        =   14
+      TabPanelIndex   =   0
+      TabStop         =   True
+      TextFont        =   "System"
+      TextSize        =   0.0
+      TextUnit        =   0
+      Top             =   472
+      Transparent     =   False
+      Underline       =   False
+      Visible         =   True
+      Width           =   170
+      Begin RadioButton SourceButton
+         AutoDeactivate  =   True
+         Bold            =   False
+         Caption         =   "Word"
+         Enabled         =   True
+         Height          =   20
+         HelpTag         =   ""
+         Index           =   0
+         InitialParent   =   "ReloadGroupBox"
+         Italic          =   False
+         Left            =   40
+         LockBottom      =   False
+         LockedInPosition=   False
+         LockLeft        =   True
+         LockRight       =   False
+         LockTop         =   True
+         Scope           =   0
+         TabIndex        =   0
+         TabPanelIndex   =   0
+         TabStop         =   True
+         TextFont        =   "System"
+         TextSize        =   0.0
+         TextUnit        =   0
+         Top             =   508
+         Transparent     =   False
+         Underline       =   False
+         Value           =   False
+         Visible         =   True
+         Width           =   130
+      End
+      Begin RadioButton SourceButton
+         AutoDeactivate  =   True
+         Bold            =   False
+         Caption         =   "       -letter word"
+         Enabled         =   True
+         Height          =   20
+         HelpTag         =   ""
+         Index           =   1
+         InitialParent   =   "ReloadGroupBox"
+         Italic          =   False
+         Left            =   40
+         LockBottom      =   False
+         LockedInPosition=   False
+         LockLeft        =   True
+         LockRight       =   False
+         LockTop         =   True
+         Scope           =   0
+         TabIndex        =   1
+         TabPanelIndex   =   0
+         TabStop         =   True
+         TextFont        =   "System"
+         TextSize        =   0.0
+         TextUnit        =   0
+         Top             =   540
+         Transparent     =   False
+         Underline       =   False
+         Value           =   True
+         Visible         =   True
+         Width           =   130
+      End
+      Begin RadioButton SourceButton
+         AutoDeactivate  =   True
+         Bold            =   False
+         Caption         =   "Word in Previous"
+         Enabled         =   True
+         Height          =   20
+         HelpTag         =   ""
+         Index           =   2
+         InitialParent   =   "ReloadGroupBox"
+         Italic          =   False
+         Left            =   40
+         LockBottom      =   False
+         LockedInPosition=   False
+         LockLeft        =   True
+         LockRight       =   False
+         LockTop         =   True
+         Scope           =   0
+         TabIndex        =   2
+         TabPanelIndex   =   0
+         TabStop         =   True
+         TextFont        =   "System"
+         TextSize        =   0.0
+         TextUnit        =   0
+         Top             =   572
+         Transparent     =   False
+         Underline       =   False
+         Value           =   False
+         Visible         =   True
+         Width           =   130
+      End
+      Begin TextField nLettersTextField
+         AcceptTabs      =   False
+         Alignment       =   0
+         AutoDeactivate  =   True
+         AutomaticallyCheckSpelling=   False
+         BackColor       =   &cFFFFFF00
+         Bold            =   False
+         Border          =   True
+         CueText         =   ""
+         DataField       =   ""
+         DataSource      =   ""
+         Enabled         =   True
+         Format          =   ""
+         Height          =   22
+         HelpTag         =   ""
+         Index           =   -2147483648
+         InitialParent   =   "ReloadGroupBox"
+         Italic          =   False
+         Left            =   61
+         LimitText       =   0
+         LockBottom      =   False
+         LockedInPosition=   False
+         LockLeft        =   True
+         LockRight       =   False
+         LockTop         =   True
+         Mask            =   ""
+         Password        =   False
+         ReadOnly        =   False
+         Scope           =   0
+         TabIndex        =   3
+         TabPanelIndex   =   0
+         TabStop         =   True
+         Text            =   ""
+         TextColor       =   &c00000000
+         TextFont        =   "System"
+         TextSize        =   0.0
+         TextUnit        =   0
+         Top             =   539
+         Transparent     =   False
+         Underline       =   False
+         UseFocusRing    =   True
+         Visible         =   True
+         Width           =   22
+      End
+   End
+   Begin PushButton RunButton
+      AutoDeactivate  =   True
+      Bold            =   False
+      ButtonStyle     =   "0"
+      Cancel          =   False
+      Caption         =   "Run"
+      Default         =   True
+      Enabled         =   True
+      Height          =   20
+      HelpTag         =   ""
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Italic          =   False
+      Left            =   400
+      LockBottom      =   True
+      LockedInPosition=   False
+      LockLeft        =   False
+      LockRight       =   True
+      LockTop         =   False
+      Scope           =   0
+      TabIndex        =   15
+      TabPanelIndex   =   0
+      TabStop         =   True
+      TextFont        =   "System"
+      TextSize        =   0.0
+      TextUnit        =   0
+      Top             =   592
+      Transparent     =   False
+      Underline       =   False
+      Visible         =   True
+      Width           =   80
    End
 End
 #tag EndWindow
@@ -402,7 +715,7 @@ End
 		End Sub
 	#tag EndEvent
 #tag EndEvents
-#tag Events XojoScriptTextArea
+#tag Events trueFunctionTextArea
 	#tag Event
 		Function KeyDown(Key As String) As Boolean
 		  Dim rg As New RegEx
@@ -516,6 +829,51 @@ End
 		  
 		End Sub
 	#tag EndEvent
+#tag EndEvents
+#tag Events toAddTextArea
+	#tag Event
+		Function KeyDown(Key As String) As Boolean
+		  Dim rg As New RegEx
+		  Dim myMatch As RegExMatch
+		  dim i as integer
+		  
+		  Select Case asc(Key)
+		  Case 13
+		    'RegExListbox.DeleteAllRows
+		    rg.SearchPattern = me.Text
+		    try
+		      myMatch = rg.Search("")
+		    catch e as RegExSearchPatternException
+		      'RegExListbox.AddRow "Invalid regular expression:"
+		      'RegExListbox.AddRow """"+e.Message+""""
+		      return true
+		    end try
+		    'data.MoveFirst
+		    'while not data.EOF
+		    'myMatch = rg.Search(data.IdxField(1).StringValue)
+		    'If myMatch <> Nil Then
+		    'if myMatch.SubExpressionString(0) = data.IdxField(1).StringValue then
+		    ''RegExListbox.AddRow myMatch.SubExpressionString(0)
+		    'end
+		    'app.updateSetting("last good regex",me.text)
+		    'End
+		    'data.MoveNext
+		    'wend
+		    'i = RegExListbox.ListCount
+		    'RegExListbox.heading(0) = str(i)+" Word"+if(i=1,"","s")
+		    return true
+		  Case 27
+		    closable = true
+		    close
+		    words.show
+		  Case 30
+		    me.text = app.getSetting("last good regex")
+		  End Select
+		  
+		End Function
+	#tag EndEvent
+#tag EndEvents
+#tag Events SourceButton
 #tag EndEvents
 #tag ViewBehavior
 	#tag ViewProperty
