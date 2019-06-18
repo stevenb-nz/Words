@@ -1125,16 +1125,36 @@ End
 		    end
 		    match_entry(me.text)
 		    return true
+		  case 43 'divert "+" to reverse sort
+		    if QuizTypeButton.Caption = "Combo" then
+		      CurrentComboLabel.Text = sort_string(CurrentComboLabel.Text)
+		    end
+		    match_entry(me.text)
+		    return true
+		  case 45 'divert "-" to CV sort
+		    if QuizTypeButton.Caption = "Combo" then
+		      CurrentComboLabel.Text = sort_string(CurrentComboLabel.Text)
+		    end
+		    match_entry(me.text)
+		    return true
 		  case 61 'divert "=" to sort
 		    if QuizTypeButton.Caption = "Combo" then
 		      CurrentComboLabel.Text = sort_string(CurrentComboLabel.Text)
 		    end
 		    match_entry(me.text)
 		    return true
-		  case 65 to 90, 97 to 122
-		    'let alpha chars through
+		  case 65 to 90
+		    'let uppercase alpha chars through
+		  case 95 'divert "_" to VC sort
+		    if QuizTypeButton.Caption = "Combo" then
+		      CurrentComboLabel.Text = sort_string(CurrentComboLabel.Text)
+		    end
+		    match_entry(me.text)
+		    return true
+		  case 97 to 122
+		    'let lowercase alpha chars through
 		  Else
-		    'don't let anything else through
+		    'don't let other characters through
 		    return true
 		  End Select
 		  

@@ -873,8 +873,6 @@ End
 		End Function
 	#tag EndEvent
 #tag EndEvents
-#tag Events SourceButton
-#tag EndEvents
 #tag ViewBehavior
 	#tag ViewProperty
 		Name="BackColor"
