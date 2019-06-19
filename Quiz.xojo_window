@@ -904,6 +904,39 @@ End
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
+		Function sortcv_string(combo as string) As string
+		  dim tempArray() as string
+		  
+		  tempArray = combo.split("")
+		  tempArray.sort
+		  return join(tempArray,"")
+		  
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Function sortreverse_string(combo as string) As string
+		  dim tempArray() as string
+		  
+		  tempArray = combo.split("")
+		  tempArray.sort
+		  return join(tempArray,"")
+		  
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Function sortvc_string(combo as string) As string
+		  dim tempArray() as string
+		  
+		  tempArray = combo.split("")
+		  tempArray.sort
+		  return join(tempArray,"")
+		  
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Function sort_string(combo as string) As string
 		  dim tempArray() as string
 		  
@@ -1127,13 +1160,13 @@ End
 		    return true
 		  case 43 'divert "+" to reverse sort
 		    if QuizTypeButton.Caption = "Combo" then
-		      CurrentComboLabel.Text = sort_string(CurrentComboLabel.Text)
+		      CurrentComboLabel.Text = sortreverse_string(CurrentComboLabel.Text)
 		    end
 		    match_entry(me.text)
 		    return true
 		  case 45 'divert "-" to CV sort
 		    if QuizTypeButton.Caption = "Combo" then
-		      CurrentComboLabel.Text = sort_string(CurrentComboLabel.Text)
+		      CurrentComboLabel.Text = sortcv_string(CurrentComboLabel.Text)
 		    end
 		    match_entry(me.text)
 		    return true
@@ -1147,7 +1180,7 @@ End
 		    'let uppercase alpha chars through
 		  case 95 'divert "_" to VC sort
 		    if QuizTypeButton.Caption = "Combo" then
-		      CurrentComboLabel.Text = sort_string(CurrentComboLabel.Text)
+		      CurrentComboLabel.Text = sortvc_string(CurrentComboLabel.Text)
 		    end
 		    match_entry(me.text)
 		    return true
