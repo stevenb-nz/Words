@@ -753,7 +753,7 @@ End
 		  else
 		    dim row as new DatabaseRecord
 		    row.Column("type") = QuizTypeButton.Caption
-		    row.Column("length") = str(length)
+		    row.Column("length") = if(length=0,"C",str(length))
 		    row.Column("states") = states
 		    row.Column("current") = str(nextnew)
 		    row.Column("current_new") = if(current_new,"1","0")
@@ -905,33 +905,56 @@ End
 
 	#tag Method, Flags = &h0
 		Function sortcv_string(combo as string) As string
-		  dim tempArray() as string
+		  dim tempArray(),tempArray1(),tempArray2() as string
+		  dim c as string
 		  
 		  tempArray = combo.split("")
-		  tempArray.sort
-		  return join(tempArray,"")
+		  while tempArray.Ubound > -1
+		    c = tempArray.Pop
+		    if InStr("aeiou",c)  > 0 then
+		      tempArray1.Append c
+		    else
+		      tempArray2.Append c
+		    end
+		  wend
+		  tempArray1.sort
+		  tempArray2.Sort
+		  return join(tempArray1,"")+ join(tempArray2,"")
 		  
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
 		Function sortreverse_string(combo as string) As string
-		  dim tempArray() as string
+		  dim tempArray1(),tempArray2() as string
 		  
-		  tempArray = combo.split("")
-		  tempArray.sort
-		  return join(tempArray,"")
+		  tempArray1 = combo.split("")
+		  tempArray1.Sort
+		  while tempArray1.Ubound > -1
+		    tempArray2.Append tempArray1.Pop
+		  wend
+		  return join(tempArray2,"")
 		  
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
 		Function sortvc_string(combo as string) As string
-		  dim tempArray() as string
+		  dim tempArray(),tempArray1(),tempArray2() as string
+		  dim c as string
 		  
 		  tempArray = combo.split("")
-		  tempArray.sort
-		  return join(tempArray,"")
+		  while tempArray.Ubound > -1
+		    c = tempArray.Pop
+		    if InStr("aeiou",c)  > 0 then
+		      tempArray1.Append c
+		    else
+		      tempArray2.Append c
+		    end
+		  wend
+		  tempArray1.sort
+		  tempArray2.Sort
+		  return join(tempArray2,"")+ join(tempArray1,"")
 		  
 		End Function
 	#tag EndMethod
