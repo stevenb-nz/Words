@@ -889,6 +889,14 @@ End
 		  setProgressLabel
 		  setCurrentLabel
 		  
+		  if listend then
+		    MsgBox "End of list reached."
+		    listend = false
+		  else
+		    if guesslist(0) = ubound(quizlist) and current_new then
+		      listend = true
+		    end
+		  end
 		End Sub
 	#tag EndMethod
 
@@ -1102,6 +1110,10 @@ End
 
 	#tag Property, Flags = &h0
 		guesslist() As Integer
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		listend As Boolean = false
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
