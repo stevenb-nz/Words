@@ -1690,4 +1690,10 @@ End
 		Group="Behavior"
 		Type="Boolean"
 	#tag EndViewProperty
+	#tag ViewProperty
+		Name="listend"
+		Group="Behavior"
+		InitialValue="false"
+		Type="Boolean"
+	#tag EndViewProperty
 #tag EndViewBehavior

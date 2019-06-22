@@ -427,7 +427,7 @@ Begin Window XojoScriptWindow
       Begin RadioButton SourceButton
          AutoDeactivate  =   True
          Bold            =   False
-         Caption         =   "       -letter word"
+         Caption         =   "2-letter word"
          Enabled         =   True
          Height          =   20
          HelpTag         =   ""
@@ -484,49 +484,28 @@ Begin Window XojoScriptWindow
          Visible         =   True
          Width           =   130
       End
-      Begin TextField nLettersTextField
-         AcceptTabs      =   False
-         Alignment       =   0
+      Begin UpDownArrows nLetterUpDownArrows
+         AcceptFocus     =   False
          AutoDeactivate  =   True
-         AutomaticallyCheckSpelling=   False
-         BackColor       =   &cFFFFFF00
-         Bold            =   False
-         Border          =   True
-         CueText         =   ""
-         DataField       =   ""
-         DataSource      =   ""
          Enabled         =   True
-         Format          =   ""
-         Height          =   22
+         Height          =   23
          HelpTag         =   ""
          Index           =   -2147483648
          InitialParent   =   "ReloadGroupBox"
-         Italic          =   False
-         Left            =   61
-         LimitText       =   0
+         Left            =   157
          LockBottom      =   False
          LockedInPosition=   False
          LockLeft        =   True
          LockRight       =   False
          LockTop         =   True
-         Mask            =   ""
-         Password        =   False
-         ReadOnly        =   False
          Scope           =   0
          TabIndex        =   3
          TabPanelIndex   =   0
          TabStop         =   True
-         Text            =   ""
-         TextColor       =   &c00000000
-         TextFont        =   "System"
-         TextSize        =   0.0
-         TextUnit        =   0
-         Top             =   539
+         Top             =   537
          Transparent     =   False
-         Underline       =   False
-         UseFocusRing    =   True
          Visible         =   True
-         Width           =   22
+         Width           =   13
       End
    End
    Begin PushButton RunButton
@@ -560,6 +539,38 @@ Begin Window XojoScriptWindow
       Underline       =   False
       Visible         =   True
       Width           =   80
+   End
+   Begin PushButton CtoPPushButton
+      AutoDeactivate  =   True
+      Bold            =   False
+      ButtonStyle     =   "0"
+      Cancel          =   False
+      Caption         =   "Previous <- Current"
+      Default         =   False
+      Enabled         =   True
+      Height          =   20
+      HelpTag         =   ""
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Italic          =   False
+      Left            =   320
+      LockBottom      =   True
+      LockedInPosition=   False
+      LockLeft        =   False
+      LockRight       =   True
+      LockTop         =   False
+      Scope           =   0
+      TabIndex        =   16
+      TabPanelIndex   =   0
+      TabStop         =   True
+      TextFont        =   "System"
+      TextSize        =   0.0
+      TextUnit        =   0
+      Top             =   472
+      Transparent     =   False
+      Underline       =   False
+      Visible         =   True
+      Width           =   160
    End
 End
 #tag EndWindow
@@ -638,6 +649,10 @@ End
 
 	#tag Property, Flags = &h0
 		closable As Boolean
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		nLetters As Integer = 2
 	#tag EndProperty
 
 
@@ -871,6 +886,26 @@ End
 		  End Select
 		  
 		End Function
+	#tag EndEvent
+#tag EndEvents
+#tag Events nLetterUpDownArrows
+	#tag Event
+		Sub Up()
+		  if nLetters < 15 then
+		    nLetters = nLetters + 1
+		    SourceButton(1).Caption = str(nLetters) + "-letter word"
+		  end
+		  
+		End Sub
+	#tag EndEvent
+	#tag Event
+		Sub Down()
+		  if nLetters > 2 then
+		    nLetters = nLetters - 1
+		    SourceButton(1).Caption = str(nLetters) + "-letter word"
+		  end
+		  
+		End Sub
 	#tag EndEvent
 #tag EndEvents
 #tag ViewBehavior
