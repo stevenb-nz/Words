@@ -908,6 +908,21 @@ End
 		End Sub
 	#tag EndEvent
 #tag EndEvents
+#tag Events CtoPPushButton
+	#tag Event
+		Sub Action()
+		  dim i,j as integer
+		  
+		  XojoScriptPreviousListBox.DeleteAllRows
+		  j = XojoScriptCurrentListBox.ListCount
+		  for i = 1 to j
+		    XojoScriptPreviousListBox.AddRow XojoScriptCurrentListBox.list(0)
+		    XojoScriptCurrentListBox.RemoveRow(0)
+		  next
+		  
+		End Sub
+	#tag EndEvent
+#tag EndEvents
 #tag ViewBehavior
 	#tag ViewProperty
 		Name="BackColor"
@@ -1139,5 +1154,11 @@ End
 		Name="closable"
 		Group="Behavior"
 		Type="Boolean"
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="nLetters"
+		Group="Behavior"
+		InitialValue="2"
+		Type="Integer"
 	#tag EndViewProperty
 #tag EndViewBehavior
