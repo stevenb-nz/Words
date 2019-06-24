@@ -515,7 +515,7 @@ Begin Window XojoScriptWindow
       Cancel          =   False
       Caption         =   "Run"
       Default         =   True
-      Enabled         =   True
+      Enabled         =   False
       Height          =   20
       HelpTag         =   ""
       Index           =   -2147483648
@@ -612,6 +612,7 @@ End
 		  tempBounds.Width = Self.Width
 		  
 		  Self.Bounds = tempBounds
+		  runcheck
 		  
 		End Sub
 	#tag EndEvent
@@ -636,6 +637,21 @@ End
 		End Sub
 	#tag EndEvent
 
+
+	#tag Method, Flags = &h0
+		Sub runcheck()
+		  if trueFunctionTextArea.Text = "" then
+		    RunButton.Enabled = false
+		  ElseIf toAddTextArea.Text = "" then
+		    RunButton.Enabled = false
+		  elseif SourceButton(2).Value and XojoScriptPreviousListBox.ListCount < 1 then
+		    RunButton.Enabled = false
+		  else
+		    RunButton.Enabled = true
+		  end
+		  
+		End Sub
+	#tag EndMethod
 
 	#tag Method, Flags = &h0
 		Sub storeXojoScriptBounds()
@@ -772,6 +788,12 @@ End
 		  
 		End Function
 	#tag EndEvent
+	#tag Event
+		Sub TextChange()
+		  runcheck
+		  
+		End Sub
+	#tag EndEvent
 #tag EndEvents
 #tag Events XojoScriptCurrentListBox
 	#tag Event
@@ -887,6 +909,20 @@ End
 		  
 		End Function
 	#tag EndEvent
+	#tag Event
+		Sub TextChange()
+		  runcheck
+		  
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events SourceButton
+	#tag Event
+		Sub Action(index as Integer)
+		  runcheck
+		  
+		End Sub
+	#tag EndEvent
 #tag EndEvents
 #tag Events nLetterUpDownArrows
 	#tag Event
@@ -919,6 +955,7 @@ End
 		    XojoScriptPreviousListBox.AddRow XojoScriptCurrentListBox.list(0)
 		    XojoScriptCurrentListBox.RemoveRow(0)
 		  next
+		  runcheck
 		  
 		End Sub
 	#tag EndEvent
