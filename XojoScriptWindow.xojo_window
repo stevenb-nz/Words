@@ -178,7 +178,7 @@ Begin Window XojoScriptWindow
       _ScrollOffset   =   0
       _ScrollWidth    =   -1
    End
-   Begin Label PreviousLabel
+   Begin Label CompleteLabel
       AutoDeactivate  =   True
       Bold            =   False
       DataField       =   ""
@@ -201,7 +201,7 @@ Begin Window XojoScriptWindow
       TabIndex        =   9
       TabPanelIndex   =   0
       TabStop         =   True
-      Text            =   "Previous"
+      Text            =   "Complete"
       TextAlign       =   1
       TextColor       =   &c00000000
       TextFont        =   "System"
@@ -213,7 +213,7 @@ Begin Window XojoScriptWindow
       Visible         =   True
       Width           =   224
    End
-   Begin Label CurrentLabel
+   Begin Label InterimLabel
       AutoDeactivate  =   True
       Bold            =   False
       DataField       =   ""
@@ -236,7 +236,7 @@ Begin Window XojoScriptWindow
       TabIndex        =   10
       TabPanelIndex   =   0
       TabStop         =   True
-      Text            =   "Current"
+      Text            =   "Interim"
       TextAlign       =   1
       TextColor       =   &c00000000
       TextFont        =   "System"
@@ -319,7 +319,7 @@ Begin Window XojoScriptWindow
       TabIndex        =   12
       TabPanelIndex   =   0
       TabStop         =   True
-      Text            =   "Add this to current:"
+      Text            =   "Add this to interim:"
       TextAlign       =   0
       TextColor       =   &c00000000
       TextFont        =   "System"
@@ -457,7 +457,7 @@ Begin Window XojoScriptWindow
       Begin RadioButton SourceButton
          AutoDeactivate  =   True
          Bold            =   False
-         Caption         =   "Word in Previous"
+         Caption         =   "Word in Complete"
          Enabled         =   True
          Height          =   20
          HelpTag         =   ""
@@ -540,12 +540,12 @@ Begin Window XojoScriptWindow
       Visible         =   True
       Width           =   80
    End
-   Begin PushButton CtoPPushButton
+   Begin PushButton ItoCPushButton
       AutoDeactivate  =   True
       Bold            =   False
       ButtonStyle     =   "0"
       Cancel          =   False
-      Caption         =   "Previous <- Current"
+      Caption         =   "Complete <- Interim"
       Default         =   False
       Enabled         =   True
       Height          =   20
@@ -624,11 +624,11 @@ End
 		  newwidth = (XojoScriptWindow.Width-52)/2
 		  
 		  XojoScriptPreviousListBox.Width = newwidth
-		  PreviousLabel.Width = newwidth
+		  CompleteLabel.Width = newwidth
 		  XojoScriptCurrentListBox.Width = newwidth
-		  CurrentLabel.Width = newwidth
+		  InterimLabel.Width = newwidth
 		  XojoScriptCurrentListBox.Left = newwidth + 32
-		  CurrentLabel.Left = newwidth +32
+		  InterimLabel.Left = newwidth +32
 		  Refresh
 		  
 		  storeXojoScriptBounds
@@ -665,6 +665,10 @@ End
 
 	#tag Property, Flags = &h0
 		closable As Boolean
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		foreachbutton As Integer = 1
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
@@ -920,6 +924,7 @@ End
 	#tag Event
 		Sub Action(index as Integer)
 		  runcheck
+		  foreachbutton = index
 		  
 		End Sub
 	#tag EndEvent
@@ -944,7 +949,22 @@ End
 		End Sub
 	#tag EndEvent
 #tag EndEvents
-#tag Events CtoPPushButton
+#tag Events RunButton
+	#tag Event
+		Sub Action()
+		  select case foreachbutton
+		  case 0
+		    'all words
+		  case 1
+		    'all n-letter words
+		  case 2
+		    'each word in 'complete'
+		  end
+		  
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events ItoCPushButton
 	#tag Event
 		Sub Action()
 		  dim i,j as integer
