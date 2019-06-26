@@ -26,7 +26,7 @@ Begin Window XojoScriptWindow
    Title           =   "Xojo Script"
    Visible         =   True
    Width           =   500
-   Begin listbox XojoScriptPreviousListBox
+   Begin listbox XSCompleteListBox
       AutoDeactivate  =   True
       AutoHideScrollbars=   True
       Bold            =   False
@@ -126,7 +126,7 @@ Begin Window XojoScriptWindow
       Visible         =   True
       Width           =   460
    End
-   Begin listbox XojoScriptCurrentListBox
+   Begin listbox XSInterimListBox
       AutoDeactivate  =   True
       AutoHideScrollbars=   True
       Bold            =   False
@@ -623,11 +623,11 @@ End
 		  
 		  newwidth = (XojoScriptWindow.Width-52)/2
 		  
-		  XojoScriptPreviousListBox.Width = newwidth
+		  XSCompleteListBox.Width = newwidth
 		  CompleteLabel.Width = newwidth
-		  XojoScriptCurrentListBox.Width = newwidth
+		  XSInterimListBox.Width = newwidth
 		  InterimLabel.Width = newwidth
-		  XojoScriptCurrentListBox.Left = newwidth + 32
+		  XSInterimListBox.Left = newwidth + 32
 		  InterimLabel.Left = newwidth +32
 		  Refresh
 		  
@@ -639,12 +639,18 @@ End
 
 
 	#tag Method, Flags = &h0
+		Sub process(word as String)
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Sub runcheck()
 		  if trueFunctionTextArea.Text = "" then
 		    RunButton.Enabled = false
 		  ElseIf toAddTextArea.Text = "" then
 		    RunButton.Enabled = false
-		  elseif SourceButton(2).Value and XojoScriptPreviousListBox.ListCount < 1 then
+		  elseif SourceButton(2).Value and XSCompleteListBox.ListCount < 1 then
 		    RunButton.Enabled = false
 		  else
 		    RunButton.Enabled = true
@@ -678,7 +684,7 @@ End
 
 #tag EndWindowCode
 
-#tag Events XojoScriptPreviousListBox
+#tag Events XSCompleteListBox
 	#tag Event
 		Function CompareRows(row1 as Integer, row2 as Integer, column as Integer, ByRef result as Integer) As Boolean
 		  Select Case column
@@ -799,7 +805,7 @@ End
 		End Sub
 	#tag EndEvent
 #tag EndEvents
-#tag Events XojoScriptCurrentListBox
+#tag Events XSInterimListBox
 	#tag Event
 		Function CompareRows(row1 as Integer, row2 as Integer, column as Integer, ByRef result as Integer) As Boolean
 		  Select Case column
@@ -952,13 +958,19 @@ End
 #tag Events RunButton
 	#tag Event
 		Sub Action()
+		  dim i as integer
+		  
 		  select case foreachbutton
 		  case 0
 		    'all words
+		    'process(word)
 		  case 1
 		    'all n-letter words
+		    'process(word)
 		  case 2
-		    'each word in 'complete'
+		    for i = 1 to XSCompleteListBox.ListCount
+		      process(XSCompleteListBox.List(i-1))
+		    next
 		  end
 		  
 		End Sub
@@ -969,11 +981,11 @@ End
 		Sub Action()
 		  dim i,j as integer
 		  
-		  XojoScriptPreviousListBox.DeleteAllRows
-		  j = XojoScriptCurrentListBox.ListCount
+		  XSCompleteListBox.DeleteAllRows
+		  j = XSInterimListBox.ListCount
 		  for i = 1 to j
-		    XojoScriptPreviousListBox.AddRow XojoScriptCurrentListBox.list(0)
-		    XojoScriptCurrentListBox.RemoveRow(0)
+		    XSCompleteListBox.AddRow XSInterimListBox.list(0)
+		    XSInterimListBox.RemoveRow(0)
 		  next
 		  runcheck
 		  
@@ -1216,6 +1228,12 @@ End
 		Name="nLetters"
 		Group="Behavior"
 		InitialValue="2"
+		Type="Integer"
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="foreachbutton"
+		Group="Behavior"
+		InitialValue="1"
 		Type="Integer"
 	#tag EndViewProperty
 #tag EndViewBehavior
