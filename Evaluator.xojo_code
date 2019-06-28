@@ -192,7 +192,39 @@ Inherits XojoScript
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function Eval(expression As String) As String
+		Function EvalToBoolean(expression As String) As Boolean
+		  Bo// Creates a simple script that is used to evaluate the expression.
+		  // Essentially, the expression is assigned to a Variant which has
+		  // the effect of also evaluating it.
+		  
+		  // If the resulting expression is numeric then it is converted to a string
+		  // so it can be returned.
+		  
+		  // After the script runs, the evaluated expression result is stored in mResult and
+		  // this is returned to the caller.
+		  
+		  Dim source As String
+		  
+		  source = "Dim expr As Variant = " + expression + EndOfLine + _
+		  "If expr.IsNumeric Then " + EndOfLine + _
+		  "mResult = Str(expr.DoubleValue)" + EndOfLine + _
+		  "Else " + EndOfLine + _
+		  "mResult = expr" +EndOfLine +  _
+		  "End If"
+		  
+		  Self.Source = source
+		  Self.Context = Self // So we can refer to Evaluator.mResult property in XojoScript
+		  Self.Run
+		  
+		  Self.Context = Nil
+		  
+		  Return mResult
+		  
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Function EvalToString(expression As String) As String
 		  // Creates a simple script that is used to evaluate the expression.
 		  // Essentially, the expression is assigned to a Variant which has
 		  // the effect of also evaluating it.
