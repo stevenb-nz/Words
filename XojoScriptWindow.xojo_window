@@ -49,7 +49,7 @@ Begin Window XojoScriptWindow
       Hierarchical    =   False
       Index           =   -2147483648
       InitialParent   =   ""
-      InitialValue    =   "Words	Length\n"
+      InitialValue    =   "Words	Length\nADZ\nTRUE\nZA\nZOA\n"
       Italic          =   False
       Left            =   20
       LockBottom      =   True
@@ -640,6 +640,16 @@ End
 
 	#tag Method, Flags = &h0
 		Sub process(word as String)
+		  dim trueFunc as Boolean
+		  Dim toAdd As String
+		  Dim myEval As New Evaluator
+		  
+		  trueFunc = myEval.EvalToBoolean(trueFunctionTextArea.text)
+		  toAdd = myEval.EvalToString(toAddTextArea.Text)
+		  
+		  if trueFunc then
+		    XSInterimListBox.AddRow toAdd
+		  end
 		  
 		End Sub
 	#tag EndMethod
