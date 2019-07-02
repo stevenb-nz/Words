@@ -644,6 +644,7 @@ End
 		  Dim toAdd As String
 		  Dim myEval As New Evaluator
 		  
+		  myEval.word = word
 		  trueFunc = myEval.EvalToBoolean(trueFunctionTextArea.text)
 		  toAdd = myEval.EvalToString(toAddTextArea.Text)
 		  

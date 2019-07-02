@@ -9,6 +9,12 @@ Inherits XojoScript
 	#tag EndEvent
 
 	#tag Event
+		Function Input(prompt As String) As String
+		  return word
+		End Function
+	#tag EndEvent
+
+	#tag Event
 		Sub RuntimeError(error As RuntimeException)
 		  MsgBox(error.Message)
 		End Sub
@@ -232,12 +238,16 @@ Inherits XojoScript
 	#tag EndMethod
 
 
-	#tag Property, Flags = &h0
-		mResultBoolean As Boolean
+	#tag Property, Flags = &h1
+		Protected mResultBoolean As Boolean
 	#tag EndProperty
 
 	#tag Property, Flags = &h1
 		Protected mResultString As String
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		word As String
 	#tag EndProperty
 
 
