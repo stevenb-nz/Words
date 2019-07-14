@@ -553,7 +553,7 @@ Begin Window XojoScriptWindow
       Index           =   -2147483648
       InitialParent   =   ""
       Italic          =   False
-      Left            =   320
+      Left            =   256
       LockBottom      =   True
       LockedInPosition=   False
       LockLeft        =   False
@@ -570,7 +570,39 @@ Begin Window XojoScriptWindow
       Transparent     =   False
       Underline       =   False
       Visible         =   True
-      Width           =   160
+      Width           =   152
+   End
+   Begin PushButton clearInterimButton
+      AutoDeactivate  =   True
+      Bold            =   False
+      ButtonStyle     =   "0"
+      Cancel          =   False
+      Caption         =   "Clear"
+      Default         =   False
+      Enabled         =   True
+      Height          =   20
+      HelpTag         =   ""
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Italic          =   False
+      Left            =   420
+      LockBottom      =   True
+      LockedInPosition=   False
+      LockLeft        =   False
+      LockRight       =   True
+      LockTop         =   False
+      Scope           =   0
+      TabIndex        =   17
+      TabPanelIndex   =   0
+      TabStop         =   True
+      TextFont        =   "System"
+      TextSize        =   0.0
+      TextUnit        =   0
+      Top             =   472
+      Transparent     =   False
+      Underline       =   False
+      Visible         =   True
+      Width           =   60
    End
 End
 #tag EndWindow
@@ -647,23 +679,6 @@ End
 
 	#tag Method, Flags = &h0
 		Sub process(word as String)
-		  dim trueFunc as Boolean
-		  Dim toAdd As String
-		  Dim myEval As New Evaluator
-		  
-		  myEval.word = word
-		  trueFunc = myEval.EvalToBoolean(trueFunctionTextArea.text)
-		  toAdd = myEval.EvalToString(toAddTextArea.Text)
-		  
-		  if trueFunc then
-		    XSInterimListBox.AddRow toAdd
-		  end
-		  
-		End Sub
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
-		Sub process2(word as String)
 		  dim trueFunc as Boolean
 		  Dim toAdd As String
 		  Dim myX As New XojoScript
@@ -1010,7 +1025,7 @@ End
 		    'process(word)
 		  case 2
 		    for i = 1 to XSCompleteListBox.ListCount
-		      process2(XSCompleteListBox.List(i-1))
+		      process(XSCompleteListBox.List(i-1))
 		    next
 		  end
 		  
@@ -1029,6 +1044,14 @@ End
 		    XSInterimListBox.RemoveRow(0)
 		  next
 		  runcheck
+		  
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events clearInterimButton
+	#tag Event
+		Sub Action()
+		  XSInterimListBox.DeleteAllRows
 		  
 		End Sub
 	#tag EndEvent
