@@ -49,7 +49,7 @@ Begin Window XojoScriptWindow
       Hierarchical    =   False
       Index           =   -2147483648
       InitialParent   =   ""
-      InitialValue    =   "Words	Length\nADZ\nTRUE\nZA\nZOA\n"
+      InitialValue    =   "Words	Length\nADZ\nTRUE\nZA\nZOA"
       Italic          =   False
       Left            =   20
       LockBottom      =   True
@@ -110,8 +110,8 @@ Begin Window XojoScriptWindow
       Scope           =   0
       ScrollbarHorizontal=   False
       ScrollbarVertical=   True
-      Styled          =   True
-      TabIndex        =   7
+      Styled          =   False
+      TabIndex        =   1
       TabPanelIndex   =   0
       TabStop         =   True
       Text            =   ""
@@ -280,8 +280,8 @@ Begin Window XojoScriptWindow
       Scope           =   0
       ScrollbarHorizontal=   False
       ScrollbarVertical=   True
-      Styled          =   True
-      TabIndex        =   11
+      Styled          =   False
+      TabIndex        =   2
       TabPanelIndex   =   0
       TabStop         =   True
       Text            =   ""
@@ -1016,6 +1016,9 @@ End
 		Sub Action()
 		  dim i as integer
 		  
+		  
+		  
+		  
 		  select case foreachbutton
 		  case 0
 		    'all words
@@ -1299,5 +1302,11 @@ End
 		Group="Behavior"
 		InitialValue="1"
 		Type="Integer"
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="word"
+		Group="Behavior"
+		Type="String"
+		EditorType="MultiLineEditor"
 	#tag EndViewProperty
 #tag EndViewBehavior
