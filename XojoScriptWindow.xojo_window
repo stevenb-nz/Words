@@ -629,6 +629,7 @@ End
 	#tag Event
 		Sub Open()
 		  dim left,top,height as Integer
+		  dim s as Shell
 		  
 		  Words.Visible = false
 		  
@@ -644,6 +645,7 @@ End
 		  tempBounds.Width = Self.Width
 		  
 		  Self.Bounds = tempBounds
+		  
 		  runcheck
 		  
 		End Sub

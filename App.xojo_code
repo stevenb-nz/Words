@@ -3,6 +3,14 @@ Protected Class App
 Inherits Application
 	#tag Event
 		Sub Close()
+		  dim s as shell
+		  
+		  s = New Shell
+		  #If TargetMacOS Then
+		    s.Execute("defaults write NSGlobalDomain NSAutomaticQuoteSubstitutionEnabled "+autoquote)
+		    s.Execute("defaults write NSGlobalDomain NSAutomaticDashSubstitutionEnabled "+autodash)
+		  #Endif
+		  
 		  if wordsDB <> nil then
 		    wordsDB.Close
 		  end
@@ -65,6 +73,7 @@ Inherits Application
 	#tag Event
 		Sub Open()
 		  Dim tables As RecordSet
+		  dim s as shell
 		  
 		  wordsDB = new SQLiteDatabase
 		  wordsDB.DatabaseFile = SpecialFolder.Documents.Child("Words.sqlite")
@@ -80,6 +89,16 @@ Inherits Application
 		  else
 		    MsgBox "Something went wrong creating a new database file."
 		  end if
+		  
+		  s = New Shell
+		  #If TargetMacOS Then
+		    s.Execute("defaults read NSGlobalDomain NSAutomaticQuoteSubstitutionEnabled")
+		    autoquote = s.Result
+		    s.Execute("defaults read NSGlobalDomain NSAutomaticDashSubstitutionEnabled")
+		    autodash = s.Result
+		    s.Execute("defaults write NSGlobalDomain NSAutomaticQuoteSubstitutionEnabled 0")
+		    s.Execute("defaults write NSGlobalDomain NSAutomaticDashSubstitutionEnabled 0")
+		  #Endif
 		  
 		End Sub
 	#tag EndEvent
@@ -516,6 +535,14 @@ Inherits Application
 		End Function
 	#tag EndMethod
 
+
+	#tag Property, Flags = &h0
+		autodash As String
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		autoquote As String
+	#tag EndProperty
 
 	#tag Property, Flags = &h0
 		wordsDB As SQLiteDatabase
