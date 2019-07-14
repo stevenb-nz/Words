@@ -639,6 +639,13 @@ End
 
 
 	#tag Method, Flags = &h0
+		Sub addToInterim(word as string)
+		  XSInterimListBox.AddRow word
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Sub process(word as String)
 		  dim trueFunc as Boolean
 		  Dim toAdd As String
@@ -651,6 +658,25 @@ End
 		  if trueFunc then
 		    XSInterimListBox.AddRow toAdd
 		  end
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub process2(word as String)
+		  dim trueFunc as Boolean
+		  Dim toAdd As String
+		  Dim myX As New XojoScript
+		  
+		  self.word = word
+		  myX.Context = self
+		  
+		  myX.Source = "if " + trueFunctionTextArea.text + " then" + EndOfLine + _
+		  "addToInterim(" + toAddTextArea.Text + ")"  + EndOfLine + _
+		  "end" + EndOfLine
+		  
+		  myX.Run
+		  myX.Context = nil
 		  
 		End Sub
 	#tag EndMethod
@@ -690,6 +716,10 @@ End
 
 	#tag Property, Flags = &h0
 		nLetters As Integer = 2
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		word As String
 	#tag EndProperty
 
 
@@ -980,7 +1010,7 @@ End
 		    'process(word)
 		  case 2
 		    for i = 1 to XSCompleteListBox.ListCount
-		      process(XSCompleteListBox.List(i-1))
+		      process2(XSCompleteListBox.List(i-1))
 		    next
 		  end
 		  
