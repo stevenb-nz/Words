@@ -680,6 +680,13 @@ End
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
+		Function isWord(word as String) As boolean
+		  return words.isWord(word)
+		  
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Sub process(word as String)
 		  dim trueFunc as Boolean
 		  Dim toAdd As String
@@ -696,6 +703,13 @@ End
 		  myX.Context = nil
 		  
 		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Function reverse(word as string) As string
+		  return app.reverse(word.ToText)
+		  
+		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
