@@ -1018,16 +1018,25 @@ End
 		Sub Action()
 		  dim i as integer
 		  
-		  
-		  
-		  
 		  select case foreachbutton
 		  case 0
-		    'all words
-		    'process(word)
+		    dim sql as string
+		    sql = "SELECT Word from Words"
+		    dim data as RecordSet
+		    data = app.wordsDB.SQLSelect(sql)
+		    while not data.EOF
+		      process(data.IdxField(1).StringValue)
+		      data.MoveNext
+		    wend
 		  case 1
-		    'all n-letter words
-		    'process(word)
+		    dim sql as string
+		    sql = "SELECT Word FROM Words JOIN Combos ON Words.combo_id = Combos.id WHERE length = "+str(nLetters)
+		    dim data as RecordSet
+		    data = app.wordsDB.SQLSelect(sql)
+		    while not data.EOF
+		      process(data.IdxField(1).StringValue)
+		      data.MoveNext
+		    wend
 		  case 2
 		    for i = 1 to XSCompleteListBox.ListCount
 		      process(XSCompleteListBox.List(i-1))
