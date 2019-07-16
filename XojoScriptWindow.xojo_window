@@ -448,7 +448,7 @@ Begin Window XojoScriptWindow
       Index           =   -2147483648
       InitialParent   =   ""
       Italic          =   False
-      Left            =   202
+      Left            =   210
       LockBottom      =   True
       LockedInPosition=   False
       LockLeft        =   True
@@ -461,11 +461,11 @@ Begin Window XojoScriptWindow
       TextFont        =   "System"
       TextSize        =   0.0
       TextUnit        =   0
-      Top             =   504
+      Top             =   503
       Transparent     =   False
       Underline       =   False
       Visible         =   True
-      Width           =   186
+      Width           =   170
       Begin RadioButton ScriptButton
          AutoDeactivate  =   True
          Bold            =   False
@@ -476,7 +476,7 @@ Begin Window XojoScriptWindow
          Index           =   0
          InitialParent   =   "ScriptTypeGroupBox"
          Italic          =   False
-         Left            =   222
+         Left            =   230
          LockBottom      =   False
          LockedInPosition=   False
          LockLeft        =   True
@@ -489,7 +489,7 @@ Begin Window XojoScriptWindow
          TextFont        =   "System"
          TextSize        =   0.0
          TextUnit        =   0
-         Top             =   572
+         Top             =   571
          Transparent     =   False
          Underline       =   False
          Value           =   False
@@ -499,14 +499,14 @@ Begin Window XojoScriptWindow
       Begin RadioButton ScriptButton
          AutoDeactivate  =   True
          Bold            =   False
-         Caption         =   "Boolean Expression"
+         Caption         =   "Boolean-> Word"
          Enabled         =   True
          Height          =   20
          HelpTag         =   ""
          Index           =   1
          InitialParent   =   "ScriptTypeGroupBox"
          Italic          =   False
-         Left            =   222
+         Left            =   230
          LockBottom      =   False
          LockedInPosition=   False
          LockLeft        =   True
@@ -519,7 +519,7 @@ Begin Window XojoScriptWindow
          TextFont        =   "System"
          TextSize        =   0.0
          TextUnit        =   0
-         Top             =   540
+         Top             =   539
          Transparent     =   False
          Underline       =   False
          Value           =   True
@@ -801,6 +801,7 @@ End
 		  
 		  Self.Bounds = tempBounds
 		  
+		  executebutton = 1
 		  runcheck
 		  
 		End Sub
@@ -850,12 +851,15 @@ End
 		  self.word = word
 		  myX.Context = self
 		  
-		  myX.Source = "if " + trueFunctionTextArea.text + " then" + EndOfLine + _
-		  "addToInterim(" + toAddTextArea.Text + ")"  + EndOfLine + _
-		  "end" + EndOfLine
-		  
-		  myX.Run
-		  myX.Context = nil
+		  if executebutton = 1 then
+		    myX.Source = "if " + trueFunctionTextArea.text + " then" + EndOfLine + _
+		    "addToInterim(" + toAddTextArea.Text + ")"  + EndOfLine + _
+		    "end" + EndOfLine
+		    
+		    myX.Run
+		    myX.Context = nil
+		  else
+		  end
 		  
 		End Sub
 	#tag EndMethod
@@ -869,14 +873,24 @@ End
 
 	#tag Method, Flags = &h0
 		Sub runcheck()
-		  if trueFunctionTextArea.Text = "" then
-		    RunButton.Enabled = false
-		  ElseIf toAddTextArea.Text = "" then
-		    RunButton.Enabled = false
-		  elseif SourceButton(2).Value and XSCompleteListBox.ListCount < 1 then
-		    RunButton.Enabled = false
+		  if executebutton = 0 then
+		    if functionTextArea.Text = "" then
+		      RunButton.Enabled = false
+		    elseif SourceButton(2).Value and XSCompleteListBox.ListCount < 1 then
+		      RunButton.Enabled = false
+		    else
+		      RunButton.Enabled = true
+		    end
 		  else
-		    RunButton.Enabled = true
+		    if trueFunctionTextArea.Text = "" then
+		      RunButton.Enabled = false
+		    ElseIf toAddTextArea.Text = "" then
+		      RunButton.Enabled = false
+		    elseif SourceButton(2).Value and XSCompleteListBox.ListCount < 1 then
+		      RunButton.Enabled = false
+		    else
+		      RunButton.Enabled = true
+		    end
 		  end
 		  
 		End Sub
@@ -1150,7 +1164,7 @@ End
 		Sub Action(index as Integer)
 		  executebutton = index
 		  
-		  if index = 1 then
+		  if executebutton = 1 then
 		    functionTextArea.Visible = false
 		    trueLabel.Visible = true
 		    trueFunctionTextArea.Visible = true
