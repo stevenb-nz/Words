@@ -604,6 +604,95 @@ Begin Window XojoScriptWindow
       Visible         =   True
       Width           =   60
    End
+   Begin GroupBox ScriptTypeGroupBox
+      AutoDeactivate  =   True
+      Bold            =   False
+      Caption         =   "Execute:"
+      Enabled         =   True
+      Height          =   108
+      HelpTag         =   ""
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Italic          =   False
+      Left            =   202
+      LockBottom      =   True
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   False
+      Scope           =   0
+      TabIndex        =   18
+      TabPanelIndex   =   0
+      TabStop         =   True
+      TextFont        =   "System"
+      TextSize        =   0.0
+      TextUnit        =   0
+      Top             =   504
+      Transparent     =   False
+      Underline       =   False
+      Visible         =   True
+      Width           =   186
+      Begin RadioButton ScriptButton
+         AutoDeactivate  =   True
+         Bold            =   False
+         Caption         =   "Function -> Array"
+         Enabled         =   True
+         Height          =   20
+         HelpTag         =   ""
+         Index           =   0
+         InitialParent   =   "ScriptTypeGroupBox"
+         Italic          =   False
+         Left            =   222
+         LockBottom      =   False
+         LockedInPosition=   False
+         LockLeft        =   True
+         LockRight       =   False
+         LockTop         =   True
+         Scope           =   0
+         TabIndex        =   0
+         TabPanelIndex   =   0
+         TabStop         =   True
+         TextFont        =   "System"
+         TextSize        =   0.0
+         TextUnit        =   0
+         Top             =   572
+         Transparent     =   False
+         Underline       =   False
+         Value           =   False
+         Visible         =   True
+         Width           =   146
+      End
+      Begin RadioButton ScriptButton
+         AutoDeactivate  =   True
+         Bold            =   False
+         Caption         =   "Boolean Expression"
+         Enabled         =   True
+         Height          =   20
+         HelpTag         =   ""
+         Index           =   1
+         InitialParent   =   "ScriptTypeGroupBox"
+         Italic          =   False
+         Left            =   222
+         LockBottom      =   False
+         LockedInPosition=   False
+         LockLeft        =   True
+         LockRight       =   False
+         LockTop         =   True
+         Scope           =   0
+         TabIndex        =   1
+         TabPanelIndex   =   0
+         TabStop         =   True
+         TextFont        =   "System"
+         TextSize        =   0.0
+         TextUnit        =   0
+         Top             =   540
+         Transparent     =   False
+         Underline       =   False
+         Value           =   True
+         Visible         =   True
+         Width           =   146
+      End
+   End
 End
 #tag EndWindow
 
