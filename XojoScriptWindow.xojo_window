@@ -78,54 +78,6 @@ Begin Window XojoScriptWindow
       _ScrollOffset   =   0
       _ScrollWidth    =   -1
    End
-   Begin TextArea trueFunctionTextArea
-      AcceptTabs      =   False
-      Alignment       =   0
-      AutoDeactivate  =   True
-      AutomaticallyCheckSpelling=   False
-      BackColor       =   &cFFFFFF00
-      Bold            =   False
-      Border          =   True
-      DataField       =   ""
-      DataSource      =   ""
-      Enabled         =   True
-      Format          =   ""
-      Height          =   120
-      HelpTag         =   ""
-      HideSelection   =   True
-      Index           =   -2147483648
-      Italic          =   False
-      Left            =   20
-      LimitText       =   0
-      LineHeight      =   0.0
-      LineSpacing     =   1.0
-      LockBottom      =   True
-      LockedInPosition=   False
-      LockLeft        =   True
-      LockRight       =   True
-      LockTop         =   False
-      Mask            =   ""
-      Multiline       =   True
-      ReadOnly        =   False
-      Scope           =   0
-      ScrollbarHorizontal=   False
-      ScrollbarVertical=   True
-      Styled          =   False
-      TabIndex        =   1
-      TabPanelIndex   =   0
-      TabStop         =   True
-      Text            =   ""
-      TextColor       =   &c00000000
-      TextFont        =   "System"
-      TextSize        =   0.0
-      TextUnit        =   0
-      Top             =   656
-      Transparent     =   False
-      Underline       =   False
-      UseFocusRing    =   True
-      Visible         =   True
-      Width           =   460
-   End
    Begin listbox XSInterimListBox
       AutoDeactivate  =   True
       AutoHideScrollbars=   True
@@ -247,124 +199,6 @@ Begin Window XojoScriptWindow
       Underline       =   False
       Visible         =   True
       Width           =   224
-   End
-   Begin TextArea toAddTextArea
-      AcceptTabs      =   False
-      Alignment       =   0
-      AutoDeactivate  =   True
-      AutomaticallyCheckSpelling=   False
-      BackColor       =   &cFFFFFF00
-      Bold            =   False
-      Border          =   True
-      DataField       =   ""
-      DataSource      =   ""
-      Enabled         =   True
-      Format          =   ""
-      Height          =   60
-      HelpTag         =   ""
-      HideSelection   =   True
-      Index           =   -2147483648
-      Italic          =   False
-      Left            =   20
-      LimitText       =   0
-      LineHeight      =   0.0
-      LineSpacing     =   1.0
-      LockBottom      =   True
-      LockedInPosition=   False
-      LockLeft        =   True
-      LockRight       =   True
-      LockTop         =   False
-      Mask            =   ""
-      Multiline       =   True
-      ReadOnly        =   False
-      Scope           =   0
-      ScrollbarHorizontal=   False
-      ScrollbarVertical=   True
-      Styled          =   False
-      TabIndex        =   2
-      TabPanelIndex   =   0
-      TabStop         =   True
-      Text            =   ""
-      TextColor       =   &c00000000
-      TextFont        =   "System"
-      TextSize        =   0.0
-      TextUnit        =   0
-      Top             =   820
-      Transparent     =   False
-      Underline       =   False
-      UseFocusRing    =   True
-      Visible         =   True
-      Width           =   460
-   End
-   Begin Label addLabel
-      AutoDeactivate  =   True
-      Bold            =   False
-      DataField       =   ""
-      DataSource      =   ""
-      Enabled         =   True
-      Height          =   20
-      HelpTag         =   ""
-      Index           =   -2147483648
-      InitialParent   =   ""
-      Italic          =   False
-      Left            =   20
-      LockBottom      =   True
-      LockedInPosition=   False
-      LockLeft        =   True
-      LockRight       =   True
-      LockTop         =   False
-      Multiline       =   False
-      Scope           =   0
-      Selectable      =   False
-      TabIndex        =   12
-      TabPanelIndex   =   0
-      TabStop         =   True
-      Text            =   "Add this to interim:"
-      TextAlign       =   0
-      TextColor       =   &c00000000
-      TextFont        =   "System"
-      TextSize        =   0.0
-      TextUnit        =   0
-      Top             =   788
-      Transparent     =   False
-      Underline       =   False
-      Visible         =   True
-      Width           =   460
-   End
-   Begin Label trueLabel
-      AutoDeactivate  =   True
-      Bold            =   False
-      DataField       =   ""
-      DataSource      =   ""
-      Enabled         =   False
-      Height          =   20
-      HelpTag         =   ""
-      Index           =   -2147483648
-      InitialParent   =   ""
-      Italic          =   False
-      Left            =   20
-      LockBottom      =   True
-      LockedInPosition=   False
-      LockLeft        =   True
-      LockRight       =   True
-      LockTop         =   False
-      Multiline       =   False
-      Scope           =   0
-      Selectable      =   False
-      TabIndex        =   13
-      TabPanelIndex   =   0
-      TabStop         =   True
-      Text            =   "If this is true:"
-      TextAlign       =   0
-      TextColor       =   &c00000000
-      TextFont        =   "System"
-      TextSize        =   0.0
-      TextUnit        =   0
-      Top             =   624
-      Transparent     =   False
-      Underline       =   False
-      Visible         =   True
-      Width           =   460
    End
    Begin GroupBox ReloadGroupBox
       AutoDeactivate  =   True
@@ -693,6 +527,220 @@ Begin Window XojoScriptWindow
          Width           =   146
       End
    End
+   Begin TextArea functionTextArea
+      AcceptTabs      =   False
+      Alignment       =   0
+      AutoDeactivate  =   True
+      AutomaticallyCheckSpelling=   False
+      BackColor       =   &cFFFFFF00
+      Bold            =   False
+      Border          =   True
+      DataField       =   ""
+      DataSource      =   ""
+      Enabled         =   True
+      Format          =   ""
+      Height          =   256
+      HelpTag         =   ""
+      HideSelection   =   True
+      Index           =   -2147483648
+      Italic          =   False
+      Left            =   20
+      LimitText       =   0
+      LineHeight      =   0.0
+      LineSpacing     =   1.0
+      LockBottom      =   True
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   True
+      LockTop         =   False
+      Mask            =   ""
+      Multiline       =   True
+      ReadOnly        =   False
+      Scope           =   0
+      ScrollbarHorizontal=   False
+      ScrollbarVertical=   True
+      Styled          =   False
+      TabIndex        =   19
+      TabPanelIndex   =   0
+      TabStop         =   True
+      Text            =   ""
+      TextColor       =   &c00000000
+      TextFont        =   "System"
+      TextSize        =   0.0
+      TextUnit        =   0
+      Top             =   623
+      Transparent     =   False
+      Underline       =   False
+      UseFocusRing    =   True
+      Visible         =   False
+      Width           =   460
+   End
+   Begin TextArea trueFunctionTextArea
+      AcceptTabs      =   False
+      Alignment       =   0
+      AutoDeactivate  =   True
+      AutomaticallyCheckSpelling=   False
+      BackColor       =   &cFFFFFF00
+      Bold            =   False
+      Border          =   True
+      DataField       =   ""
+      DataSource      =   ""
+      Enabled         =   True
+      Format          =   ""
+      Height          =   120
+      HelpTag         =   ""
+      HideSelection   =   True
+      Index           =   -2147483648
+      Italic          =   False
+      Left            =   20
+      LimitText       =   0
+      LineHeight      =   0.0
+      LineSpacing     =   1.0
+      LockBottom      =   True
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   True
+      LockTop         =   False
+      Mask            =   ""
+      Multiline       =   True
+      ReadOnly        =   False
+      Scope           =   0
+      ScrollbarHorizontal=   False
+      ScrollbarVertical=   True
+      Styled          =   False
+      TabIndex        =   1
+      TabPanelIndex   =   0
+      TabStop         =   True
+      Text            =   ""
+      TextColor       =   &c00000000
+      TextFont        =   "System"
+      TextSize        =   0.0
+      TextUnit        =   0
+      Top             =   656
+      Transparent     =   False
+      Underline       =   False
+      UseFocusRing    =   True
+      Visible         =   True
+      Width           =   460
+   End
+   Begin TextArea toAddTextArea
+      AcceptTabs      =   False
+      Alignment       =   0
+      AutoDeactivate  =   True
+      AutomaticallyCheckSpelling=   False
+      BackColor       =   &cFFFFFF00
+      Bold            =   False
+      Border          =   True
+      DataField       =   ""
+      DataSource      =   ""
+      Enabled         =   True
+      Format          =   ""
+      Height          =   60
+      HelpTag         =   ""
+      HideSelection   =   True
+      Index           =   -2147483648
+      Italic          =   False
+      Left            =   20
+      LimitText       =   0
+      LineHeight      =   0.0
+      LineSpacing     =   1.0
+      LockBottom      =   True
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   True
+      LockTop         =   False
+      Mask            =   ""
+      Multiline       =   True
+      ReadOnly        =   False
+      Scope           =   0
+      ScrollbarHorizontal=   False
+      ScrollbarVertical=   True
+      Styled          =   False
+      TabIndex        =   2
+      TabPanelIndex   =   0
+      TabStop         =   True
+      Text            =   ""
+      TextColor       =   &c00000000
+      TextFont        =   "System"
+      TextSize        =   0.0
+      TextUnit        =   0
+      Top             =   820
+      Transparent     =   False
+      Underline       =   False
+      UseFocusRing    =   True
+      Visible         =   True
+      Width           =   460
+   End
+   Begin Label addLabel
+      AutoDeactivate  =   True
+      Bold            =   False
+      DataField       =   ""
+      DataSource      =   ""
+      Enabled         =   True
+      Height          =   20
+      HelpTag         =   ""
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Italic          =   False
+      Left            =   20
+      LockBottom      =   True
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   True
+      LockTop         =   False
+      Multiline       =   False
+      Scope           =   0
+      Selectable      =   False
+      TabIndex        =   12
+      TabPanelIndex   =   0
+      TabStop         =   True
+      Text            =   "Add this to interim:"
+      TextAlign       =   0
+      TextColor       =   &c00000000
+      TextFont        =   "System"
+      TextSize        =   0.0
+      TextUnit        =   0
+      Top             =   788
+      Transparent     =   False
+      Underline       =   False
+      Visible         =   True
+      Width           =   460
+   End
+   Begin Label trueLabel
+      AutoDeactivate  =   True
+      Bold            =   False
+      DataField       =   ""
+      DataSource      =   ""
+      Enabled         =   False
+      Height          =   20
+      HelpTag         =   ""
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Italic          =   False
+      Left            =   20
+      LockBottom      =   True
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   True
+      LockTop         =   False
+      Multiline       =   False
+      Scope           =   0
+      Selectable      =   False
+      TabIndex        =   13
+      TabPanelIndex   =   0
+      TabStop         =   True
+      Text            =   "If this is true:"
+      TextAlign       =   0
+      TextColor       =   &c00000000
+      TextFont        =   "System"
+      TextSize        =   0.0
+      TextUnit        =   0
+      Top             =   624
+      Transparent     =   False
+      Underline       =   False
+      Visible         =   True
+      Width           =   460
+   End
 End
 #tag EndWindow
 
@@ -704,6 +752,24 @@ End
 		  else
 		    return true
 		  end
+		  
+		End Function
+	#tag EndEvent
+
+	#tag Event
+		Function KeyDown(Key As String) As Boolean
+		  Select Case asc(Key)
+		  Case 27
+		    closable = true
+		    close
+		    words.show
+		  else
+		    if executebutton = 0 then
+		      functionTextArea.SetFocus
+		    else
+		      trueFunctionTextArea.setfocus
+		    end
+		  End Select
 		  
 		End Function
 	#tag EndEvent
@@ -831,6 +897,10 @@ End
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
+		executebutton As Integer
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
 		foreachbutton As Integer = 1
 	#tag EndProperty
 
@@ -917,27 +987,6 @@ End
 		End Sub
 	#tag EndEvent
 #tag EndEvents
-#tag Events trueFunctionTextArea
-	#tag Event
-		Function KeyDown(Key As String) As Boolean
-		  Select Case asc(Key)
-		  case 13
-		    return true
-		  Case 27
-		    closable = true
-		    close
-		    words.show
-		  End Select
-		  
-		End Function
-	#tag EndEvent
-	#tag Event
-		Sub TextChange()
-		  runcheck
-		  
-		End Sub
-	#tag EndEvent
-#tag EndEvents
 #tag Events XSInterimListBox
 	#tag Event
 		Function CompareRows(row1 as Integer, row2 as Integer, column as Integer, ByRef result as Integer) As Boolean
@@ -1006,27 +1055,6 @@ End
 		  closable = true
 		  Close
 		  words.show
-		  
-		End Sub
-	#tag EndEvent
-#tag EndEvents
-#tag Events toAddTextArea
-	#tag Event
-		Function KeyDown(Key As String) As Boolean
-		  Select Case asc(Key)
-		  case 13
-		    return true
-		  Case 27
-		    closable = true
-		    close
-		    words.show
-		  End Select
-		  
-		End Function
-	#tag EndEvent
-	#tag Event
-		Sub TextChange()
-		  runcheck
 		  
 		End Sub
 	#tag EndEvent
@@ -1113,6 +1141,91 @@ End
 	#tag Event
 		Sub Action()
 		  XSInterimListBox.DeleteAllRows
+		  
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events ScriptButton
+	#tag Event
+		Sub Action(index as Integer)
+		  executebutton = index
+		  
+		  if index = 1 then
+		    functionTextArea.Visible = false
+		    trueLabel.Visible = true
+		    trueFunctionTextArea.Visible = true
+		    addLabel.Visible = true
+		    toAddTextArea.Visible = true
+		  else
+		    functionTextArea.Visible = true
+		    trueLabel.Visible = false
+		    trueFunctionTextArea.Visible = false
+		    addLabel.Visible = false
+		    toAddTextArea.Visible = false
+		  end
+		  
+		  runcheck
+		  
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events functionTextArea
+	#tag Event
+		Function KeyDown(Key As String) As Boolean
+		  Select Case asc(Key)
+		  Case 27
+		    closable = true
+		    close
+		    words.show
+		  End Select
+		  
+		End Function
+	#tag EndEvent
+	#tag Event
+		Sub TextChange()
+		  runcheck
+		  
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events trueFunctionTextArea
+	#tag Event
+		Function KeyDown(Key As String) As Boolean
+		  Select Case asc(Key)
+		  case 13
+		    return true
+		  Case 27
+		    closable = true
+		    close
+		    words.show
+		  End Select
+		  
+		End Function
+	#tag EndEvent
+	#tag Event
+		Sub TextChange()
+		  runcheck
+		  
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events toAddTextArea
+	#tag Event
+		Function KeyDown(Key As String) As Boolean
+		  Select Case asc(Key)
+		  case 13
+		    return true
+		  Case 27
+		    closable = true
+		    close
+		    words.show
+		  End Select
+		  
+		End Function
+	#tag EndEvent
+	#tag Event
+		Sub TextChange()
+		  runcheck
 		  
 		End Sub
 	#tag EndEvent
