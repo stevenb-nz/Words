@@ -49,7 +49,7 @@ Begin Window XojoScriptWindow
       Hierarchical    =   False
       Index           =   -2147483648
       InitialParent   =   ""
-      InitialValue    =   "Words	Length\nADZ\nTRUE\nZA\nZOA"
+      InitialValue    =   "Words	Length"
       Italic          =   False
       Left            =   20
       LockBottom      =   True
@@ -831,41 +831,13 @@ End
 #tag Events trueFunctionTextArea
 	#tag Event
 		Function KeyDown(Key As String) As Boolean
-		  Dim rg As New RegEx
-		  Dim myMatch As RegExMatch
-		  dim i as integer
-		  
 		  Select Case asc(Key)
-		  Case 13
-		    'RegExListbox.DeleteAllRows
-		    rg.SearchPattern = me.Text
-		    try
-		      myMatch = rg.Search("")
-		    catch e as RegExSearchPatternException
-		      'RegExListbox.AddRow "Invalid regular expression:"
-		      'RegExListbox.AddRow """"+e.Message+""""
-		      return true
-		    end try
-		    'data.MoveFirst
-		    'while not data.EOF
-		    'myMatch = rg.Search(data.IdxField(1).StringValue)
-		    'If myMatch <> Nil Then
-		    'if myMatch.SubExpressionString(0) = data.IdxField(1).StringValue then
-		    ''RegExListbox.AddRow myMatch.SubExpressionString(0)
-		    'end
-		    'app.updateSetting("last good regex",me.text)
-		    'End
-		    'data.MoveNext
-		    'wend
-		    'i = RegExListbox.ListCount
-		    'RegExListbox.heading(0) = str(i)+" Word"+if(i=1,"","s")
+		  case 13
 		    return true
 		  Case 27
 		    closable = true
 		    close
 		    words.show
-		  Case 30
-		    me.text = app.getSetting("last good regex")
 		  End Select
 		  
 		End Function
@@ -952,41 +924,13 @@ End
 #tag Events toAddTextArea
 	#tag Event
 		Function KeyDown(Key As String) As Boolean
-		  Dim rg As New RegEx
-		  Dim myMatch As RegExMatch
-		  dim i as integer
-		  
 		  Select Case asc(Key)
-		  Case 13
-		    'RegExListbox.DeleteAllRows
-		    rg.SearchPattern = me.Text
-		    try
-		      myMatch = rg.Search("")
-		    catch e as RegExSearchPatternException
-		      'RegExListbox.AddRow "Invalid regular expression:"
-		      'RegExListbox.AddRow """"+e.Message+""""
-		      return true
-		    end try
-		    'data.MoveFirst
-		    'while not data.EOF
-		    'myMatch = rg.Search(data.IdxField(1).StringValue)
-		    'If myMatch <> Nil Then
-		    'if myMatch.SubExpressionString(0) = data.IdxField(1).StringValue then
-		    ''RegExListbox.AddRow myMatch.SubExpressionString(0)
-		    'end
-		    'app.updateSetting("last good regex",me.text)
-		    'End
-		    'data.MoveNext
-		    'wend
-		    'i = RegExListbox.ListCount
-		    'RegExListbox.heading(0) = str(i)+" Word"+if(i=1,"","s")
+		  case 13
 		    return true
 		  Case 27
 		    closable = true
 		    close
 		    words.show
-		  Case 30
-		    me.text = app.getSetting("last good regex")
 		  End Select
 		  
 		End Function
