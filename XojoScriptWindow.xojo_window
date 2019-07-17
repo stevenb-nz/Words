@@ -856,11 +856,15 @@ End
 		    "addToInterim(" + toAddTextArea.Text + ")"  + EndOfLine + _
 		    "end" + EndOfLine
 		    
-		    myX.Run
+		    If MyX.Precompile(XojoScript.OptimizationLevels.High) Then
+		      myX.Run
+		    End If
 		    myX.Context = nil
 		  else
 		    myX.Source = functionTextArea.text
-		    myX.Run
+		    If MyX.Precompile(XojoScript.OptimizationLevels.High) Then
+		      myX.Run
+		    End If
 		    myX.Context = nil
 		  end
 		  
