@@ -1139,6 +1139,16 @@ End
 		    next
 		  end
 		  
+		  XSInterimListBox.SortedColumn = 0
+		  XSInterimListBox.Sort
+		  if XSInterimListBox.ListCount > 1 then
+		    for i = XSInterimListBox.ListCount-1 DownTo 1
+		      if XSInterimListBox.list(i) = XSInterimListBox.list(i-1) then
+		        XSInterimListBox.RemoveRow(i)
+		      end
+		    next
+		  end
+		  
 		End Sub
 	#tag EndEvent
 #tag EndEvents
