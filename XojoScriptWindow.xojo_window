@@ -49,7 +49,7 @@ Begin Window XojoScriptWindow
       Hierarchical    =   False
       Index           =   -2147483648
       InitialParent   =   ""
-      InitialValue    =   "Words	Length\nAA\nZO"
+      InitialValue    =   "Words	Length"
       Italic          =   False
       Left            =   20
       LockBottom      =   True
@@ -563,7 +563,7 @@ Begin Window XojoScriptWindow
       TabIndex        =   19
       TabPanelIndex   =   0
       TabStop         =   True
-      Text            =   "dim wordarray(-1) as string\n\nwordarray.append word\n\nsetarray(wordarray)"
+      Text            =   "addToInterim(word)"
       TextColor       =   &c00000000
       TextFont        =   "System"
       TextSize        =   0.0
@@ -861,7 +861,6 @@ End
 		  else
 		    myX.Source = functionTextArea.text
 		    myX.Run
-		    MsgBox str(newwords.Ubound)
 		    myX.Context = nil
 		  end
 		  
@@ -901,13 +900,6 @@ End
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub SetArray(value() as string)
-		  newwords = value
-		  
-		End Sub
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
 		Sub storeXojoScriptBounds()
 		  app.updateSetting("XojoScript Top",str(self.Bounds.Top))
 		  app.updateSetting("XojoScript Height",str(self.Bounds.Height))
@@ -927,10 +919,6 @@ End
 
 	#tag Property, Flags = &h0
 		foreachbutton As Integer = 1
-	#tag EndProperty
-
-	#tag Property, Flags = &h0
-		newwords() As String
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
