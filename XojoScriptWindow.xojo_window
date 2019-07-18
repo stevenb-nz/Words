@@ -33,7 +33,7 @@ Begin Window XojoScriptWindow
       Border          =   True
       ColumnCount     =   2
       ColumnsResizable=   False
-      ColumnWidths    =   "75%	25%"
+      ColumnWidths    =   "70%	30%"
       DataField       =   ""
       DataSource      =   ""
       DefaultRowHeight=   -1
@@ -85,7 +85,7 @@ Begin Window XojoScriptWindow
       Border          =   True
       ColumnCount     =   2
       ColumnsResizable=   False
-      ColumnWidths    =   "75%	25%"
+      ColumnWidths    =   "70%	30%"
       DataField       =   ""
       DataSource      =   ""
       DefaultRowHeight=   -1
