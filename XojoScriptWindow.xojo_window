@@ -802,6 +802,7 @@ End
 		  Self.Bounds = tempBounds
 		  
 		  executebutton = 1
+		  updateCounts
 		  runcheck
 		  
 		End Sub
@@ -916,6 +917,18 @@ End
 		  app.updateSetting("XojoScript Top",str(self.Bounds.Top))
 		  app.updateSetting("XojoScript Height",str(self.Bounds.Height))
 		  app.updateSetting("XojoScript Left",str(self.Bounds.Left))
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub updateCounts()
+		  dim i as integer
+		  
+		  i = XSInterimListBox.ListCount
+		  XSInterimListBox.heading(0) = str(i)+" Word"+if(i=1,"","s")
+		  i = XSCompleteListBox.ListCount
+		  XSCompleteListBox.heading(0) = str(i)+" Word"+if(i=1,"","s")
 		  
 		End Sub
 	#tag EndMethod
@@ -1156,6 +1169,7 @@ End
 		      end
 		    next
 		  end
+		  updateCounts
 		  
 		End Sub
 	#tag EndEvent
@@ -1171,6 +1185,7 @@ End
 		    XSCompleteListBox.AddRow XSInterimListBox.list(0)
 		    XSInterimListBox.RemoveRow(0)
 		  next
+		  updateCounts
 		  runcheck
 		  
 		End Sub
@@ -1180,6 +1195,7 @@ End
 	#tag Event
 		Sub Action()
 		  XSInterimListBox.DeleteAllRows
+		  updateCounts
 		  
 		End Sub
 	#tag EndEvent
