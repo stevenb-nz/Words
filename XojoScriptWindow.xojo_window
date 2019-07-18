@@ -852,30 +852,32 @@ End
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub process(word as String)
-		  dim trueFunc as Boolean
-		  Dim toAdd As String
+		Function prepareXS() As XojoScript
 		  Dim myX As New XojoScript
-		  
-		  self.word = word
-		  myX.Context = self
 		  
 		  if executebutton = 1 then
 		    myX.Source = "if " + trueFunctionTextArea.text + " then" + EndOfLine + _
 		    "addToInterim(" + toAddTextArea.Text + ")"  + EndOfLine + _
 		    "end" + EndOfLine
-		    
-		    If MyX.Precompile(XojoScript.OptimizationLevels.High) Then
-		      myX.Run
-		    End If
-		    myX.Context = nil
 		  else
 		    myX.Source = functionTextArea.text
-		    If MyX.Precompile(XojoScript.OptimizationLevels.High) Then
-		      myX.Run
-		    End If
-		    myX.Context = nil
 		  end
+		  
+		  myX.Context = self
+		  If MyX.Precompile(XojoScript.OptimizationLevels.High) Then
+		    Return MyX
+		  else
+		    return nil
+		  End If
+		  
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub processXS(xs as XojoScript, word as String)
+		  self.word = word
+		  
+		  xs.Run
 		  
 		End Sub
 	#tag EndMethod
@@ -1133,43 +1135,50 @@ End
 #tag Events RunButton
 	#tag Event
 		Sub Action()
-		  dim i as integer
+		  dim myX as XojoScript
 		  
-		  select case foreachbutton
-		  case 0
-		    dim sql as string
-		    sql = "SELECT Word from Words"
-		    dim data as RecordSet
-		    data = app.wordsDB.SQLSelect(sql)
-		    while not data.EOF
-		      process(data.IdxField(1).StringValue)
-		      data.MoveNext
-		    wend
-		  case 1
-		    dim sql as string
-		    sql = "SELECT Word FROM Words JOIN Combos ON Words.combo_id = Combos.id WHERE length = "+str(nLetters)
-		    dim data as RecordSet
-		    data = app.wordsDB.SQLSelect(sql)
-		    while not data.EOF
-		      process(data.IdxField(1).StringValue)
-		      data.MoveNext
-		    wend
-		  case 2
-		    for i = 1 to XSCompleteListBox.ListCount
-		      process(XSCompleteListBox.List(i-1))
-		    next
-		  end
+		  myX = prepareXS
 		  
-		  XSInterimListBox.SortedColumn = 0
-		  XSInterimListBox.Sort
-		  if XSInterimListBox.ListCount > 1 then
-		    for i = XSInterimListBox.ListCount-1 DownTo 1
-		      if XSInterimListBox.list(i) = XSInterimListBox.list(i-1) then
-		        XSInterimListBox.RemoveRow(i)
-		      end
-		    next
+		  if myX <> nil then
+		    dim i as integer
+		    
+		    select case foreachbutton
+		    case 0
+		      dim sql as string
+		      sql = "SELECT Word from Words"
+		      dim data as RecordSet
+		      data = app.wordsDB.SQLSelect(sql)
+		      while not data.EOF
+		        processXS(myX,data.IdxField(1).StringValue)
+		        data.MoveNext
+		      wend
+		    case 1
+		      dim sql as string
+		      sql = "SELECT Word FROM Words JOIN Combos ON Words.combo_id = Combos.id WHERE length = "+str(nLetters)
+		      dim data as RecordSet
+		      data = app.wordsDB.SQLSelect(sql)
+		      while not data.EOF
+		        processXS(myX,data.IdxField(1).StringValue)
+		        data.MoveNext
+		      wend
+		    case 2
+		      for i = 1 to XSCompleteListBox.ListCount
+		        processXS(myX,XSCompleteListBox.List(i-1))
+		      next
+		    end
+		    
+		    XSInterimListBox.SortedColumn = 0
+		    XSInterimListBox.Sort
+		    if XSInterimListBox.ListCount > 1 then
+		      for i = XSInterimListBox.ListCount-1 DownTo 1
+		        if XSInterimListBox.list(i) = XSInterimListBox.list(i-1) then
+		          XSInterimListBox.RemoveRow(i)
+		        end
+		      next
+		    end
+		    updateCounts
+		    myX.Context = nil
 		  end
-		  updateCounts
 		  
 		End Sub
 	#tag EndEvent
