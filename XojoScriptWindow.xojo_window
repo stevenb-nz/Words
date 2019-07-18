@@ -18,14 +18,14 @@ Begin Window XojoScriptWindow
    MaxWidth        =   32000
    MenuBar         =   1897309197
    MenuBarVisible  =   True
-   MinHeight       =   64
+   MinHeight       =   726
    MinimizeButton  =   True
-   MinWidth        =   64
+   MinWidth        =   484
    Placement       =   0
    Resizeable      =   False
    Title           =   "Xojo Script"
    Visible         =   True
-   Width           =   500
+   Width           =   600
    Begin listbox XSCompleteListBox
       AutoDeactivate  =   True
       AutoHideScrollbars=   True
@@ -74,7 +74,7 @@ Begin Window XojoScriptWindow
       Underline       =   False
       UseFocusRing    =   True
       Visible         =   True
-      Width           =   224
+      Width           =   274
       _ScrollOffset   =   0
       _ScrollWidth    =   -1
    End
@@ -103,7 +103,7 @@ Begin Window XojoScriptWindow
       InitialParent   =   ""
       InitialValue    =   "Words	Length\n"
       Italic          =   False
-      Left            =   256
+      Left            =   306
       LockBottom      =   True
       LockedInPosition=   False
       LockLeft        =   False
@@ -126,7 +126,7 @@ Begin Window XojoScriptWindow
       Underline       =   False
       UseFocusRing    =   True
       Visible         =   True
-      Width           =   224
+      Width           =   274
       _ScrollOffset   =   0
       _ScrollWidth    =   -1
    End
@@ -163,7 +163,7 @@ Begin Window XojoScriptWindow
       Transparent     =   False
       Underline       =   False
       Visible         =   True
-      Width           =   224
+      Width           =   274
    End
    Begin Label InterimLabel
       AutoDeactivate  =   True
@@ -176,7 +176,7 @@ Begin Window XojoScriptWindow
       Index           =   -2147483648
       InitialParent   =   ""
       Italic          =   False
-      Left            =   256
+      Left            =   306
       LockBottom      =   False
       LockedInPosition=   False
       LockLeft        =   False
@@ -198,7 +198,7 @@ Begin Window XojoScriptWindow
       Transparent     =   False
       Underline       =   False
       Visible         =   True
-      Width           =   224
+      Width           =   274
    End
    Begin GroupBox ReloadGroupBox
       AutoDeactivate  =   True
@@ -355,7 +355,7 @@ Begin Window XojoScriptWindow
       Index           =   -2147483648
       InitialParent   =   ""
       Italic          =   False
-      Left            =   400
+      Left            =   500
       LockBottom      =   True
       LockedInPosition=   False
       LockLeft        =   False
@@ -387,7 +387,7 @@ Begin Window XojoScriptWindow
       Index           =   -2147483648
       InitialParent   =   ""
       Italic          =   False
-      Left            =   256
+      Left            =   224
       LockBottom      =   True
       LockedInPosition=   False
       LockLeft        =   False
@@ -419,7 +419,7 @@ Begin Window XojoScriptWindow
       Index           =   -2147483648
       InitialParent   =   ""
       Italic          =   False
-      Left            =   420
+      Left            =   413
       LockBottom      =   True
       LockedInPosition=   False
       LockLeft        =   False
@@ -448,7 +448,7 @@ Begin Window XojoScriptWindow
       Index           =   -2147483648
       InitialParent   =   ""
       Italic          =   False
-      Left            =   210
+      Left            =   202
       LockBottom      =   True
       LockedInPosition=   False
       LockLeft        =   True
@@ -461,7 +461,7 @@ Begin Window XojoScriptWindow
       TextFont        =   "System"
       TextSize        =   0.0
       TextUnit        =   0
-      Top             =   503
+      Top             =   504
       Transparent     =   False
       Underline       =   False
       Visible         =   True
@@ -476,7 +476,7 @@ Begin Window XojoScriptWindow
          Index           =   0
          InitialParent   =   "ScriptTypeGroupBox"
          Italic          =   False
-         Left            =   230
+         Left            =   222
          LockBottom      =   False
          LockedInPosition=   False
          LockLeft        =   True
@@ -489,7 +489,7 @@ Begin Window XojoScriptWindow
          TextFont        =   "System"
          TextSize        =   0.0
          TextUnit        =   0
-         Top             =   571
+         Top             =   572
          Transparent     =   False
          Underline       =   False
          Value           =   False
@@ -506,7 +506,7 @@ Begin Window XojoScriptWindow
          Index           =   1
          InitialParent   =   "ScriptTypeGroupBox"
          Italic          =   False
-         Left            =   230
+         Left            =   222
          LockBottom      =   False
          LockedInPosition=   False
          LockLeft        =   True
@@ -519,7 +519,7 @@ Begin Window XojoScriptWindow
          TextFont        =   "System"
          TextSize        =   0.0
          TextUnit        =   0
-         Top             =   539
+         Top             =   540
          Transparent     =   False
          Underline       =   False
          Value           =   True
@@ -573,7 +573,7 @@ Begin Window XojoScriptWindow
       Underline       =   False
       UseFocusRing    =   True
       Visible         =   False
-      Width           =   460
+      Width           =   560
    End
    Begin TextArea trueFunctionTextArea
       AcceptTabs      =   False
@@ -621,7 +621,7 @@ Begin Window XojoScriptWindow
       Underline       =   False
       UseFocusRing    =   True
       Visible         =   True
-      Width           =   460
+      Width           =   560
    End
    Begin TextArea toAddTextArea
       AcceptTabs      =   False
@@ -669,7 +669,7 @@ Begin Window XojoScriptWindow
       Underline       =   False
       UseFocusRing    =   True
       Visible         =   True
-      Width           =   460
+      Width           =   560
    End
    Begin Label addLabel
       AutoDeactivate  =   True
@@ -704,7 +704,7 @@ Begin Window XojoScriptWindow
       Transparent     =   False
       Underline       =   False
       Visible         =   True
-      Width           =   460
+      Width           =   560
    End
    Begin Label trueLabel
       AutoDeactivate  =   True
@@ -739,7 +739,7 @@ Begin Window XojoScriptWindow
       Transparent     =   False
       Underline       =   False
       Visible         =   True
-      Width           =   460
+      Width           =   560
    End
 End
 #tag EndWindow
@@ -809,6 +809,14 @@ End
 
 	#tag Event
 		Sub Resized()
+		  storeXojoScriptBounds
+		  
+		  
+		End Sub
+	#tag EndEvent
+
+	#tag Event
+		Sub Resizing()
 		  dim newwidth as integer
 		  
 		  newwidth = (XojoScriptWindow.Width-52)/2
@@ -819,9 +827,9 @@ End
 		  InterimLabel.Width = newwidth
 		  XSInterimListBox.Left = newwidth + 32
 		  InterimLabel.Left = newwidth +32
+		  ItoCPushButton.left = (XojoScriptWindow.width - ItoCPushButton.width) / 2
+		  clearInterimButton.left = XSInterimListBox.Left + (XSInterimListBox.Width - clearInterimButton.width) / 2
 		  Refresh
-		  
-		  storeXojoScriptBounds
 		  
 		  
 		End Sub
