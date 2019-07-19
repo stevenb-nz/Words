@@ -989,6 +989,28 @@ End
 		End Sub
 	#tag EndMethod
 
+	#tag Method, Flags = &h0
+		Function wordsFrom(combo as String) As string()
+		  combo = combo.Uppercase
+		  combo = app.sort_word(combo.totext)
+		  dim returnString() as string
+		  
+		  dim sql as string
+		  sql = "SELECT Word FROM Words JOIN Combos ON Combos.id = Words.combo_id WHERE Combos.combo='"+combo+"'"
+		  
+		  dim data as RecordSet
+		  data = app.wordsDB.SQLSelect(sql)
+		  
+		  while not data.EOF
+		    returnString.Append data.IdxField(1).StringValue
+		    data.MoveNext
+		  wend
+		  
+		  Return returnString
+		  
+		End Function
+	#tag EndMethod
+
 
 	#tag Property, Flags = &h0
 		closable As Boolean
