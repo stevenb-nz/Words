@@ -758,8 +758,31 @@ End
 
 	#tag Event
 		Sub Close()
-		  'app.updateSetting("XojoScript Interim",)
-		  'app.updateSetting("XojoScript Final",)
+		  dim newxslist as string
+		  dim i as integer
+		  
+		  if XSInterimListBox.ListCount > 0 then
+		    newxslist = XSInterimListBox.list(0)
+		    for i = 1 to XSInterimListBox.ListCount-1
+		      newxslist = newxslist + ","
+		      newxslist = newxslist +  XSInterimListBox.list(i)
+		    next
+		  else
+		    newxslist = ""
+		  end
+		  app.updateSetting("XojoScript Interim",newxslist)
+		  
+		  if XSCompleteListBox.ListCount > 0 then
+		    newxslist = XSCompleteListBox.list(0)
+		    for i = 1 to XSCompleteListBox.ListCount-1
+		      newxslist = newxslist + ","
+		      newxslist = newxslist +  XSCompleteListBox.list(i)
+		    next
+		  else
+		    newxslist = ""
+		  end
+		  app.updateSetting("XojoScript Final",newxslist)
+		  
 		  app.updateSetting("XojoScript toAdd",toAddTextArea.Text)
 		  app.updateSetting("XojoScript trueFunction",trueFunctionTextArea.text)
 		  app.updateSetting("XojoScript function",functionTextArea.Text)
@@ -794,8 +817,10 @@ End
 
 	#tag Event
 		Sub Open()
-		  dim left,top,height as Integer
+		  dim i,left,top,height as Integer
 		  dim s as Shell
+		  dim xslist as string
+		  dim xslistArray() as string
 		  
 		  Words.Visible = false
 		  
@@ -811,6 +836,17 @@ End
 		  tempBounds.Width = Self.Width
 		  
 		  Self.Bounds = tempBounds
+		  
+		  xslist = app.getSetting("XojoScript Interim")
+		  xslistArray = xslist.Split(",")
+		  for i = 0 to xslistArray.Ubound
+		    XSInterimListBox.AddRow xslistArray(i)
+		  next
+		  xslist = app.getSetting("XojoScript Final")
+		  xslistArray = xslist.Split(",")
+		  for i = 0 to xslistArray.Ubound
+		    XSCompleteListBox.AddRow xslistArray(i)
+		  next
 		  
 		  toAddTextArea.text = app.getSetting("XojoScript toAdd")
 		  trueFunctionTextArea.text = app.getSetting("XojoScript trueFunction")
