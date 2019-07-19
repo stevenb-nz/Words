@@ -893,14 +893,14 @@ End
 
 	#tag Method, Flags = &h0
 		Sub addToInterim(word as string)
-		  XSInterimListBox.AddRow word
+		  XSInterimListBox.AddRow word.Uppercase
 		  
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
 		Function isWord(word as String) As boolean
-		  return words.isWord(word)
+		  return words.isWord(word.Uppercase)
 		  
 		End Function
 	#tag EndMethod
@@ -938,7 +938,7 @@ End
 
 	#tag Method, Flags = &h0
 		Function reverse(word as string) As string
-		  return app.reverse(word.ToText)
+		  return app.reverse(word.ToText).Uppercase
 		  
 		End Function
 	#tag EndMethod
@@ -991,9 +991,10 @@ End
 
 	#tag Method, Flags = &h0
 		Function wordsFrom(combo as String) As string()
+		  dim returnString() as string
+		  
 		  combo = combo.Uppercase
 		  combo = app.sort_word(combo.totext)
-		  dim returnString() as string
 		  
 		  dim sql as string
 		  sql = "SELECT Word FROM Words JOIN Combos ON Combos.id = Words.combo_id WHERE Combos.combo='"+combo+"'"
