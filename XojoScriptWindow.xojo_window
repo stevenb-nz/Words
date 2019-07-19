@@ -563,7 +563,7 @@ Begin Window XojoScriptWindow
       TabIndex        =   19
       TabPanelIndex   =   0
       TabStop         =   True
-      Text            =   "addToInterim(word)"
+      Text            =   ""
       TextColor       =   &c00000000
       TextFont        =   "System"
       TextSize        =   0.0
@@ -757,6 +757,17 @@ End
 	#tag EndEvent
 
 	#tag Event
+		Sub Close()
+		  'app.updateSetting("XojoScript Interim",)
+		  'app.updateSetting("XojoScript Final",)
+		  app.updateSetting("XojoScript toAdd",toAddTextArea.Text)
+		  app.updateSetting("XojoScript trueFunction",trueFunctionTextArea.text)
+		  app.updateSetting("XojoScript function",functionTextArea.Text)
+		  
+		End Sub
+	#tag EndEvent
+
+	#tag Event
 		Function KeyDown(Key As String) As Boolean
 		  Select Case asc(Key)
 		  Case 27
@@ -800,6 +811,13 @@ End
 		  tempBounds.Width = Self.Width
 		  
 		  Self.Bounds = tempBounds
+		  
+		  toAddTextArea.text = app.getSetting("XojoScript toAdd")
+		  trueFunctionTextArea.text = app.getSetting("XojoScript trueFunction")
+		  functionTextArea.Text = app.getSetting("XojoScript function")
+		  if functionTextArea.Text = "" then
+		    functionTextArea.Text = "addToInterim(word)"
+		  end
 		  
 		  executebutton = 1
 		  updateCounts
