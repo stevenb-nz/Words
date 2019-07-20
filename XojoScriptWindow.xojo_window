@@ -164,6 +164,70 @@ Begin Window XojoScriptWindow
       Underline       =   False
       Visible         =   True
       Width           =   274
+      Begin PushButton loadCompleteButton
+         AutoDeactivate  =   True
+         Bold            =   False
+         ButtonStyle     =   "0"
+         Cancel          =   False
+         Caption         =   "Load"
+         Default         =   False
+         Enabled         =   True
+         Height          =   20
+         HelpTag         =   ""
+         Index           =   -2147483648
+         InitialParent   =   "CompleteLabel"
+         Italic          =   False
+         Left            =   20
+         LockBottom      =   False
+         LockedInPosition=   False
+         LockLeft        =   True
+         LockRight       =   False
+         LockTop         =   True
+         Scope           =   0
+         TabIndex        =   0
+         TabPanelIndex   =   0
+         TabStop         =   True
+         TextFont        =   "System"
+         TextSize        =   0.0
+         TextUnit        =   0
+         Top             =   20
+         Transparent     =   False
+         Underline       =   False
+         Visible         =   True
+         Width           =   60
+      End
+      Begin PushButton saveCompleteButton
+         AutoDeactivate  =   True
+         Bold            =   False
+         ButtonStyle     =   "0"
+         Cancel          =   False
+         Caption         =   "Save"
+         Default         =   False
+         Enabled         =   True
+         Height          =   20
+         HelpTag         =   ""
+         Index           =   -2147483648
+         InitialParent   =   "CompleteLabel"
+         Italic          =   False
+         Left            =   234
+         LockBottom      =   False
+         LockedInPosition=   False
+         LockLeft        =   False
+         LockRight       =   True
+         LockTop         =   True
+         Scope           =   0
+         TabIndex        =   1
+         TabPanelIndex   =   0
+         TabStop         =   True
+         TextFont        =   "System"
+         TextSize        =   0.0
+         TextUnit        =   0
+         Top             =   20
+         Transparent     =   False
+         Underline       =   False
+         Visible         =   True
+         Width           =   60
+      End
    End
    Begin Label InterimLabel
       AutoDeactivate  =   True
@@ -1186,6 +1250,77 @@ End
 		  closable = true
 		  Close
 		  words.show
+		  
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events loadCompleteButton
+	#tag Event
+		Sub Action()
+		  dim f as FolderItem
+		  dim t as TextInputStream
+		  dim s as String
+		  dim check as Boolean
+		  dim i as integer
+		  
+		  f = GetOpenFolderItem("")
+		  if f <> nil then
+		    t = TextInputStream.Open(f)
+		    if t.EOF then
+		      check = false
+		    else
+		      check = true
+		    end
+		    while not t.EOF
+		      s = t.ReadLine
+		      s = s.Uppercase
+		      for i = 1 to len(s)
+		        if asc(mid(s,i,1)) < 65 or asc(mid(s,i,1)) > 90 then
+		          check = false
+		        end
+		      next
+		    wend
+		    t.Close
+		    if check then
+		      XSCompleteListBox.DeleteAllRows
+		      t = TextInputStream.Open(f)
+		      while not t.EOF
+		        s = t.ReadLine
+		        s = s.Uppercase
+		        XSCompleteListBox.AddRow s
+		      wend
+		      t.Close
+		      XSCompleteListBox.SortedColumn = 0
+		      XSCompleteListBox.Sort
+		      if XSCompleteListBox.ListCount > 1 then
+		        for i = XSCompleteListBox.ListCount-1 DownTo 1
+		          if XSCompleteListBox.list(i) = XSCompleteListBox.list(i-1) then
+		            XSCompleteListBox.RemoveRow(i)
+		          end
+		        next
+		      end
+		      updateCounts
+		    end
+		  end if
+		  
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events saveCompleteButton
+	#tag Event
+		Sub Action()
+		  dim f as FolderItem
+		  dim t as TextOutputStream
+		  dim i as integer
+		  
+		  f = GetSaveFolderItem(FileTypes.Text,"xsf.txt")
+		  if f <> nil then
+		    t = TextOutputStream.Create(f)
+		    for i = 1 to XSCompleteListBox.ListCount
+		      t.WriteLine(XSCompleteListBox.List(i-1))
+		    next
+		    t.Close
+		  end
 		  
 		End Sub
 	#tag EndEvent
