@@ -787,6 +787,10 @@ End
 		  app.updateSetting("XojoScript trueFunction",trueFunctionTextArea.text)
 		  app.updateSetting("XojoScript function",functionTextArea.Text)
 		  
+		  app.updateSetting("XojoScript sourceButton",str(foreachbutton))
+		  app.updateSetting("XojoScript nLetters",str(nLetters))
+		  app.updateSetting("XojoScript scriptButton",str(executebutton))
+		  
 		End Sub
 	#tag EndEvent
 
@@ -855,7 +859,13 @@ End
 		    functionTextArea.Text = "addToInterim(word)"
 		  end
 		  
-		  executebutton = 1
+		  foreachbutton = val(app.getSetting("XojoScript sourceButton"))
+		  SourceButton(foreachbutton).value = true
+		  nLetters = val(app.getSetting("XojoScript nLetters"))
+		  SourceButton(1).Caption = str(nLetters) + "-letter word"
+		  executebutton = val(app.getSetting("XojoScript scriptButton"))
+		  ScriptButton(executebutton).value = true
+		  
 		  updateCounts
 		  runcheck
 		  
