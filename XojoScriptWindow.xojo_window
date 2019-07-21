@@ -980,6 +980,32 @@ End
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
+		Function matchesRegEx(word as string, regex as String) As boolean
+		  Dim rg As New RegEx
+		  Dim myMatch As RegExMatch
+		  dim i as integer
+		  
+		  rg.SearchPattern = regex
+		  try
+		    myMatch = rg.Search("")
+		  catch e as RegExSearchPatternException
+		    return false
+		  end try
+		  myMatch = rg.Search(word)
+		  If myMatch <> Nil Then
+		    if myMatch.SubExpressionString(0) = word then
+		      return true
+		    else
+		      return false
+		    end
+		  else
+		    return false
+		  End
+		  
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Function prepareXS() As XojoScript
 		  Dim myX As New XojoScript
 		  
