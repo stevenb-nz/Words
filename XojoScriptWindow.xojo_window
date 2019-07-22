@@ -470,38 +470,6 @@ Begin Window XojoScriptWindow
       Visible         =   True
       Width           =   152
    End
-   Begin PushButton clearInterimButton
-      AutoDeactivate  =   True
-      Bold            =   False
-      ButtonStyle     =   "0"
-      Cancel          =   False
-      Caption         =   "Clear"
-      Default         =   False
-      Enabled         =   True
-      Height          =   20
-      HelpTag         =   ""
-      Index           =   -2147483648
-      InitialParent   =   ""
-      Italic          =   False
-      Left            =   413
-      LockBottom      =   True
-      LockedInPosition=   False
-      LockLeft        =   False
-      LockRight       =   True
-      LockTop         =   False
-      Scope           =   0
-      TabIndex        =   17
-      TabPanelIndex   =   0
-      TabStop         =   True
-      TextFont        =   "System"
-      TextSize        =   0.0
-      TextUnit        =   0
-      Top             =   472
-      Transparent     =   False
-      Underline       =   False
-      Visible         =   True
-      Width           =   60
-   End
    Begin GroupBox ScriptTypeGroupBox
       AutoDeactivate  =   True
       Bold            =   False
@@ -804,6 +772,70 @@ Begin Window XojoScriptWindow
       Underline       =   False
       Visible         =   True
       Width           =   560
+   End
+   Begin PushButton clearInterimButton
+      AutoDeactivate  =   True
+      Bold            =   False
+      ButtonStyle     =   "0"
+      Cancel          =   False
+      Caption         =   "Clear"
+      Default         =   False
+      Enabled         =   True
+      Height          =   20
+      HelpTag         =   ""
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Italic          =   False
+      Left            =   413
+      LockBottom      =   True
+      LockedInPosition=   False
+      LockLeft        =   False
+      LockRight       =   True
+      LockTop         =   False
+      Scope           =   0
+      TabIndex        =   17
+      TabPanelIndex   =   0
+      TabStop         =   True
+      TextFont        =   "System"
+      TextSize        =   0.0
+      TextUnit        =   0
+      Top             =   472
+      Transparent     =   False
+      Underline       =   False
+      Visible         =   True
+      Width           =   60
+   End
+   Begin PushButton showMethodsButton
+      AutoDeactivate  =   True
+      Bold            =   False
+      ButtonStyle     =   "0"
+      Cancel          =   False
+      Caption         =   "Methods"
+      Default         =   False
+      Enabled         =   True
+      Height          =   20
+      HelpTag         =   ""
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Italic          =   False
+      Left            =   384
+      LockBottom      =   True
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   False
+      Scope           =   0
+      TabIndex        =   20
+      TabPanelIndex   =   0
+      TabStop         =   True
+      TextFont        =   "System"
+      TextSize        =   0.0
+      TextUnit        =   0
+      Top             =   592
+      Transparent     =   False
+      Underline       =   False
+      Visible         =   True
+      Width           =   80
    End
 End
 #tag EndWindow
@@ -1494,15 +1526,6 @@ End
 		End Sub
 	#tag EndEvent
 #tag EndEvents
-#tag Events clearInterimButton
-	#tag Event
-		Sub Action()
-		  XSInterimListBox.DeleteAllRows
-		  updateCounts
-		  
-		End Sub
-	#tag EndEvent
-#tag EndEvents
 #tag Events ScriptButton
 	#tag Event
 		Sub Action(index as Integer)
@@ -1585,6 +1608,22 @@ End
 		Sub TextChange()
 		  runcheck
 		  
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events clearInterimButton
+	#tag Event
+		Sub Action()
+		  XSInterimListBox.DeleteAllRows
+		  updateCounts
+		  
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events showMethodsButton
+	#tag Event
+		Sub Action()
+		  MsgBox "addToInterim(word)"+EndOfLine+"backHooksOf(word)"+EndOfLine+"frontHooksOf(word)"+EndOfLine+"isWord(word)"+EndOfLine+"matchesRegEx(word,regex)"+EndOfLine+"reverse(word)"+EndOfLine+"wordsFrom(combo)"
 		End Sub
 	#tag EndEvent
 #tag EndEvents
