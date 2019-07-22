@@ -974,46 +974,46 @@ End
 
 	#tag Method, Flags = &h0
 		Function backHooksOf(word as String) As string()
-		  'dim returnString() as string
-		  '
-		  'combo = combo.Uppercase
-		  'combo = app.sort_word(combo.totext)
-		  '
-		  'dim sql as string
-		  'sql = "SELECT Word FROM Words JOIN Combos ON Combos.id = Words.combo_id WHERE Combos.combo='"+combo+"'"
-		  '
-		  'dim data as RecordSet
-		  'data = app.wordsDB.SQLSelect(sql)
-		  '
-		  'while not data.EOF
-		  'returnString.Append data.IdxField(1).StringValue
-		  'data.MoveNext
-		  'wend
-		  '
-		  'Return returnString
+		  dim id as integer
+		  dim returnString() as string
+		  
+		  id = app.word_id(word)
+		  
+		  dim sql as string
+		  sql = "SELECT Word FROM Words WHERE b_hook_of = "+str(id)
+		  
+		  dim data as RecordSet
+		  data = app.wordsDB.SQLSelect(sql)
+		  
+		  while not data.EOF
+		    returnString.Append data.IdxField(1).StringValue
+		    data.MoveNext
+		  wend
+		  
+		  Return returnString
 		  
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
 		Function frontHooksOf(word as String) As string()
-		  'dim returnString() as string
-		  '
-		  'combo = combo.Uppercase
-		  'combo = app.sort_word(combo.totext)
-		  '
-		  'dim sql as string
-		  'sql = "SELECT Word FROM Words JOIN Combos ON Combos.id = Words.combo_id WHERE Combos.combo='"+combo+"'"
-		  '
-		  'dim data as RecordSet
-		  'data = app.wordsDB.SQLSelect(sql)
-		  '
-		  'while not data.EOF
-		  'returnString.Append data.IdxField(1).StringValue
-		  'data.MoveNext
-		  'wend
-		  '
-		  'Return returnString
+		  dim id as integer
+		  dim returnString() as string
+		  
+		  id = app.word_id(word)
+		  
+		  dim sql as string
+		  sql = "SELECT Word FROM Words WHERE f_hook_of = "+str(id)
+		  
+		  dim data as RecordSet
+		  data = app.wordsDB.SQLSelect(sql)
+		  
+		  while not data.EOF
+		    returnString.Append data.IdxField(1).StringValue
+		    data.MoveNext
+		  wend
+		  
+		  Return returnString
 		  
 		End Function
 	#tag EndMethod
