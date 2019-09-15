@@ -800,6 +800,10 @@ End
 		  pl = pl + str(UBound(guesslist)+if(current_new,0,1)) + "/100" '100 limit on wrong answers - change to user-selectable?
 		  
 		  ProgressLabel.Text = pl
+		  if newtotal and (nextnew-UBound(guesslist)-1) mod 100 = 0 then
+		    newtotal = false
+		    MsgBox "Another 100 correct!"
+		  end
 		  
 		End Sub
 	#tag EndMethod
@@ -992,6 +996,7 @@ End
 		  dim a,g as integer
 		  dim correct as Boolean
 		  
+		  newtotal = true
 		  for a = 1 to answerListbox.ListCount
 		    answers.Append answerListbox.list(a-1)
 		  next
@@ -1019,6 +1024,7 @@ End
 		    update_guessesLabel
 		    answerListbox.Visible = true
 		  end
+		  
 		  
 		End Sub
 	#tag EndMethod
@@ -1118,6 +1124,10 @@ End
 
 	#tag Property, Flags = &h0
 		myQuizTimer As QuizTimer
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		newtotal As Boolean = false
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
