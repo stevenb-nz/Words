@@ -486,7 +486,13 @@ End
 		  dim quizlength as integer
 		  
 		  left = val(app.getSetting("Quiz Left"))
+		  if left > screen(0).width then
+		    left = 0
+		  end
 		  top = val(app.getSetting("Quiz Top"))
+		  if top > screen(0).Height then
+		    top = 0
+		  end
 		  
 		  Dim tempBounds As New Realbasic.Rect
 		  
@@ -1702,6 +1708,12 @@ End
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="listend"
+		Group="Behavior"
+		InitialValue="false"
+		Type="Boolean"
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="newtotal"
 		Group="Behavior"
 		InitialValue="false"
 		Type="Boolean"
