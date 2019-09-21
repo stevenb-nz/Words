@@ -422,7 +422,13 @@ End
 		  Words.Visible = false
 		  
 		  left = val(app.getSetting("Mastermind Left"))
+		  if left > screen(0).width then
+		    left = 0
+		  end
 		  top = val(app.getSetting("Mastermind Top"))
+		  if top > screen(0).Height then
+		    top = 0
+		  end
 		  height = val(app.getSetting("Mastermind Height"))
 		  
 		  Dim tempBounds As New Realbasic.Rect
