@@ -202,6 +202,7 @@ Begin Window WordShow
       Scope           =   0
       TabIndex        =   10
       TabPanelIndex   =   0
+      TabStop         =   True
       Top             =   120
       TopLeftColor    =   &c00000000
       Transparent     =   False
@@ -269,7 +270,13 @@ End
 		  WordShowListbox.ColumnAlignment(0) = Listbox.AlignCenter
 		  
 		  left = val(app.getSetting("Word Show Left"))
+		  if left > screen(0).width then
+		    left = 0
+		  end
 		  top = val(app.getSetting("Word Show Top"))
+		  if top > screen(0).Height then
+		    top = 0
+		  end
 		  height = val(app.getSetting("Word Show Height"))
 		  
 		  Dim tempBounds As New Realbasic.Rect

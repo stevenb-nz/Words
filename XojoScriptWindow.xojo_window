@@ -925,7 +925,13 @@ End
 		  Words.Visible = false
 		  
 		  left = val(app.getSetting("XojoScript Left"))
+		  if left > screen(0).width then
+		    left = 0
+		  end
 		  top = val(app.getSetting("XojoScript Top"))
+		  if top > screen(0).Height then
+		    top = 0
+		  end
 		  height = val(app.getSetting("XojoScript Height"))
 		  
 		  Dim tempBounds As New Realbasic.Rect

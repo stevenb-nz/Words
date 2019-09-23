@@ -809,7 +809,13 @@ End
 		  dim left,top,height as Integer
 		  
 		  left = val(app.getSetting("Window Left"))
+		  if left > screen(0).width then
+		    left = 0
+		  end
 		  top = val(app.getSetting("Window Top"))
+		  if top > screen(0).Height then
+		    top = 0
+		  end
 		  height = val(app.getSetting("Window Height"))
 		  
 		  Dim tempBounds As New Realbasic.Rect
