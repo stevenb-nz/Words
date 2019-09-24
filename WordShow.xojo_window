@@ -270,11 +270,11 @@ End
 		  WordShowListbox.ColumnAlignment(0) = Listbox.AlignCenter
 		  
 		  left = val(app.getSetting("Word Show Left"))
-		  if left > screen(0).width then
+		  if ScreenCount < 2 and left > screen(0).width then
 		    left = 0
 		  end
 		  top = val(app.getSetting("Word Show Top"))
-		  if top > screen(0).Height then
+		  if ScreenCount < 2 and top > screen(0).Height then
 		    top = 0
 		  end
 		  height = val(app.getSetting("Word Show Height"))
