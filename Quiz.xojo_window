@@ -1002,7 +1002,6 @@ End
 		  dim a,g as integer
 		  dim correct as Boolean
 		  
-		  newtotal = true
 		  for a = 1 to answerListbox.ListCount
 		    answers.Append answerListbox.list(a-1)
 		  next
@@ -1024,6 +1023,7 @@ End
 		  end
 		  
 		  if correct then
+		    newtotal = true
 		    choosenext
 		  else
 		    guessListbox.DeleteAllRows
