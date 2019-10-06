@@ -731,6 +731,7 @@ End
 		  
 		  guesslist.Append 0
 		  nextnew = 1
+		  newtotal = false
 		  current_new = true
 		  CurrentComboLabel.Text = quizlist(guesslist(0))
 		  clearentry
