@@ -165,6 +165,9 @@ Begin Menu MainMenuBar
          SpecialMenu = 0
          Text = "XojoScript"
          Index = -2147483648
+         ShortcutKey = "S"
+         Shortcut = "Cmd+S"
+         MenuModifier = True
          AutoEnable = False
          Visible = True
       End
