@@ -783,6 +783,10 @@ End
 		    WordField.Text = WordButton.Caption
 		    WordField.Visible = true
 		    WordField.SetFocus
+		  case 13
+		    WordField.Text = WordButton.Caption
+		    WordField.Visible = true
+		    WordField.SetFocus
 		  case 27
 		    if Keyboard.ShiftKey then
 		      Mastermind.ShowModal
