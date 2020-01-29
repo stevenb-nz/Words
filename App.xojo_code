@@ -76,7 +76,7 @@ Inherits Application
 		  dim s as shell
 		  
 		  wordsDB = new SQLiteDatabase
-		  wordsDB.DatabaseFile = SpecialFolder.Documents.Child("Words.sqlite")
+		  wordsDB.DatabaseFile = SpecialFolder.Documents.Child("myDBs").Child("Words.sqlite")
 		  if wordsDB.CreateDatabaseFile then
 		    tables = wordsDB.TableSchema
 		    If tables <> Nil Then
@@ -565,6 +565,16 @@ Inherits Application
 
 
 	#tag ViewBehavior
+		#tag ViewProperty
+			Name="autodash"
+			Group="Behavior"
+			Type="String"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="autoquote"
+			Group="Behavior"
+			Type="String"
+		#tag EndViewProperty
 	#tag EndViewBehavior
 End Class
 #tag EndClass
