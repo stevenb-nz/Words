@@ -112,7 +112,7 @@ Begin Window WordPatterns
    End
    Begin TextField patternField
       AcceptTabs      =   False
-      Alignment       =   0
+      Alignment       =   2
       AutoDeactivate  =   True
       AutomaticallyCheckSpelling=   False
       BackColor       =   &cFFFFFF00
@@ -143,7 +143,7 @@ Begin Window WordPatterns
       TabStop         =   True
       Text            =   ""
       TextColor       =   &c00000000
-      TextFont        =   "System"
+      TextFont        =   "Monaco"
       TextSize        =   0.0
       TextUnit        =   0
       Top             =   20
@@ -155,7 +155,7 @@ Begin Window WordPatterns
    End
    Begin TextField filterField
       AcceptTabs      =   False
-      Alignment       =   0
+      Alignment       =   2
       AutoDeactivate  =   True
       AutomaticallyCheckSpelling=   False
       BackColor       =   &cFFFFFF00
@@ -186,7 +186,7 @@ Begin Window WordPatterns
       TabStop         =   True
       Text            =   ""
       TextColor       =   &c00000000
-      TextFont        =   "System"
+      TextFont        =   "Monaco"
       TextSize        =   0.0
       TextUnit        =   0
       Top             =   20
@@ -220,8 +220,10 @@ End
 
 	#tag Event
 		Function KeyDown(Key As String) As Boolean
-		  closable = true
-		  close
+		  if asc(key) = 27 then
+		    closable = true
+		    close
+		  end
 		  
 		End Function
 	#tag EndEvent
@@ -254,6 +256,42 @@ End
 		  Close
 		  
 		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events patternField
+	#tag Event
+		Sub TextChange()
+		  dim i as integer
+		  dim s as string
+		  
+		  for i = 1 to len(me.text)
+		    s = s + "."
+		  next
+		  filterField.text = s
+		  
+		End Sub
+	#tag EndEvent
+	#tag Event
+		Function KeyDown(Key As String) As Boolean
+		  if asc(key) = 27 then
+		    closable = true
+		    close
+		  elseif not(key < "A" or key > "Z") then
+		    
+		  end
+		  
+		End Function
+	#tag EndEvent
+#tag EndEvents
+#tag Events filterField
+	#tag Event
+		Function KeyDown(Key As String) As Boolean
+		  if asc(key) = 27 then
+		    closable = true
+		    close
+		  end
+		  
+		End Function
 	#tag EndEvent
 #tag EndEvents
 #tag ViewBehavior
