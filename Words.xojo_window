@@ -1250,27 +1250,6 @@ End
 		End Sub
 	#tag EndMethod
 
-	#tag Method, Flags = &h0
-		Function wordpattern(word as String) As String
-		  dim d as new Dictionary
-		  dim i,v as integer
-		  dim c,pattern as string
-		  
-		  pattern = ""
-		  v = 1
-		  for i = 1 to len(word)
-		    c = mid(word,i,1)
-		    if not d.HasKey(c) then
-		      d.Value(c) = Hex(v)
-		      v = v + 1
-		    end
-		    pattern = pattern + d.Value(c)
-		  next
-		  return pattern
-		  
-		End Function
-	#tag EndMethod
-
 
 	#tag Property, Flags = &h0
 		history() As String
@@ -1305,7 +1284,7 @@ End
 		    data = app.wordsDB.SQLSelect(sql)
 		    
 		    while not data.eof
-		      if wordpattern(data.IdxField(1).StringValue) = wordpattern(me.Caption) then
+		      if WordPatterns.wordpattern(data.IdxField(1).StringValue) = WordPatterns.wordpattern(me.Caption) then
 		        WordPatterns.WPListbox.AddRow data.IdxField(1).StringValue
 		      end
 		      data.movenext

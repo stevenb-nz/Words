@@ -236,6 +236,28 @@ End
 	#tag EndEvent
 
 
+	#tag Method, Flags = &h0
+		Function wordpattern(word as string) As string
+		  dim d as new Dictionary
+		  dim i,v as integer
+		  dim c,pattern as string
+		  
+		  pattern = ""
+		  v = 1
+		  for i = 1 to len(word)
+		    c = mid(word,i,1)
+		    if not d.HasKey(c) then
+		      d.Value(c) = Hex(v)
+		      v = v + 1
+		    end
+		    pattern = pattern + d.Value(c)
+		  next
+		  return pattern
+		  
+		End Function
+	#tag EndMethod
+
+
 	#tag Property, Flags = &h0
 		closable As Boolean
 	#tag EndProperty
@@ -254,6 +276,28 @@ End
 		  words.update_history(new_word)
 		  closable = true
 		  Close
+		  
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events setButton
+	#tag Event
+		Sub Action()
+		  dim sql as string
+		  dim data as RecordSet
+		  
+		  self.Title = patternField.Text
+		  
+		  sql = "SELECT Word FROM Words JOIN Combos ON Words.combo_id = Combos.id WHERE length = "+str(len(self.title))+" ORDER BY playability"
+		  data = app.wordsDB.SQLSelect(sql)
+		  
+		  WPListbox.DeleteAllRows
+		  while not data.eof
+		    if wordpattern(data.IdxField(1).StringValue) = wordpattern(self.Title) then
+		      WPListbox.AddRow data.IdxField(1).StringValue
+		    end
+		    data.movenext
+		  wend
 		  
 		End Sub
 	#tag EndEvent
