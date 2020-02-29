@@ -262,8 +262,18 @@ End
 	#tag Event
 		Sub TextChange()
 		  dim i as integer
-		  dim s as string
+		  dim c,s as string
 		  
+		  me.text = me.text.Uppercase
+		  for i = 1 to len(me.text)
+		    c = mid(me.text,i,1)
+		    if not (c < "A" or c > "Z") then
+		      s = s + c
+		    end
+		  next
+		  me.Text = s
+		  
+		  s = ""
 		  for i = 1 to len(me.text)
 		    s = s + "."
 		  next
@@ -276,8 +286,6 @@ End
 		  if asc(key) = 27 then
 		    closable = true
 		    close
-		  elseif not(key < "A" or key > "Z") then
-		    
 		  end
 		  
 		End Function

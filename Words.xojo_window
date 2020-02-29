@@ -1299,6 +1299,7 @@ End
 		    dim data as RecordSet
 		    
 		    WordPatterns.Title = me.caption
+		    WordPatterns.patternField.Text = me.caption
 		    
 		    sql = "SELECT Word FROM Words JOIN Combos ON Words.combo_id = Combos.id WHERE length = "+str(len(me.caption))+" ORDER BY playability"
 		    data = app.wordsDB.SQLSelect(sql)
