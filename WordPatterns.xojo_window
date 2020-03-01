@@ -319,7 +319,7 @@ End
 		  
 		  s = ""
 		  for i = 1 to len(me.text)
-		    s = s + "."
+		    s = s + "-"
 		  next
 		  filterField.text = s
 		  
@@ -344,6 +344,33 @@ End
 		  end
 		  
 		End Function
+	#tag EndEvent
+	#tag Event
+		Sub TextChange()
+		  dim i as integer
+		  dim c,s as string
+		  
+		  me.text = me.text.Uppercase
+		  for i = 1 to len(me.text)
+		    c = mid(me.text,i,1)
+		    if not (c < "A" or c > "Z") then
+		      s = s + c
+		    elseif c = "-" then
+		      s = s + "-"
+		    end
+		  next
+		  
+		  if len(s) < len(patternField.text) then
+		    for i = 1 to len(patternField.text) - len(s)
+		      s = s + "-"
+		    next
+		  else
+		    s = left(s,len(patternField.Text))
+		  end
+		  
+		  me.Text = s
+		  
+		End Sub
 	#tag EndEvent
 #tag EndEvents
 #tag ViewBehavior
