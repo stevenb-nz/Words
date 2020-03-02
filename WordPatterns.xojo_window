@@ -283,12 +283,13 @@ End
 #tag Events setButton
 	#tag Event
 		Sub Action()
-		  dim sql as string
+		  dim filter,sql as string
 		  dim data as RecordSet
 		  
 		  self.Title = patternField.Text
+		  filter = filterField.text.ReplaceAll("-","_")
 		  
-		  sql = "SELECT Word FROM Words JOIN Combos ON Words.combo_id = Combos.id WHERE length = "+str(len(self.title))+" ORDER BY playability"
+		  sql = "SELECT Word FROM Words JOIN Combos ON Words.combo_id = Combos.id WHERE Word LIKE '"+filter+"' AND length = "+str(len(self.title))+" ORDER BY playability"
 		  data = app.wordsDB.SQLSelect(sql)
 		  
 		  WPListbox.DeleteAllRows
