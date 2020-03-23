@@ -283,8 +283,32 @@ End
 #tag Events setButton
 	#tag Event
 		Sub Action()
+		  dim i as integer
+		  dim c,s as string
 		  dim filter,sql as string
 		  dim data as RecordSet
+		  
+		  if len(filterField.Text) <> len(patternField.text) then
+		    filterField.text = filterField.text.Uppercase
+		    for i = 1 to len(filterField.text)
+		      c = mid(filterField.text,i,1)
+		      if not (c < "A" or c > "Z") then
+		        s = s + c
+		      elseif c = "-" then
+		        s = s + "-"
+		      end
+		    next
+		    
+		    if len(s) < len(patternField.text) then
+		      for i = 1 to len(patternField.text) - len(s)
+		        s = s + "-"
+		      next
+		    else
+		      s = left(s,len(patternField.Text))
+		    end
+		    
+		    filterField.Text = s
+		  end
 		  
 		  self.Title = patternField.Text
 		  filter = filterField.text.ReplaceAll("-","_")
@@ -309,6 +333,12 @@ End
 		  dim i as integer
 		  dim c,s as string
 		  
+		  if InStr(me.Text,"-") > 0 then
+		    filterField.Text = right(me.text,len(me.Text)/2)
+		    me.text = left(me.text,len(me.Text)/2)
+		  else
+		    filterField.Text = ""
+		  end
 		  me.text = me.text.Uppercase
 		  for i = 1 to len(me.text)
 		    c = mid(me.text,i,1)
@@ -318,11 +348,13 @@ End
 		  next
 		  me.Text = s
 		  
-		  s = ""
-		  for i = 1 to len(me.text)
-		    s = s + "-"
-		  next
-		  filterField.text = s
+		  if filterField.Text = "" then
+		    s = ""
+		    for i = 1 to len(me.text)
+		      s = s + "-"
+		    next
+		    filterField.text = s
+		  end
 		  
 		End Sub
 	#tag EndEvent
