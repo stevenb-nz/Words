@@ -334,12 +334,15 @@ End
 		  dim c,s as string
 		  
 		  if InStr(me.Text,"-") > 0 then
-		    filterField.Text = right(me.text,len(me.Text)/2)
-		    me.text = left(me.text,len(me.Text)/2)
+		    s = me.text.ReplaceAll(" ","")
+		    s = left(s,InStr(s,chr(9))-1)
+		    filterField.Text = right(s,len(s)/2)
+		    me.text = left(s,len(s)/2)
 		  else
 		    filterField.Text = ""
 		  end
 		  me.text = me.text.Uppercase
+		  s = ""
 		  for i = 1 to len(me.text)
 		    c = mid(me.text,i,1)
 		    if not (c < "A" or c > "Z") then
