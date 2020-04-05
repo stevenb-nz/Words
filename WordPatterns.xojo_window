@@ -383,6 +383,12 @@ End
 		  
 		End Function
 	#tag EndEvent
+	#tag Event
+		Sub TextChange()
+		  me.text = me.text.Uppercase
+		  
+		End Sub
+	#tag EndEvent
 #tag EndEvents
 #tag ViewBehavior
 	#tag ViewProperty
