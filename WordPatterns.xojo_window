@@ -9,7 +9,7 @@ Begin Window WordPatterns
    FullScreen      =   False
    FullScreenButton=   False
    HasBackColor    =   False
-   Height          =   720
+   Height          =   740
    ImplicitInstance=   True
    LiveResize      =   True
    MacProcID       =   0
@@ -44,7 +44,7 @@ Begin Window WordPatterns
       GridLinesVertical=   0
       HasHeading      =   False
       HeadingIndex    =   -1
-      Height          =   647
+      Height          =   633
       HelpTag         =   ""
       Hierarchical    =   False
       Index           =   -2147483648
@@ -69,7 +69,7 @@ Begin Window WordPatterns
       TextFont        =   "System"
       TextSize        =   0.0
       TextUnit        =   0
-      Top             =   53
+      Top             =   87
       Transparent     =   False
       Underline       =   False
       UseFocusRing    =   True
@@ -104,7 +104,7 @@ Begin Window WordPatterns
       TextFont        =   "System"
       TextSize        =   0.0
       TextUnit        =   0
-      Top             =   21
+      Top             =   53
       Transparent     =   False
       Underline       =   False
       Visible         =   True
@@ -170,7 +170,7 @@ Begin Window WordPatterns
       HelpTag         =   ""
       Index           =   -2147483648
       Italic          =   False
-      Left            =   182
+      Left            =   20
       LimitText       =   0
       LockBottom      =   False
       LockedInPosition=   False
@@ -189,12 +189,55 @@ Begin Window WordPatterns
       TextFont        =   "Monaco"
       TextSize        =   0.0
       TextUnit        =   0
-      Top             =   20
+      Top             =   53
       Transparent     =   False
       Underline       =   False
       UseFocusRing    =   True
       Visible         =   True
       Width           =   150
+   End
+   Begin TextField excludedField
+      AcceptTabs      =   False
+      Alignment       =   2
+      AutoDeactivate  =   True
+      AutomaticallyCheckSpelling=   False
+      BackColor       =   &cFFFFFF00
+      Bold            =   False
+      Border          =   True
+      CueText         =   ""
+      DataField       =   ""
+      DataSource      =   ""
+      Enabled         =   True
+      Format          =   ""
+      Height          =   22
+      HelpTag         =   ""
+      Index           =   -2147483648
+      Italic          =   False
+      Left            =   182
+      LimitText       =   0
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      Mask            =   ""
+      Password        =   False
+      ReadOnly        =   False
+      Scope           =   0
+      TabIndex        =   4
+      TabPanelIndex   =   0
+      TabStop         =   True
+      Text            =   ""
+      TextColor       =   &c00000000
+      TextFont        =   "Monaco"
+      TextSize        =   0.0
+      TextUnit        =   0
+      Top             =   20
+      Transparent     =   False
+      Underline       =   False
+      UseFocusRing    =   True
+      Visible         =   True
+      Width           =   242
    End
 End
 #tag EndWindow
@@ -287,6 +330,7 @@ End
 		  dim c,s as string
 		  dim filter,sql as string
 		  dim data as RecordSet
+		  dim check as Boolean
 		  
 		  if len(filterField.Text) <> len(patternField.text) then
 		    filterField.text = filterField.text.Uppercase
@@ -319,7 +363,15 @@ End
 		  WPListbox.DeleteAllRows
 		  while not data.eof
 		    if wordpattern(data.IdxField(1).StringValue) = wordpattern(self.Title) then
-		      WPListbox.AddRow data.IdxField(1).StringValue
+		      check = true
+		      for i=1 to len(excludedField.text)
+		        if instr(data.IdxField(1).StringValue,mid(excludedField.text,i,1)) > 0 then
+		          check = false
+		        end
+		      next
+		      if check then
+		        WPListbox.AddRow data.IdxField(1).StringValue
+		      end
 		    end
 		    data.movenext
 		  wend
@@ -386,6 +438,31 @@ End
 	#tag Event
 		Sub TextChange()
 		  me.text = me.text.Uppercase
+		  
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events excludedField
+	#tag Event
+		Function KeyDown(Key As String) As Boolean
+		  if asc(key) = 27 then
+		    closable = true
+		    close
+		  end
+		  
+		End Function
+	#tag EndEvent
+	#tag Event
+		Sub TextChange()
+		  dim newText as string
+		  dim i as integer
+		  
+		  for i = 65 to 90
+		    if instr(me.Text,chr(i)) > 0 then
+		      newText = newText + chr(i)
+		    end
+		  next
+		  me.text = newText
 		  
 		End Sub
 	#tag EndEvent
