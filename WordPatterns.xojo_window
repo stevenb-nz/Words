@@ -327,7 +327,7 @@ End
 	#tag Event
 		Sub Action()
 		  dim i as integer
-		  dim c,s as string
+		  dim c,newText,s as string
 		  dim filter,sql as string
 		  dim data as RecordSet
 		  dim check as Boolean
@@ -353,6 +353,13 @@ End
 		    
 		    filterField.Text = s
 		  end
+		  
+		  for i = 1 to len(excludedField.Text)
+		    if instr(filterField.Text,mid(excludedField.Text,i,1)) = 0 then
+		      newText = newText + mid(excludedField.Text,i,1)
+		    end
+		  next
+		  excludedField.Text = newText
 		  
 		  self.Title = patternField.Text
 		  filter = filterField.text.ReplaceAll("-","_")
