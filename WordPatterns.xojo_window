@@ -280,6 +280,37 @@ End
 
 
 	#tag Method, Flags = &h0
+		Sub reset()
+		  dim i as integer
+		  dim filter,sql as string
+		  dim data as RecordSet
+		  dim check as Boolean
+		  
+		  filter = filterField.text.ReplaceAll("-","_")
+		  
+		  sql = "SELECT Word FROM Words JOIN Combos ON Words.combo_id = Combos.id WHERE Word LIKE '"+filter+"' AND length = "+str(len(self.title))+" ORDER BY playability"
+		  data = app.wordsDB.SQLSelect(sql)
+		  
+		  WPListbox.DeleteAllRows
+		  while not data.eof
+		    if wordpattern(data.IdxField(1).StringValue) = wordpattern(self.Title) then
+		      check = true
+		      for i=1 to len(excludedField.text)
+		        if instr(data.IdxField(1).StringValue,mid(excludedField.text,i,1)) > 0 then
+		          check = false
+		        end
+		      next
+		      if check then
+		        WPListbox.AddRow data.IdxField(1).StringValue
+		      end
+		    end
+		    data.movenext
+		  wend
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Function wordpattern(word as string) As string
 		  dim d as new Dictionary
 		  dim i,v as integer
@@ -328,9 +359,6 @@ End
 		Sub Action()
 		  dim i as integer
 		  dim c,newText,s as string
-		  dim filter,sql as string
-		  dim data as RecordSet
-		  dim check as Boolean
 		  
 		  if len(filterField.Text) <> len(patternField.text) then
 		    filterField.text = filterField.text.Uppercase
@@ -362,27 +390,7 @@ End
 		  excludedField.Text = newText
 		  
 		  self.Title = patternField.Text
-		  filter = filterField.text.ReplaceAll("-","_")
-		  
-		  sql = "SELECT Word FROM Words JOIN Combos ON Words.combo_id = Combos.id WHERE Word LIKE '"+filter+"' AND length = "+str(len(self.title))+" ORDER BY playability"
-		  data = app.wordsDB.SQLSelect(sql)
-		  
-		  WPListbox.DeleteAllRows
-		  while not data.eof
-		    if wordpattern(data.IdxField(1).StringValue) = wordpattern(self.Title) then
-		      check = true
-		      for i=1 to len(excludedField.text)
-		        if instr(data.IdxField(1).StringValue,mid(excludedField.text,i,1)) > 0 then
-		          check = false
-		        end
-		      next
-		      if check then
-		        WPListbox.AddRow data.IdxField(1).StringValue
-		      end
-		    end
-		    data.movenext
-		  wend
-		  
+		  reset
 		  patternField.SelectAll
 		  
 		End Sub
