@@ -1280,15 +1280,7 @@ End
 		    WordPatterns.Title = me.caption
 		    WordPatterns.patternField.Text = me.caption
 		    
-		    sql = "SELECT Word FROM Words JOIN Combos ON Words.combo_id = Combos.id WHERE length = "+str(len(me.caption))+" ORDER BY playability"
-		    data = app.wordsDB.SQLSelect(sql)
-		    
-		    while not data.eof
-		      if WordPatterns.wordpattern(data.IdxField(1).StringValue) = WordPatterns.wordpattern(me.Caption) then
-		        WordPatterns.WPListbox.AddRow data.IdxField(1).StringValue
-		      end
-		      data.movenext
-		    wend
+		    WordPatterns.reset
 		    WordPatterns.ShowModal
 		  else
 		    WordField.Text = me.Caption
