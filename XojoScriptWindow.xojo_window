@@ -919,8 +919,9 @@ End
 		Sub Open()
 		  dim i,left,top,height as Integer
 		  dim s as Shell
-		  dim xslist as string
+		  dim cs,xslist as string
 		  dim xslistArray() as string
+		  dim c As New Clipboard
 		  
 		  Words.Visible = false
 		  
@@ -967,6 +968,16 @@ End
 		  SourceButton(1).Caption = str(nLetters) + "-letter word"
 		  executebutton = val(app.getSetting("XojoScript scriptButton"))
 		  ScriptButton(executebutton).value = true
+		  
+		  cs = c.Text
+		  c.Close
+		  
+		  if cs <> "" then
+		    XSCompleteListBox.DeleteAllRows
+		    for i = 1 to CountFields(cs,chr(13))
+		      XSCompleteListBox.AddRow NthField(cs,chr(13),i)
+		    next
+		  end
 		  
 		  updateCounts
 		  runcheck
