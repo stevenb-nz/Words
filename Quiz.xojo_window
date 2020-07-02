@@ -1350,6 +1350,7 @@ End
 		      end
 		    end
 		  end
+		  newtotal = false
 		  clearentry
 		  loadquiz
 		  
@@ -1423,7 +1424,7 @@ End
 		    end
 		    
 		  end
-		  
+		  newtotal = false
 		  clearentry
 		  loadquiz
 		  
