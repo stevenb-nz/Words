@@ -1202,8 +1202,8 @@ End
 		    else
 		      return true
 		    end
-		  case 28 to 29
-		    'let left and right arrow keys through
+		  case 28 to 31
+		    'let arrow keys through
 		  case 32 'divert " " to shuffle
 		    if QuizTypeButton.Caption = "Combo" then
 		      CurrentComboLabel.Text = shuffle_string(CurrentComboLabel.Text)
