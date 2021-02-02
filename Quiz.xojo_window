@@ -1164,7 +1164,7 @@ End
 		    dim current_guess as String
 		    current_guess = me.text
 		    
-		    if current_guess = "" then
+		    if current_guess = "" and not (CurrentComboLabel.bold = true and guessListbox.ListCount = 0) then
 		      if me.BackColor = &cFFFFFF and GuessesLabel.Text = AnswersLabel.Text then
 		        if answerListbox.Visible then
 		          submit_reentry
